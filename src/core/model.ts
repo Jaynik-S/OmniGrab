@@ -51,6 +51,8 @@ export interface Observation {
 
 export interface MediaItem {
   id: string;
+  /** Snapshot revision that created this candidate; fences same-URL replacements. */
+  instance?: number;
   url: string;
   type: MediaKind;
   status: DetectionStatus;
@@ -100,5 +102,6 @@ export interface ProbeJob {
   itemId: string;
   url: string;
   kind: 'hls' | 'dash';
+  instance?: number;
   attempts?: number;
 }
