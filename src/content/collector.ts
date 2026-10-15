@@ -20,12 +20,17 @@ function baseUrl(document: Document, pageUrl: string): string {
   return sourceUrl(document.querySelector('base[href]')?.getAttribute('href'), pageUrl, false) ?? pageUrl;
 }
 
+function currentPageUrl(document: Document, fallback: string): string {
+  return sourceUrl(document.URL, fallback, false) ?? sourceUrl(document.location?.href, fallback, false) ?? fallback;
+}
+
 function finite(value: number | undefined): number | undefined {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : undefined;
 }
 
 // Traverse only accessible DOM. No access to parent frames or closed shadow roots.
 function scan(root: Node, document: Document, pageUrl: string, visitShadow?: (root: ShadowRoot) => void): CollectedObservation[] {
+  pageUrl = currentPageUrl(document, pageUrl);
   const pending: Node[] = [root];
   const observations: CollectedObservation[] = [];
   const base = baseUrl(document, pageUrl);
@@ -72,7 +77,8 @@ function mediaSources(media: HTMLMediaElement, document: Document, pageUrl: stri
   };
   add(current);
   add(media.getAttribute('src'));
-  for (const child of media.children) {
+  let inspected = 0;
+  for (let child = media.firstElementChild; child && inspected++ < MAX_NODES; child = child.nextElementSibling) {
     if (found.size >= MAX_OBSERVATIONS) break;
     if (child.localName === 'source') add(child.getAttribute('src'), child.getAttribute('type'));
   }
@@ -99,7 +105,13 @@ export function collectResources(entries: Iterable<ResourceEntry>, pageUrl: stri
   return [...found.values()];
 }
 
-export function observeMedia(document: Document, pageUrl: string, report: (batch: CollectedObservation[]) => void, options: { delay?: number } = {}) {
+export interface MediaObserverOptions {
+  delay?: number;
+  /** Visible-document discovery interval for roots attached without a DOM mutation. */
+  sweepInterval?: number;
+}
+
+export function observeMedia(document: Document, pageUrl: string, report: (batch: CollectedObservation[]) => void, options: MediaObserverOptions = {}) {
   const Mutation = document.defaultView?.MutationObserver;
   const roots = new Set<Node>();
   const observed = new Set<Node>();
@@ -120,6 +132,7 @@ export function observeMedia(document: Document, pageUrl: string, report: (batch
   };
   const flush = () => {
     timer = undefined;
+    prune();
     const work = [...roots];
     roots.clear();
     for (const root of work) {
@@ -138,6 +151,7 @@ export function observeMedia(document: Document, pageUrl: string, report: (batch
     if (target?.nodeType === 1) schedule(target);
   };
   const observer = Mutation ? new Mutation(records => {
+    prune();
     for (const record of records) {
       if (record.type === 'attributes') {
         const target = record.target as Element;
@@ -150,19 +164,45 @@ export function observeMedia(document: Document, pageUrl: string, report: (batch
     }
   }) : undefined;
   const events = ['loadstart', 'loadedmetadata', 'durationchange', 'emptied', 'loadeddata'];
+  const mutationOptions = { subtree: true, childList: true, attributes: true, attributeFilter: ['src', 'type', 'poster'] };
+  function prune() {
+    let removed = false;
+    for (const root of observed) {
+      if (root === document || (root as ShadowRoot).host?.isConnected) continue;
+      for (const event of events) root.removeEventListener(event, onEvent, true);
+      observed.delete(root);
+      roots.delete(root);
+      removed = true;
+    }
+    if (removed) {
+      // MutationObserver has no unobserve; reconnect only roots that remain alive.
+      observer?.disconnect();
+      for (const root of observed) observer?.observe(root, mutationOptions);
+    }
+  }
   function watch(root: Node) {
+    prune();
     if (observed.has(root) || observed.size >= 200) return;
     observed.add(root);
-    observer?.observe(root, { subtree: true, childList: true, attributes: true, attributeFilter: ['src', 'type', 'poster'] });
+    observer?.observe(root, mutationOptions);
     for (const event of events) root.addEventListener(event, onEvent, true);
   }
   watch(document);
   emit(scan(document, document, pageUrl, watch));
+  const visible = () => document.visibilityState !== 'hidden';
+  // attachShadow on an already connected host is invisible to document MutationObserver.
+  const sweep = setInterval(() => {
+    if (visible()) schedule(document);
+  }, Math.max(20, options.sweepInterval ?? 2_000));
+  const onVisibility = () => { if (visible()) schedule(document); };
+  document.addEventListener('visibilitychange', onVisibility);
   return {
     rescan() { recent.clear(); schedule(document); },
     disconnect() {
       stopped = true;
       if (timer !== undefined) clearTimeout(timer);
+      clearInterval(sweep);
+      document.removeEventListener('visibilitychange', onVisibility);
       observer?.disconnect();
       for (const root of observed) for (const event of events) root.removeEventListener(event, onEvent, true);
       observed.clear(); roots.clear(); recent.clear();

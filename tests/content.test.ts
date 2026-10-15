@@ -88,6 +88,30 @@ test('bounds collection and resource output for excessive documents', () => {
   assert.ok(collectResources(Array.from({ length: 700 }, (_, index) => ({ name: `https://cdn.test/${index}.mp4`, initiatorType: 'fetch' })), pageUrl).length <= 200);
 });
 
+test('refreshes document URL after same-document navigation when resolving sources', async () => {
+  const document = fixture('<video src="first.mp4"></video>');
+  Object.defineProperty(document, 'URL', { value: 'https://page.test/old/', configurable: true });
+  const batches: ReturnType<typeof collectMedia>[] = [];
+  const observer = observeMedia(document, 'https://page.test/old/', batch => batches.push(batch), { delay: 0 });
+  try {
+    Object.defineProperty(document, 'URL', { value: 'https://page.test/new/', configurable: true });
+    const video = document.querySelector('video')!;
+    Object.defineProperty(video, 'currentSrc', { value: 'https://page.test/new/second.mp4' });
+    video.setAttribute('src', 'second.mp4');
+    await new Promise(resolve => setTimeout(resolve, 20));
+    const changed = batches.flat().filter(item => item.url.includes('second.mp4'));
+    assert.deepEqual(changed.map(item => item.url), ['https://page.test/new/second.mp4']);
+    assert.equal(changed[0].pageUrl, 'https://page.test/new/');
+  } finally { observer.disconnect(); }
+});
+
+test('bounds inspected source children even when repeated URLs never fill the output limit', () => {
+  const document = fixture(`<video>${'<source src="/same.mp4">'.repeat(20_001)}<source src="/beyond-budget.mp4"></video>`);
+  const observations = collectMedia(document, pageUrl);
+  assert.ok(observations.some(item => item.url === 'https://page.test/same.mp4'));
+  assert.ok(!observations.some(item => item.url === 'https://page.test/beyond-budget.mp4'));
+});
+
 test('watches media in newly inserted shadow trees and stops reporting after disconnect', async () => {
   const document = fixture('<main></main>');
   const batches: ReturnType<typeof collectMedia>[] = [];
