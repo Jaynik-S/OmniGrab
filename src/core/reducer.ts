@@ -23,13 +23,20 @@ function mergeProvenance(tab: TabState, item: MediaItem, other: Pick<MediaItem, 
   item.firstSeen = Math.min(item.firstSeen, other.firstSeen);
   item.lastSeen = Math.max(item.lastSeen, other.lastSeen);
 }
-function detachFrame(tab: TabState, frameId: number): void {
+function detachFrame(tab: TabState, frameId: number, instance: number): void {
   const documentId = tab.documents[frameId];
   for (const item of Object.values(tab.media)) {
+    const removedProvenance = item.frameIds.includes(frameId) || documentId !== undefined && item.documentIds.includes(documentId) ||
+      item.elementIds.some(id => id.startsWith(`${frameId}:`));
     item.frameIds = item.frameIds.filter(id => id !== frameId);
     if (documentId) item.documentIds = item.documentIds.filter(id => id !== documentId);
     item.elementIds = item.elementIds.filter(id => !id.startsWith(`${frameId}:`));
     if (!item.frameIds.length) delete tab.media[item.id];
+    else if (removedProvenance) {
+      // Shared URLs survive the frame, but work started against its old membership cannot.
+      item.instance = instance;
+      if (item.status === 'probing') item.status = 'observed';
+    }
   }
   delete tab.documents[frameId];
   if (frameId === 0) delete tab.documentId;
@@ -58,7 +65,7 @@ export function bindDocument(s: Snapshot, tabId: number, frameId: number, docume
     dropped(tab, 1, 'document-limit');
     return replace(s, tab);
   }
-  if (tab.documents[frameId]) detachFrame(tab, frameId);
+  if (tab.documents[frameId]) detachFrame(tab, frameId, s.revision + 1);
   tab.documents[frameId] = documentId;
   if (frameId === 0) { tab.documentId = documentId; if (url) tab.url = url; }
   return replace(s, tab);
@@ -67,7 +74,7 @@ export function removeFrame(s: Snapshot, tabId: number, frameId: number): Snapsh
   const old = s.tabs[tabId];
   if (!old || !old.documents[frameId] && !Object.values(old.media).some(item => item.frameIds.includes(frameId))) return s;
   const tab = structuredClone(old);
-  detachFrame(tab, frameId);
+  detachFrame(tab, frameId, s.revision + 1);
   return replace(s, tab);
 }
 export function removeTab(s: Snapshot, tabId: number): Snapshot {
@@ -108,7 +115,9 @@ export function ingest(s: Snapshot, o: Observation): { state: Snapshot; probe?: 
   const strongerType = !owner && classification && classification.kind !== item.type && !item.methods.includes('manifest') &&
     (classification.probe || o.method === 'network') && (o.method === 'network' || !hadNetworkEvidence);
   if (strongerType) { item.type = classification.kind; item.status = classification.status; item.reason = classification.reason; }
-  if (rejection && item.status !== 'unsupported') {
+  if (rejection && owner) {
+    tab.errors = unique(tab.errors, [`child-response:${rejection}:${url}`.slice(0, 1000)]);
+  } else if (rejection && item.status !== 'unsupported') {
     item.status = 'unresolved'; item.reason = rejection;
   } else if (!owner && classification?.status === 'confirmed' && item.status !== 'unsupported' &&
       (item.type === 'direct') && (o.method === 'network' || !item.reason?.startsWith('network-'))) {

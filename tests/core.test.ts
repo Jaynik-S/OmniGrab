@@ -236,7 +236,7 @@ test('weaker DOM manifest claims cannot replace successful network media evidenc
   assert.equal(weak.probe, undefined);
 });
 
-test('grouped segments retain provenance and failed child responses update the group', () => {
+test('grouped segments retain provenance and failed child responses keep parent confirmation', () => {
   const child = 'https://cdn.test/child.m3u8';
   const segment = 'https://cdn.test/chunk.m4s';
   const parent = ingest(start(), observation('https://cdn.test/master.m3u8', { mime: 'application/x-mpegurl' }));
@@ -248,8 +248,9 @@ test('grouped segments retain provenance and failed child responses update the g
   s = ingest(s, observation(segment, { frameId: 7, documentId: 'segment-document', mime: 'video/mp4' })).state;
   assert.deepEqual(s.tabs[1].media[parent.probe.itemId].frameIds, [0, 7]);
   s = ingest(s, observation(child, { mime: 'text/html' })).state;
-  assert.equal(s.tabs[1].media[parent.probe.itemId].status, 'unresolved');
-  assert.equal(s.tabs[1].media[parent.probe.itemId].reason, 'network-mime:text/html');
+  assert.equal(s.tabs[1].media[parent.probe.itemId].status, 'confirmed');
+  assert.equal(s.tabs[1].media[parent.probe.itemId].reason, undefined);
+  assert.ok(s.tabs[1].errors.some(reason => reason.includes(child) && reason.includes('network-mime:text/html')));
   assert.equal(Object.keys(s.tabs[1].media).length, 1);
 });
 
@@ -273,4 +274,42 @@ test('candidate, provenance, relationship and variant caps report dropped eviden
   assert.equal(s.tabs[1].dropped, 2);
   assert.ok(s.tabs[1].errors.includes('variant-limit'));
   assert.ok(s.tabs[1].errors.includes('relationship-limit'));
+});
+
+test('shared manifest candidates fence old frame jobs when other live frames retain the URL', () => {
+  const url = 'https://cdn.test/shared.m3u8';
+  const info: ManifestInfo = { type: 'hls', variants: [], childUrls: [], segmentUrls: [], protected: true, live: false };
+  for (const transition of ['replace', 'remove'] as const) {
+    let s = bindDocument(start(), 1, 7, 'frame-old');
+    const first = ingest(s, observation(url, { frameId: 7, documentId: 'frame-old', mime: 'application/x-mpegurl' }));
+    assert.ok(first.probe);
+    s = probeStarted(first.state, first.probe);
+    s = ingest(s, observation(url, { mime: 'application/x-mpegurl' })).state;
+    const before = s;
+    s = transition === 'replace' ? bindDocument(s, 1, 7, 'frame-new') : core.removeFrame(s, 1, 7);
+    if (transition === 'remove') s = bindDocument(s, 1, 7, 'frame-new');
+    s = ingest(s, observation(url, { frameId: 7, documentId: 'frame-new', mime: 'application/x-mpegurl' })).state;
+    assert.strictEqual(applyManifest(s, first.probe, info), s);
+    assert.strictEqual(probeFailed(s, first.probe, 'late-failure'), s);
+    assert.strictEqual(probeStarted(s, first.probe), s);
+    assert.equal(s.tabs[1].media[url].status, 'observed');
+    assert.notEqual(s.tabs[1].media[url].instance, first.probe.instance);
+    assert.equal(before.tabs[1].media[url].instance, first.probe.instance);
+    const current = { ...first.probe, instance: s.tabs[1].media[url].instance };
+    assert.equal(applyManifest(s, current, info).tabs[1].media[url].status, 'unsupported');
+  }
+});
+
+test('an explicitly linked image-suffixed child cannot demote its verified manifest parent', () => {
+  const child = 'https://cdn.test/video.jpg';
+  const parent = ingest(start(), observation('https://cdn.test/master.m3u8', { mime: 'application/x-mpegurl' }));
+  assert.ok(parent.probe);
+  let s = applyManifest(parent.state, parent.probe, { type: 'hls', variants: [{ id: '720', url: child, height: 720 }], childUrls: [child], segmentUrls: [], protected: false, live: false });
+  s = ingest(s, observation(child, { mime: 'image/jpeg' })).state;
+  const item = s.tabs[1].media[parent.probe.itemId];
+  assert.equal(item.status, 'confirmed');
+  assert.equal(item.reason, undefined);
+  assert.deepEqual(item.variants, [{ id: '720', url: child, height: 720 }]);
+  assert.ok(s.tabs[1].errors.some(reason => reason.includes(child) && reason.includes('network-mime:image/jpeg')));
+  assert.equal(Object.keys(s.tabs[1].media).length, 1);
 });

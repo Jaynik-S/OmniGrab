@@ -51,7 +51,7 @@ export interface Observation {
 
 export interface MediaItem {
   id: string;
-  /** Snapshot revision that created this candidate; fences same-URL replacements. */
+  /** Creation/document-membership revision; fences jobs across same-URL frame replacements. */
   instance?: number;
   url: string;
   type: MediaKind;
