@@ -79,7 +79,7 @@ export class ManifestProbe {
   private completions = new Map<string, Completion>();
   private scheduling = Promise.resolve();
 
-  constructor(store: DetectionStore, fetcher: typeof fetch = fetch, options: ManifestProbeOptions = {}) {
+  constructor(store: DetectionStore, fetcher: typeof fetch = (input, init) => globalThis.fetch(input, init), options: ManifestProbeOptions = {}) {
     this.store = store;
     this.fetcher = fetcher;
     this.concurrency = Math.min(4, options.concurrency ?? 4);

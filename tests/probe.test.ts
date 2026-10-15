@@ -28,6 +28,19 @@ function memoryStore(initial: Snapshot) {
   return new DetectionStore({ load: async () => initial, save: async () => {} });
 }
 
+test('default fetch keeps the global receiver required by WorkerGlobalScope', async context => {
+  const { state, jobs: [job] } = candidates();
+  const store = memoryStore(state);
+  context.mock.method(globalThis, 'fetch', async function (this: unknown) {
+    if (this !== globalThis) throw new TypeError("Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation");
+    return new Response(HLS);
+  });
+  await new ManifestProbe(store).enqueue(job);
+  const item = (await store.read()).tabs[1].media[job.itemId];
+  assert.equal(item.status, 'confirmed');
+  assert.deepEqual(item.segmentUrls, ['https://cdn.test/part.ts']);
+});
+
 test('probe persists probing before fetching, deduplicates callers, and resolves against redirect URL', async () => {
   const { state, jobs: [job] } = candidates();
   const saved = deferred<void>();
