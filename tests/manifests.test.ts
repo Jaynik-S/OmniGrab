@@ -66,6 +66,25 @@ test('DASH template-only representations remain discoverable without invented se
   assert.deepEqual(info.segmentUrls, []);
 });
 
+test('DASH preserves signed BaseURL queries inside CDATA', () => {
+  const info = parseDash('<MPD><Period><AdaptationSet contentType="video"><Representation id="v"><BaseURL><![CDATA[https://cdn.test/video.mp4?sig=a%2Fb&expires=123]]></BaseURL></Representation></AdaptationSet></Period></MPD>', 'https://cdn.test/master.mpd?parent=secret');
+  assert.equal(info.variants[0]?.url, 'https://cdn.test/video.mp4?sig=a%2Fb&expires=123');
+  assert.deepEqual(info.childUrls, ['https://cdn.test/video.mp4?sig=a%2Fb&expires=123']);
+});
+
+test('DASH ignores entity and declaration text inside comments and CDATA', () => {
+  const info = parseDash('<MPD><!-- <!DOCTYPE MPD> <!ENTITY harmless> &unresolved; --><ProgramInformation><Title><![CDATA[<!DOCTYPE example> <!ENTITY harmless> &unresolved;]]></Title></ProgramInformation><Period><AdaptationSet contentType="video"><Representation id="v"><BaseURL>video.mp4</BaseURL></Representation></AdaptationSet></Period></MPD>', 'https://cdn.test/master.mpd');
+  assert.deepEqual(info.childUrls, ['https://cdn.test/video.mp4']);
+});
+
+test('DASH still rejects real entity declarations and references beside literal XML text', () => {
+  for (const xml of [
+    '<!-- <!DOCTYPE harmless> --><!DOCTYPE MPD [<!ENTITY ext SYSTEM "file:///etc/passwd">]><MPD/>',
+    '<MPD><Title><![CDATA[<!DOCTYPE harmless> &literal;]]></Title>&custom;</MPD>',
+    '<MPD><Title><![CDATA[unterminated</Title></MPD>',
+  ]) assert.throws(() => parseDash(xml, 'https://cdn.test/master.mpd'));
+});
+
 test('DASH rejects malformed XML, entities, excessive depth and unsafe structures', () => {
   for (const xml of ['<MPD><Period></MPD>', '<html/>', '<!DOCTYPE MPD [<!ENTITY ext SYSTEM "file:///etc/passwd">]><MPD/>', '<MPD>&custom;</MPD>', '<MPD><Period><AdaptationSet><Representation><BaseURL>data:text/plain,media</BaseURL></Representation></AdaptationSet></Period></MPD>', '<MPD><BaseURL>a/</BaseURL><BaseURL>b/</BaseURL><Period/></MPD>']) {
     assert.throws(() => parseDash(xml, 'https://cdn.test/master.mpd'), Error, xml);

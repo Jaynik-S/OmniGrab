@@ -46,8 +46,11 @@ function descend(node: Node, parent: Context): Context {
 }
 
 function checkXml(text: string): void {
-  if (/<!\s*(DOCTYPE|ENTITY)\b/i.test(text)) throw new Error('DASH DTD/entity declarations are forbidden');
-  if (/&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[\da-fA-F]+);)/.test(text)) throw new Error('Invalid DASH entity reference');
+  // Literal XML text may contain raw ampersands and declaration-like strings.
+  // Keep a separator so removing a literal section cannot join entity tokens.
+  const entityText = text.replace(/<!--[\s\S]*?-->|<!\[CDATA\[[\s\S]*?\]\]>/g, ' ');
+  if (/<!\s*(DOCTYPE|ENTITY)\b/i.test(entityText)) throw new Error('DASH DTD/entity declarations are forbidden');
+  if (/&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[\da-fA-F]+);)/.test(entityText)) throw new Error('Invalid DASH entity reference');
   let depth = 0;
   let nodes = 0;
   // Scan before parsing, so excessive nesting never reaches the recursive XML builder.
