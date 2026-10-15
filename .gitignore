@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.cache/
+.superpowers/
+test-results/
+*.log
+rea-video-capture.json

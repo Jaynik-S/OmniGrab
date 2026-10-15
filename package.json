@@ -1,0 +1,25 @@
+{
+  "name": "media-detection-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "node scripts/build.mjs",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "fast-xml-parser": "5.11.2"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.3.5",
+    "@types/node": "26.6.5",
+    "esbuild": "0.28.2",
+    "linkedom": "0.18.13",
+    "typescript": "7.0.2"
+  }
+}
