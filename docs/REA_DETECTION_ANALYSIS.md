@@ -150,14 +150,20 @@ Opening the original panel HTML in a normal tab initially changed active-tab tra
 
 ## What can realistically be replicated
 
+### Additional controlled runtime baselines
+
+The follow-up [original-extension baselines](ORIGINAL_BASELINES.md) preserve twelve trials, including unsuccessful setup/no-load controls. Successful trials observed original direct MP4 and WebM detection, one HLS group with five variants, JavaScript-triggered blob/MP4 correlation, one fresh-tab DASH group with ten representations, three sources from cross-origin MDN example frames attributed to the top tab, and no detections on a no-video index page. The original normalizes the WebM sample's extension field to `mkv`; this does not change its source URL into MP4 or establish a transcode.
+
+State polling also found transient prior-source snapshots during navigation and an unrelated prior MP4 retained in one reused-tab DASH trial. A fresh-tab control contained only the MPD group. These are bounded lifecycle observations; the internal cause was not instrumented. Timing values in the baseline report are scenario-call-to-discovery/persistence diagnostics, not response-to-detection latency. Per-case REA captures declare incomplete coverage and must not be presented as exhaustive traffic recordings.
+
 | Capability | Evidence state | Original implementation implication | Equivalent original MV3 approach |
 | --- | --- | --- | --- |
-| Direct MP4/WebM | Verified static; controlled runtime comparison pending | MIME/container classification plus HTTP metadata | Combine response MIME/status with observed element/resource URL evidence. |
-| HLS/DASH master discovery | Verified static; one HLS runtime correlation | Refetch candidate manifest; parse representations | Bounded independent manifest fetch/parser; explicit fetch-failed state. |
-| Dynamic JS/AJAX playback | Verified static network path; passive replay pending | New requests can be observed after load | Network listener plus DOM mutation/media events and late resource inventory. |
-| Blob/MSE | One blob-plus-HLS runtime case; generic interception absent in bounded sweep | Underlying HTTP manifests can suffice | Correlate with network/manifests; label unassociated blobs unresolved. |
-| Cross-origin frames | Manifest/network support verified static; isolated-frame runtime pending | Site-matched all-frame injection and request tab IDs | Collect sender tab/frame/document IDs; use supported related-frame injection rules. |
-| Variant grouping | HLS/DASH static; two HLS variants in original session | Parent manifest owns known child variants | Merge only explicit parser relationships; retain separate media otherwise. |
+| Direct MP4/WebM | Verified static and single controlled original trials; new-engine comparison pending | MIME/container classification plus HTTP metadata | Combine response MIME/status with observed element/resource URL evidence. |
+| HLS/DASH master discovery | Static plus original HLS/DASH runtime group observations | Refetch candidate manifest; parse representations | Bounded independent manifest fetch/parser; explicit fetch-failed state. |
+| Dynamic JS/AJAX playback | Static network path plus SourceBuffer Load trial; user-page replay pending | New requests can be observed after load | Network listener plus DOM mutation/media events and late resource inventory. |
+| Blob/MSE | Blob-plus-HLS, DASH and direct-source correlations; generic interception absent in bounded sweep | Underlying HTTP manifests/sources can suffice | Correlate with network/manifests; label unassociated blobs unresolved. |
+| Cross-origin frames | Static declarations plus three MDN iframe sources attributed to the top tab; exact per-source frame IDs remain unverified in original state | Site-matched all-frame injection and request tab IDs | Collect sender tab/frame/document IDs; use supported related-frame injection rules. |
+| Variant grouping | Static plus two/five HLS and ten DASH choices in original sessions | Parent manifest owns known child variants | Merge only explicit parser relationships; retain separate media otherwise. |
 | Segment suppression | Static suffix/size rules verified | Reduce standalone fragment rows | Prefer parent/child relationships and MIME/manifest segment evidence; keep ambiguous observations pending. |
 | Navigation/restarts | Static restoration/clearing verified; lifecycle tests pending | Shared storage outlives popup/worker instance | Synchronous listeners, serialized reducers, document generations, session persistence. |
 | Companion/helper | Browser worker/OPFS/LibAV path verified static | No native companion path established for this version | Detection engine needs no native helper or media processing runtime. |
@@ -168,9 +174,9 @@ Additional content-script/resource signals in the proposed engine are **design c
 ## Remaining research gates
 
 1. Capture an actual user playback/seek window with media requests and observe the original list with the correct active tab.
-2. Measure direct MP4/WebM, DASH, embedded/cross-origin, dynamic, multi-video and no-video baselines on authorized controlled pages.
+2. Extend the initial direct/HLS/DASH/blob/embedded/multi-source/negative trials with precise frame/document provenance, lifecycle and repeated-trial measurements on authorized controlled pages.
 3. Distinguish observation time, parse completion and list visibility when measuring latency.
 4. Verify originals/new-engine behavior across worker stop/restart, navigation races, denied hosts and failed manifest fetches.
 5. Treat site-specific behavior outside the inspected version and uninstrumented WASM internals as unknown.
 
-Phase 1 has substantial static evidence and one bounded HLS/blob runtime correlation. It is not yet an exhaustive detection-capability or comparative-runtime study. No production detector has been implemented.
+Phase 1 has substantial static evidence, bounded original direct/HLS/DASH/blob/negative observations, and an observed navigation-state risk. It is not an exhaustive detection-capability or comparative-runtime study. No production detector has been implemented.

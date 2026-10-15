@@ -1,0 +1,166 @@
+{
+  "authority": "supplemental direct CDP original-extension read-only storage polling; not REA Evidence",
+  "expected_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+  "monitor_started_at": "2026-10-15T23:16:28.291Z",
+  "monitor_ended_at": "2026-10-15T23:16:46.473Z",
+  "sample_count": 68,
+  "poll_interval_ms": 250,
+  "state_changes_and_final": [
+    {
+      "host_wall_ms": 1792106188292,
+      "browser_wall_ms": 1792106188301,
+      "tab_ids": [],
+      "current_tab": 190445560,
+      "records": [],
+      "panel_rows": 1
+    },
+    {
+      "host_wall_ms": 1792106189070,
+      "browser_wall_ms": 1792106189082,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [],
+      "panel_rows": 0
+    },
+    {
+      "host_wall_ms": 1792106189603,
+      "browser_wall_ms": 1792106189612,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [
+        {
+          "key": 190445567,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_3551598338459204",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106188924,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "flower",
+                  "has_drm": false,
+                  "hash": "media_hash_3551598338459204",
+                  "initiator": null,
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 1128375
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": null,
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445567,
+              "thumbnail_url": null,
+              "title": null,
+              "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+            }
+          }
+        }
+      ],
+      "panel_rows": 1
+    },
+    {
+      "host_wall_ms": 1792106206202,
+      "browser_wall_ms": 1792106206212,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [
+        {
+          "key": 190445567,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_3551598338459204",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106188924,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "flower",
+                  "has_drm": false,
+                  "hash": "media_hash_3551598338459204",
+                  "initiator": null,
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 1128375
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": null,
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445567,
+              "thumbnail_url": null,
+              "title": null,
+              "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+            }
+          }
+        }
+      ],
+      "panel_rows": 1
+    }
+  ]
+}

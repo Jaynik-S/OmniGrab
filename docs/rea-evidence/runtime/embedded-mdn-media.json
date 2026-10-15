@@ -1,0 +1,75 @@
+{
+  "captured_at": "2026-10-15T23:27:42.438Z",
+  "authority": "supplemental direct CDP read-only evaluation inside page-associated MDN iframe targets; not REA Evidence",
+  "frames": [
+    {
+      "target_id": "F4C4CC061860CDE1DC1B298DEAB319E9",
+      "result": {
+        "origin": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev",
+        "path": "/runner.html",
+        "media": [
+          {
+            "currentSrc": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/shared-assets/videos/flower.webm",
+            "readyState": 4,
+            "paused": true,
+            "width": 960,
+            "height": 540,
+            "sources": [
+              {
+                "src": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/shared-assets/videos/flower.webm",
+                "type": "video/webm"
+              },
+              {
+                "src": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/shared-assets/videos/flower.mp4",
+                "type": "video/mp4"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "target_id": "3C62B50551685CC9783772EC5D997FC1",
+      "result": {
+        "origin": "https://73722d2ed4ef4350d6c0bd7ef4ad3434cd8a76dc.mdnplay.dev",
+        "path": "/en-US/docs/Web/HTML/Reference/Elements/video/runner.html",
+        "media": [
+          {
+            "currentSrc": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
+            "readyState": 4,
+            "paused": true,
+            "width": 640,
+            "height": 360,
+            "sources": []
+          }
+        ]
+      }
+    },
+    {
+      "target_id": "15F8735C76D866D33E51B359315BA08F",
+      "result": {
+        "origin": "https://7c443d5373c2f7f328b1964cb113226f86762b03.mdnplay.dev",
+        "path": "/en-US/docs/Web/HTML/Reference/Elements/video/runner.html",
+        "media": [
+          {
+            "currentSrc": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
+            "readyState": 4,
+            "paused": true,
+            "width": 426,
+            "height": 240,
+            "sources": [
+              {
+                "src": "https://archive.org/download/ElephantsDream/ed_hd.avi",
+                "type": "video/avi"
+              },
+              {
+                "src": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
+                "type": "video/mp4"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

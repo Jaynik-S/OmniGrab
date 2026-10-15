@@ -121,6 +121,8 @@ Use one serialized mutation chain: await restoration, apply a reducer event, per
 
 Use browser document IDs where available and a persisted top-document generation as a fallback fence. Top-level commits advance the generation and clear that tab's prior document results. SPA history-state changes preserve/reconcile the document's observations while updating page metadata; a rescan refreshes element evidence and retires superseded element sources. Subframe navigation only invalidates the relevant frame/document. Old asynchronous fetch completions cannot resurrect media after navigation. Tab IDs are never treated as permanent identities across browser sessions.
 
+The [original baseline trials](ORIGINAL_BASELINES.md#navigation-state-observations) observed an old MP4 retained alongside a correct DASH item after a reused-tab navigation; a fresh-tab control had only the MPD. This supports the generation-fence requirement, while the original's exact failure mechanism remains unknown. Tests must inspect source identity, not merely a nonempty tab snapshot.
+
 Bound retained state: at most 200 candidates and 1,000 compact observations per tab, 20 variants per item initially, 50 tab snapshots, and a 30-minute idle retention policy. Evict stale/weak diagnostics first, then oldest inactive candidates, recording truncation counters. Active confirmed sources and parser relationships must not disappear silently. These are proposed defaults to validate with the matrix, not copied original thresholds.
 
 ## Permissions and minimal debugging UI

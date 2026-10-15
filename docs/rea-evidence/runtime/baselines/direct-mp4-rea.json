@@ -1,0 +1,448 @@
+{
+  "evidence_id": "ev_ca256100e5856e98fab1d1b54c94aff375cb5165fdcc7bbb4461c860dbe2ac05",
+  "subject": null,
+  "provider": {
+    "id": "rea-playwright-browser-scenario",
+    "name": "REA Playwright browser scenario capture provider",
+    "version": "1"
+  },
+  "analysis_profile": null,
+  "predicate_type": "rea.browser-scenario-capture",
+  "operation": "capture_browser_scenario",
+  "parameters": {
+    "browser": {
+      "mode": "connect",
+      "cdp_endpoint": "http://127.0.0.1:9222",
+      "target_id": "CC8E8FC3F33C6CBEB4AFF19FB59B07A9"
+    },
+    "start_url": {
+      "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+      "query": []
+    },
+    "environment": {
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "device_scale_factor": 1
+      },
+      "locale": "en-US",
+      "timezone": "UTC",
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "service_workers": "allow"
+    },
+    "actions": [
+      {
+        "step_id": "wait-for-detection",
+        "action": "wait_for_timeout",
+        "duration_ms": 9000
+      }
+    ],
+    "storage": {
+      "cookies": [],
+      "local_storage": [],
+      "session_storage": []
+    },
+    "secrets": [],
+    "capture": {
+      "after_each_step": [],
+      "at_end": [
+        "url",
+        "dom"
+      ],
+      "events": [
+        "network",
+        "frames",
+        "page-errors"
+      ],
+      "network": {
+        "request_body": false,
+        "response_body": false,
+        "header_values": false
+      }
+    },
+    "scenario_sha256": "57d6a9211ec7c9dae78fa93521d3f840a462efbe6d1bb1df3ffdaf751f2c0c41"
+  },
+  "raw_result": null,
+  "normalized_result": {
+    "browser": {
+      "mode": "connect",
+      "process_ownership": "external",
+      "cleanup": "disconnected-external",
+      "product": "Chromium",
+      "version": "155.0.8059.41"
+    },
+    "scenario": {
+      "start_origin": "https://interactive-examples.mdn.mozilla.net",
+      "action_count": 1,
+      "secret_references": [],
+      "network_content": {
+        "request_body": false,
+        "response_body": false,
+        "header_values": false
+      },
+      "event_families": [
+        "frames",
+        "network",
+        "page-errors"
+      ]
+    },
+    "duration_ms": 10058,
+    "steps": [
+      {
+        "step_index": 0,
+        "step_id": "scenario_start",
+        "action": "goto_start",
+        "elapsed_ms": 941,
+        "before_url": {
+          "url": "about:blank",
+          "origin": null,
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "after_url": {
+          "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+          "origin": "https://interactive-examples.mdn.mozilla.net",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "event_sequence_start": 1,
+        "event_sequence_end": 6,
+        "artifacts": {
+          "screenshot": {
+            "state": "not_requested"
+          },
+          "dom": {
+            "state": "not_requested"
+          },
+          "accessibility": {
+            "state": "not_requested"
+          },
+          "url": {
+            "state": "not_requested"
+          },
+          "history": {
+            "state": "not_requested"
+          },
+          "storage": {
+            "state": "not_requested"
+          }
+        },
+        "completeness": {
+          "status": "complete",
+          "equality_eligible": true,
+          "missing_sections": [],
+          "truncated_sections": []
+        },
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step_index": 1,
+        "step_id": "wait-for-detection",
+        "action": "wait_for_timeout",
+        "elapsed_ms": 9052,
+        "before_url": {
+          "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+          "origin": "https://interactive-examples.mdn.mozilla.net",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "after_url": {
+          "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+          "origin": "https://interactive-examples.mdn.mozilla.net",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "event_sequence_start": 7,
+        "event_sequence_end": 6,
+        "artifacts": {
+          "screenshot": {
+            "state": "not_requested"
+          },
+          "dom": {
+            "state": "captured",
+            "value": {
+              "sha256": "7baff051f5a1a3150ebdaec88fb5a43dd88b5b4437e40bf546eef9f369e0ddc8",
+              "bytes": 270,
+              "text": "<html><head><meta name=\"viewport\" content=\"width=device-width\"></head><body><video controls=\"\" autoplay=\"\" name=\"media\" crossorigin=\"anonymous\"><source src=\"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4\" type=\"video/mp4\"></video></body></html>"
+            }
+          },
+          "accessibility": {
+            "state": "not_requested"
+          },
+          "url": {
+            "state": "captured",
+            "value": {
+              "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+              "origin": "https://interactive-examples.mdn.mozilla.net",
+              "query_parameter_names": [],
+              "redacted": false
+            }
+          },
+          "history": {
+            "state": "not_requested"
+          },
+          "storage": {
+            "state": "not_requested"
+          }
+        },
+        "completeness": {
+          "status": "complete",
+          "equality_eligible": true,
+          "missing_sections": [],
+          "truncated_sections": []
+        },
+        "status": "completed",
+        "error": null
+      }
+    ],
+    "events": {
+      "retained": 7,
+      "dropped": 0,
+      "items": [
+        {
+          "sequence": 1,
+          "step_index": 0,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "origin": "https://interactive-examples.mdn.mozilla.net",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 2,
+          "step_index": 0,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "origin": "https://interactive-examples.mdn.mozilla.net",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "alt-svc",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "strict-transport-security",
+            "x-content-type-options",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-meta-goog-reserved-file-mtime",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 3,
+          "step_index": 0,
+          "kind": "frame-navigated",
+          "url": {
+            "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "origin": "https://interactive-examples.mdn.mozilla.net",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "name": null
+        },
+        {
+          "sequence": 4,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "origin": "https://interactive-examples.mdn.mozilla.net",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "media",
+          "header_names": [
+            "range",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 5,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "origin": "https://interactive-examples.mdn.mozilla.net",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "media",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "alt-svc",
+            "cache-control",
+            "content-length",
+            "content-range",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "strict-transport-security",
+            "x-content-type-options",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-meta-goog-reserved-file-mtime",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid"
+          ],
+          "kind": "response",
+          "status": 206,
+          "failure": null
+        },
+        {
+          "sequence": 6,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "origin": "https://interactive-examples.mdn.mozilla.net",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "media",
+          "header_names": [
+            "range",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 7,
+          "step_index": 1,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "origin": "https://interactive-examples.mdn.mozilla.net",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request-unfinished",
+          "status": null,
+          "failure": null,
+          "reason": "capture-ended"
+        }
+      ]
+    },
+    "completeness": {
+      "status": "incomplete",
+      "equality_eligible": false,
+      "missing_sections": [
+        "events"
+      ],
+      "truncated_sections": []
+    },
+    "limitations": [
+      "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+      "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+      "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+      "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+      "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+      "Storage values are hashed only after declared-secret redaction.",
+      "Shared-context network capture excludes requests without a known root or descendant Page frame.",
+      "Some network requests had not completed when capture ended; later activity is unknown.",
+      "CDP attachment cannot recover pre-attach events or guarantee launch-time context options."
+    ]
+  },
+  "confidence": "observed",
+  "authority": "controlled-replay",
+  "environment": {
+    "id": "Chromium@155.0.8059.41",
+    "platform": "unknown",
+    "architecture": "unknown",
+    "isolation": "none"
+  },
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+    "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+    "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+    "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+    "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+    "Storage values are hashed only after declared-secret redaction.",
+    "Shared-context network capture excludes requests without a known root or descendant Page frame.",
+    "Some network requests had not completed when capture ended; later activity is unknown.",
+    "CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+    "Browser host platform and architecture were not observed."
+  ],
+  "relationship_coverage": null,
+  "locations": [],
+  "evidence_links": []
+}

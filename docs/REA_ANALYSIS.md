@@ -2,6 +2,8 @@
 
 Investigation date: 2026-10-15 (America/Toronto). Analysis only; no extension was built, loaded, modified, or used to download media. This report paraphrases behavior and records identifiers; it does not reproduce proprietary implementation code.
 
+This document records the initial static-only pass. Subsequent runtime observations and their separate confidence limits are in [REA_DETECTION_ANALYSIS.md](REA_DETECTION_ANALYSIS.md) and [ORIGINAL_BASELINES.md](ORIGINAL_BASELINES.md).
+
 ## Target, evidence, and confidence
 
 Requested extension directory:

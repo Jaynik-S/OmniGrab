@@ -1,0 +1,58 @@
+{
+  "captured_at": "2026-10-15T23:27:19.564Z",
+  "authority": "supplemental direct CDP Page.getFrameTree and read-only open-shadow DOM inspection; not REA Evidence",
+  "target_id": "F0DDA2391F1209CE7E32A7665E5BA507",
+  "frame_tree": {
+    "frameTree": {
+      "frame": {
+        "id": "F0DDA2391F1209CE7E32A7665E5BA507",
+        "loaderId": "B526A145A59396E37E34C09FA4ABDDA8",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video",
+        "domainAndRegistry": "mozilla.org",
+        "securityOrigin": "https://developer.mozilla.org",
+        "securityOriginDetails": {
+          "isLocalhost": false
+        },
+        "mimeType": "text/html",
+        "adFrameStatus": {
+          "adFrameType": "none"
+        },
+        "secureContextType": "Secure",
+        "crossOriginIsolatedContextType": "NotIsolated",
+        "gatedAPIFeatures": []
+      }
+    }
+  },
+  "open_shadow_dom": {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video",
+    "frames": [
+      {
+        "src": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/runner.html?uuid=871d4818-1d14-4085-b61c-95452fea7f23&state=lY8xT8MwEIX%2FivXmtEaoLFHiAZWxEhvLLU58kQOOXflcAkL8d4TbLkx0Ot179z69%2B4IvS0CL7n12nNSYYskpiFpnV3xPuH%2B4IxiKSnWSTnlkJXnsCVq8zew2VoSL6JoWPYW0ct6uPCwEVT6P3BOqpy%2BaNhRvpC3H3V%2FYWbqy9mmNIVmniufKtspnnv7X0rw8PR46beuPKd%2BQryXM4Xl3TVd7S7E7HxqKaDCKoAUavF6m48meQvnd5o9NscPADg2K54XRwtn8hu8f",
+        "name": ""
+      },
+      {
+        "src": "https://73722d2ed4ef4350d6c0bd7ef4ad3434cd8a76dc.mdnplay.dev/en-US/docs/Web/HTML/Reference/Elements/video/runner.html?uuid=73722d2ed4ef4350d6c0bd7ef4ad3434cd8a76dc&state=dZJBi9swEIX%2FyqwuucR2ki5dCNkUnEuPC3s1GFmaWNrYIyGN4jWl%2F73ISUtg6Uli3ui9jxn9EobHQezF4akooJbRKrhajQ7wU45%2BQCiKY0OLuqptD3VSF6gT0byCwSqkiBoSaQxwOsG3cgPdDGwQ6gGX6tkl0pKtoxJ%2Busioc4cMytgrli70DwlvWQ9wDm4Ej1KZsru5PPQtdA0BKEcc3BDzPQb12gjD7OO%2Bqh7MK%2B0mGpzUVW37zL6gt9vdc3VyxEhcdbZvu6QubbdIL7uNb2MKIXOXo39uRE7wC9pDyBe%2BavKFunsmnzNjxZYHbCW5RApHJC4%2FfP%2Fjc7vdbV9uvpPVbF4b8X23acQxV95dCPMaZpcCdMFNEQNoh5FWDDF57wIDjh1qjfq2q7iGLjFol1umf89BScqGBwkm4Pl%2FA0KWdohf5tOI49%2FZgeVDJRc4SRomycqAZZgsmxvnWV5dsIz3v%2BMHOWN4auhQLYVjQ2ItVIxiL8RafNxPNjii2Astw0X8%2FgM%3D",
+        "name": ""
+      },
+      {
+        "src": "https://7c443d5373c2f7f328b1964cb113226f86762b03.mdnplay.dev/en-US/docs/Web/HTML/Reference/Elements/video/runner.html?uuid=7c443d5373c2f7f328b1964cb113226f86762b03&state=rVNNaxsxEP0rE118Wa8c1ynF2L6kPYYYQullwWilsSV7VyOkWS%2Bm9L8XyUnqQo45aT7evDdPSL%2BF5b4TS7G6m07hZ3L%2BAP3QsQsdQqIhakygEuxV17VKnxLsKYKCszNIwOoA0%2Bmm8WV68qPDYJXnBN8jqn4C7QWeo%2FIHhOeAHp7o7BC2kY6oGV54MI4q6JxGn9DA4A1GeHycfqlnFVhKjCZTqKitO2NN8VZtm%2FvxBvbLnVyPxqlXUFmx8QCjM2zXjfg6nzUiFzR5jtSlHIdCs26EZQ5pKeUQOlKmHt%2FYsqzMWciZ1NT35JNEid%2Fku%2BFdMbxLD7uW2NbHcGjEJtOvrneYQ4AU9Y3QjS1paPRZ9h9jIZRodtbU6uyuiwPwJeC6EcWbLHWQnyR0P5svdg%2F381Nb92HxoWCpF8HcfKEYLxVcaIjQRhoTRjCEyU8Y0hACRQbsWzQGzfXBpAragcFQhozv46BVIVypq6aNuP%2Bs%2Fd8G1o34ALP5HwRsEZ62i7KMVKWrvIFRsbbgGEbH9mp4r84UHePrTwidumC8a%2FxKlsKm8aISOiWxFKISx9eTLfYolsKoeBJ%2F%2FgI%3D",
+        "name": ""
+      }
+    ],
+    "videos": []
+  },
+  "iframe_targets": [
+    {
+      "id": "F4C4CC061860CDE1DC1B298DEAB319E9",
+      "url": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/runner.html?uuid=871d4818-1d14-4085-b61c-95452fea7f23&state=lY8xT8MwEIX%2FivXmtEaoLFHiAZWxEhvLLU58kQOOXflcAkL8d4TbLkx0Ot179z69%2B4IvS0CL7n12nNSYYskpiFpnV3xPuH%2B4IxiKSnWSTnlkJXnsCVq8zew2VoSL6JoWPYW0ct6uPCwEVT6P3BOqpy%2BaNhRvpC3H3V%2FYWbqy9mmNIVmniufKtspnnv7X0rw8PR46beuPKd%2BQryXM4Xl3TVd7S7E7HxqKaDCKoAUavF6m48meQvnd5o9NscPADg2K54XRwtn8hu8f"
+    },
+    {
+      "id": "3C62B50551685CC9783772EC5D997FC1",
+      "url": "https://73722d2ed4ef4350d6c0bd7ef4ad3434cd8a76dc.mdnplay.dev/en-US/docs/Web/HTML/Reference/Elements/video/runner.html?uuid=73722d2ed4ef4350d6c0bd7ef4ad3434cd8a76dc&state=dZJBi9swEIX%2FyqwuucR2ki5dCNkUnEuPC3s1GFmaWNrYIyGN4jWl%2F73ISUtg6Uli3ui9jxn9EobHQezF4akooJbRKrhajQ7wU45%2BQCiKY0OLuqptD3VSF6gT0byCwSqkiBoSaQxwOsG3cgPdDGwQ6gGX6tkl0pKtoxJ%2Busioc4cMytgrli70DwlvWQ9wDm4Ej1KZsru5PPQtdA0BKEcc3BDzPQb12gjD7OO%2Bqh7MK%2B0mGpzUVW37zL6gt9vdc3VyxEhcdbZvu6QubbdIL7uNb2MKIXOXo39uRE7wC9pDyBe%2BavKFunsmnzNjxZYHbCW5RApHJC4%2FfP%2Fjc7vdbV9uvpPVbF4b8X23acQxV95dCPMaZpcCdMFNEQNoh5FWDDF57wIDjh1qjfq2q7iGLjFol1umf89BScqGBwkm4Pl%2FA0KWdohf5tOI49%2FZgeVDJRc4SRomycqAZZgsmxvnWV5dsIz3v%2BMHOWN4auhQLYVjQ2ItVIxiL8RafNxPNjii2Astw0X8%2FgM%3D"
+    },
+    {
+      "id": "15F8735C76D866D33E51B359315BA08F",
+      "url": "https://7c443d5373c2f7f328b1964cb113226f86762b03.mdnplay.dev/en-US/docs/Web/HTML/Reference/Elements/video/runner.html?uuid=7c443d5373c2f7f328b1964cb113226f86762b03&state=rVNNaxsxEP0rE118Wa8c1ynF2L6kPYYYQullwWilsSV7VyOkWS%2Bm9L8XyUnqQo45aT7evDdPSL%2BF5b4TS7G6m07hZ3L%2BAP3QsQsdQqIhakygEuxV17VKnxLsKYKCszNIwOoA0%2Bmm8WV68qPDYJXnBN8jqn4C7QWeo%2FIHhOeAHp7o7BC2kY6oGV54MI4q6JxGn9DA4A1GeHycfqlnFVhKjCZTqKitO2NN8VZtm%2FvxBvbLnVyPxqlXUFmx8QCjM2zXjfg6nzUiFzR5jtSlHIdCs26EZQ5pKeUQOlKmHt%2FYsqzMWciZ1NT35JNEid%2Fku%2BFdMbxLD7uW2NbHcGjEJtOvrneYQ4AU9Y3QjS1paPRZ9h9jIZRodtbU6uyuiwPwJeC6EcWbLHWQnyR0P5svdg%2F381Nb92HxoWCpF8HcfKEYLxVcaIjQRhoTRjCEyU8Y0hACRQbsWzQGzfXBpAragcFQhozv46BVIVypq6aNuP%2Bs%2Fd8G1o34ALP5HwRsEZ62i7KMVKWrvIFRsbbgGEbH9mp4r84UHePrTwidumC8a%2FxKlsKm8aISOiWxFKISx9eTLfYolsKoeBJ%2F%2FgI%3D"
+    }
+  ]
+}

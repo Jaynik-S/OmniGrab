@@ -1,0 +1,4164 @@
+{
+  "evidence_id": "ev_9999846327195444efd2211af02e3e2f7d3cb18c7a423a195ff91cace60bd0a6",
+  "subject": null,
+  "provider": {
+    "id": "rea-playwright-browser-scenario",
+    "name": "REA Playwright browser scenario capture provider",
+    "version": "1"
+  },
+  "analysis_profile": null,
+  "predicate_type": "rea.browser-scenario-capture",
+  "operation": "capture_browser_scenario",
+  "parameters": {
+    "browser": {
+      "mode": "connect",
+      "cdp_endpoint": "http://127.0.0.1:9222",
+      "target_id": "CC8E8FC3F33C6CBEB4AFF19FB59B07A9"
+    },
+    "start_url": {
+      "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+      "query": []
+    },
+    "environment": {
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "device_scale_factor": 1
+      },
+      "locale": "en-US",
+      "timezone": "UTC",
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "service_workers": "allow"
+    },
+    "actions": [
+      {
+        "step_id": "mute-demo",
+        "timeout_ms": 10000,
+        "action": "check",
+        "locator": {
+          "kind": "css",
+          "selector": "#opt-muted"
+        }
+      },
+      {
+        "step_id": "load-stream",
+        "timeout_ms": 10000,
+        "action": "click",
+        "locator": {
+          "kind": "css",
+          "selector": "#btn-load"
+        },
+        "button": "left",
+        "click_count": 1
+      },
+      {
+        "step_id": "wait-for-detection",
+        "action": "wait_for_timeout",
+        "duration_ms": 9000
+      }
+    ],
+    "storage": {
+      "cookies": [],
+      "local_storage": [],
+      "session_storage": []
+    },
+    "secrets": [],
+    "capture": {
+      "after_each_step": [],
+      "at_end": [
+        "url",
+        "dom"
+      ],
+      "events": [
+        "network",
+        "frames",
+        "page-errors"
+      ],
+      "network": {
+        "request_body": false,
+        "response_body": false,
+        "header_values": false
+      }
+    },
+    "scenario_sha256": "6a5cc9e619b1693884c81d36c800974e82cab6002c8955b1322fc0f2ac9ad30e"
+  },
+  "raw_result": null,
+  "normalized_result": {
+    "browser": {
+      "mode": "connect",
+      "process_ownership": "external",
+      "cleanup": "disconnected-external",
+      "product": "Chromium",
+      "version": "155.0.8059.41"
+    },
+    "scenario": {
+      "start_origin": "https://reference.dashif.org",
+      "action_count": 3,
+      "secret_references": [],
+      "network_content": {
+        "request_body": false,
+        "response_body": false,
+        "header_values": false
+      },
+      "event_families": [
+        "frames",
+        "network",
+        "page-errors"
+      ]
+    },
+    "duration_ms": 10927,
+    "steps": [
+      {
+        "step_index": 0,
+        "step_id": "scenario_start",
+        "action": "goto_start",
+        "elapsed_ms": 820,
+        "before_url": {
+          "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+          "origin": "https://reference.dashif.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "after_url": {
+          "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+          "origin": "https://reference.dashif.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "event_sequence_start": 1,
+        "event_sequence_end": 139,
+        "artifacts": {
+          "screenshot": {
+            "state": "not_requested"
+          },
+          "dom": {
+            "state": "not_requested"
+          },
+          "accessibility": {
+            "state": "not_requested"
+          },
+          "url": {
+            "state": "not_requested"
+          },
+          "history": {
+            "state": "not_requested"
+          },
+          "storage": {
+            "state": "not_requested"
+          }
+        },
+        "completeness": {
+          "status": "complete",
+          "equality_eligible": true,
+          "missing_sections": [],
+          "truncated_sections": []
+        },
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step_index": 1,
+        "step_id": "mute-demo",
+        "action": "check",
+        "elapsed_ms": 10015,
+        "before_url": {
+          "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+          "origin": "https://reference.dashif.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "after_url": {
+          "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+          "origin": "https://reference.dashif.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "event_sequence_start": 140,
+        "event_sequence_end": 139,
+        "artifacts": {
+          "screenshot": {
+            "state": "not_requested"
+          },
+          "dom": {
+            "state": "not_requested"
+          },
+          "accessibility": {
+            "state": "not_requested"
+          },
+          "url": {
+            "state": "not_requested"
+          },
+          "history": {
+            "state": "not_requested"
+          },
+          "storage": {
+            "state": "not_requested"
+          }
+        },
+        "completeness": {
+          "status": "incomplete",
+          "equality_eligible": false,
+          "missing_sections": [
+            "action"
+          ],
+          "truncated_sections": []
+        },
+        "status": "failed",
+        "error": "Analysis operation timed out after 10000ms: capture_browser_scenario"
+      },
+      {
+        "step_index": 2,
+        "step_id": "load-stream",
+        "action": "click",
+        "elapsed_ms": 0,
+        "before_url": {
+          "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+          "origin": "https://reference.dashif.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "after_url": {
+          "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+          "origin": "https://reference.dashif.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "event_sequence_start": 140,
+        "event_sequence_end": 139,
+        "artifacts": {
+          "screenshot": {
+            "state": "not_requested"
+          },
+          "dom": {
+            "state": "not_requested"
+          },
+          "accessibility": {
+            "state": "not_requested"
+          },
+          "url": {
+            "state": "not_requested"
+          },
+          "history": {
+            "state": "not_requested"
+          },
+          "storage": {
+            "state": "not_requested"
+          }
+        },
+        "completeness": {
+          "status": "incomplete",
+          "equality_eligible": false,
+          "missing_sections": [
+            "action"
+          ],
+          "truncated_sections": []
+        },
+        "status": "cancelled",
+        "error": "not executed after an earlier action failure"
+      },
+      {
+        "step_index": 3,
+        "step_id": "wait-for-detection",
+        "action": "wait_for_timeout",
+        "elapsed_ms": 0,
+        "before_url": {
+          "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+          "origin": "https://reference.dashif.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "after_url": {
+          "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+          "origin": "https://reference.dashif.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "event_sequence_start": 140,
+        "event_sequence_end": 139,
+        "artifacts": {
+          "screenshot": {
+            "state": "not_requested"
+          },
+          "dom": {
+            "state": "missing",
+            "reason": "action was not executed after an earlier failure"
+          },
+          "accessibility": {
+            "state": "not_requested"
+          },
+          "url": {
+            "state": "missing",
+            "reason": "action was not executed after an earlier failure"
+          },
+          "history": {
+            "state": "not_requested"
+          },
+          "storage": {
+            "state": "not_requested"
+          }
+        },
+        "completeness": {
+          "status": "incomplete",
+          "equality_eligible": false,
+          "missing_sections": [
+            "action",
+            "dom",
+            "url"
+          ],
+          "truncated_sections": []
+        },
+        "status": "cancelled",
+        "error": "not executed after an earlier action failure"
+      }
+    ],
+    "events": {
+      "retained": 139,
+      "dropped": 0,
+      "items": [
+        {
+          "sequence": 1,
+          "step_index": 0,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 2,
+          "step_index": 0,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 3,
+          "step_index": 0,
+          "kind": "frame-detached",
+          "url": null,
+          "name": null
+        },
+        {
+          "sequence": 4,
+          "step_index": 0,
+          "kind": "frame-detached",
+          "url": null,
+          "name": null
+        },
+        {
+          "sequence": 5,
+          "step_index": 0,
+          "kind": "frame-navigated",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "name": null
+        },
+        {
+          "sequence": 6,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap/css/bootstrap.min.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 7,
+          "step_index": 0,
+          "transaction_id": "request-3",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap-icons/bootstrap-icons.min.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 8,
+          "step_index": 0,
+          "transaction_id": "request-4",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/contrib/controlbar/controlbar.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 9,
+          "step_index": 0,
+          "transaction_id": "request-5",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/css/main.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 10,
+          "step_index": 0,
+          "transaction_id": "request-6",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/dist/modern/umd/dash.all.debug.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 11,
+          "step_index": 0,
+          "transaction_id": "request-7",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/dist/modern/umd/dash.mss.debug.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 12,
+          "step_index": 0,
+          "transaction_id": "request-8",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/lib/chartjs/chart.umd.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 13,
+          "step_index": 0,
+          "transaction_id": "request-9",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/if.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 14,
+          "step_index": 0,
+          "transaction_id": "request-10",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap/js/bootstrap.bundle.min.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 15,
+          "step_index": 0,
+          "transaction_id": "request-11",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/main.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 16,
+          "step_index": 0,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 17,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap/css/bootstrap.min.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 18,
+          "step_index": 0,
+          "transaction_id": "request-3",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap-icons/bootstrap-icons.min.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 19,
+          "step_index": 0,
+          "transaction_id": "request-4",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/contrib/controlbar/controlbar.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 20,
+          "step_index": 0,
+          "transaction_id": "request-5",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/css/main.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 21,
+          "step_index": 0,
+          "transaction_id": "request-3",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap-icons/bootstrap-icons.min.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 22,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap/css/bootstrap.min.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 23,
+          "step_index": 0,
+          "transaction_id": "request-4",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/contrib/controlbar/controlbar.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 24,
+          "step_index": 0,
+          "transaction_id": "request-5",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/css/main.css",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 25,
+          "step_index": 0,
+          "transaction_id": "request-9",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/if.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 26,
+          "step_index": 0,
+          "transaction_id": "request-9",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/if.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 27,
+          "step_index": 0,
+          "transaction_id": "request-11",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/main.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 28,
+          "step_index": 0,
+          "transaction_id": "request-11",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/main.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 29,
+          "step_index": 0,
+          "transaction_id": "request-7",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/dist/modern/umd/dash.mss.debug.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 30,
+          "step_index": 0,
+          "transaction_id": "request-7",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/dist/modern/umd/dash.mss.debug.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 31,
+          "step_index": 0,
+          "transaction_id": "request-10",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap/js/bootstrap.bundle.min.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 32,
+          "step_index": 0,
+          "transaction_id": "request-10",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap/js/bootstrap.bundle.min.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 33,
+          "step_index": 0,
+          "transaction_id": "request-8",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/lib/chartjs/chart.umd.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 34,
+          "step_index": 0,
+          "transaction_id": "request-8",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/lib/chartjs/chart.umd.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 35,
+          "step_index": 0,
+          "transaction_id": "request-6",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/dist/modern/umd/dash.all.debug.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 36,
+          "step_index": 0,
+          "transaction_id": "request-6",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/dist/modern/umd/dash.all.debug.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 37,
+          "step_index": 0,
+          "kind": "frame-attached",
+          "url": null,
+          "name": null
+        },
+        {
+          "sequence": 38,
+          "step_index": 0,
+          "transaction_id": "request-12",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://ghbtns.com/github-btn.html?user=Dash-Industry-Forum&repo=dash.js&type=star&count=true",
+            "origin": "https://ghbtns.com",
+            "query_parameter_names": [
+              "user",
+              "repo",
+              "type",
+              "count"
+            ],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 39,
+          "step_index": 0,
+          "kind": "frame-attached",
+          "url": null,
+          "name": null
+        },
+        {
+          "sequence": 40,
+          "step_index": 0,
+          "transaction_id": "request-13",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://ghbtns.com/github-btn.html?user=Dash-Industry-Forum&repo=dash.js&type=fork&count=true",
+            "origin": "https://ghbtns.com",
+            "query_parameter_names": [
+              "user",
+              "repo",
+              "type",
+              "count"
+            ],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 41,
+          "step_index": 0,
+          "transaction_id": "request-14",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [
+              "dd67030699838ea613ee6dbda90effa6"
+            ],
+            "redacted": false
+          },
+          "resource_type": "font",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 42,
+          "step_index": 0,
+          "transaction_id": "request-14",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [
+              "dd67030699838ea613ee6dbda90effa6"
+            ],
+            "redacted": false
+          },
+          "resource_type": "font",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 43,
+          "step_index": 0,
+          "transaction_id": "request-14",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [
+              "dd67030699838ea613ee6dbda90effa6"
+            ],
+            "redacted": false
+          },
+          "resource_type": "font",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 44,
+          "step_index": 0,
+          "transaction_id": "request-15",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/UIHelpers.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 45,
+          "step_index": 0,
+          "transaction_id": "request-16",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/PlayerController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 46,
+          "step_index": 0,
+          "transaction_id": "request-17",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/contrib/controlbar/ControlBar.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 47,
+          "step_index": 0,
+          "transaction_id": "request-18",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/StreamCatalog.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 48,
+          "step_index": 0,
+          "transaction_id": "request-19",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/SettingsController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 49,
+          "step_index": 0,
+          "transaction_id": "request-20",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/DrmController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 50,
+          "step_index": 0,
+          "transaction_id": "request-21",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/MetricsDisplay.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 51,
+          "step_index": 0,
+          "transaction_id": "request-22",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/ChartController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 52,
+          "step_index": 0,
+          "transaction_id": "request-23",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/NotificationPanel.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 53,
+          "step_index": 0,
+          "transaction_id": "request-15",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/UIHelpers.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 54,
+          "step_index": 0,
+          "transaction_id": "request-15",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/UIHelpers.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 55,
+          "step_index": 0,
+          "transaction_id": "request-16",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/PlayerController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 56,
+          "step_index": 0,
+          "transaction_id": "request-16",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/PlayerController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 57,
+          "step_index": 0,
+          "transaction_id": "request-18",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/StreamCatalog.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 58,
+          "step_index": 0,
+          "transaction_id": "request-18",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/StreamCatalog.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 59,
+          "step_index": 0,
+          "transaction_id": "request-17",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/contrib/controlbar/ControlBar.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 60,
+          "step_index": 0,
+          "transaction_id": "request-17",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/contrib/controlbar/ControlBar.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 61,
+          "step_index": 0,
+          "transaction_id": "request-21",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/MetricsDisplay.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 62,
+          "step_index": 0,
+          "transaction_id": "request-21",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/MetricsDisplay.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 63,
+          "step_index": 0,
+          "transaction_id": "request-19",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/SettingsController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 64,
+          "step_index": 0,
+          "transaction_id": "request-19",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/SettingsController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 65,
+          "step_index": 0,
+          "transaction_id": "request-22",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/ChartController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 66,
+          "step_index": 0,
+          "transaction_id": "request-22",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/ChartController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 67,
+          "step_index": 0,
+          "transaction_id": "request-23",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/NotificationPanel.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 68,
+          "step_index": 0,
+          "transaction_id": "request-23",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/NotificationPanel.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 69,
+          "step_index": 0,
+          "transaction_id": "request-20",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/DrmController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 70,
+          "step_index": 0,
+          "transaction_id": "request-20",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/js/DrmController.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 71,
+          "step_index": 0,
+          "transaction_id": "request-24",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/settingsDescriptions.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 72,
+          "step_index": 0,
+          "transaction_id": "request-24",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/settingsDescriptions.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 73,
+          "step_index": 0,
+          "transaction_id": "request-24",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/settingsDescriptions.js",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 74,
+          "step_index": 0,
+          "transaction_id": "request-25",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/dashjs_config.json",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "fetch",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 75,
+          "step_index": 0,
+          "transaction_id": "request-25",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/dashjs_config.json",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "fetch",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 76,
+          "step_index": 0,
+          "transaction_id": "request-13",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://ghbtns.com/github-btn.html?user=Dash-Industry-Forum&repo=dash.js&type=fork&count=true",
+            "origin": "https://ghbtns.com",
+            "query_parameter_names": [
+              "user",
+              "repo",
+              "type",
+              "count"
+            ],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "access-control-allow-origin",
+            "age",
+            "alt-svc",
+            "cache-control",
+            "cf-cache-status",
+            "cf-ray",
+            "content-encoding",
+            "content-type",
+            "date",
+            "expires",
+            "last-modified",
+            "nel",
+            "priority",
+            "report-to",
+            "server",
+            "server-timing",
+            "strict-transport-security",
+            "vary",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-content-type-options",
+            "x-fastly-request-id",
+            "x-github-request-id",
+            "x-proxy-cache",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 77,
+          "step_index": 0,
+          "transaction_id": "request-25",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/dashjs_config.json",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "fetch",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 78,
+          "step_index": 0,
+          "transaction_id": "request-26",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/sources.json",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "fetch",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 79,
+          "step_index": 0,
+          "transaction_id": "request-26",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/sources.json",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "fetch",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 80,
+          "step_index": 0,
+          "transaction_id": "request-26",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/sources.json",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "fetch",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 81,
+          "step_index": 0,
+          "transaction_id": "request-12",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://ghbtns.com/github-btn.html?user=Dash-Industry-Forum&repo=dash.js&type=star&count=true",
+            "origin": "https://ghbtns.com",
+            "query_parameter_names": [
+              "user",
+              "repo",
+              "type",
+              "count"
+            ],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "access-control-allow-origin",
+            "age",
+            "alt-svc",
+            "cache-control",
+            "cf-cache-status",
+            "cf-ray",
+            "content-encoding",
+            "content-type",
+            "date",
+            "expires",
+            "last-modified",
+            "nel",
+            "priority",
+            "report-to",
+            "server",
+            "server-timing",
+            "strict-transport-security",
+            "vary",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-content-type-options",
+            "x-fastly-request-id",
+            "x-github-edge-region",
+            "x-github-request-id",
+            "x-origin-cache",
+            "x-proxy-cache",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 82,
+          "step_index": 0,
+          "transaction_id": "request-27",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/contributors.json",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "fetch",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 83,
+          "step_index": 0,
+          "transaction_id": "request-27",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/contributors.json",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "fetch",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 84,
+          "step_index": 0,
+          "transaction_id": "request-27",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/app/data/contributors.json",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "fetch",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 85,
+          "step_index": 0,
+          "transaction_id": "request-28",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/dp.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 86,
+          "step_index": 0,
+          "transaction_id": "request-29",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/akamai.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 87,
+          "step_index": 0,
+          "transaction_id": "request-30",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/MSOpenTech.jpg",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 88,
+          "step_index": 0,
+          "transaction_id": "request-31",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/fh_fokus.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 89,
+          "step_index": 0,
+          "transaction_id": "request-32",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/cablelabs.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 90,
+          "step_index": 0,
+          "transaction_id": "request-33",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/youtube.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 91,
+          "step_index": 0,
+          "transaction_id": "request-34",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/brightcove.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 92,
+          "step_index": 0,
+          "transaction_id": "request-35",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/eyevinn.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 93,
+          "step_index": 0,
+          "transaction_id": "request-36",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/epiclabs.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 94,
+          "step_index": 0,
+          "transaction_id": "request-37",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/National_University_of_Singapore_logo_NUS.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 95,
+          "step_index": 0,
+          "transaction_id": "request-38",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/OzU_logo_eng.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 96,
+          "step_index": 0,
+          "transaction_id": "request-39",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/US-logo-petrol-rgb.jpg",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 97,
+          "step_index": 0,
+          "transaction_id": "request-40",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/broadpeak.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 98,
+          "step_index": 0,
+          "transaction_id": "request-41",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/v-nova.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 99,
+          "step_index": 0,
+          "transaction_id": "request-42",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/qualabs.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 100,
+          "step_index": 0,
+          "transaction_id": "request-28",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/dp.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 101,
+          "step_index": 0,
+          "transaction_id": "request-28",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/dp.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 102,
+          "step_index": 0,
+          "transaction_id": "request-29",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/akamai.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 103,
+          "step_index": 0,
+          "transaction_id": "request-30",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/MSOpenTech.jpg",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 104,
+          "step_index": 0,
+          "transaction_id": "request-31",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/fh_fokus.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 105,
+          "step_index": 0,
+          "transaction_id": "request-29",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/akamai.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 106,
+          "step_index": 0,
+          "transaction_id": "request-30",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/MSOpenTech.jpg",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 107,
+          "step_index": 0,
+          "transaction_id": "request-31",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/fh_fokus.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 108,
+          "step_index": 0,
+          "transaction_id": "request-32",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/cablelabs.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 109,
+          "step_index": 0,
+          "transaction_id": "request-33",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/youtube.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 110,
+          "step_index": 0,
+          "transaction_id": "request-34",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/brightcove.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 111,
+          "step_index": 0,
+          "transaction_id": "request-34",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/brightcove.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 112,
+          "step_index": 0,
+          "transaction_id": "request-32",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/cablelabs.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 113,
+          "step_index": 0,
+          "transaction_id": "request-33",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/youtube.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 114,
+          "step_index": 0,
+          "transaction_id": "request-35",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/eyevinn.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 115,
+          "step_index": 0,
+          "transaction_id": "request-36",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/epiclabs.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 116,
+          "step_index": 0,
+          "transaction_id": "request-36",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/epiclabs.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 117,
+          "step_index": 0,
+          "transaction_id": "request-37",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/National_University_of_Singapore_logo_NUS.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 118,
+          "step_index": 0,
+          "transaction_id": "request-37",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/National_University_of_Singapore_logo_NUS.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 119,
+          "step_index": 0,
+          "kind": "frame-navigated",
+          "url": {
+            "url": "https://ghbtns.com/github-btn.html?user=Dash-Industry-Forum&repo=dash.js&type=fork&count=true",
+            "origin": "https://ghbtns.com",
+            "query_parameter_names": [
+              "user",
+              "repo",
+              "type",
+              "count"
+            ],
+            "redacted": false
+          },
+          "name": null
+        },
+        {
+          "sequence": 120,
+          "step_index": 0,
+          "transaction_id": "request-35",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/eyevinn.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 121,
+          "step_index": 0,
+          "transaction_id": "request-38",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/OzU_logo_eng.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 122,
+          "step_index": 0,
+          "transaction_id": "request-39",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/US-logo-petrol-rgb.jpg",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 123,
+          "step_index": 0,
+          "transaction_id": "request-40",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/broadpeak.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 124,
+          "step_index": 0,
+          "transaction_id": "request-41",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/v-nova.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 125,
+          "step_index": 0,
+          "transaction_id": "request-13",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://ghbtns.com/github-btn.html?user=Dash-Industry-Forum&repo=dash.js&type=fork&count=true",
+            "origin": "https://ghbtns.com",
+            "query_parameter_names": [
+              "user",
+              "repo",
+              "type",
+              "count"
+            ],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 126,
+          "step_index": 0,
+          "transaction_id": "request-40",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/broadpeak.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 127,
+          "step_index": 0,
+          "transaction_id": "request-38",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/OzU_logo_eng.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 128,
+          "step_index": 0,
+          "transaction_id": "request-39",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/US-logo-petrol-rgb.jpg",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 129,
+          "step_index": 0,
+          "transaction_id": "request-41",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/v-nova.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 130,
+          "step_index": 0,
+          "transaction_id": "request-43",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://api.github.com/repos/Dash-Industry-Forum/dash.js?callback=callback",
+            "origin": "https://api.github.com",
+            "query_parameter_names": [
+              "callback"
+            ],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 131,
+          "step_index": 0,
+          "transaction_id": "request-43",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://api.github.com/repos/Dash-Industry-Forum/dash.js?callback=callback",
+            "origin": "https://api.github.com",
+            "query_parameter_names": [
+              "callback"
+            ],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "cache-control",
+            "content-encoding",
+            "content-security-policy",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "referrer-policy",
+            "server",
+            "vary",
+            "x-content-type-options",
+            "x-frame-options",
+            "x-github-api-version-selected",
+            "x-github-edge-region",
+            "x-github-request-id",
+            "x-ratelimit-limit",
+            "x-ratelimit-remaining",
+            "x-ratelimit-reset",
+            "x-ratelimit-resource",
+            "x-ratelimit-used",
+            "x-xss-protection"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 132,
+          "step_index": 0,
+          "transaction_id": "request-43",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://api.github.com/repos/Dash-Industry-Forum/dash.js?callback=callback",
+            "origin": "https://api.github.com",
+            "query_parameter_names": [
+              "callback"
+            ],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 133,
+          "step_index": 0,
+          "transaction_id": "request-42",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/qualabs.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "access-control-request-private-network",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 134,
+          "step_index": 0,
+          "transaction_id": "request-42",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/img/qualabs.png",
+            "origin": "https://reference.dashif.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "image",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 135,
+          "step_index": 0,
+          "kind": "frame-navigated",
+          "url": {
+            "url": "https://ghbtns.com/github-btn.html?user=Dash-Industry-Forum&repo=dash.js&type=star&count=true",
+            "origin": "https://ghbtns.com",
+            "query_parameter_names": [
+              "user",
+              "repo",
+              "type",
+              "count"
+            ],
+            "redacted": false
+          },
+          "name": null
+        },
+        {
+          "sequence": 136,
+          "step_index": 0,
+          "transaction_id": "request-12",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://ghbtns.com/github-btn.html?user=Dash-Industry-Forum&repo=dash.js&type=star&count=true",
+            "origin": "https://ghbtns.com",
+            "query_parameter_names": [
+              "user",
+              "repo",
+              "type",
+              "count"
+            ],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 137,
+          "step_index": 0,
+          "transaction_id": "request-44",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://api.github.com/repos/Dash-Industry-Forum/dash.js?callback=callback",
+            "origin": "https://api.github.com",
+            "query_parameter_names": [
+              "callback"
+            ],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 138,
+          "step_index": 0,
+          "transaction_id": "request-44",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://api.github.com/repos/Dash-Industry-Forum/dash.js?callback=callback",
+            "origin": "https://api.github.com",
+            "query_parameter_names": [
+              "callback"
+            ],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "access-control-expose-headers",
+            "cache-control",
+            "content-encoding",
+            "content-security-policy",
+            "content-type",
+            "date",
+            "etag",
+            "last-modified",
+            "referrer-policy",
+            "server",
+            "vary",
+            "x-content-type-options",
+            "x-frame-options",
+            "x-github-api-version-selected",
+            "x-github-edge-region",
+            "x-github-request-id",
+            "x-ratelimit-limit",
+            "x-ratelimit-remaining",
+            "x-ratelimit-reset",
+            "x-ratelimit-resource",
+            "x-ratelimit-used",
+            "x-xss-protection"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 139,
+          "step_index": 0,
+          "transaction_id": "request-44",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://api.github.com/repos/Dash-Industry-Forum/dash.js?callback=callback",
+            "origin": "https://api.github.com",
+            "query_parameter_names": [
+              "callback"
+            ],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        }
+      ]
+    },
+    "completeness": {
+      "status": "incomplete",
+      "equality_eligible": false,
+      "missing_sections": [
+        "action",
+        "dom",
+        "events",
+        "url"
+      ],
+      "truncated_sections": []
+    },
+    "limitations": [
+      "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+      "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+      "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+      "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+      "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+      "Storage values are hashed only after declared-secret redaction.",
+      "Shared-context network capture excludes requests without a known root or descendant Page frame.",
+      "CDP attachment cannot recover pre-attach events or guarantee launch-time context options."
+    ]
+  },
+  "confidence": "observed",
+  "authority": "controlled-replay",
+  "environment": {
+    "id": "Chromium@155.0.8059.41",
+    "platform": "unknown",
+    "architecture": "unknown",
+    "isolation": "none"
+  },
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+    "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+    "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+    "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+    "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+    "Storage values are hashed only after declared-secret redaction.",
+    "Shared-context network capture excludes requests without a known root or descendant Page frame.",
+    "CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+    "Browser host platform and architecture were not observed."
+  ],
+  "relationship_coverage": null,
+  "locations": [],
+  "evidence_links": []
+}

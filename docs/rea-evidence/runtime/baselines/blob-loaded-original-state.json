@@ -1,0 +1,158 @@
+{
+  "authority": "supplemental direct CDP original-extension read-only storage polling; not REA Evidence",
+  "expected_url": "https://mdn.github.io/dom-examples/sourcebuffer/",
+  "monitor_started_at": "2026-10-15T23:19:52.524Z",
+  "monitor_ended_at": "2026-10-15T23:20:10.740Z",
+  "sample_count": 68,
+  "poll_interval_ms": 250,
+  "state_changes_and_final": [
+    {
+      "host_wall_ms": 1792106392525,
+      "browser_wall_ms": 1792106392529,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [],
+      "panel_rows": 0
+    },
+    {
+      "host_wall_ms": 1792106393321,
+      "browser_wall_ms": 1792106393326,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [
+        {
+          "key": 190445567,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_542843326530697",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106392788,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "frag_bunny",
+                  "has_drm": false,
+                  "hash": "media_hash_542843326530697",
+                  "initiator": "https://mdn.github.io/",
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 5524488
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": null,
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445567,
+              "thumbnail_url": null,
+              "title": "SourceBuffer example",
+              "url": "https://mdn.github.io/dom-examples/sourcebuffer/"
+            }
+          }
+        }
+      ],
+      "panel_rows": 1
+    },
+    {
+      "host_wall_ms": 1792106410473,
+      "browser_wall_ms": 1792106410476,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [
+        {
+          "key": 190445567,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_542843326530697",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106392788,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "frag_bunny",
+                  "has_drm": false,
+                  "hash": "media_hash_542843326530697",
+                  "initiator": "https://mdn.github.io/",
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 5524488
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": null,
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445567,
+              "thumbnail_url": null,
+              "title": "SourceBuffer example",
+              "url": "https://mdn.github.io/dom-examples/sourcebuffer/"
+            }
+          }
+        }
+      ],
+      "panel_rows": 1
+    }
+  ]
+}

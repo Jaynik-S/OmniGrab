@@ -1,0 +1,596 @@
+{
+  "authority": "supplemental direct CDP original-extension read-only storage polling; not REA Evidence",
+  "expected_url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+  "monitor_started_at": "2026-10-15T23:20:46.675Z",
+  "monitor_ended_at": "2026-10-15T23:21:04.709Z",
+  "sample_count": 67,
+  "poll_interval_ms": 250,
+  "state_changes_and_final": [
+    {
+      "host_wall_ms": 1792106446676,
+      "browser_wall_ms": 1792106446680,
+      "tab_ids": [],
+      "current_tab": 190445567,
+      "records": [],
+      "panel_rows": 1
+    },
+    {
+      "host_wall_ms": 1792106447203,
+      "browser_wall_ms": 1792106447209,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [
+        {
+          "key": 190445567,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_542843326530697",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106392788,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "frag_bunny",
+                  "has_drm": false,
+                  "hash": "media_hash_542843326530697",
+                  "initiator": "https://mdn.github.io/",
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 5524488
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": null,
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445567,
+              "thumbnail_url": null,
+              "title": "SourceBuffer example",
+              "url": "https://mdn.github.io/dom-examples/sourcebuffer/"
+            }
+          }
+        }
+      ],
+      "panel_rows": 1
+    },
+    {
+      "host_wall_ms": 1792106448021,
+      "browser_wall_ms": 1792106448051,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [
+        {
+          "key": 190445567,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_542843326530697",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106392788,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "frag_bunny",
+                  "has_drm": false,
+                  "hash": "media_hash_542843326530697",
+                  "initiator": "https://mdn.github.io/",
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 5524488
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": "https://dashif.org/img/favicon.ico",
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445567,
+              "thumbnail_url": null,
+              "title": "DASH-IF Reference Client",
+              "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html"
+            }
+          }
+        }
+      ],
+      "panel_rows": 1
+    },
+    {
+      "host_wall_ms": 1792106449102,
+      "browser_wall_ms": 1792106449122,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [
+        {
+          "key": 190445567,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_542843326530697",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106392788,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "frag_bunny",
+                  "has_drm": false,
+                  "hash": "media_hash_542843326530697",
+                  "initiator": "https://mdn.github.io/",
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 5524488
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              },
+              {
+                "key": "media_hash_4750436760039540",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106448393,
+                  "duration": 634.566,
+                  "filename": null,
+                  "has_drm": false,
+                  "hash": "media_hash_4750436760039540",
+                  "initiator": "https://reference.dashif.org/",
+                  "is_youtube": false,
+                  "master_url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+                  "playlist": [
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 9,
+                      "quality": {
+                        "bitrate": 14931538,
+                        "size": {
+                          "height": 2160,
+                          "width": 3840
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 2,
+                      "quality": {
+                        "bitrate": 9914554,
+                        "size": {
+                          "height": 1080,
+                          "width": 1920
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 1,
+                      "quality": {
+                        "bitrate": 4952892,
+                        "size": {
+                          "height": 720,
+                          "width": 1280
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 0,
+                      "quality": {
+                        "bitrate": 3134488,
+                        "size": {
+                          "height": 576,
+                          "width": 1024
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 8,
+                      "quality": {
+                        "bitrate": 1883700,
+                        "size": {
+                          "height": 432,
+                          "width": 768
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 6,
+                      "quality": {
+                        "bitrate": 1254758,
+                        "size": {
+                          "height": 360,
+                          "width": 640
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 7,
+                      "quality": {
+                        "bitrate": 1013310,
+                        "size": {
+                          "height": 360,
+                          "width": 640
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 5,
+                      "quality": {
+                        "bitrate": 759798,
+                        "size": {
+                          "height": 270,
+                          "width": 480
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 4,
+                      "quality": {
+                        "bitrate": 507246,
+                        "size": {
+                          "height": 180,
+                          "width": 320
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 3,
+                      "quality": {
+                        "bitrate": 254320,
+                        "size": {
+                          "height": 180,
+                          "width": 320
+                        }
+                      }
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "subtitles": null,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "mpd_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": "https://dashif.org/img/favicon.ico",
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445567,
+              "thumbnail_url": null,
+              "title": "DASH-IF Reference Client",
+              "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html"
+            }
+          }
+        }
+      ],
+      "panel_rows": 2
+    },
+    {
+      "host_wall_ms": 1792106464444,
+      "browser_wall_ms": 1792106464449,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [
+        {
+          "key": 190445567,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_542843326530697",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106392788,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "frag_bunny",
+                  "has_drm": false,
+                  "hash": "media_hash_542843326530697",
+                  "initiator": "https://mdn.github.io/",
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 5524488
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              },
+              {
+                "key": "media_hash_4750436760039540",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106448393,
+                  "duration": 634.566,
+                  "filename": null,
+                  "has_drm": false,
+                  "hash": "media_hash_4750436760039540",
+                  "initiator": "https://reference.dashif.org/",
+                  "is_youtube": false,
+                  "master_url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+                  "playlist": [
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 9,
+                      "quality": {
+                        "bitrate": 14931538,
+                        "size": {
+                          "height": 2160,
+                          "width": 3840
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 2,
+                      "quality": {
+                        "bitrate": 9914554,
+                        "size": {
+                          "height": 1080,
+                          "width": 1920
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 1,
+                      "quality": {
+                        "bitrate": 4952892,
+                        "size": {
+                          "height": 720,
+                          "width": 1280
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 0,
+                      "quality": {
+                        "bitrate": 3134488,
+                        "size": {
+                          "height": 576,
+                          "width": 1024
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 8,
+                      "quality": {
+                        "bitrate": 1883700,
+                        "size": {
+                          "height": 432,
+                          "width": 768
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 6,
+                      "quality": {
+                        "bitrate": 1254758,
+                        "size": {
+                          "height": 360,
+                          "width": 640
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 7,
+                      "quality": {
+                        "bitrate": 1013310,
+                        "size": {
+                          "height": 360,
+                          "width": 640
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 5,
+                      "quality": {
+                        "bitrate": 759798,
+                        "size": {
+                          "height": 270,
+                          "width": 480
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 4,
+                      "quality": {
+                        "bitrate": 507246,
+                        "size": {
+                          "height": 180,
+                          "width": 320
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 3,
+                      "quality": {
+                        "bitrate": 254320,
+                        "size": {
+                          "height": 180,
+                          "width": 320
+                        }
+                      }
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "subtitles": null,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "mpd_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": "https://dashif.org/img/favicon.ico",
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445567,
+              "thumbnail_url": null,
+              "title": "DASH-IF Reference Client",
+              "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html"
+            }
+          }
+        }
+      ],
+      "panel_rows": 2
+    }
+  ]
+}

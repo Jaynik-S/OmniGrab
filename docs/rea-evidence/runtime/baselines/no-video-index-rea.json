@@ -1,0 +1,546 @@
+{
+  "evidence_id": "ev_04023a0f2e82102d019f1f71b9e51be8fd3c9b260f00c4a6b9ac8b90cd82a627",
+  "subject": null,
+  "provider": {
+    "id": "rea-playwright-browser-scenario",
+    "name": "REA Playwright browser scenario capture provider",
+    "version": "1"
+  },
+  "analysis_profile": null,
+  "predicate_type": "rea.browser-scenario-capture",
+  "operation": "capture_browser_scenario",
+  "parameters": {
+    "browser": {
+      "mode": "connect",
+      "cdp_endpoint": "http://127.0.0.1:9222",
+      "target_id": "CC8E8FC3F33C6CBEB4AFF19FB59B07A9"
+    },
+    "start_url": {
+      "url": "https://mdn.github.io/dom-examples/",
+      "query": []
+    },
+    "environment": {
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "device_scale_factor": 1
+      },
+      "locale": "en-US",
+      "timezone": "UTC",
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "service_workers": "allow"
+    },
+    "actions": [
+      {
+        "step_id": "wait-for-detection",
+        "action": "wait_for_timeout",
+        "duration_ms": 9000
+      }
+    ],
+    "storage": {
+      "cookies": [],
+      "local_storage": [],
+      "session_storage": []
+    },
+    "secrets": [],
+    "capture": {
+      "after_each_step": [],
+      "at_end": [
+        "url",
+        "dom"
+      ],
+      "events": [
+        "network",
+        "frames",
+        "page-errors"
+      ],
+      "network": {
+        "request_body": false,
+        "response_body": false,
+        "header_values": false
+      }
+    },
+    "scenario_sha256": "a440715fb1358a9e744101fef50146c8d41a620841a66f2296e91d3bd68b747d"
+  },
+  "raw_result": null,
+  "normalized_result": {
+    "browser": {
+      "mode": "connect",
+      "process_ownership": "external",
+      "cleanup": "disconnected-external",
+      "product": "Chromium",
+      "version": "155.0.8059.41"
+    },
+    "scenario": {
+      "start_origin": "https://mdn.github.io",
+      "action_count": 1,
+      "secret_references": [],
+      "network_content": {
+        "request_body": false,
+        "response_body": false,
+        "header_values": false
+      },
+      "event_families": [
+        "frames",
+        "network",
+        "page-errors"
+      ]
+    },
+    "duration_ms": 9404,
+    "steps": [
+      {
+        "step_index": 0,
+        "step_id": "scenario_start",
+        "action": "goto_start",
+        "elapsed_ms": 325,
+        "before_url": {
+          "url": "https://reference.dashif.org/dash.js/latest/samples/getting-started/basic-auto-load.html",
+          "origin": "https://reference.dashif.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "after_url": {
+          "url": "https://mdn.github.io/dom-examples/",
+          "origin": "https://mdn.github.io",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "event_sequence_start": 1,
+        "event_sequence_end": 10,
+        "artifacts": {
+          "screenshot": {
+            "state": "not_requested"
+          },
+          "dom": {
+            "state": "not_requested"
+          },
+          "accessibility": {
+            "state": "not_requested"
+          },
+          "url": {
+            "state": "not_requested"
+          },
+          "history": {
+            "state": "not_requested"
+          },
+          "storage": {
+            "state": "not_requested"
+          }
+        },
+        "completeness": {
+          "status": "complete",
+          "equality_eligible": true,
+          "missing_sections": [],
+          "truncated_sections": []
+        },
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step_index": 1,
+        "step_id": "wait-for-detection",
+        "action": "wait_for_timeout",
+        "elapsed_ms": 9048,
+        "before_url": {
+          "url": "https://mdn.github.io/dom-examples/",
+          "origin": "https://mdn.github.io",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "after_url": {
+          "url": "https://mdn.github.io/dom-examples/",
+          "origin": "https://mdn.github.io",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "event_sequence_start": 11,
+        "event_sequence_end": 10,
+        "artifacts": {
+          "screenshot": {
+            "state": "not_requested"
+          },
+          "dom": {
+            "state": "captured",
+            "value": {
+              "sha256": "79903940bc45afe72cc0c2f6e7fd9b571d2a2397074cc37751a44685dfdca1a4",
+              "bytes": 29609,
+              "text": "<!DOCTYPE html><html lang=\"en-US\"><head>\n    <meta charset=\"UTF-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n<!-- Begin Jekyll SEO tag v2.8.0 -->\n<title>dom-examples | Code examples that accompany various MDN DOM and Web API documentation pages</title>\n<meta name=\"generator\" content=\"Jekyll v3.10.0\">\n<meta property=\"og:title\" content=\"dom-examples\">\n<meta property=\"og:locale\" content=\"en_US\">\n<meta name=\"description\" content=\"Code examples that accompany various MDN DOM and Web API documentation pages\">\n<meta property=\"og:description\" content=\"Code examples that accompany various MDN DOM and Web API documentation pages\">\n<link rel=\"canonical\" href=\"https://mdn.github.io/dom-examples/\">\n<meta property=\"og:url\" content=\"https://mdn.github.io/dom-examples/\">\n<meta property=\"og:site_name\" content=\"dom-examples\">\n<meta property=\"og:type\" content=\"website\">\n<meta name=\"twitter:card\" content=\"summary\">\n<meta property=\"twitter:title\" content=\"dom-examples\">\n<script type=\"application/ld+json\">\n{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"description\":\"Code examples that accompany various MDN DOM and Web API documentation pages\",\"headline\":\"dom-examples\",\"name\":\"dom-examples\",\"url\":\"https://mdn.github.io/dom-examples/\"}</script>\n<!-- End Jekyll SEO tag -->\n\n    <style class=\"anchorjs\"></style><link rel=\"stylesheet\" href=\"/dom-examples/assets/css/style.css?v=93d7d40c7b14dc0dd208d4967905606339e1f0e6\">\n    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->\n\n<!-- Setup Google Analytics -->\n\n\n\n<!-- You can set your favicon here -->\n<!-- link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/dom-examples/favicon.ico\" -->\n\n<!-- end custom head snippets -->\n\n  </head>\n  <body>\n    <div class=\"container-lg px-3 my-5 markdown-body\">\n      \n\n      <h1 id=\"dom-examples\">dom-examples</h1>\n\n<p>Code examples that accompany various MDN DOM and Web API documentation pages.</p>\n\n<blockquote>\n  <p>[!NOTE]\nYou can include an example directly in MDN pages using <a href=\"https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Page_structures/Macros/Commonly_used_macros#code_samples\">`` macros</a> or regular Markdown code blocks.\nThese methods are simpler to maintain as the code lives beside the rest of the content.\nOnly add examples to this repository if your example doesn\u2019t easily run on MDN pages for technical or security reasons.</p>\n</blockquote>\n\n<h2 id=\"browser-support\">Browser support<a class=\"anchorjs-link \" href=\"#browser-support\" aria-label=\"Anchor\" data-anchorjs-icon=\"\ue9cb\" style=\"font: 1em / 1 anchorjs-icons; padding-left: 0.375em;\"></a></h2>\n\n<p>When creating code examples for a technology that\u2019s not yet available in all major browsers, consider using <a href=\"https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection\">feature detection</a> to fall back to a simpler behavior or inform the user that their browser is not yet supported.\nDo not specify supported browsers and their versions in code comments or prose, as this information quickly becomes outdated.</p>\n\n<h2 id=\"repository-contents\">Repository contents<a class=\"anchorjs-link \" href=\"#repository-contents\" aria-label=\"Anchor\" data-anchorjs-icon=\"\ue9cb\" style=\"font: 1em / 1 anchorjs-icons; padding-left: 0.375em;\"></a></h2>\n\n<ul>\n  <li>\n    <p>The \u201cabort-api\u201d directory contains an example of how to use the \u201cAbort API\u201d (aka <a href=\"https://dom.spec.whatwg.org/#interface-AbortSignal\">AbortSignal</a> and <a href=\"https://dom.spec.whatwg.org/#interface-abortcontroller\">AbortController</a>). <a href=\"https://mdn.github.io/dom-examples/abort-api/\">Run the example live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201caudiocontext-setsinkid\u201d directory contains an example of how to use the <a href=\"https://developer.mozilla.org/docs/Web/API/AudioContext/setSinkId\"><code class=\"language-plaintext highlighter-rouge\">AudioContext.setSinkId()</code></a> method and related features. <a href=\"https://mdn.github.io/dom-examples/audiocontext-setsinkid/\">Run the example live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cauxclick\u201d directory contains a basic example demonstrating the new <code class=\"language-plaintext highlighter-rouge\">auxclick</code> event type. See <a href=\"https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onauxclick\">GlobalEventHandlers.auxclick</a> for more details, or <a href=\"https://mdn.github.io/dom-examples/auxclick/\">run the example live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201ccanvas\u201d directory contains an example \u201cchroma-keying\u201d demonstrating how to use the Canvas API to manipulate videos: see <a href=\"https://developer.mozilla.org/docs/Web/API/Canvas_API/Manipulating_video_using_canvas\">Manipulating video using canvas</a> or <a href=\"https://mdn.github.io/dom-examples/canvas/chroma-keying/\">run the example live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cchannel-messaging-basic\u201d directory contains a basic example demonstrating the basics of channel messaging; see <a href=\"https://developer.mozilla.org/docs/Web/API/Channel_Messaging_API\">Channel Messaging API</a> or <a href=\"https://mdn.github.io/dom-examples/channel-messaging-basic/\">run the example live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cchannel-messaging-multimessage\u201d directory contains another channel messaging demo, showing how multiple messages can be sent between browsing contexts. See <a href=\"https://developer.mozilla.org/docs/Web/API/Channel_Messaging_API\">Channel Messaging API</a> for more details. <a href=\"https://mdn.github.io/dom-examples/channel-messaging-multimessage/\">Run the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201ccontact-picker\u201d directory contains an example showing usage of the <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Contact_Picker_API\">Contact Picker API</a>. <a href=\"https://mdn.github.io/dom-examples/contact-picker/\">See the example live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201ccss-carousels\u201d directory contains two examples showing how to use the CSS Carousel features \u2014 <a href=\"https://mdn.github.io/dom-examples/css-carousels/scroll-button-scroll-marker/\">a basic example featuring scroll buttons and scroll markers</a>, and an <a href=\"https://mdn.github.io/dom-examples/css-carousels/scroll-button-scroll-marker-with-columns/\">example that also uses the <code class=\"language-plaintext highlighter-rouge\">::columns</code> pseudo-class to paginate the content</a>.</p>\n  </li>\n  <li>\n    <p>The \u201ccss-custom-functions\u201d directory contains three examples showing how to use CSS custom functions \u2014 <a href=\"https://mdn.github.io/dom-examples/css-custom-functions/color-adjust-functions/\">a set of color adjustment functions</a>, a <a href=\"https://mdn.github.io/dom-examples/css-custom-functions/gradient-function/\">complex gradient background function</a>, and a <a href=\"https://mdn.github.io/dom-examples/css-custom-functions/responsive-narrow-wide/\">responsive narrow/wide value selection function</a>.</p>\n  </li>\n  <li>\n    <p>The \u201ccss-painting\u201d directory contains examples demonstrating the <a href=\"https://developer.mozilla.org/docs/Web/API/CSS_Painting_API\">CSS Painting API</a>. See the <a href=\"https://mdn.github.io/dom-examples/css-painting\">examples live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201ccss-progress\u201d directory contains an example demonstrating the <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/progress\">CSS <code class=\"language-plaintext highlighter-rouge\">progress()</code> function</a>. See the <a href=\"https://mdn.github.io/dom-examples/css-progress\">example live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201ccss-typed-arithmetic\u201d directory contains an example demonstrating <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Values_and_Units/Using_CSS_typed_arithmetic\">CSS typed arithmetic</a> usage. See the <a href=\"https://mdn.github.io/dom-examples/css-typed-arithmetic\">index page</a> to access the live examples.</p>\n  </li>\n  <li>\n    <p>The \u201cdevice-posture-api\u201d directory contains an example demonstrating how to use the <a href=\"https://developer.mozilla.org/docs/Web/API/Device_Posture_API\">Device Posture API</a>. <a href=\"https://mdn.github.io/dom-examples/device-posture-api/\">Run the example live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cdrag-and-drop\u201d directory is for examples and demos of the <a href=\"https://developer.mozilla.org/docs/Web/API/HTML_Drag_and_Drop_API\">HTML Drag and Drop</a> standard.</p>\n  </li>\n  <li>\n    <p>The \u201cdocument-picture-in-picture\u201d directory contains an example showing usage of the <a href=\"http://developer.mozilla.org/docs/Web/API/Document_Picture-in-Picture_API/\">Document Picture-in-Picture API</a>. <a href=\"https://mdn.github.io/dom-examples/document-picture-in-picture/\">See the example live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cdynamic-range-limit\u201d directory contains an example demonstrating the use of the <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/dynamic-range-limit\"><code class=\"language-plaintext highlighter-rouge\">dynamic-range-limit</code></a> CSS property. See the <a href=\"https://mdn.github.io/dom-examples/dynamic-range-limit\">live demo</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cedit-context\u201d directory contains examples demonstrating the <a href=\"https://developer.mozilla.org/docs/Web/API/EditContext_API\">EditContext API</a>. See the <a href=\"https://github.com/mdn/dom-examples/tree/main/edit-context/\">list of examples</a>.</p>\n  </li>\n  <li>The \u201cfile-system-api\u201d directory contains multiple examples demonstrating usage of the <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/File_System_API\">File System API</a>:\n    <ul>\n      <li><a href=\"https://mdn.github.io/dom-examples/file-system-api/createsyncaccesshandle-mode/\">createSyncAccessHandle() mode test</a>: Demonstrates usage of <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle/createSyncAccessHandle\">FileSystemFileHandle.createSyncAccessHandle()</a></li>\n      <li><a href=\"https://mdn.github.io/dom-examples/file-system-api/createwritable-mode/\">createWritable() mode test</a>: Demonstrates usage of <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle/createWritable\">FileSystemFileHandle.createWritable()</a></li>\n      <li><a href=\"https://mdn.github.io/dom-examples/file-system-api/filesystemhandle-remove/\">FileSystemHandle.remove() demo</a>: Demonstrates usage of <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/remove\">FileSystemHandle.remove()</a></li>\n      <li><a href=\"https://mdn.github.io/dom-examples/file-system-api/filesystemobserver/\">File System Observer Demo</a>: Demonstrates usage of the <a href=\"https://developer.mozilla.org/docs/Web/API/FileSystemObserver\">FileSystemObserver</a> API. This example was originally published on Glitch by <a href=\"https://front-end.social/@tomayac@toot.cafe\">Thomas Steiner</a>.</li>\n    </ul>\n  </li>\n  <li>\n    <p>The \u201cfullscreen-api\u201d directory is for examples and demos of the <a href=\"https://wiki.developer.mozilla.org/docs/Web/API/Fullscreen_API\">Fullscreen API</a>. Run the <a href=\"https://mdn.github.io/dom-examples/fullscreen-api/\">example live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cgeolocation-element\u201d directory is for examples and demos of the <a href=\"https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/geolocation\"><code class=\"language-plaintext highlighter-rouge\">&lt;geolocation&gt;</code> element</a>. Go to the <a href=\"https://mdn.github.io/dom-examples/geolocation-element/\"><code class=\"language-plaintext highlighter-rouge\">&lt;geolocation&gt;</code> element demo index</a> to see what\u2019s available.</p>\n  </li>\n  <li>\n    <p>The \u201chistory-api\u201d directory contains an example that demonstrates the <a href=\"https://developer.mozilla.org/docs/Web/API/History_API\">History API</a>. <a href=\"https://mdn.github.io/dom-examples/history-api/\">View the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cindexeddb-api\u201d directory contains a demo for the <a href=\"https://mdn.github.io/dom-examples/indexeddb-api/index.html\">IndexedDB API</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cinsert-adjacent\u201d directory contains basic demos for <a href=\"https://mdn.github.io/dom-examples/insert-adjacent/insertAdjacentElement.html\">insertAdjacentElement</a> and <a href=\"https://mdn.github.io/dom-examples/insert-adjacent/insertAdjacentText.html\">insertAdjacentText</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cinterest-invokers\u201d directory is for <a href=\"https://developer.mozilla.org/docs/Web/API/Popover_API/Interest_invokers\">interest invoker</a> examples. Go to the <a href=\"https://mdn.github.io/dom-examples/interest-invokers/\">Interest invoker examples index</a> to see what\u2019s available.</p>\n  </li>\n  <li>\n    <p>The \u201claunch-handler\u201d directory contains a demo for the <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Launch_Handler_API\">Launch Handler API</a>. <a href=\"https://mdn.github.io/dom-examples/launch-handler/\">View the demo live</a>. This example was originally published on Glitch by <a href=\"https://front-end.social/@tomayac@toot.cafe\">Thomas Steiner</a>.</p>\n  </li>\n  <li>\n    <p>The \u201clocal-font-access\u201d directory contains a demo for the <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Local_Font_Access_API\">Local Font Access API</a>. <a href=\"https://mdn.github.io/dom-examples/local-font-access/\">View the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cmatchmedia\u201d directory contains a basic demo to test matchMedia functionality. See <a href=\"https://developer.mozilla.org/docs/Web/API/Window/matchMedia\">Window.matchMedia</a> for more details. <a href=\"https://mdn.github.io/dom-examples/matchmedia/\">Run the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cmediaquerylist\u201d directory contains a basic demo to test more advanced matchMedia/mediaquerylist functionality. See <a href=\"https://developer.mozilla.org/docs/Web/API/MediaQueryList\">MediaQueryList</a> for more details. <a href=\"https://mdn.github.io/dom-examples/mediaquerylist/index.html\">Run the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cmedia\u201d directory contains examples and demos showing how to use HTML and DOM <a href=\"https://developer.mozilla.org/docs/Web/Media\">media elements and APIs</a>. It includes a <a href=\"https://mdn.github.io/dom-examples/media/getstartdate/\">getStartDate() demo</a> showing how to retrieve the real-world start date of an HLS stream using <code class=\"language-plaintext highlighter-rouge\">HTMLMediaElement.getStartDate()</code>.</p>\n  </li>\n  <li>\n    <p>The \u201cmedia-source-extensions\u201d directory contains examples demonstrating the <a href=\"https://developer.mozilla.org/docs/Web/API/Media_Source_Extensions_API\">Media Source Extensions API</a>. It includes a <a href=\"https://mdn.github.io/dom-examples/media-source-extensions/managed-media-source/\">ManagedMediaSource demo</a> showing how to set up a <code class=\"language-plaintext highlighter-rouge\">ManagedMediaSource</code>, listen for <code class=\"language-plaintext highlighter-rouge\">startstreaming</code>/<code class=\"language-plaintext highlighter-rouge\">endstreaming</code> events, and log <code class=\"language-plaintext highlighter-rouge\">bufferedchange</code> events.</p>\n  </li>\n  <li>\n    <p>The \u201cnavigation-api\u201d directory contains a basic example that demonstrates some features of the <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Navigation_API\">Navigation API</a>. <a href=\"https://mdn.github.io/dom-examples/navigation-api/\">Run the demo live</a>.</p>\n  </li>\n  <li>The \u201cnotifications\u201d directory contains one example showing how to make and handle persistent notifications, and another showing how to make and handle non-persistent notifications, using the <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API\">Notifications API</a>.\n    <ul>\n      <li><a href=\"https://mdn.github.io/dom-examples/notifications/persistent/\">Run the persistent notifications demo</a>.</li>\n      <li><a href=\"https://mdn.github.io/dom-examples/notifications/non-persistent/\">Run the non-persistent notifications demo</a></li>\n    </ul>\n  </li>\n  <li>\n    <p>The \u201cpayment-request\u201d directory contains examples of the <a href=\"https://developer.mozilla.org/docs/Web/API/Payment_Request_API\">Payment Request API</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cpointerevents\u201d directory is for examples and demos of the <a href=\"https://developer.mozilla.org/docs/Web/API/Pointer_events\">Pointer Events</a> standard.</p>\n  </li>\n  <li>\n    <p>The \u201cpointer-lock\u201d directory contains a basic demo to show usage of the Pointer Lock API. You can find more explanation of how the demo works at the main MDN <a href=\"https://developer.mozilla.org/docs/Web/API/Pointer_Lock_API\">Pointer Lock API</a> page. <a href=\"https://mdn.github.io/dom-examples/pointer-lock/\">Run the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cpopover-api\u201d directory is for examples and demos of the <a href=\"https://developer.mozilla.org/docs/Web/API/Popover_API\">Popover API</a> standard. Go to the <a href=\"https://mdn.github.io/dom-examples/popover-api/\">Popover API demo index</a> to see what\u2019s available.</p>\n  </li>\n  <li>\n    <p>The \u201cprompt-api-web-storage\u201d directory contains an example showing how <a href=\"https://developer.mozilla.org/docs/Web/API/Prompt_API\">Prompt API</a> context can be saved in Web Storage and then restored again after a page reload. <a href=\"https://mdn.github.io/dom-examples/prompt-api-web-storage/\">Run the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201creporting-api\u201d directory contains a couple of basic demos to show usage of the Reporting API. You can find more explanation of how the API works in the main MDN <a href=\"https://developer.mozilla.org/docs/Web/API/Reporting_API\">Reporting API</a> docs. <a href=\"https://mdn.github.io/dom-examples/reporting-api/deprecation_report.html\">Run the deprecation report demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cresize-event\u201d directory contains a basic demo to show how you can use the <a href=\"https://developer.mozilla.org/docs/Web/API/Window/resize_event\">resize event</a>. Resize the browser window either by height or width to see the size of your current window. <a href=\"https://mdn.github.io/dom-examples/resize-event\">Run the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cresponsive-iframe-sizing\u201d directory contains demos illustrating usage of the responsive iframe sizing features. See the <a href=\"/dom-examples/responsive-iframe-sizing/\">responsive iframe sizing README</a> for more information. Run the demos live: <a href=\"https://mdn.github.io/dom-examples/responsive-iframe-sizing/basic/\">Basic demo</a>, <a href=\"https://mdn.github.io/dom-examples/responsive-iframe-sizing/js-request-resize/\"><code class=\"language-plaintext highlighter-rouge\">requestResize()</code> demo</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cscreen-capture-api\u201d directory contains demos to show typical usage of the <a href=\"https://developer.mozilla.org/docs/Web/API/Screen_Capture_API\">Screen Capture API</a> and <a href=\"https://developer.mozilla.org/docs/Web/API/Screen_Capture_extensions\">Screen Capture Extensions</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cscreenleft-screentop\u201d directory contains a demo to show how you could use the <a href=\"https://developer.mozilla.org/docs/Web/API/Window/screenLeft\">Window.screenLeft</a> and <a href=\"https://developer.mozilla.org/docs/Web/API/Window/screenTop\">Window.screenTop</a> properties to draw a circle on a canvas that always stays in the same physical place on the screen when you move your browser window. <a href=\"https://mdn.github.io/dom-examples/screenleft-screentop/\">Run the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cscroll-promises\u201d directory contains demos illustrating usage of the promise-returning scroll methods (for example, <code class=\"language-plaintext highlighter-rouge\">Element.scroll()</code>). See the <a href=\"/dom-examples/scroll-promises/\">scroll promises README</a> for more information. Run the demos live: <a href=\"https://mdn.github.io/dom-examples/scroll-promises/element-methods/\">Element methods</a>, <a href=\"https://mdn.github.io/dom-examples/scroll-promises/window-methods/\">Window methods</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cscrolltooptions\u201d directory contains a demo to show how you could use the <a href=\"https://developer.mozilla.org/docs/Web/API/ScrollToOptions\">ScrollToOptions</a> dictionary along with the <a href=\"https://developer.mozilla.org/docs/Web/API/Window/scrollTo\">Window.ScrollTo()</a> method to programmatically scroll a web page. <a href=\"https://mdn.github.io/dom-examples/scrolltooptions/\">Run the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cserver-sent-events\u201d directory contains a very basic SSE demo that uses PHP to create the server. You can find more information in our <a href=\"https://developer.mozilla.org/docs/Web/API/Server-sent_events/Using_server-sent_events\">Using server-sent events</a> article. To run the demo you\u2019ll need to serve the files from a server that supports PHP; <a href=\"https://www.mamp.info/en/\">MAMP</a> is a good PHP test server environment.</p>\n  </li>\n  <li>\n    <p>The \u201cservice-worker/simple-service-worker\u201d directory contains a simple demo showing how to use the <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API\"><code class=\"language-plaintext highlighter-rouge\">Service Worker API</code></a> to manage your page\u2019s cache. <a href=\"https://mdn.github.io/dom-examples/service-worker/simple-service-worker/\">Run the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201csourcebuffer\u201d directory contains a basic demo to show usage of the <a href=\"https://developer.mozilla.org/docs/Web/API/SourceBuffer\"><code class=\"language-plaintext highlighter-rouge\">SourceBuffer</code></a> interface. <a href=\"https://mdn.github.io/dom-examples/sourcebuffer/\">Run the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cstreams\u201d directory contains demos of the Streams API for using low-level I/O processing.</p>\n  </li>\n  <li>\n    <p>The \u201ctouchevents\u201d directory is for examples and demos of the <a href=\"https://developer.mozilla.org/docs/Web/API/Touch_events\">Touch Events</a> standard.</p>\n  </li>\n  <li>\n    <p>The \u201cto-do-notifications\u201d directory contains a to-do list notifications app demonstrating <a href=\"https://developer.mozilla.org/docs/Web/API/IndexedDB_API\">IndexedDB API</a> for data storage and <a href=\"https://developer.mozilla.org/docs/Web/API/Notifications_API\">Notifications API</a> for deadline alerts. See <a href=\"https://developer.mozilla.org/docs/Web/API/IndexedDB_API/Checking_when_a_deadline_is_due\">Checking when a deadline is due</a> for a detailed walkthrough.</p>\n  </li>\n  <li>\n    <p>The \u201cviewport-segments-api\u201d directory contains an example demonstrating how to use the <a href=\"https://developer.mozilla.org/docs/Web/API/Viewport_Segments_API\">Viewport Segments API</a>. <a href=\"https://mdn.github.io/dom-examples/viewport-segments-api/\">Run the example live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cview-transitions\u201d directory contains examples and demos of the <a href=\"https://developer.mozilla.org/docs/Web/API/View_Transition_API\">View Transition API</a> standard. Go to the <a href=\"https://mdn.github.io/dom-examples/view-transitions/\">View transition API demo index</a> to see what\u2019s available.</p>\n  </li>\n  <li>\n    <p>The \u201cvisual-viewport-api\u201d directory contains a basic demo to show usage of the Visual Viewport API. For more details on how it works, read <a href=\"https://developer.mozilla.org/docs/Web/API/Visual_Viewport_API\">Visual Viewport API</a>. <a href=\"https://mdn.github.io/dom-examples/visual-viewport-api/\">View the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cweb-animations-api\u201d directory contains <a href=\"https://developer.mozilla.org/docs/Web/API/Web_Animations_API\">Web Animation API</a> demos. See the <a href=\"/dom-examples/web-animations-api/\">web animations README</a> for more information.</p>\n  </li>\n  <li>\n    <p>The \u201cweb-storage\u201d directory contains a basic demo to show usage of the Web Storage API. For more detail on how it works, read <a href=\"https://developer.mozilla.org/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API\">Using the Web Storage API</a>. <a href=\"https://mdn.github.io/dom-examples/web-storage/\">View the demo live</a>.</p>\n  </li>\n  <li>The \u201cview-transitions\u201d directory contains demos to show usage of the <a href=\"https://developer.mozilla.org/docs/Web/API/View_Transitions_API\">View Transitions API</a>:\n    <ul>\n      <li>View transitions in a <a href=\"https://mdn.github.io/dom-examples/view-transitions/spa/\">single-page app</a></li>\n      <li>View transitions in a <a href=\"https://mdn.github.io/dom-examples/view-transitions/mpa/\">multiple-page app</a></li>\n      <li>Another example of view transitions in a <a href=\"https://mdn.github.io/dom-examples/view-transitions/mpa-homepage/\">simple multiple-page app</a></li>\n      <li><a href=\"https://mdn.github.io/dom-examples/view-transitions/match-element/\">The <code class=\"language-plaintext highlighter-rouge\">match-element</code> value</a> for the <code class=\"language-plaintext highlighter-rouge\">view-transition-name</code> property</li>\n    </ul>\n  </li>\n  <li>\n    <p>The \u201cweb-share\u201d directory contains a basic demo to show usage of the <a href=\"https://developer.mozilla.org/docs/Web/API/Navigator/share\">Web Share API</a>. <a href=\"https://mdn.github.io/dom-examples/web-share/\">View the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cweb-workers\u201d directory contains several demos that show how <a href=\"https://developer.mozilla.org/docs/Web/API/Web_Workers_API\">Web Workers</a> operate. For example, view the live <a href=\"https://mdn.github.io/dom-examples/web-workers/simple-web-worker/\">simple web worker demo</a>.</p>\n  </li>\n  <li>\n    <p>The <a href=\"/dom-examples/webgl-examples/\">\u201cwebgl-examples\u201d</a> directory contains a number of WebGL examples that demonstrate the <a href=\"https://developer.mozilla.org/docs/Web/API/WebGL_API\">WebGL API</a>, which is used for 2D and 3D graphics on the web.</p>\n  </li>\n  <li>\n    <p>The \u201cwebgpu-compute-demo\u201d directory contains an example that demonstrates basic usage of the <a href=\"https://developer.mozilla.org/docs/Web/API/WebGPU_API\">WebGPU API</a> compute pipeline, which is used for performing general computation on the GPU. <a href=\"https://mdn.github.io/dom-examples/webgpu-compute-demo/\">View the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cwebgpu-render-demo\u201d directory contains an example that demonstrates basic usage of the <a href=\"https://developer.mozilla.org/docs/Web/API/WebGPU_API\">WebGPU API</a> render pipeline, which is used for rendering high-performance graphics via the GPU. <a href=\"https://mdn.github.io/dom-examples/webgpu-render-demo/\">View the demo live</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cwebsockets\u201d directory contains an example that demonstrates basic usage of the <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API\">WebSockets API</a>.</p>\n  </li>\n  <li>\n    <p>The \u201cwebxr\u201d directory contains an example showing how to <a href=\"https://mdn.github.io/dom-examples/webxr/\">start up a WebXR session</a>.\nSee <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API/Startup_and_shutdown\">Starting up and shutting down a WebXR session</a> for details.</p>\n  </li>\n  <li>The \u201cwindow-management-api\u201d directory contains a basic demo to show usage of the <a href=\"https://developer.mozilla.org/docs/Web/API/Window_Management_API\">Window Management API</a>. <a href=\"https://mdn.github.io/dom-examples/window-management-api/\">View the demo live</a>.</li>\n</ul>\n\n<h2 id=\"contribute-to-mdn-web-docs\">Contribute to MDN Web Docs<a class=\"anchorjs-link \" href=\"#contribute-to-mdn-web-docs\" aria-label=\"Anchor\" data-anchorjs-icon=\"\ue9cb\" style=\"font: 1em / 1 anchorjs-icons; padding-left: 0.375em;\"></a></h2>\n\n<p>You can contribute to MDN Web Docs and be a part of our community through content contributions, engineering, or translation work.\nThe MDN Web Docs project welcomes contributions from everyone who shares our goals and wants to contribute constructively and respectfully within our community.</p>\n\n<p>To find out how to get started, see the <a href=\"/dom-examples/CONTRIBUTING.md\">CONTRIBUTING.md</a> document in this repository.\nBy participating in and contributing to our projects and discussions, you acknowledge that you have read and agree to our <a href=\"/dom-examples/CODE_OF_CONDUCT.md\">Code of Conduct</a>.</p>\n\n<h2 id=\"get-in-touch\">Get in touch<a class=\"anchorjs-link \" href=\"#get-in-touch\" aria-label=\"Anchor\" data-anchorjs-icon=\"\ue9cb\" style=\"font: 1em / 1 anchorjs-icons; padding-left: 0.375em;\"></a></h2>\n\n<p>You can communicate with the MDN Web Docs team and community using the <a href=\"https://developer.mozilla.org/en-US/docs/MDN/Community/Communication_channels\">communication channels</a>.</p>\n\n\n\n      \n      <div class=\"footer border-top border-gray-light mt-5 pt-3 text-right text-gray\">\n        This site is open source. <a href=\"https://github.com/mdn/dom-examples/edit/main/README.md\">Improve this page</a>.\n      </div>\n      \n    </div>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js\" integrity=\"sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=\" crossorigin=\"anonymous\"></script>\n    <script>anchors.add();</script>\n  \n\n</body></html>"
+            }
+          },
+          "accessibility": {
+            "state": "not_requested"
+          },
+          "url": {
+            "state": "captured",
+            "value": {
+              "url": "https://mdn.github.io/dom-examples/",
+              "origin": "https://mdn.github.io",
+              "query_parameter_names": [],
+              "redacted": false
+            }
+          },
+          "history": {
+            "state": "not_requested"
+          },
+          "storage": {
+            "state": "not_requested"
+          }
+        },
+        "completeness": {
+          "status": "complete",
+          "equality_eligible": true,
+          "missing_sections": [],
+          "truncated_sections": []
+        },
+        "status": "completed",
+        "error": null
+      }
+    ],
+    "events": {
+      "retained": 10,
+      "dropped": 0,
+      "items": [
+        {
+          "sequence": 1,
+          "step_index": 0,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://mdn.github.io/dom-examples/",
+            "origin": "https://mdn.github.io",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 2,
+          "step_index": 0,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://mdn.github.io/dom-examples/",
+            "origin": "https://mdn.github.io",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "vary",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-fastly-request-id",
+            "x-github-edge-region",
+            "x-github-request-id",
+            "x-proxy-cache",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 3,
+          "step_index": 0,
+          "kind": "frame-navigated",
+          "url": {
+            "url": "https://mdn.github.io/dom-examples/",
+            "origin": "https://mdn.github.io",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "name": null
+        },
+        {
+          "sequence": 4,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://mdn.github.io/dom-examples/assets/css/style.css?v=93d7d40c7b14dc0dd208d4967905606339e1f0e6",
+            "origin": "https://mdn.github.io",
+            "query_parameter_names": [
+              "v"
+            ],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 5,
+          "step_index": 0,
+          "transaction_id": "request-3",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js",
+            "origin": "https://cdnjs.cloudflare.com",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 6,
+          "step_index": 0,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://mdn.github.io/dom-examples/",
+            "origin": "https://mdn.github.io",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 7,
+          "step_index": 0,
+          "transaction_id": "request-3",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js",
+            "origin": "https://cdnjs.cloudflare.com",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "access-control-allow-origin",
+            "age",
+            "alt-svc",
+            "cache-control",
+            "cf-cache-status",
+            "cf-cdnjs-via",
+            "cf-ray",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "cross-origin-resource-policy",
+            "date",
+            "last-modified",
+            "nel",
+            "priority",
+            "report-to",
+            "server",
+            "server-timing",
+            "strict-transport-security",
+            "timing-allow-origin",
+            "vary",
+            "x-cdnjs-cache",
+            "x-content-type-options"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 8,
+          "step_index": 0,
+          "transaction_id": "request-3",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js",
+            "origin": "https://cdnjs.cloudflare.com",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "origin",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 9,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://mdn.github.io/dom-examples/assets/css/style.css?v=93d7d40c7b14dc0dd208d4967905606339e1f0e6",
+            "origin": "https://mdn.github.io",
+            "query_parameter_names": [
+              "v"
+            ],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-encoding",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "vary",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-fastly-request-id",
+            "x-github-edge-region",
+            "x-github-request-id",
+            "x-origin-cache",
+            "x-proxy-cache",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 10,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://mdn.github.io/dom-examples/assets/css/style.css?v=93d7d40c7b14dc0dd208d4967905606339e1f0e6",
+            "origin": "https://mdn.github.io",
+            "query_parameter_names": [
+              "v"
+            ],
+            "redacted": false
+          },
+          "resource_type": "stylesheet",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        }
+      ]
+    },
+    "completeness": {
+      "status": "incomplete",
+      "equality_eligible": false,
+      "missing_sections": [
+        "events"
+      ],
+      "truncated_sections": []
+    },
+    "limitations": [
+      "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+      "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+      "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+      "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+      "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+      "Storage values are hashed only after declared-secret redaction.",
+      "Shared-context network capture excludes requests without a known root or descendant Page frame.",
+      "CDP attachment cannot recover pre-attach events or guarantee launch-time context options."
+    ]
+  },
+  "confidence": "observed",
+  "authority": "controlled-replay",
+  "environment": {
+    "id": "Chromium@155.0.8059.41",
+    "platform": "unknown",
+    "architecture": "unknown",
+    "isolation": "none"
+  },
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+    "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+    "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+    "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+    "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+    "Storage values are hashed only after declared-secret redaction.",
+    "Shared-context network capture excludes requests without a known root or descendant Page frame.",
+    "CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+    "Browser host platform and architecture were not observed."
+  ],
+  "relationship_coverage": null,
+  "locations": [],
+  "evidence_links": []
+}

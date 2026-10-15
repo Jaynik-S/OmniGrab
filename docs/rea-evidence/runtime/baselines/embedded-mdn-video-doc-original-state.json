@@ -1,0 +1,591 @@
+{
+  "authority": "supplemental direct CDP original-extension read-only storage polling; not REA Evidence",
+  "expected_url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video",
+  "monitor_started_at": "2026-10-15T23:26:08.591Z",
+  "monitor_ended_at": "2026-10-15T23:26:26.808Z",
+  "sample_count": 68,
+  "poll_interval_ms": 250,
+  "state_changes_and_final": [
+    {
+      "host_wall_ms": 1792106768593,
+      "browser_wall_ms": 1792106768600,
+      "tab_ids": [],
+      "current_tab": 190445569,
+      "records": [],
+      "panel_rows": 1
+    },
+    {
+      "host_wall_ms": 1792106769403,
+      "browser_wall_ms": 1792106769416,
+      "tab_ids": [
+        190445569
+      ],
+      "current_tab": 190445569,
+      "records": [
+        {
+          "key": 190445569,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_4750436760039540",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106543471,
+                  "duration": 634.566,
+                  "filename": null,
+                  "has_drm": false,
+                  "hash": "media_hash_4750436760039540",
+                  "initiator": "https://reference.dashif.org/",
+                  "is_youtube": false,
+                  "master_url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+                  "playlist": [
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 9,
+                      "quality": {
+                        "bitrate": 14931538,
+                        "size": {
+                          "height": 2160,
+                          "width": 3840
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 2,
+                      "quality": {
+                        "bitrate": 9914554,
+                        "size": {
+                          "height": 1080,
+                          "width": 1920
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 1,
+                      "quality": {
+                        "bitrate": 4952892,
+                        "size": {
+                          "height": 720,
+                          "width": 1280
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 0,
+                      "quality": {
+                        "bitrate": 3134488,
+                        "size": {
+                          "height": 576,
+                          "width": 1024
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 8,
+                      "quality": {
+                        "bitrate": 1883700,
+                        "size": {
+                          "height": 432,
+                          "width": 768
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 6,
+                      "quality": {
+                        "bitrate": 1254758,
+                        "size": {
+                          "height": 360,
+                          "width": 640
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 7,
+                      "quality": {
+                        "bitrate": 1013310,
+                        "size": {
+                          "height": 360,
+                          "width": 640
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 5,
+                      "quality": {
+                        "bitrate": 759798,
+                        "size": {
+                          "height": 270,
+                          "width": 480
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 4,
+                      "quality": {
+                        "bitrate": 507246,
+                        "size": {
+                          "height": 180,
+                          "width": 320
+                        }
+                      }
+                    },
+                    {
+                      "audio_id": "bbb_a64k",
+                      "audio_language": null,
+                      "demuxer": "mp4",
+                      "index": 3,
+                      "quality": {
+                        "bitrate": 254320,
+                        "size": {
+                          "height": 180,
+                          "width": 320
+                        }
+                      }
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "subtitles": null,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "mpd_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": "https://dashif.org/img/favicon.ico",
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445569,
+              "thumbnail_url": null,
+              "title": "DASH-IF Reference Client",
+              "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html"
+            }
+          }
+        }
+      ],
+      "panel_rows": 1
+    },
+    {
+      "host_wall_ms": 1792106769952,
+      "browser_wall_ms": 1792106769954,
+      "tab_ids": [
+        190445569
+      ],
+      "current_tab": 190445569,
+      "records": [],
+      "panel_rows": 0
+    },
+    {
+      "host_wall_ms": 1792106771004,
+      "browser_wall_ms": 1792106771007,
+      "tab_ids": [
+        190445569
+      ],
+      "current_tab": 190445569,
+      "records": [
+        {
+          "key": 190445569,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_7644926775748239",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106770316,
+                  "duration": "unknown",
+                  "extension": "mkv",
+                  "filename": "flower",
+                  "has_drm": false,
+                  "hash": "media_hash_7644926775748239",
+                  "initiator": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/",
+                  "is_youtube": false,
+                  "libav_demuxer": "webm",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/shared-assets/videos/flower.webm"
+                      },
+                      "demuxer": "webm",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 554058
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              },
+              {
+                "key": "media_hash_2295051083994525",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106770648,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "ed_1024_512kb",
+                  "has_drm": false,
+                  "hash": "media_hash_2295051083994525",
+                  "initiator": "https://b923f302049b1697724433b34f31eb57b201c1a8.mdnplay.dev/",
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://dn600306.us.archive.org/0/items/ElephantsDream/ed_1024_512kb.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 47065346
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": "https://developer.mozilla.org/favicon.svg",
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445569,
+              "thumbnail_url": "https://developer.mozilla.org/mdn-social-image.46ac2375.png",
+              "title": "<video> HTML video embed element - HTML | MDN",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video"
+            }
+          }
+        }
+      ],
+      "panel_rows": 2
+    },
+    {
+      "host_wall_ms": 1792106772073,
+      "browser_wall_ms": 1792106772078,
+      "tab_ids": [
+        190445569
+      ],
+      "current_tab": 190445569,
+      "records": [
+        {
+          "key": 190445569,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_7644926775748239",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106770316,
+                  "duration": "unknown",
+                  "extension": "mkv",
+                  "filename": "flower",
+                  "has_drm": false,
+                  "hash": "media_hash_7644926775748239",
+                  "initiator": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/",
+                  "is_youtube": false,
+                  "libav_demuxer": "webm",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/shared-assets/videos/flower.webm"
+                      },
+                      "demuxer": "webm",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 554058
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              },
+              {
+                "key": "media_hash_2295051083994525",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106770648,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "ed_1024_512kb",
+                  "has_drm": false,
+                  "hash": "media_hash_2295051083994525",
+                  "initiator": "https://b923f302049b1697724433b34f31eb57b201c1a8.mdnplay.dev/",
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://dn600306.us.archive.org/0/items/ElephantsDream/ed_1024_512kb.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 47065346
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              },
+              {
+                "key": "media_hash_950969707939106",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106771470,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "big_buck_bunny_720p_surround",
+                  "has_drm": false,
+                  "hash": "media_hash_950969707939106",
+                  "initiator": "https://4a596c2b56d48c9221e3b684ed071d252f102ed9.mdnplay.dev/",
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://dn710604.ca.archive.org/0/items/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 61878609
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": "https://developer.mozilla.org/favicon.svg",
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445569,
+              "thumbnail_url": "https://developer.mozilla.org/mdn-social-image.46ac2375.png",
+              "title": "<video> HTML video embed element - HTML | MDN",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video"
+            }
+          }
+        }
+      ],
+      "panel_rows": 3
+    },
+    {
+      "host_wall_ms": 1792106786535,
+      "browser_wall_ms": 1792106786541,
+      "tab_ids": [
+        190445569
+      ],
+      "current_tab": 190445569,
+      "records": [
+        {
+          "key": 190445569,
+          "value": {
+            "media": [
+              {
+                "key": "media_hash_7644926775748239",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106770316,
+                  "duration": "unknown",
+                  "extension": "mkv",
+                  "filename": "flower",
+                  "has_drm": false,
+                  "hash": "media_hash_7644926775748239",
+                  "initiator": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/",
+                  "is_youtube": false,
+                  "libav_demuxer": "webm",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/shared-assets/videos/flower.webm"
+                      },
+                      "demuxer": "webm",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 554058
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              },
+              {
+                "key": "media_hash_2295051083994525",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106770648,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "ed_1024_512kb",
+                  "has_drm": false,
+                  "hash": "media_hash_2295051083994525",
+                  "initiator": "https://b923f302049b1697724433b34f31eb57b201c1a8.mdnplay.dev/",
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://dn600306.us.archive.org/0/items/ElephantsDream/ed_1024_512kb.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 47065346
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              },
+              {
+                "key": "media_hash_950969707939106",
+                "value": {
+                  "cache": "default",
+                  "discovery_timestamp_ms": 1792106771470,
+                  "duration": "unknown",
+                  "extension": "mp4",
+                  "filename": "big_buck_bunny_720p_surround",
+                  "has_drm": false,
+                  "hash": "media_hash_950969707939106",
+                  "initiator": "https://4a596c2b56d48c9221e3b684ed071d252f102ed9.mdnplay.dev/",
+                  "is_youtube": false,
+                  "libav_demuxer": "mp4",
+                  "playlist": [
+                    {
+                      "av": {
+                        "audio": false,
+                        "video": "https://dn710604.ca.archive.org/0/items/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
+                      },
+                      "demuxer": "mp4",
+                      "quality": {
+                        "bitrate": null,
+                        "size": null
+                      },
+                      "size": 61878609
+                    }
+                  ],
+                  "preferred_entry": null,
+                  "supports_byte_ranges": true,
+                  "thumbnail_url": null,
+                  "title": null,
+                  "type": "http_playlist"
+                }
+              }
+            ],
+            "meta": {
+              "default_action": "download",
+              "favicon_url": "https://developer.mozilla.org/favicon.svg",
+              "incognito": false,
+              "smartnaming_rule": {
+                "force_doc_title": false,
+                "max_length": 64,
+                "replace": [],
+                "selector": null,
+                "subdir": "",
+                "template": "%title"
+              },
+              "tab_id": 190445569,
+              "thumbnail_url": "https://developer.mozilla.org/mdn-social-image.46ac2375.png",
+              "title": "<video> HTML video embed element - HTML | MDN",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video"
+            }
+          }
+        }
+      ],
+      "panel_rows": 3
+    }
+  ]
+}

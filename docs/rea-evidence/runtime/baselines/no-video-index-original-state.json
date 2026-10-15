@@ -1,0 +1,38 @@
+{
+  "authority": "supplemental direct CDP original-extension read-only storage polling; not REA Evidence",
+  "expected_url": "https://mdn.github.io/dom-examples/",
+  "monitor_started_at": "2026-10-15T23:17:57.191Z",
+  "monitor_ended_at": "2026-10-15T23:18:15.358Z",
+  "sample_count": 68,
+  "poll_interval_ms": 250,
+  "state_changes_and_final": [
+    {
+      "host_wall_ms": 1792106277193,
+      "browser_wall_ms": 1792106277207,
+      "tab_ids": [],
+      "current_tab": 190445567,
+      "records": [],
+      "panel_rows": 0
+    },
+    {
+      "host_wall_ms": 1792106277453,
+      "browser_wall_ms": 1792106277464,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [],
+      "panel_rows": 0
+    },
+    {
+      "host_wall_ms": 1792106295086,
+      "browser_wall_ms": 1792106295100,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [],
+      "panel_rows": 0
+    }
+  ]
+}

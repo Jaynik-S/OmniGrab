@@ -1,0 +1,38 @@
+{
+  "authority": "supplemental direct CDP original-extension read-only storage polling; not REA Evidence",
+  "expected_url": "https://reference.dashif.org/dash.js/latest/samples/getting-started/basic-auto-load.html",
+  "monitor_started_at": "2026-10-15T23:17:35.058Z",
+  "monitor_ended_at": "2026-10-15T23:17:53.230Z",
+  "sample_count": 68,
+  "poll_interval_ms": 250,
+  "state_changes_and_final": [
+    {
+      "host_wall_ms": 1792106255061,
+      "browser_wall_ms": 1792106255066,
+      "tab_ids": [],
+      "current_tab": 190445567,
+      "records": [],
+      "panel_rows": 1
+    },
+    {
+      "host_wall_ms": 1792106255885,
+      "browser_wall_ms": 1792106255892,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [],
+      "panel_rows": 0
+    },
+    {
+      "host_wall_ms": 1792106272961,
+      "browser_wall_ms": 1792106272965,
+      "tab_ids": [
+        190445567
+      ],
+      "current_tab": 190445567,
+      "records": [],
+      "panel_rows": 0
+    }
+  ]
+}

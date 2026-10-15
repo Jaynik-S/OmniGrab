@@ -1,0 +1,620 @@
+{
+  "authority": "analyst results derived from retained REA scenarios plus separately labeled direct CDP original-state observations",
+  "trials_per_case": 1,
+  "latency_definition": "Original discovery timestamp and first polling observation relative to host time immediately before the scenario call; includes navigation/network/action time. Not response-to-detection or rendered-visibility latency.",
+  "polling_limitations": "250 ms requested interval; in-flight API/host scheduling adds delay. Initial snapshots can contain the previous navigation source; match by exact expected source URL rather than treating any row as a fresh detection.",
+  "results": [
+    {
+      "case": "direct-mp4",
+      "page_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+      "rea_evidence_id": "ev_ca256100e5856e98fab1d1b54c94aff375cb5165fdcc7bbb4461c860dbe2ac05",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 7,
+      "final_original_group_count": 1,
+      "expected_source": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+      "final_original_media": [
+        {
+          "type": "http_playlist",
+          "source_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+          "extension": "mp4",
+          "hash": "media_hash_3551598338459204",
+          "variant_count": 1,
+          "variant_heights": [
+            null
+          ],
+          "initiator": null
+        }
+      ],
+      "sample_count": 68,
+      "state_change_count": 4,
+      "navigation_call_host_wall_ms": 1792106188089,
+      "first_expected_original_discovery_after_call_ms": 835,
+      "first_expected_persisted_observation_after_call_ms": 1514,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    },
+    {
+      "case": "direct-webm",
+      "page_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+      "rea_evidence_id": "ev_f407274c8fd74e2e2edc2f09b1c56115a0c4462e3b33cbdcfe2c0ef8e7ec50be",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 7,
+      "final_original_group_count": 1,
+      "expected_source": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+      "final_original_media": [
+        {
+          "type": "http_playlist",
+          "source_url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+          "extension": "mkv",
+          "hash": "media_hash_7592680726755239",
+          "variant_count": 1,
+          "variant_heights": [
+            null
+          ],
+          "initiator": null
+        }
+      ],
+      "sample_count": 68,
+      "state_change_count": 3,
+      "navigation_call_host_wall_ms": 1792106210281,
+      "first_expected_original_discovery_after_call_ms": 214,
+      "first_expected_persisted_observation_after_call_ms": 814,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    },
+    {
+      "case": "hls-basic",
+      "page_url": "https://hlsjs.video-dev.org/demo/basic-usage",
+      "rea_evidence_id": "ev_0431da117d21f26b9c3a200270ab46f6c60410d1d7a3b7e1d711d27c90ebac84",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 52,
+      "final_original_group_count": 1,
+      "expected_source": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+      "final_original_media": [
+        {
+          "type": "m3u8_playlist",
+          "source_url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+          "extension": null,
+          "hash": "media_hash_1659481472944572",
+          "variant_count": 5,
+          "variant_heights": [
+            1080,
+            720,
+            480,
+            288,
+            184
+          ],
+          "initiator": "https://hlsjs.video-dev.org/"
+        }
+      ],
+      "sample_count": 68,
+      "state_change_count": 5,
+      "navigation_call_host_wall_ms": 1792106232565,
+      "first_expected_original_discovery_after_call_ms": 705,
+      "first_expected_persisted_observation_after_call_ms": 1270,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    },
+    {
+      "case": "dash-basic",
+      "page_url": "https://reference.dashif.org/dash.js/latest/samples/getting-started/basic-auto-load.html",
+      "rea_evidence_id": "ev_4c1ed12fa0a7aa2301c088abff178840bd8a34b12df55efb50b34b6da8e6b292",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 4,
+      "final_original_group_count": 0,
+      "expected_source": null,
+      "final_original_media": [],
+      "sample_count": 68,
+      "state_change_count": 3,
+      "navigation_call_host_wall_ms": 1792106254837,
+      "first_expected_original_discovery_after_call_ms": null,
+      "first_expected_persisted_observation_after_call_ms": null,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    },
+    {
+      "case": "no-video-index",
+      "page_url": "https://mdn.github.io/dom-examples/",
+      "rea_evidence_id": "ev_04023a0f2e82102d019f1f71b9e51be8fd3c9b260f00c4a6b9ac8b90cd82a627",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 10,
+      "final_original_group_count": 0,
+      "expected_source": null,
+      "final_original_media": [],
+      "sample_count": 68,
+      "state_change_count": 3,
+      "navigation_call_host_wall_ms": 1792106277001,
+      "first_expected_original_discovery_after_call_ms": null,
+      "first_expected_persisted_observation_after_call_ms": null,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    },
+    {
+      "case": "blob-sourcebuffer",
+      "page_url": "https://mdn.github.io/dom-examples/sourcebuffer/",
+      "rea_evidence_id": "ev_ed57018bed23cce93f341c716b010c204f55cdf2f10ded488e080f01c2b1aa6a",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 7,
+      "final_original_group_count": 0,
+      "expected_source": null,
+      "final_original_media": [],
+      "sample_count": 68,
+      "state_change_count": 2,
+      "navigation_call_host_wall_ms": 1792106299138,
+      "first_expected_original_discovery_after_call_ms": null,
+      "first_expected_persisted_observation_after_call_ms": null,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    },
+    {
+      "case": "dash-reference",
+      "page_url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+      "rea_evidence_id": "ev_af4cb8a9b8e8370752b1345f822d46b5a82192999669ff3a2bc4bc2dc14d413d",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 137,
+      "final_original_group_count": 0,
+      "expected_source": null,
+      "final_original_media": [],
+      "sample_count": 68,
+      "state_change_count": 3,
+      "navigation_call_host_wall_ms": 1792106324718,
+      "first_expected_original_discovery_after_call_ms": null,
+      "first_expected_persisted_observation_after_call_ms": null,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    },
+    {
+      "case": "dash-loaded",
+      "page_url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+      "rea_evidence_id": "ev_9999846327195444efd2211af02e3e2f7d3cb18c7a423a195ff91cace60bd0a6",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "mute-demo",
+          "status": "failed",
+          "error": "Analysis operation timed out after 10000ms: capture_browser_scenario"
+        },
+        {
+          "step_id": "load-stream",
+          "status": "cancelled",
+          "error": "not executed after an earlier action failure"
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "cancelled",
+          "error": "not executed after an earlier action failure"
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "action",
+          "dom",
+          "events",
+          "url"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 139,
+      "final_original_group_count": 0,
+      "expected_source": null,
+      "final_original_media": [],
+      "sample_count": 68,
+      "state_change_count": 2,
+      "navigation_call_host_wall_ms": 1792106370164,
+      "first_expected_original_discovery_after_call_ms": null,
+      "first_expected_persisted_observation_after_call_ms": null,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    },
+    {
+      "case": "blob-loaded",
+      "page_url": "https://mdn.github.io/dom-examples/sourcebuffer/",
+      "rea_evidence_id": "ev_e52f4572e3c41ed3bb7d9c5ef41c0279089efff8cb358f27e19f6fd3576181b7",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "load-stream",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 12,
+      "final_original_group_count": 1,
+      "expected_source": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+      "final_original_media": [
+        {
+          "type": "http_playlist",
+          "source_url": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+          "extension": "mp4",
+          "hash": "media_hash_542843326530697",
+          "variant_count": 1,
+          "variant_heights": [
+            null
+          ],
+          "initiator": "https://mdn.github.io/"
+        }
+      ],
+      "sample_count": 68,
+      "state_change_count": 3,
+      "navigation_call_host_wall_ms": 1792106392290,
+      "first_expected_original_discovery_after_call_ms": 498,
+      "first_expected_persisted_observation_after_call_ms": 1031,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    },
+    {
+      "case": "dash-options-loaded",
+      "page_url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+      "rea_evidence_id": "ev_8c65bb35c64e9588c61d9820c640581b7f6a95148af4b20473ad32f0e522b338",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "open-options",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "mute-demo",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "load-stream",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 257,
+      "final_original_group_count": 2,
+      "expected_source": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+      "final_original_media": [
+        {
+          "type": "http_playlist",
+          "source_url": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+          "extension": "mp4",
+          "hash": "media_hash_542843326530697",
+          "variant_count": 1,
+          "variant_heights": [
+            null
+          ],
+          "initiator": "https://mdn.github.io/"
+        },
+        {
+          "type": "mpd_playlist",
+          "source_url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+          "extension": null,
+          "hash": "media_hash_4750436760039540",
+          "variant_count": 10,
+          "variant_heights": [
+            2160,
+            1080,
+            720,
+            576,
+            432,
+            360,
+            360,
+            270,
+            180,
+            180
+          ],
+          "initiator": "https://reference.dashif.org/"
+        }
+      ],
+      "sample_count": 67,
+      "state_change_count": 5,
+      "navigation_call_host_wall_ms": 1792106446482,
+      "first_expected_original_discovery_after_call_ms": 1911,
+      "first_expected_persisted_observation_after_call_ms": 2620,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    },
+    {
+      "case": "dash-fresh-tab",
+      "page_url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+      "rea_evidence_id": "ev_117cdbc7c7c50a452472d208a5a8142fba002ff83e4e08f025de8aa87273d260",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "open-options",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "mute-demo",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "load-stream",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 248,
+      "final_original_group_count": 1,
+      "expected_source": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+      "final_original_media": [
+        {
+          "type": "mpd_playlist",
+          "source_url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+          "extension": null,
+          "hash": "media_hash_4750436760039540",
+          "variant_count": 10,
+          "variant_heights": [
+            2160,
+            1080,
+            720,
+            576,
+            432,
+            360,
+            360,
+            270,
+            180,
+            180
+          ],
+          "initiator": "https://reference.dashif.org/"
+        }
+      ],
+      "sample_count": 68,
+      "state_change_count": 3,
+      "navigation_call_host_wall_ms": 1792106541700,
+      "first_expected_original_discovery_after_call_ms": 1771,
+      "first_expected_persisted_observation_after_call_ms": 2311,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    },
+    {
+      "case": "embedded-mdn-video-doc",
+      "page_url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/video",
+      "rea_evidence_id": "ev_b9d8a43e327e7984649cf2063cf8fb0c79d27ccf06cd191aa70141930289464d",
+      "scenario_steps": [
+        {
+          "step_id": "scenario_start",
+          "status": "completed",
+          "error": null
+        },
+        {
+          "step_id": "wait-for-detection",
+          "status": "completed",
+          "error": null
+        }
+      ],
+      "capture_completeness": {
+        "status": "incomplete",
+        "equality_eligible": false,
+        "missing_sections": [
+          "events"
+        ],
+        "truncated_sections": []
+      },
+      "network_event_count": 458,
+      "final_original_group_count": 3,
+      "expected_source": null,
+      "expected_sources_note": "Three selected sources independently observed in the page-associated cross-origin iframe contexts; archive sources redirect to retained network URLs.",
+      "final_original_media": [
+        {
+          "type": "http_playlist",
+          "source_url": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/shared-assets/videos/flower.webm",
+          "extension": "mkv",
+          "hash": "media_hash_7644926775748239",
+          "variant_count": 1,
+          "initiator": "https://871d4818-1d14-4085-b61c-95452fea7f23.mdnplay.dev/",
+          "original_discovery_after_call_ms": 1940
+        },
+        {
+          "type": "http_playlist",
+          "source_url": "https://dn600306.us.archive.org/0/items/ElephantsDream/ed_1024_512kb.mp4",
+          "extension": "mp4",
+          "hash": "media_hash_2295051083994525",
+          "variant_count": 1,
+          "initiator": "https://b923f302049b1697724433b34f31eb57b201c1a8.mdnplay.dev/",
+          "original_discovery_after_call_ms": 2272
+        },
+        {
+          "type": "http_playlist",
+          "source_url": "https://dn710604.ca.archive.org/0/items/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
+          "extension": "mp4",
+          "hash": "media_hash_950969707939106",
+          "variant_count": 1,
+          "initiator": "https://4a596c2b56d48c9221e3b684ed071d252f102ed9.mdnplay.dev/",
+          "original_discovery_after_call_ms": 3094
+        }
+      ],
+      "sample_count": 68,
+      "state_change_count": 6,
+      "navigation_call_host_wall_ms": 1792106768376,
+      "response_to_detection_latency_ms": null,
+      "new_engine_result": "not implemented / not run"
+    }
+  ]
+}

@@ -1,0 +1,1766 @@
+{
+  "evidence_id": "ev_0431da117d21f26b9c3a200270ab46f6c60410d1d7a3b7e1d711d27c90ebac84",
+  "subject": null,
+  "provider": {
+    "id": "rea-playwright-browser-scenario",
+    "name": "REA Playwright browser scenario capture provider",
+    "version": "1"
+  },
+  "analysis_profile": null,
+  "predicate_type": "rea.browser-scenario-capture",
+  "operation": "capture_browser_scenario",
+  "parameters": {
+    "browser": {
+      "mode": "connect",
+      "cdp_endpoint": "http://127.0.0.1:9222",
+      "target_id": "CC8E8FC3F33C6CBEB4AFF19FB59B07A9"
+    },
+    "start_url": {
+      "url": "https://hlsjs.video-dev.org/demo/basic-usage",
+      "query": []
+    },
+    "environment": {
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "device_scale_factor": 1
+      },
+      "locale": "en-US",
+      "timezone": "UTC",
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "service_workers": "allow"
+    },
+    "actions": [
+      {
+        "step_id": "wait-for-detection",
+        "action": "wait_for_timeout",
+        "duration_ms": 9000
+      }
+    ],
+    "storage": {
+      "cookies": [],
+      "local_storage": [],
+      "session_storage": []
+    },
+    "secrets": [],
+    "capture": {
+      "after_each_step": [],
+      "at_end": [
+        "url",
+        "dom"
+      ],
+      "events": [
+        "network",
+        "frames",
+        "page-errors"
+      ],
+      "network": {
+        "request_body": false,
+        "response_body": false,
+        "header_values": false
+      }
+    },
+    "scenario_sha256": "33e02da6d3ebf6b0cdf4fbffebf5c559d03902c654d9ad558ee3b2b5b2dfc33a"
+  },
+  "raw_result": null,
+  "normalized_result": {
+    "browser": {
+      "mode": "connect",
+      "process_ownership": "external",
+      "cleanup": "disconnected-external",
+      "product": "Chromium",
+      "version": "155.0.8059.41"
+    },
+    "scenario": {
+      "start_origin": "https://hlsjs.video-dev.org",
+      "action_count": 1,
+      "secret_references": [],
+      "network_content": {
+        "request_body": false,
+        "response_body": false,
+        "header_values": false
+      },
+      "event_families": [
+        "frames",
+        "network",
+        "page-errors"
+      ]
+    },
+    "duration_ms": 9538,
+    "steps": [
+      {
+        "step_index": 0,
+        "step_id": "scenario_start",
+        "action": "goto_start",
+        "elapsed_ms": 505,
+        "before_url": {
+          "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+          "origin": "https://interactive-examples.mdn.mozilla.net",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "after_url": {
+          "url": "https://hlsjs.video-dev.org/demo/basic-usage",
+          "origin": "https://hlsjs.video-dev.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "event_sequence_start": 1,
+        "event_sequence_end": 11,
+        "artifacts": {
+          "screenshot": {
+            "state": "not_requested"
+          },
+          "dom": {
+            "state": "not_requested"
+          },
+          "accessibility": {
+            "state": "not_requested"
+          },
+          "url": {
+            "state": "not_requested"
+          },
+          "history": {
+            "state": "not_requested"
+          },
+          "storage": {
+            "state": "not_requested"
+          }
+        },
+        "completeness": {
+          "status": "complete",
+          "equality_eligible": true,
+          "missing_sections": [],
+          "truncated_sections": []
+        },
+        "status": "completed",
+        "error": null
+      },
+      {
+        "step_index": 1,
+        "step_id": "wait-for-detection",
+        "action": "wait_for_timeout",
+        "elapsed_ms": 9016,
+        "before_url": {
+          "url": "https://hlsjs.video-dev.org/demo/basic-usage",
+          "origin": "https://hlsjs.video-dev.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "after_url": {
+          "url": "https://hlsjs.video-dev.org/demo/basic-usage",
+          "origin": "https://hlsjs.video-dev.org",
+          "query_parameter_names": [],
+          "redacted": false
+        },
+        "event_sequence_start": 12,
+        "event_sequence_end": 52,
+        "artifacts": {
+          "screenshot": {
+            "state": "not_requested"
+          },
+          "dom": {
+            "state": "captured",
+            "value": {
+              "sha256": "88a027f74dcc180a6ac0ac86fd4439d9ea13bb47d1e8f8257583eb02ea1af461",
+              "bytes": 1616,
+              "text": "<html><head>\n    <title>Hls.js demo - basic usage</title>\n  </head>\n\n  <body>\n    <script src=\"../dist/hls.js\"></script>\n\n    <center>\n      <h1>Hls.js demo - basic usage</h1>\n      <video height=\"600\" id=\"video\" controls=\"\" src=\"blob:https://hlsjs.video-dev.org/201938b9-165b-418f-8c14-540d2b78e6b3\"></video>\n    </center>\n\n    <script>\n      var video = document.getElementById('video');\n      if (Hls.isSupported()) {\n        var hls = new Hls({\n          debug: true,\n        });\n        hls.loadSource('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8');\n        hls.attachMedia(video);\n        hls.on(Hls.Events.MEDIA_ATTACHED, function () {\n          video.muted = true;\n          video.play();\n        });\n      }\n      // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.\n      // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element through the `src` property.\n      // This is using the built-in support of the plain video element, without using hls.js.\n      else if (video.canPlayType('application/vnd.apple.mpegurl')) {\n        video.src = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';\n        video.addEventListener('canplay', function () {\n          video.play();\n        });\n      }\n    </script>\n  <!-- Cloudflare Pages Analytics --><script defer=\"\" src=\"https://static.cloudflareinsights.com/beacon.min.js\" data-cf-beacon=\"{&quot;token&quot;: &quot;5f88d3068c5141af9fdad3535a40923f&quot;}\"></script><!-- Cloudflare Pages Analytics -->\n\n</body></html>"
+            }
+          },
+          "accessibility": {
+            "state": "not_requested"
+          },
+          "url": {
+            "state": "captured",
+            "value": {
+              "url": "https://hlsjs.video-dev.org/demo/basic-usage",
+              "origin": "https://hlsjs.video-dev.org",
+              "query_parameter_names": [],
+              "redacted": false
+            }
+          },
+          "history": {
+            "state": "not_requested"
+          },
+          "storage": {
+            "state": "not_requested"
+          }
+        },
+        "completeness": {
+          "status": "complete",
+          "equality_eligible": true,
+          "missing_sections": [],
+          "truncated_sections": []
+        },
+        "status": "completed",
+        "error": null
+      }
+    ],
+    "events": {
+      "retained": 52,
+      "dropped": 0,
+      "items": [
+        {
+          "sequence": 1,
+          "step_index": 0,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://hlsjs.video-dev.org/demo/basic-usage",
+            "origin": "https://hlsjs.video-dev.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 2,
+          "step_index": 0,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://hlsjs.video-dev.org/demo/basic-usage",
+            "origin": "https://hlsjs.video-dev.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "access-control-allow-origin",
+            "alt-svc",
+            "cache-control",
+            "cf-ray",
+            "content-encoding",
+            "content-type",
+            "date",
+            "nel",
+            "referrer-policy",
+            "report-to",
+            "server",
+            "x-content-type-options"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 3,
+          "step_index": 0,
+          "kind": "frame-navigated",
+          "url": {
+            "url": "https://hlsjs.video-dev.org/demo/basic-usage",
+            "origin": "https://hlsjs.video-dev.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "name": null
+        },
+        {
+          "sequence": 4,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://hlsjs.video-dev.org/dist/hls.js",
+            "origin": "https://hlsjs.video-dev.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 5,
+          "step_index": 0,
+          "transaction_id": "request-3",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://static.cloudflareinsights.com/beacon.min.js",
+            "origin": "https://static.cloudflareinsights.com",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 6,
+          "step_index": 0,
+          "transaction_id": "request-1",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://hlsjs.video-dev.org/demo/basic-usage",
+            "origin": "https://hlsjs.video-dev.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "document",
+          "header_names": [
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "upgrade-insecure-requests",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 7,
+          "step_index": 0,
+          "transaction_id": "request-3",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://static.cloudflareinsights.com/beacon.min.js",
+            "origin": "https://static.cloudflareinsights.com",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "access-control-allow-origin",
+            "cache-control",
+            "cf-ray",
+            "content-encoding",
+            "content-type",
+            "cross-origin-resource-policy",
+            "date",
+            "etag",
+            "last-modified",
+            "server"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 8,
+          "step_index": 0,
+          "transaction_id": "request-3",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://static.cloudflareinsights.com/beacon.min.js",
+            "origin": "https://static.cloudflareinsights.com",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 9,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://hlsjs.video-dev.org/dist/hls.js",
+            "origin": "https://hlsjs.video-dev.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "access-control-allow-origin",
+            "alt-svc",
+            "cache-control",
+            "cf-ray",
+            "content-encoding",
+            "content-type",
+            "date",
+            "etag",
+            "nel",
+            "referrer-policy",
+            "report-to",
+            "server",
+            "x-content-type-options"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 10,
+          "step_index": 0,
+          "transaction_id": "request-2",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://hlsjs.video-dev.org/dist/hls.js",
+            "origin": "https://hlsjs.video-dev.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 11,
+          "step_index": 0,
+          "transaction_id": "request-4",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 12,
+          "step_index": 1,
+          "transaction_id": "request-5",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "POST",
+          "url": {
+            "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+            "origin": "https://cloudflareinsights.com",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "content-type",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 13,
+          "step_index": 1,
+          "transaction_id": "request-5",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "POST",
+          "url": {
+            "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+            "origin": "https://cloudflareinsights.com",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "access-control-allow-credentials",
+            "access-control-allow-methods",
+            "access-control-allow-origin",
+            "access-control-max-age",
+            "cf-ray",
+            "content-type",
+            "date",
+            "server",
+            "vary"
+          ],
+          "kind": "response",
+          "status": 204,
+          "failure": null
+        },
+        {
+          "sequence": 14,
+          "step_index": 1,
+          "transaction_id": "request-5",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "POST",
+          "url": {
+            "url": "https://cloudflareinsights.com/cdn-cgi/rum",
+            "origin": "https://cloudflareinsights.com",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "content-type",
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 15,
+          "step_index": 1,
+          "transaction_id": "request-4",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 16,
+          "step_index": 1,
+          "transaction_id": "request-6",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 17,
+          "step_index": 1,
+          "transaction_id": "request-4",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 18,
+          "step_index": 1,
+          "transaction_id": "request-6",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 19,
+          "step_index": 1,
+          "transaction_id": "request-7",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 20,
+          "step_index": 1,
+          "transaction_id": "request-6",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 21,
+          "step_index": 1,
+          "transaction_id": "request-7",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 22,
+          "step_index": 1,
+          "transaction_id": "request-8",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "blob:https://hlsjs.video-dev.org/5dd01c08-19f8-4b23-af26-c8bffafbcb75",
+            "origin": "https://hlsjs.video-dev.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 23,
+          "step_index": 1,
+          "transaction_id": "request-7",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 24,
+          "step_index": 1,
+          "transaction_id": "request-8",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "blob:https://hlsjs.video-dev.org/5dd01c08-19f8-4b23-af26-c8bffafbcb75",
+            "origin": "https://hlsjs.video-dev.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "content-length",
+            "content-type"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 25,
+          "step_index": 1,
+          "transaction_id": "request-8",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "blob:https://hlsjs.video-dev.org/5dd01c08-19f8-4b23-af26-c8bffafbcb75",
+            "origin": "https://hlsjs.video-dev.org",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "script",
+          "header_names": [
+            "accept"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 26,
+          "step_index": 1,
+          "transaction_id": "request-9",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 27,
+          "step_index": 1,
+          "transaction_id": "request-9",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 28,
+          "step_index": 1,
+          "transaction_id": "request-10",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 29,
+          "step_index": 1,
+          "transaction_id": "request-9",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 30,
+          "step_index": 1,
+          "transaction_id": "request-10",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 31,
+          "step_index": 1,
+          "transaction_id": "request-10",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 32,
+          "step_index": 1,
+          "transaction_id": "request-11",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 33,
+          "step_index": 1,
+          "transaction_id": "request-11",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 34,
+          "step_index": 1,
+          "transaction_id": "request-11",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 35,
+          "step_index": 1,
+          "transaction_id": "request-12",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 36,
+          "step_index": 1,
+          "transaction_id": "request-12",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 37,
+          "step_index": 1,
+          "transaction_id": "request-12",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 38,
+          "step_index": 1,
+          "transaction_id": "request-13",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 39,
+          "step_index": 1,
+          "transaction_id": "request-13",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 40,
+          "step_index": 1,
+          "transaction_id": "request-13",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 41,
+          "step_index": 1,
+          "transaction_id": "request-14",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 42,
+          "step_index": 1,
+          "transaction_id": "request-14",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 43,
+          "step_index": 1,
+          "transaction_id": "request-14",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 44,
+          "step_index": 1,
+          "transaction_id": "request-15",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 45,
+          "step_index": 1,
+          "transaction_id": "request-15",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 46,
+          "step_index": 1,
+          "transaction_id": "request-15",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 47,
+          "step_index": 1,
+          "transaction_id": "request-16",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 48,
+          "step_index": 1,
+          "transaction_id": "request-16",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 49,
+          "step_index": 1,
+          "transaction_id": "request-16",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 50,
+          "step_index": 1,
+          "transaction_id": "request-17",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request",
+          "status": null,
+          "failure": null
+        },
+        {
+          "sequence": 51,
+          "step_index": 1,
+          "transaction_id": "request-17",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "accept-ranges",
+            "access-control-allow-origin",
+            "age",
+            "cache-control",
+            "content-length",
+            "content-type",
+            "date",
+            "etag",
+            "expires",
+            "last-modified",
+            "server",
+            "via",
+            "x-cache",
+            "x-cache-hits",
+            "x-goog-generation",
+            "x-goog-hash",
+            "x-goog-metageneration",
+            "x-goog-storage-class",
+            "x-goog-stored-content-encoding",
+            "x-goog-stored-content-length",
+            "x-guploader-uploadid",
+            "x-served-by",
+            "x-timer"
+          ],
+          "kind": "response",
+          "status": 200,
+          "failure": null
+        },
+        {
+          "sequence": 52,
+          "step_index": 1,
+          "transaction_id": "request-17",
+          "redirected_from_transaction_id": null,
+          "redirected_from_transaction_state": "root",
+          "method": "GET",
+          "url": {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+            "origin": "https://test-streams.mux.dev",
+            "query_parameter_names": [],
+            "redacted": false
+          },
+          "resource_type": "xhr",
+          "header_names": [
+            "referer",
+            "sec-ch-ua",
+            "sec-ch-ua-mobile",
+            "sec-ch-ua-platform",
+            "user-agent"
+          ],
+          "kind": "request-finished",
+          "status": null,
+          "failure": null
+        }
+      ]
+    },
+    "completeness": {
+      "status": "incomplete",
+      "equality_eligible": false,
+      "missing_sections": [
+        "events"
+      ],
+      "truncated_sections": []
+    },
+    "limitations": [
+      "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+      "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+      "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+      "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+      "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+      "Storage values are hashed only after declared-secret redaction.",
+      "Shared-context network capture excludes requests without a known root or descendant Page frame.",
+      "CDP attachment cannot recover pre-attach events or guarantee launch-time context options."
+    ]
+  },
+  "confidence": "observed",
+  "authority": "controlled-replay",
+  "environment": {
+    "id": "Chromium@155.0.8059.41",
+    "platform": "unknown",
+    "architecture": "unknown",
+    "isolation": "none"
+  },
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+    "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+    "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+    "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+    "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+    "Storage values are hashed only after declared-secret redaction.",
+    "Shared-context network capture excludes requests without a known root or descendant Page frame.",
+    "CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+    "Browser host platform and architecture were not observed."
+  ],
+  "relationship_coverage": null,
+  "locations": [],
+  "evidence_links": []
+}

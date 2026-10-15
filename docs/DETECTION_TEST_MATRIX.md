@@ -85,13 +85,15 @@ Use exact source URLs privately for matching, with safe URL display/export redac
 | --- | --- | --- | --- | --- | --- |
 | Cinejoy user-selected page, HLS underlying blob element; `.jpg` variants | Session state contains one HLS group with 1080p and 720p; original shared panel renders one media row when video tab is active | **Not implemented; not tested** | One source group observed; complete false-positive/duplicate audit not performed | Not measured | REA navigation `ev_79ebb3a64479a6a00211931d25751528b10aab9d289c7819b3f7155936163c4e` plus sanitized original session/page/panel snapshots |
 | Same page, 45-second passive window | No new page/CDN requests retained in that window; no playback claim | Not implemented | Not evaluable from idle window | Not available | REA `ev_e2f320045028292990d87b9fc2d3bebddb7c8b1e3f2859af0bea60ed5a28dabd` |
-| D01/D02 direct MP4/WebM | Not run | Not implemented | Unknown | Unknown | Required controlled comparison |
-| H01/H02 HLS controlled | Not run | Not implemented | Unknown | Unknown | Required controlled comparison |
-| M01 DASH controlled | Not run | Not implemented | Unknown | Unknown | Required controlled comparison |
-| J01/B01 dynamic and blob/MSE controlled | Not run | Not implemented | Unknown | Unknown | Required controlled comparison |
-| F02 cross-origin embedded player | Not run | Not implemented | Unknown | Unknown | Required controlled comparison |
-| G01/G02 multiple sources/qualities | Not run beyond current HLS variant snapshot | Not implemented | Unknown | Unknown | Required controlled comparison |
-| N01 no-video negative page | Not run | Not implemented | Unknown | Unknown | Required controlled comparison |
+| Direct MP4/WebM diagnostic pages | One exact direct source each; original WebM extension field is `mkv` | Not implemented | No duplicate terminal groups in these single trials; broader false-positive rate unknown | Scenario-call diagnostics recorded; response latency unknown | [Original baselines](ORIGINAL_BASELINES.md) and retained per-case receipts |
+| HLS controlled demo | One master group with five variants | Not implemented | No standalone child groups at terminal sample | Scenario-call diagnostics only | HLS basic baseline |
+| DASH controlled demo | Fresh tab: one MPD group, ten representations; reused tab also retained a previous unrelated MP4 | Not implemented | Reused-tab stale source observed; fresh control clean | Scenario-call diagnostics only | Corrected and fresh-tab DASH baselines |
+| JS-triggered blob/source demo | Clicking Load produced one underlying MP4 source; element used blob URL | Not implemented | No blob download URL fabricated in original state; broad coverage unknown | Scenario-call diagnostics only | MDN SourceBuffer loaded baseline |
+| F02 cross-origin embedded players | Three selected sources from distinct MDN example frames attributed to the parent documentation tab | Not implemented | Exact original per-source frame IDs not established; no broad false-positive rate | Scenario-call diagnostics only | Embedded MDN baseline plus separately labeled CDP frame receipts |
+| G01/G02 multiple sources/qualities | Quality grouping observed for HLS/DASH; three distinct selected videos retained on embedded-example page | Not implemented | Specific terminal counts observed; broad completeness unknown | Unknown | New-engine multi-video comparison remains |
+| N01 no-video negative page | No terminal discovered records on MDN DOM index | Not implemented | Zero observed false positives in one diagnostic trial | No positive detection to time | No-video baseline |
+
+The detailed [baseline report](ORIGINAL_BASELINES.md) retains unsuccessful setup and no-load trials, exact actions, evidence IDs, latency definitions and navigation-state observations. These original-only single trials do not satisfy the repeated-trial or new-engine comparative gates.
 
 ## Completion gates
 
