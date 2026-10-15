@@ -1,0 +1,1626 @@
+{
+  "authority": "analyst summary derived from REA scenario evidence; not a complete REA Evidence record",
+  "source_evidence_id": "ev_79ebb3a64479a6a00211931d25751528b10aab9d289c7819b3f7155936163c4e",
+  "operation": "capture_browser_scenario",
+  "parameters": {
+    "browser": {
+      "mode": "connect",
+      "cdp_endpoint": "http://127.0.0.1:9222",
+      "target_id": "60659DA738FA90900E48A3EAE30DE01E"
+    },
+    "start_url": {
+      "url": "https://cinejoy.pk/watch/tv/67178/2/2",
+      "query": []
+    },
+    "environment": {
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "device_scale_factor": 1
+      },
+      "locale": "en-US",
+      "timezone": "UTC",
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "service_workers": "allow"
+    },
+    "actions": [
+      {
+        "step_id": "wait-player-load",
+        "action": "wait_for_timeout",
+        "duration_ms": 10000
+      }
+    ],
+    "storage": {
+      "cookies": [],
+      "local_storage": [],
+      "session_storage": []
+    },
+    "secrets": [],
+    "capture": {
+      "after_each_step": [],
+      "at_end": [
+        "url",
+        "dom"
+      ],
+      "events": [
+        "network",
+        "frames",
+        "page-errors"
+      ],
+      "network": {
+        "request_body": false,
+        "response_body": false,
+        "header_values": false
+      }
+    },
+    "scenario_sha256": "cee013525c98a88839a97775b6e6a6fec7e6f94efe4b0951132d21ac9cd8a6ef"
+  },
+  "browser": {
+    "mode": "connect",
+    "process_ownership": "external",
+    "cleanup": "disconnected-external",
+    "product": "Chromium",
+    "version": "155.0.8059.41"
+  },
+  "duration_ms": 20442,
+  "completeness": {
+    "status": "incomplete",
+    "equality_eligible": false,
+    "missing_sections": [
+      "events"
+    ],
+    "truncated_sections": []
+  },
+  "event_counts": {
+    "request": 280,
+    "response": 152,
+    "frame-navigated": 3,
+    "request-finished": 152,
+    "request-failed": 128
+  },
+  "event_count": 715,
+  "media_events": [
+    {
+      "sequence": 345,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-117",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/master.m3u8",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 602,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-117",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/master.m3u8",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 603,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-245",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 604,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-117",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/master.m3u8",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 605,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-245",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 606,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-245",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 617,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-248",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/init.mp4",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 618,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-248",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/init.mp4",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 619,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-249",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_014.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 620,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-248",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/init.mp4",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 621,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-249",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_014.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 622,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-249",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_014.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 623,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-250",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_015.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 624,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-250",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_015.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 625,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-250",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_015.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 626,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-251",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_016.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 627,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-251",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_016.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 628,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-251",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_016.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 629,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-252",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_017.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 630,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-252",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_017.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 631,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-252",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_017.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 632,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-253",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_018.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 633,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-253",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_018.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 634,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-253",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_018.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 635,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-254",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_019.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 636,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-254",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_019.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 637,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-254",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_019.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 638,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-255",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_020.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 639,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-255",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_020.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 640,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-255",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_020.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 641,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-256",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_021.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 642,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-256",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_021.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 643,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-256",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_021.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 644,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-257",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_022.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 645,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-257",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_022.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 646,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-257",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_022.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 647,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-258",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_023.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 648,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-258",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_023.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 649,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-258",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_023.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 650,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-259",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_024.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 651,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-259",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_024.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 652,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-259",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_024.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 653,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-260",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_025.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 654,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-260",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_025.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 655,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-260",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_025.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 656,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-261",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_026.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 657,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-261",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_026.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 658,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-261",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_026.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 659,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-262",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_027.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 660,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-262",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_027.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 661,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-262",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_027.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 662,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-263",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_028.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 663,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-263",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_028.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 664,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-263",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_028.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 665,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-264",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_029.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 666,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-264",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_029.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 667,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-264",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_029.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 668,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-265",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_030.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 669,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-265",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_030.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 670,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-265",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_030.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 671,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-266",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_031.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 672,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-266",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_031.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 673,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-266",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_031.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 674,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-267",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_032.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 675,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-267",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_032.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 676,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-267",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_032.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 677,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-268",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_033.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 678,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-268",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_033.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 679,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-268",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_033.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 680,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-269",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_034.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 681,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-269",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_034.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 682,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-269",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_034.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 683,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-270",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_035.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 684,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-270",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_035.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 685,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-270",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_035.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 686,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-271",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_036.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 687,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-271",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_036.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 688,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-271",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_036.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 689,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-272",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_037.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 690,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-272",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_037.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 691,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-272",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_037.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 692,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-273",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_038.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 693,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-273",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_038.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 694,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-273",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_038.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 695,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-274",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_039.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 696,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-274",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_039.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 697,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-274",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_039.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 698,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-275",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_040.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 699,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-275",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_040.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 700,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-275",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_040.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 701,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-276",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_041.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 702,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-276",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_041.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 703,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-276",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_041.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 704,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-277",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_042.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 705,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-277",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_042.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 706,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-277",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_042.jpeg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 707,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-278",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_043.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 708,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-278",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_043.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 709,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-278",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_043.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 710,
+      "step_index": 1,
+      "kind": "request",
+      "transaction_id": "request-279",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_044.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 711,
+      "step_index": 1,
+      "kind": "response",
+      "transaction_id": "request-279",
+      "resource_type": "xhr",
+      "status": 200,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_044.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    },
+    {
+      "sequence": 712,
+      "step_index": 1,
+      "kind": "request-finished",
+      "transaction_id": "request-279",
+      "resource_type": "xhr",
+      "status": null,
+      "url": {
+        "url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist_044.png",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "failure": null
+    }
+  ],
+  "limitations": [
+    "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+    "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+    "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+    "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+    "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+    "Storage values are hashed only after declared-secret redaction.",
+    "Shared-context network capture excludes requests without a known root or descendant Page frame.",
+    "CDP attachment cannot recover pre-attach events or guarantee launch-time context options."
+  ],
+  "raw_evidence_path": "C:\\Users\\jay03\\AppData\\Local\\Temp\\vdh-rea-20261015\\cinejoy-navigation.json"
+}

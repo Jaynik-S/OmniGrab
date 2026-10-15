@@ -1,0 +1,689 @@
+[
+  {
+    "evidence_id": "ev_f0365e1299dabbc6111a4b8cd2f31723c3378230bab72dd448b0ff6fd318be4d",
+    "subject": {
+      "name": "10.6.1.2_0",
+      "digest": {
+        "sha256": "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc"
+      },
+      "local_path": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.1.2_0",
+      "format": "directory",
+      "architecture": null
+    },
+    "provider": {
+      "id": "rea-analysis-view",
+      "name": "REA analysis view projection",
+      "version": "1"
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.analysis-view",
+    "operation": "inspect_analysis_view",
+    "parameters": {
+      "parent_evidence_id": "ev_adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05",
+      "view": {
+        "kind": "item",
+        "collection": "modules",
+        "selector": {
+          "node_id": "jag_node_87c3c5ca876d4ccfac87b4913bcbabb6b15af8247ac62bda47c326d3c3caec8d"
+        }
+      }
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "kind": "item",
+      "view": {
+        "kind": "item",
+        "collection": "modules",
+        "selector": {
+          "node_id": "jag_node_87c3c5ca876d4ccfac87b4913bcbabb6b15af8247ac62bda47c326d3c3caec8d"
+        }
+      },
+      "item": {
+        "node_id": "jag_node_87c3c5ca876d4ccfac87b4913bcbabb6b15af8247ac62bda47c326d3c3caec8d",
+        "kind": "javascript-module",
+        "path": "service/main.js",
+        "identity": {
+          "strategy": "artifact-local-key",
+          "stability": "artifact-version",
+          "artifact_sha256": "3c55d99b3b3f8944d735df8dd57e5a9584ec5dfcd45702a2d94fbff667ca0edd",
+          "namespace": "source-module",
+          "key": "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc:service/main.js"
+        },
+        "hashes": [
+          "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc"
+        ],
+        "exports": [],
+        "source_ranges": [
+          {
+            "kind": "source-range",
+            "source": "service/main.js",
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 98,
+              "column": 0
+            }
+          }
+        ],
+        "observations": [
+          {
+            "observation_id": "jag_observation_e74b841bb0134ff42548eeefc2ee88bc5cc183940910bb529a0865d9b2734442",
+            "label": "service/main.js",
+            "properties": {
+              "container_sha256": "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc",
+              "export_names": [],
+              "export_relationships": 0,
+              "import_relationships": 0,
+              "logical_module_key": "service/main.js",
+              "module_format": "unknown",
+              "omitted_export_names": 0,
+              "path": "service/main.js",
+              "semantic_role": "source-module",
+              "type_export_names": [],
+              "type_relationships": 0
+            },
+            "evidence": {
+              "authority": "ast-static-analysis",
+              "state": "observed",
+              "confidence": "exact",
+              "artifact": {
+                "available": true,
+                "artifact_id": "art_3c55d99b3b3f8944d735df8dd57e5a9584ec5dfcd45702a2d94fbff667ca0edd",
+                "sha256": "3c55d99b3b3f8944d735df8dd57e5a9584ec5dfcd45702a2d94fbff667ca0edd"
+              },
+              "location": {
+                "available": true,
+                "value": {
+                  "kind": "source-range",
+                  "source": "service/main.js",
+                  "start": {
+                    "line": 1,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 98,
+                    "column": 0
+                  }
+                }
+              },
+              "extractor": {
+                "name": "rea-javascript-artifact-reconstruction",
+                "version": "1",
+                "operation": "recover-source-module",
+                "executable_sha256": null
+              },
+              "coverage": {
+                "status": "complete",
+                "truncated": false,
+                "omitted_count": 0,
+                "limits": []
+              },
+              "limitations": [
+                "Cross-function mutation and dynamic property resolution remain unknown.",
+                "Local call, argument, return, and closure relations are static candidates and do not prove runtime invocation.",
+                "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+                "Return sites include only direct callable returns; nested callable returns remain separate.",
+                "Values and aliases were recovered from inert syntax only; no JavaScript was executed."
+              ],
+              "evidence_ids": []
+            }
+          }
+        ]
+      },
+      "parent_evidence_id": "ev_adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05",
+      "parent_operation": "analyze_javascript_application",
+      "parent_digest": "adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05",
+      "view_digest": "3c5427498fc758a59a027b2e4a4694a53ca1d64da6f65c20a963d689fc1c85b3",
+      "artifact": {
+        "path": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.1.2_0",
+        "sha256": "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc"
+      },
+      "coverage": {
+        "status": "complete-within-view",
+        "examined": 1,
+        "total": 46,
+        "next_offset": null,
+        "exhausted": true
+      },
+      "limitations": [
+        "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+        "Caller-selected source analysis leaves 62 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+        "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+        "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+        "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+        "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+        "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+        "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+        "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+        "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+        "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+        "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+        "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+        "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+        "Sender, frame, URL, and origin checks are observations only; REA does not claim that they enforce a complete authorization policy.",
+        "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+        "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+        "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+        "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+        "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+      ],
+      "unknowns": [
+        "62 application graph unknowns remain in the parent Evidence.",
+        "72936 semantic graph unknowns remain in the parent Evidence.",
+        "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+        "Caller-selected source analysis leaves 62 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+        "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+        "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+        "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+        "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+        "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+        "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+        "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+        "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+        "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+        "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+        "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+        "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+        "Sender, frame, URL, and origin checks are observations only; REA does not claim that they enforce a complete authorization policy.",
+        "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+        "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+        "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+        "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+        "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code.",
+        "graph.coverage.status is partial",
+        "semantic_graph.coverage.status is partial"
+      ]
+    },
+    "confidence": "derived",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+      "Caller-selected source analysis leaves 62 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+      "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+      "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+      "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+      "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+      "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+      "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+      "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+      "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+      "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+      "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+      "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+      "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+      "Sender, frame, URL, and origin checks are observations only; REA does not claim that they enforce a complete authorization policy.",
+      "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+      "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+      "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+      "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+      "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.1.2_0"
+      }
+    ],
+    "evidence_links": [
+      "ev_adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05"
+    ]
+  },
+  {
+    "evidence_id": "ev_1a00402469ab22f802feffca64fb4e18b09423a3e7bd92a3f235caf26dacd323",
+    "subject": {
+      "name": "10.6.1.2_0",
+      "digest": {
+        "sha256": "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc"
+      },
+      "local_path": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.1.2_0",
+      "format": "directory",
+      "architecture": null
+    },
+    "provider": {
+      "id": "rea-analysis-view",
+      "name": "REA analysis view projection",
+      "version": "1"
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.analysis-view",
+    "operation": "inspect_analysis_view",
+    "parameters": {
+      "parent_evidence_id": "ev_adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05",
+      "view": {
+        "kind": "item",
+        "collection": "modules",
+        "selector": {
+          "node_id": "jag_node_134d6cb0dec6b5675b222eb0a07fdbd1353ac2679de9e697747ea927ed7e0d1a"
+        }
+      }
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "kind": "item",
+      "view": {
+        "kind": "item",
+        "collection": "modules",
+        "selector": {
+          "node_id": "jag_node_134d6cb0dec6b5675b222eb0a07fdbd1353ac2679de9e697747ea927ed7e0d1a"
+        }
+      },
+      "item": {
+        "node_id": "jag_node_134d6cb0dec6b5675b222eb0a07fdbd1353ac2679de9e697747ea927ed7e0d1a",
+        "kind": "javascript-module",
+        "path": "content/panel.js",
+        "identity": {
+          "strategy": "artifact-local-key",
+          "stability": "artifact-version",
+          "artifact_sha256": "ddc7c9d1f7badd5a915c98e66c9a2835904df087cf374c18c15d177a84ea559e",
+          "namespace": "source-module",
+          "key": "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc:content/panel.js"
+        },
+        "hashes": [
+          "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc"
+        ],
+        "exports": [],
+        "source_ranges": [
+          {
+            "kind": "source-range",
+            "source": "content/panel.js",
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 88,
+              "column": 0
+            }
+          }
+        ],
+        "observations": [
+          {
+            "observation_id": "jag_observation_22752f556853a152b65b1e7189682b1f58feb97f5a0a270c5f6877f3ea906aca",
+            "label": "content/panel.js",
+            "properties": {
+              "container_sha256": "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc",
+              "export_names": [],
+              "export_relationships": 0,
+              "import_relationships": 0,
+              "logical_module_key": "content/panel.js",
+              "module_format": "unknown",
+              "omitted_export_names": 0,
+              "path": "content/panel.js",
+              "semantic_role": "source-module",
+              "type_export_names": [],
+              "type_relationships": 0
+            },
+            "evidence": {
+              "authority": "ast-static-analysis",
+              "state": "observed",
+              "confidence": "exact",
+              "artifact": {
+                "available": true,
+                "artifact_id": "art_ddc7c9d1f7badd5a915c98e66c9a2835904df087cf374c18c15d177a84ea559e",
+                "sha256": "ddc7c9d1f7badd5a915c98e66c9a2835904df087cf374c18c15d177a84ea559e"
+              },
+              "location": {
+                "available": true,
+                "value": {
+                  "kind": "source-range",
+                  "source": "content/panel.js",
+                  "start": {
+                    "line": 1,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 88,
+                    "column": 0
+                  }
+                }
+              },
+              "extractor": {
+                "name": "rea-javascript-artifact-reconstruction",
+                "version": "1",
+                "operation": "recover-source-module",
+                "executable_sha256": null
+              },
+              "coverage": {
+                "status": "complete",
+                "truncated": false,
+                "omitted_count": 0,
+                "limits": []
+              },
+              "limitations": [
+                "Cross-function mutation and dynamic property resolution remain unknown.",
+                "Local call, argument, return, and closure relations are static candidates and do not prove runtime invocation.",
+                "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+                "Return sites include only direct callable returns; nested callable returns remain separate.",
+                "Values and aliases were recovered from inert syntax only; no JavaScript was executed."
+              ],
+              "evidence_ids": []
+            }
+          }
+        ]
+      },
+      "parent_evidence_id": "ev_adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05",
+      "parent_operation": "analyze_javascript_application",
+      "parent_digest": "adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05",
+      "view_digest": "72aa30a6ff8e2538cd960637b6de351250243cccbcb8f9a763fa7444e3dd27dd",
+      "artifact": {
+        "path": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.1.2_0",
+        "sha256": "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc"
+      },
+      "coverage": {
+        "status": "complete-within-view",
+        "examined": 1,
+        "total": 46,
+        "next_offset": null,
+        "exhausted": true
+      },
+      "limitations": [
+        "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+        "Caller-selected source analysis leaves 62 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+        "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+        "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+        "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+        "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+        "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+        "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+        "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+        "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+        "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+        "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+        "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+        "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+        "Sender, frame, URL, and origin checks are observations only; REA does not claim that they enforce a complete authorization policy.",
+        "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+        "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+        "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+        "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+        "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+      ],
+      "unknowns": [
+        "62 application graph unknowns remain in the parent Evidence.",
+        "72936 semantic graph unknowns remain in the parent Evidence.",
+        "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+        "Caller-selected source analysis leaves 62 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+        "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+        "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+        "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+        "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+        "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+        "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+        "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+        "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+        "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+        "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+        "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+        "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+        "Sender, frame, URL, and origin checks are observations only; REA does not claim that they enforce a complete authorization policy.",
+        "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+        "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+        "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+        "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+        "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code.",
+        "graph.coverage.status is partial",
+        "semantic_graph.coverage.status is partial"
+      ]
+    },
+    "confidence": "derived",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+      "Caller-selected source analysis leaves 62 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+      "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+      "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+      "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+      "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+      "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+      "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+      "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+      "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+      "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+      "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+      "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+      "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+      "Sender, frame, URL, and origin checks are observations only; REA does not claim that they enforce a complete authorization policy.",
+      "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+      "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+      "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+      "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+      "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.1.2_0"
+      }
+    ],
+    "evidence_links": [
+      "ev_adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05"
+    ]
+  },
+  {
+    "evidence_id": "ev_505c1b82c9621421feba8ae6949b01e312a7ad18f4d924f908c4de1a94c5ad57",
+    "subject": {
+      "name": "10.6.1.2_0",
+      "digest": {
+        "sha256": "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc"
+      },
+      "local_path": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.1.2_0",
+      "format": "directory",
+      "architecture": null
+    },
+    "provider": {
+      "id": "rea-analysis-view",
+      "name": "REA analysis view projection",
+      "version": "1"
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.analysis-view",
+    "operation": "inspect_analysis_view",
+    "parameters": {
+      "parent_evidence_id": "ev_adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05",
+      "view": {
+        "kind": "item",
+        "collection": "modules",
+        "selector": {
+          "node_id": "jag_node_417a87a7582696450e30895550fb7ea380f8ba4f4dcc03ce0e6fdd20d1b62680"
+        }
+      }
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "kind": "item",
+      "view": {
+        "kind": "item",
+        "collection": "modules",
+        "selector": {
+          "node_id": "jag_node_417a87a7582696450e30895550fb7ea380f8ba4f4dcc03ce0e6fdd20d1b62680"
+        }
+      },
+      "item": {
+        "node_id": "jag_node_417a87a7582696450e30895550fb7ea380f8ba4f4dcc03ce0e6fdd20d1b62680",
+        "kind": "javascript-module",
+        "path": "download_worker/main.js",
+        "identity": {
+          "strategy": "artifact-local-key",
+          "stability": "artifact-version",
+          "artifact_sha256": "1a9267898f705a115adf53abb9c08c4a1db9eae54d9a2e7675eb23d57d9083e6",
+          "namespace": "unresolved-reference",
+          "key": "dynamic-import:import(d)"
+        },
+        "hashes": [],
+        "exports": [],
+        "source_ranges": [
+          {
+            "kind": "source-range",
+            "source": "download_worker/main.js",
+            "start": {
+              "line": 1,
+              "column": 5590
+            },
+            "end": {
+              "line": 1,
+              "column": 5599
+            }
+          }
+        ],
+        "observations": [
+          {
+            "observation_id": "jag_observation_a19d903fa736d748d74d494c1eb6dbe51e5153592b71aba25ffdfa9f5b08ed62",
+            "label": null,
+            "properties": {
+              "expression": "import(d)",
+              "reference_kind": "dynamic-import",
+              "resolution": "unresolved",
+              "specifier": null
+            },
+            "evidence": {
+              "authority": "static-relationship-inference",
+              "state": "inferred",
+              "confidence": "low",
+              "artifact": {
+                "available": true,
+                "artifact_id": "art_1a9267898f705a115adf53abb9c08c4a1db9eae54d9a2e7675eb23d57d9083e6",
+                "sha256": "1a9267898f705a115adf53abb9c08c4a1db9eae54d9a2e7675eb23d57d9083e6"
+              },
+              "location": {
+                "available": true,
+                "value": {
+                  "kind": "source-range",
+                  "source": "download_worker/main.js",
+                  "start": {
+                    "line": 1,
+                    "column": 5590
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 5599
+                  }
+                }
+              },
+              "extractor": {
+                "name": "rea-javascript-artifact-reconstruction",
+                "version": "1",
+                "operation": "resolve-static-reference",
+                "executable_sha256": null
+              },
+              "coverage": {
+                "status": "partial",
+                "truncated": false,
+                "omitted_count": null,
+                "limits": []
+              },
+              "limitations": [
+                "Static syntax does not prove that this relationship executes at runtime.",
+                "The static reference could not be resolved within the inventoried artifact."
+              ],
+              "evidence_ids": []
+            }
+          }
+        ]
+      },
+      "parent_evidence_id": "ev_adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05",
+      "parent_operation": "analyze_javascript_application",
+      "parent_digest": "adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05",
+      "view_digest": "4add6b8c3da26ffd5323f275670d06e5649bde8b26d37ffa3758d2ef361a2264",
+      "artifact": {
+        "path": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.1.2_0",
+        "sha256": "97cf7b9ec9c8ccd1cb7bd5d886046477ac69d2358585a027856fc96e156c4dbc"
+      },
+      "coverage": {
+        "status": "complete-within-view",
+        "examined": 1,
+        "total": 46,
+        "next_offset": null,
+        "exhausted": true
+      },
+      "limitations": [
+        "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+        "Caller-selected source analysis leaves 62 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+        "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+        "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+        "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+        "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+        "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+        "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+        "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+        "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+        "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+        "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+        "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+        "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+        "Sender, frame, URL, and origin checks are observations only; REA does not claim that they enforce a complete authorization policy.",
+        "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+        "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+        "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+        "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+        "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+      ],
+      "unknowns": [
+        "62 application graph unknowns remain in the parent Evidence.",
+        "72936 semantic graph unknowns remain in the parent Evidence.",
+        "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+        "Caller-selected source analysis leaves 62 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+        "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+        "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+        "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+        "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+        "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+        "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+        "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+        "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+        "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+        "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+        "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+        "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+        "Sender, frame, URL, and origin checks are observations only; REA does not claim that they enforce a complete authorization policy.",
+        "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+        "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+        "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+        "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+        "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code.",
+        "graph.coverage.status is partial",
+        "semantic_graph.coverage.status is partial"
+      ]
+    },
+    "confidence": "derived",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+      "Caller-selected source analysis leaves 62 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+      "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+      "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+      "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+      "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+      "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+      "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+      "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+      "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+      "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+      "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+      "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+      "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+      "Sender, frame, URL, and origin checks are observations only; REA does not claim that they enforce a complete authorization policy.",
+      "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+      "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+      "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+      "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation.",
+      "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.1.2_0"
+      }
+    ],
+    "evidence_links": [
+      "ev_adeedde8b1f85a04fa3f9d8bffa75f260df223eb99234c7cff184d91d9377b05"
+    ]
+  }
+]

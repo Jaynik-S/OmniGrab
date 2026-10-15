@@ -1,0 +1,30 @@
+{
+  "captured_at": "2026-10-15T23:04:00.425Z",
+  "authority": "supplemental direct CDP read-only evaluation, not REA Evidence",
+  "target_id": "60659DA738FA90900E48A3EAE30DE01E",
+  "result": {
+    "id": 1,
+    "result": {
+      "result": {
+        "type": "object",
+        "value": {
+          "url": "https://cinejoy.pk/watch/tv/67178/2/2",
+          "frames": [],
+          "media": [
+            {
+              "tag": "VIDEO",
+              "src": "blob:https://cinejoy.pk/36f24d9d-07e4-474f-bdf1-dfdb3a6014d0",
+              "currentSrc": "blob:https://cinejoy.pk/36f24d9d-07e4-474f-bdf1-dfdb3a6014d0",
+              "readyState": 4,
+              "networkState": 2,
+              "paused": true,
+              "duration": 3295.6676440000383,
+              "error": null,
+              "sources": []
+            }
+          ]
+        }
+      }
+    }
+  }
+}

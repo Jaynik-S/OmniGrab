@@ -1,0 +1,23 @@
+{
+  "captured_at": "2026-10-15T23:12:19.062Z",
+  "authority": "supplemental direct CDP read-only original shared panel DOM in extension tab, not REA Evidence; video tab active",
+  "target_id": "7246846DF3D6FBEE1FE649E8421E7466",
+  "result": {
+    "id": 1,
+    "result": {
+      "result": {
+        "type": "object",
+        "value": {
+          "activeTabs": [
+            {
+              "id": 190445560,
+              "url": "https://cinejoy.pk/watch/tv/67178/2/2"
+            }
+          ],
+          "rowCount": 1,
+          "rowText": "54:56 hls m3u8 http fmt mpd FREE Cinejoy . mp4 MP4 - 1920x1080 - 5MB/s MP4 - 1280x720 - 2MB/s mp4 1080p ⚠️  DRM Download Download As… Audio Copy URL Download Audio & video ── Download As… Always Download As… ── Download Audio Always audio only for this website ── Copy URL Always copy URL ── Smartnaming Details hls m3u8 http fmt mpd FREE Cancel ⚠️  DRM Play"
+        }
+      }
+    }
+  }
+}

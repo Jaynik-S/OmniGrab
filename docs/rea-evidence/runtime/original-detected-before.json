@@ -1,0 +1,82 @@
+{
+  "captured_at": "2026-10-15T23:04:29.985Z",
+  "authority": "supplemental direct CDP read-only original extension session-storage evaluation, not REA Evidence",
+  "target_id": "7246846DF3D6FBEE1FE649E8421E7466",
+  "discovered": [
+    {
+      "key": 190445560,
+      "value": {
+        "media": [
+          {
+            "key": "media_hash_3487223281119952",
+            "value": {
+              "cache": "default",
+              "discovery_timestamp_ms": 1792105372183,
+              "duration": 3295.6676440000383,
+              "filename": null,
+              "has_drm": false,
+              "hash": "media_hash_3487223281119952",
+              "initiator": "https://cinejoy.pk/",
+              "is_youtube": false,
+              "master_url": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/master.m3u8",
+              "playlist": [
+                {
+                  "audio_language": null,
+                  "av": {
+                    "audio": false,
+                    "video": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/1080p/playlist.jpg"
+                  },
+                  "demuxer": "mp4",
+                  "quality": {
+                    "bitrate": 4878000,
+                    "size": {
+                      "height": 1080,
+                      "width": 1920
+                    }
+                  }
+                },
+                {
+                  "audio_language": null,
+                  "av": {
+                    "audio": false,
+                    "video": "https://nebula.bright67.online/hls/98f071fc-d44d-43cc-b405-3a6536f77d60/720p/playlist.jpg"
+                  },
+                  "demuxer": "mp4",
+                  "quality": {
+                    "bitrate": 2471000,
+                    "size": {
+                      "height": 720,
+                      "width": 1280
+                    }
+                  }
+                }
+              ],
+              "preferred_entry": null,
+              "subtitles": null,
+              "thumbnail_url": null,
+              "title": null,
+              "type": "m3u8_playlist"
+            }
+          }
+        ],
+        "meta": {
+          "default_action": "download",
+          "favicon_url": "https://cinejoy.pk/favicon.ico",
+          "incognito": false,
+          "smartnaming_rule": {
+            "force_doc_title": false,
+            "max_length": 64,
+            "replace": [],
+            "selector": null,
+            "subdir": "",
+            "template": "%title"
+          },
+          "tab_id": 190445560,
+          "thumbnail_url": null,
+          "title": "Cinejoy",
+          "url": "https://cinejoy.pk/watch/tv/67178/2/2"
+        }
+      }
+    }
+  ]
+}

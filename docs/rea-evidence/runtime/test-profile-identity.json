@@ -1,0 +1,414 @@
+{
+  "authority": "direct filesystem SHA-256 comparison",
+  "test_profile_extension": "C:\\Users\\jay03\\AppData\\Local\\Temp\\rea-video-test\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.1.2_0",
+  "prior_target": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.1.2_0",
+  "file_count": 81,
+  "all_identical": true,
+  "files": [
+    {
+      "path": "_locales/ar/messages.json",
+      "sha256": "125e575da0e35352e5b081904e71ec468e7f1e96d59affc9f2ffcf3d17f12011",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/bg/messages.json",
+      "sha256": "f1f94d44663829741c2c65a274d59dcc207559e88411d702739f0c923e6887fc",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/ca/messages.json",
+      "sha256": "683756ab1263e3ffe7eb7ff063bb8f424328ce784dc483c3569b6a87c8a883b5",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/co/messages.json",
+      "sha256": "cbc588e459bc997915b7f6718672479f06dd958368f3069dc19f20019b669e18",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/cs/messages.json",
+      "sha256": "2ac82dadbf06ce6b3c17216c51689e17b305b41c6d679cc9a0b50d2f6fae8e39",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/da/messages.json",
+      "sha256": "683756ab1263e3ffe7eb7ff063bb8f424328ce784dc483c3569b6a87c8a883b5",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/de/messages.json",
+      "sha256": "dc10f21709265727ddbe6a5725ba1eb3d5ee34c858b89003a23eb838b3ffef04",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/dsb/messages.json",
+      "sha256": "cbc588e459bc997915b7f6718672479f06dd958368f3069dc19f20019b669e18",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/el/messages.json",
+      "sha256": "683756ab1263e3ffe7eb7ff063bb8f424328ce784dc483c3569b6a87c8a883b5",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/en/messages.json",
+      "sha256": "2df927dc84eec001e357d7d0c8e3b68b8e4fe6ce6e72628d2f6458f2ebca386f",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/es/messages.json",
+      "sha256": "43f7a71903e257adee20d290bd6a4b57b5148807d1a77126d172a1f40686011b",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/fa/messages.json",
+      "sha256": "325609dfa79c0d0bcc411741822529e565f150cb20b412f2ed350cf5ae3e8529",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/fr/messages.json",
+      "sha256": "4c7c88c4190a404e6ef17075ff54292d62be47308d2f2be44cee217c293db018",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/hsb/messages.json",
+      "sha256": "cbc588e459bc997915b7f6718672479f06dd958368f3069dc19f20019b669e18",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/hu/messages.json",
+      "sha256": "683756ab1263e3ffe7eb7ff063bb8f424328ce784dc483c3569b6a87c8a883b5",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/id/messages.json",
+      "sha256": "683756ab1263e3ffe7eb7ff063bb8f424328ce784dc483c3569b6a87c8a883b5",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/is/messages.json",
+      "sha256": "683756ab1263e3ffe7eb7ff063bb8f424328ce784dc483c3569b6a87c8a883b5",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/it/messages.json",
+      "sha256": "01328a599d13c47bfabcb438f3fd48ab15ee338f029a60eab3b8642cff8d0e0e",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/ja/messages.json",
+      "sha256": "e2c5987f10d82d779fedeaad794897c0c437c5c6e2a48fc40e26cc4b0ad1bccb",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/ko/messages.json",
+      "sha256": "665610213bd6d2ac10851f3b5438ce99aede4156c08fc17a910a328aa49661f4",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/nb/messages.json",
+      "sha256": "683756ab1263e3ffe7eb7ff063bb8f424328ce784dc483c3569b6a87c8a883b5",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/nl/messages.json",
+      "sha256": "683756ab1263e3ffe7eb7ff063bb8f424328ce784dc483c3569b6a87c8a883b5",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/pl/messages.json",
+      "sha256": "70194c6cb27351d2be7a5aab238aa3b30dcea7e991be7bd837c8000d224e46b8",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/pt_BR/messages.json",
+      "sha256": "e7d6ff81cef9f27543761b9b2a289c3057e4c3d5d224d56130225df4bc0c3937",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/ro/messages.json",
+      "sha256": "683756ab1263e3ffe7eb7ff063bb8f424328ce784dc483c3569b6a87c8a883b5",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/ru/messages.json",
+      "sha256": "cd30de09347766c482be27d34f1e98201340312b81fc31dbcb9c36eae97237d7",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/sk/messages.json",
+      "sha256": "c1c746058c9e27ee4a19434e01591f1ec330bcca30b1142e3a8a9510de3a94dc",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/sl/messages.json",
+      "sha256": "683756ab1263e3ffe7eb7ff063bb8f424328ce784dc483c3569b6a87c8a883b5",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/sv/messages.json",
+      "sha256": "683756ab1263e3ffe7eb7ff063bb8f424328ce784dc483c3569b6a87c8a883b5",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/tr/messages.json",
+      "sha256": "c81e5eb001090fd7a4303f24f5df6061e31fbdfe642709d7564c8288c8bd5c81",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/uk/messages.json",
+      "sha256": "0f500c75876093a76690984bb9e64866379a3eed46cab312b3c7d5e6d212ac96",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/zh_CN/messages.json",
+      "sha256": "b22b5fad5d01bd9a8a4259514d550f5ca1d2412991f737cf42a5c0d29aa2a99f",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_locales/zh_TW/messages.json",
+      "sha256": "5c0e4c66aae42fe10771720cce6cf50a7802942cac48577542af092a220fcfd2",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_metadata/computed_hashes.json",
+      "sha256": "44c6fa99c0ba180904a29edd76d8ac6481261e54ed7de2a8edaa0c34c1a4c4c3",
+      "matches_prior_target": true
+    },
+    {
+      "path": "_metadata/verified_contents.json",
+      "sha256": "27154dd64ebfe5a66c74b0db31c431606f9c031f705b34333912c917381591d9",
+      "matches_prior_target": true
+    },
+    {
+      "path": "bitmaps/empty-thumbnail.png",
+      "sha256": "ef8b9806daba7c9ba90e5008a1c56b9baefb254231b9a25d6ff564bb5aedc24b",
+      "matches_prior_target": true
+    },
+    {
+      "path": "bitmaps/logo-128-color.png",
+      "sha256": "07fd63565122d875ab121a4d67d99d36833ab4ecce80a34fd461ba7b34c2ba20",
+      "matches_prior_target": true
+    },
+    {
+      "path": "bitmaps/logo-128-grey.png",
+      "sha256": "58014e402f1fbcdf1cc3b1fba1d80716e07a828d03dbae88bbe3a4d81d5f2651",
+      "matches_prior_target": true
+    },
+    {
+      "path": "bitmaps/logo-128-nooutline.png",
+      "sha256": "b0cb4e3cff709f284de7dea3e894407280452313fb2614457285588976df3d32",
+      "matches_prior_target": true
+    },
+    {
+      "path": "content/details.html",
+      "sha256": "764f22582e241ee31bb393fdc57e6c8fb30751b2550eba01f10047e8d9f27915",
+      "matches_prior_target": true
+    },
+    {
+      "path": "content/details.js",
+      "sha256": "6acdde12876476ed0d9b67805f76f00124d065baa17f3a112772db36c976dabe",
+      "matches_prior_target": true
+    },
+    {
+      "path": "content/global_persistent.js",
+      "sha256": "b6293a3e3cdb8d095cde2508c5e9cf85e5830ab3982d40e533a0968f90742e7e",
+      "matches_prior_target": true
+    },
+    {
+      "path": "content/history.html",
+      "sha256": "b23d7df74a298b61d91ee3d37af84828a1235908b589c10debb63a7d8c5b9cb3",
+      "matches_prior_target": true
+    },
+    {
+      "path": "content/history.js",
+      "sha256": "57b99a1de5adb667537773e3cd492d31efdc4d832f214155e42d408db8000145",
+      "matches_prior_target": true
+    },
+    {
+      "path": "content/panel.js",
+      "sha256": "ddc7c9d1f7badd5a915c98e66c9a2835904df087cf374c18c15d177a84ea559e",
+      "matches_prior_target": true
+    },
+    {
+      "path": "content/popup.html",
+      "sha256": "605012045225f09741e4e4c80b41579c37f55c6ab9b1ff98e42d55a20f6ccb81",
+      "matches_prior_target": true
+    },
+    {
+      "path": "content/register_components.js",
+      "sha256": "eed62d097bf380f148abac6f475b67cde7fdb1a64126b35507e00fe344310b70",
+      "matches_prior_target": true
+    },
+    {
+      "path": "content/sidebar.html",
+      "sha256": "b9e4cbbed640316f4198a1c7280c131e1be6b5474a25601127fb94106144a46d",
+      "matches_prior_target": true
+    },
+    {
+      "path": "content/smartnaming.html",
+      "sha256": "ea0da76564db866c3218c5755e4d1f50b06a4ed780bdd48abf81873274baea47",
+      "matches_prior_target": true
+    },
+    {
+      "path": "content/smartnaming.js",
+      "sha256": "ecf71e41105ed15e23dea2a46b9c407a055a38921707c0718846b9ad23f5156b",
+      "matches_prior_target": true
+    },
+    {
+      "path": "download_worker/libav-6.5.7.1-h264-aac-mp3.wasm.mjs",
+      "sha256": "0ee2a77f1aa1732c3569c5fdcdd860ccb32357727d5bd2f59d0e4215e522bf3f",
+      "matches_prior_target": true
+    },
+    {
+      "path": "download_worker/libav-6.5.7.1-h264-aac-mp3.wasm.wasm",
+      "sha256": "85ead7c04975d76338581122d0b596ff7f38a1c1d05fa56bb8bcfd4428ffd47f",
+      "matches_prior_target": true
+    },
+    {
+      "path": "download_worker/main.js",
+      "sha256": "1a9267898f705a115adf53abb9c08c4a1db9eae54d9a2e7675eb23d57d9083e6",
+      "matches_prior_target": true
+    },
+    {
+      "path": "factory/factory.html",
+      "sha256": "7b2029be479699a3aa800cc909299dff129d14e849e830daa52176a83985cef2",
+      "matches_prior_target": true
+    },
+    {
+      "path": "factory/factory.js",
+      "sha256": "6aa91164b4f7ba505dc883c14e058111a6de70c688f3519e49056f8cf6d2a794",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/activate.js",
+      "sha256": "33d0bb965e056886c37d9b40806862119a54993c9e59d411bf4e24307a4fca7f",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/bilibili.js",
+      "sha256": "e95188ea51269b7c305a2593cdf78efcaa459378412994c0603b60d7075d9914",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/bilibili_untrusted.js",
+      "sha256": "9e28d067e50505c1068f003b0f411bb6a9741e9242fdad09c2041ed73643786f",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/canva.js",
+      "sha256": "9a82405fe77d700d1520ccf086c7ba543905264062852d55ded6a5aa45ed26d1",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/chaturbate.js",
+      "sha256": "e0959a4cd65a1f09a9e358c54a4b82bff740c0efb10bf421c4e38abf24b2f64a",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/facebook.js",
+      "sha256": "eb24300868377b12cec6fb424d8b2db802a73ee5223d76166bfef111ddf4813b",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/iq.js",
+      "sha256": "68849f5eb43f9c43015bea6c2a91c7b7ba2bd8d3514c83becd03515d3dae8656",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/iq_untrusted.js",
+      "sha256": "79dc4bc301b2f0592300502176a956aff094861d7bd418dcf9341ebb466cd6c7",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/javrank.js",
+      "sha256": "cac7cc79267a05027cf65055770ee5ac3b9294c61c166780cb521200085f4f84",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/javrank_untrusted.js",
+      "sha256": "454e1aaf3c9c44d0012642242e05daef4bd9f1f76340c6b1d91fc00f56ff8d00",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/kick.js",
+      "sha256": "b9182401ecf7130d945815e72b78cbb3d57115420fd3abff23b16c54c0d13a4f",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/ok.js",
+      "sha256": "ad80324bc87f9d9d83a3180c7cd579fb703b4116e60b4763f845db800c4be049",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/osmosis.js",
+      "sha256": "1c5f030924468b9b12eaead11f3e2710fbbd68f0463012b382d83a98f2312d9f",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/premium.js",
+      "sha256": "e35af190f3018aafd318d6aa07f5b62af4ab52329233dbc3ab35c0d62f0e8162",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/taiav.js",
+      "sha256": "3118363ef242ae3e1357357d74cb3eab920b7fd3af9f52b3c8a75213674bb387",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/twitcasting.js",
+      "sha256": "21d4b93b145959d3b01f778d4c984c3dd6b267ee2e984a1c742750c6e5b353a3",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/vimeo.js",
+      "sha256": "f001d06e572c7c23a83f363f2a8c460283c2e89dbcd0251527862c2a41ed0061",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/vimeo_untrusted.js",
+      "sha256": "a7acab55d5500fee59ac5fe2582630362f4f6be91fdaffb0cb844885a0c9248d",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/vk.js",
+      "sha256": "18577194369e94647b778ae2381b8425cd9700866fe6a8aed255bfa537acd6d3",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/xgplayer_crypto.js",
+      "sha256": "8c575a964915b01cfaf659578fcd9e472ffb3493932b21c46ea516db2accb201",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/xgplayer_crypto_untrusted.js",
+      "sha256": "be8266196531e8e2d5f0b4020287a405b6ef6a0c3e84835217466724df8bd526",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/youtube.js",
+      "sha256": "1d2edcb2df8dc84bc2fc3a40582e301021c607a9ba827211ccd012438c808c49",
+      "matches_prior_target": true
+    },
+    {
+      "path": "injected/youtube_untrusted.js",
+      "sha256": "88709aa281d0f632a385d3da6a9270b5273347c8b51627e669e4098742c97fb7",
+      "matches_prior_target": true
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "4ae041e90dede7b5b6e2d0e4b15f947fd3392551998e707d89de7c6c0da7039e",
+      "matches_prior_target": true
+    },
+    {
+      "path": "service/emscripten-module.wasm",
+      "sha256": "0c031dd404df00f2d1ed9491a6590d014e88a50424996e5fd70feff1c931c045",
+      "matches_prior_target": true
+    },
+    {
+      "path": "service/main.js",
+      "sha256": "3c55d99b3b3f8944d735df8dd57e5a9584ec5dfcd45702a2d94fbff667ca0edd",
+      "matches_prior_target": true
+    }
+  ]
+}

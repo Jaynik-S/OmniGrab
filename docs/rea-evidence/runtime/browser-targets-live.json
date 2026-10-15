@@ -1,0 +1,62 @@
+{
+  "evidence_id": "ev_c15f079a4a11a83a345be1a9649beb10991d8824c5bdefb7ec0aeb939bb64b0e",
+  "subject": null,
+  "provider": {
+    "id": "rea-cdp-browser",
+    "name": "REA Chrome DevTools Protocol observation provider",
+    "version": "2"
+  },
+  "analysis_profile": null,
+  "predicate_type": "rea.browser-target-list",
+  "operation": "list_browser_targets",
+  "parameters": {
+    "cdp_endpoint": "http://127.0.0.1:9222",
+    "allowed_origins": []
+  },
+  "raw_result": null,
+  "normalized_result": {
+    "browser": {
+      "product": "Chrome/155.0.8059.41",
+      "protocol_version": "1.3",
+      "revision": "537.36 (@96e02f81f8f3430db10a322d20b2b13e8a3288e9)",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+      "js_version": "15.5.35.20"
+    },
+    "targets": [
+      {
+        "target_id": "60659DA738FA90900E48A3EAE30DE01E",
+        "type": "page",
+        "title": "Marvel&#39;s The Punisher S2:E2 - Cinejoy",
+        "url": "https://cinejoy.pk/watch/tv/67178/2/2",
+        "origin": "https://cinejoy.pk",
+        "attached": null
+      }
+    ],
+    "excluded": {
+      "disallowed_origin": 0,
+      "unsupported_url": 0,
+      "non_page": 4
+    },
+    "limitations": [
+      "All page targets with supported HTTP(S) URLs are listed.",
+      "CDP discovery omitted attachment state for one or more targets; attached is reported as unknown."
+    ]
+  },
+  "confidence": "observed",
+  "authority": "external-service",
+  "environment": {
+    "id": "Chrome/155.0.8059.41@537.36 (@96e02f81f8f3430db10a322d20b2b13e8a3288e9)",
+    "platform": "unknown",
+    "architecture": "unknown",
+    "isolation": "none"
+  },
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "All page targets with supported HTTP(S) URLs are listed.",
+    "CDP discovery omitted attachment state for one or more targets; attached is reported as unknown.",
+    "Browser host platform and architecture were not observed."
+  ],
+  "relationship_coverage": null,
+  "locations": [],
+  "evidence_links": []
+}
