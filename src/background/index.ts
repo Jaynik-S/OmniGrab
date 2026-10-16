@@ -3,6 +3,8 @@ import { bindDocument, ingest, navigate, removeTab } from '../core/reducer.ts';
 import { DetectionStore } from './store.ts';
 import { ManifestProbe } from './manifest-probe.ts';
 import { RequestTracker } from './network.ts';
+import { DocumentLifecycle } from './lifecycle.ts';
+import type { LifecycleToken } from './lifecycle.ts';
 
 const KEY = 'detectionState';
 const store = new DetectionStore({
@@ -11,53 +13,67 @@ const store = new DetectionStore({
 });
 const probes = new ManifestProbe(store);
 const requests = new RequestTracker();
-const pendingFrames = new Set<string>();
-const frameKey = (tab: number, frame: number) => `${tab}:${frame}`;
+const lifecycle = new DocumentLifecycle();
+const requestTokens = new Map<string, LifecycleToken>();
 const report = (error: unknown) => console.warn('Detection operation failed:', error instanceof Error ? error.message : String(error));
 
-async function accept(observations: Observation[]) {
+async function accept(observations: Observation[], token: LifecycleToken | undefined) {
   const jobs: ProbeJob[] = [];
   await store.dispatch(state => {
+    if (!lifecycle.current(token)) return state;
     for (const observation of observations) {
       const result = ingest(state, observation); state = result.state;
       if (result.probe) jobs.push(result.probe);
     }
     return state;
   });
-  for (const job of jobs) void probes.enqueue(job).catch(report);
+  if (lifecycle.current(token)) for (const job of jobs) void probes.enqueue(job).catch(report);
 }
 
 // Register all event listeners synchronously. Restoration is serialized inside the store.
 chrome.webNavigation.onBeforeNavigate.addListener(details => {
-  if (details.frameId === 0) for (const key of pendingFrames) if (key.startsWith(`${details.tabId}:`)) pendingFrames.delete(key);
-  pendingFrames.add(frameKey(details.tabId, details.frameId));
-  if (pendingFrames.size > 1000) pendingFrames.delete(pendingFrames.values().next().value!);
+  lifecycle.before(details.tabId, details.frameId);
   if (details.frameId === 0) void store.dispatch(s => navigate(s, details.tabId, details.url, Date.now())).catch(report);
   else void store.dispatch(s => bindDocument(s, details.tabId, details.frameId, `pending:${details.timeStamp}`)).catch(report);
 });
 chrome.webNavigation.onCommitted.addListener(details => {
-  const pending = pendingFrames.delete(frameKey(details.tabId, details.frameId));
+  const committed = lifecycle.committed(details.tabId, details.frameId);
+  if (!committed) return;
   void store.dispatch(s => {
-    if (details.frameId === 0 && (!pending || !s.tabs[details.tabId])) s = navigate(s, details.tabId, details.url, Date.now());
+    if (details.frameId === 0 && (!committed.pending || !s.tabs[details.tabId])) s = navigate(s, details.tabId, details.url, Date.now());
     return bindDocument(s, details.tabId, details.frameId, details.documentId, details.url);
   }).then(() => probes.recover()).catch(report);
 });
 chrome.webNavigation.onHistoryStateUpdated.addListener(details => {
   if (details.frameId !== 0) return;
-  void store.dispatch(s => navigate(s, details.tabId, details.url, Date.now(), details.documentId))
-    .then(() => chrome.tabs.sendMessage(details.tabId, { type: 'rescan' }).catch(() => undefined)).catch(report);
+  const token = lifecycle.capture(details.tabId, 0);
+  void store.dispatch(s => {
+    if (!lifecycle.current(token)) return s;
+    const tab = s.tabs[details.tabId];
+    if (!tab) return navigate(s, details.tabId, details.url, Date.now(), details.documentId);
+    if (tab.documentId !== details.documentId || tab.url === details.url) return s;
+    return { ...s, revision: s.revision + 1, tabs: { ...s.tabs,
+      [details.tabId]: { ...tab, url: details.url, updatedAt: Date.now() } } };
+  }).then(s => {
+    if (lifecycle.current(token) && s.tabs[details.tabId]?.documentId === details.documentId)
+      return chrome.tabs.sendMessage(details.tabId, { type: 'rescan' }).catch(() => undefined);
+  }).catch(report);
 });
-chrome.webNavigation.onErrorOccurred.addListener(details => { pendingFrames.delete(frameKey(details.tabId, details.frameId)); });
+chrome.webNavigation.onErrorOccurred.addListener(details => lifecycle.failed(details.tabId, details.frameId));
 chrome.tabs.onRemoved.addListener(tabId => {
-  for (const key of pendingFrames) if (key.startsWith(`${tabId}:`)) pendingFrames.delete(key);
+  lifecycle.removed(tabId);
   void store.dispatch(s => removeTab(s, tabId)).catch(report);
 });
 
 const filter = { urls: ['http://*/*', 'https://*/*'] };
 chrome.webRequest.onBeforeRequest.addListener(details => {
   if (details.tabId < 0) return; // Includes this worker's own manifest fetches.
-  const pending = pendingFrames.has(frameKey(details.tabId, details.frameId));
-  const context = pending ? Promise.resolve(undefined) : store.dispatch(s => s).then(s => {
+  const token = lifecycle.capture(details.tabId, details.frameId);
+  if (token) requestTokens.set(details.requestId, token);
+  else requestTokens.delete(details.requestId);
+  if (requestTokens.size > 1000) requestTokens.delete(requestTokens.keys().next().value!);
+  const context = !token ? Promise.resolve(undefined) : store.dispatch(s => s).then(s => {
+    if (!lifecycle.current(token)) return;
     const tab = s.tabs[details.tabId];
     if (!tab || details.documentId && tab.documents[details.frameId] && tab.documents[details.frameId] !== details.documentId) return;
     return { epoch: tab.epoch, pageUrl: tab.url };
@@ -65,10 +81,11 @@ chrome.webRequest.onBeforeRequest.addListener(details => {
   requests.start(details, context);
 }, filter);
 chrome.webRequest.onResponseStarted.addListener(details => {
-  void requests.response(details).then(o => o ? accept([o]) : undefined).catch(report);
+  const token = requestTokens.get(details.requestId); requestTokens.delete(details.requestId);
+  void requests.response(details).then(o => o && lifecycle.current(token) ? accept([o], token) : undefined).catch(report);
 }, filter, ['responseHeaders']);
-chrome.webRequest.onErrorOccurred.addListener(details => requests.finish(details.requestId), filter);
-chrome.webRequest.onCompleted.addListener(details => requests.finish(details.requestId), filter);
+chrome.webRequest.onErrorOccurred.addListener(details => { requests.finish(details.requestId); requestTokens.delete(details.requestId); }, filter);
+chrome.webRequest.onCompleted.addListener(details => { requests.finish(details.requestId); requestTokens.delete(details.requestId); }, filter);
 
 function claims(value: unknown): Partial<Observation> | undefined {
   if (!value || typeof value !== 'object') return;
@@ -89,13 +106,15 @@ async function message(raw: unknown, sender: chrome.runtime.MessageSender) {
   if (m.type === 'observe') {
     const tabId = sender.tab?.id; const frameId = sender.frameId ?? 0;
     if (tabId === undefined || !sender.documentId || !Array.isArray(m.observations) || m.observations.length > 100) throw new Error('Invalid observation sender or batch');
-    if (pendingFrames.has(frameKey(tabId, frameId))) return { ignored: 'navigation-pending' };
+    const token = lifecycle.capture(tabId, frameId);
+    if (!token) return { ignored: 'navigation-pending' };
     const frame = await chrome.webNavigation.getFrame({ tabId, frameId });
-    if (frame?.documentId !== sender.documentId || sender.documentLifecycle && sender.documentLifecycle !== 'active') return { ignored: 'stale-document' };
+    if (!lifecycle.current(token) || frame?.documentId !== sender.documentId || sender.documentLifecycle && sender.documentLifecycle !== 'active') return { ignored: 'stale-document' };
     const now = Date.now();
     const observations = m.observations.map(claims).filter((v): v is Partial<Observation> => !!v);
     const jobs: ProbeJob[] = [];
     await store.dispatch(s => {
+      if (!lifecycle.current(token)) return s;
       if (!s.tabs[tabId]) s = navigate(s, tabId, sender.tab?.url ?? '', now, frameId === 0 ? sender.documentId : undefined);
       const known = s.tabs[tabId].documents[frameId];
       if (known && known !== sender.documentId) return s;
@@ -106,6 +125,7 @@ async function message(raw: unknown, sender: chrome.runtime.MessageSender) {
       }
       return s;
     });
+    if (!lifecycle.current(token)) return { ignored: 'stale-document' };
     for (const job of jobs) void probes.enqueue(job).catch(report);
     return { ok: true };
   }
@@ -125,9 +145,13 @@ chrome.runtime.onMessage.addListener((raw, sender, reply) => {
   return true;
 });
 
-void store.read().then(async () => {
+void store.read().then(async restored => {
+  const tokens = new Map(Object.keys(restored.tabs).map(Number).map(tabId => [tabId, lifecycle.capture(tabId, 0)]));
   const tabs = await chrome.tabs.query({});
   const open = new Set(tabs.map(t => t.id));
-  await store.dispatch(s => { for (const tabId of Object.keys(s.tabs).map(Number)) if (!open.has(tabId)) s = removeTab(s, tabId); return s; });
+  await store.dispatch(s => {
+    for (const [tabId, token] of tokens) if (!open.has(tabId) && lifecycle.current(token)) s = removeTab(s, tabId);
+    return s;
+  });
   await probes.recover();
 }).catch(report);
