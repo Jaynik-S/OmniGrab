@@ -1,6 +1,6 @@
 # Proposed detection architecture
 
-Status: **design for review; not implemented or approved**. Date: 2026-10-15.
+Status: **detection milestone implemented and verified on `feat/detection-engine`**. Date: 2026-10-15 (America/Toronto). The goal's Phase 3 authorized this work; measured results, deviations and remaining limits are tracked in [DEVELOPMENT_PROGRESS.md](DEVELOPMENT_PROGRESS.md).
 
 The goal is an original Chrome MV3 TypeScript detection engine with reliable cross-website discovery and a minimal debugging UI. [Research](REA_DETECTION_ANALYSIS.md) informs the design; additional techniques below are proposals rather than claims about Video DownloadHelper. Runtime comparison is required before claiming parity.
 
@@ -34,7 +34,7 @@ Collectors report facts; they do not independently create final UI rows. One red
 
 ### Module responsibilities
 
-Planned paths are names for review, not existing files:
+The table describes the design. Implementation combines lifecycle handling into `src/background/index.ts`; there are currently no site adapters. See the progress ledger and browser comparison for implemented and verified scope:
 
 | Module | Single responsibility | Inputs / outputs |
 | --- | --- | --- |
@@ -137,4 +137,14 @@ The popup shows the active tab/document and revision, then rows with URL, type, 
 
 Follow [DETECTION_TEST_MATRIX.md](DETECTION_TEST_MATRIX.md). Pure fixture tests cover classification/parsing/reducer identity; browser tests cover real Chrome permissions, frames, dynamic DOM, persisted state and popup snapshots. Comparative runs use the same authorized page version, playback actions, timing and cold/warm state for both extensions. Preserve original/new results independently before calculating differences.
 
-Implementation begins after architecture review and completion of the required research gate. Production code must contain only original code and properly licensed dependencies. REA files/captures remain under `docs/rea-evidence/` and must not enter the extension bundle. Build only the detector/debug UI, then iterate against measured gaps; successful fixtures do not establish cross-website parity.
+Implementation followed the required research pass under the goal's Phase 3 authorization. Production code contains original code and bundled licensed dependencies. REA files/captures remain under `docs/rea-evidence/` and are excluded by the build allowlist. Successful fixtures do not establish cross-website parity.
+
+### Implemented scope and design differences
+
+The implementation uses the declared three API permissions and HTTP(S) hosts. Lifecycle wiring lives in `background/index.ts` with an in-memory token fence; pure snapshot transitions remain in `core/reducer.ts`. Pending manifest work is reconstructed from persisted observed/probing statuses and candidate instances rather than stored as a second global queue. Each owner can retain up to 100 `childManifests` descriptors for observed HLS children. `resolveProbeJob` preserves an already-running child's instance when a master groups it, while document changes fence stale results. Unobserved renditions are not automatically fetched. Fetches already in flight can finish after navigation, but stale results are discarded; no indefinite worker keepalive is installed.
+
+`core/limits.ts` aligns producer and restoration bounds: 16,384 characters per persisted string and 2,097,152 characters of references per parsed manifest. Accepted transitions are validated before saving. Weak candidates are displaced by stronger incoming evidence at the source cap, with explicit eviction diagnostics. Navigation errors reconcile surviving frame bindings through a token-guarded browser lookup. The build includes and audits the XML parser's complete MIT notice.
+
+The snapshot keeps compact source/provenance aggregates rather than a raw observation history. Counts are bounded and quota/save failures are surfaced. There is no 30-minute idle timer or settings layer yet. Prior DOM sources remain previously observed evidence until navigation; element removal does not send a tombstone, and there is no guarantee of immediate removal tracking for detached frame elements. SPA route updates preserve same-document evidence. Live-window rollover and recovery of unclassifiable responses that precede a manifest relationship remain unverified. These limits differ from the broader design targets above and are not claimed as completed matrix coverage.
+
+There are no site adapters or generic MAIN-world/MSE interception. Related-frame declaration is present; only tested frame scenarios establish runtime coverage. Blob rows remain contextual, separate from detected remote sources. XML validation uses `fast-xml-parser`; all dependency code is bundled locally. The [development ledger](DEVELOPMENT_PROGRESS.md) and [browser comparison](BROWSER_COMPARISON.md) record actual commands, reviews, failures and measured outcomes.

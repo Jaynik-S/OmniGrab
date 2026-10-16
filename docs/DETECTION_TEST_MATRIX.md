@@ -1,6 +1,6 @@
 # Detection test matrix and comparison protocol
 
-Status: planned acceptance tests, with the currently observed baseline explicitly recorded. Date: 2026-10-15.
+Status: acceptance contract and retained original-only baseline. Date: 2026-10-15. Current paired browser measurements are reported separately in [BROWSER_COMPARISON.md](BROWSER_COMPARISON.md); unrun matrix rows remain unverified.
 
 ## Measurement contract
 
@@ -79,7 +79,9 @@ For each trial retain: case ID; page/fixture revision; original version; new com
 
 Use exact source URLs privately for matching, with safe URL display/export redaction where signed queries or identifiers occur. Never persist cookies, authorization, page account data or proprietary bundle sources in the production artifact. Store research under `docs/rea-evidence/`; bundle verifiers must reject research/capture files from extension output.
 
-## Current comparative baseline
+## Historical original-only baseline
+
+The table below preserves the pre-implementation baseline. Its "not implemented" entries describe that earlier pass; they do not describe the current branch. The paired comparison report is authoritative for the implemented engine.
 
 | Case | Original | Our engine | False positives / duplicates | Latency | Evidence |
 | --- | --- | --- | --- | --- | --- |

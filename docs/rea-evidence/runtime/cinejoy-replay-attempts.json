@@ -1,0 +1,1079 @@
+{
+  "authority": "Analyst-selected fields from retained REA MCP receipts and separately labeled supplemental browser actions; not a new REA Evidence record",
+  "page_url": "https://cinejoy.pk/watch/tv/67178/2/2",
+  "outcome": "Inconclusive playback reproduction: all windows recorded zero new network requests; supplemental player reads remained paused at 60.922129 seconds. Debugger pauses were observed. UI actions did not establish successful playback. No detection miss or latency is inferred.",
+  "attempts": [
+    {
+      "name": "cinejoy-user-selected-followup",
+      "evidence_id": "ev_c808bb5b7fe7db2a040237136f92f433029091e1de913a9d70ba7fba46ed0f62",
+      "capture_window": {
+        "started_at": "2026-10-15T23:38:24.754Z",
+        "ended_at": "2026-10-15T23:39:09.918Z",
+        "observation_ms": 45000
+      },
+      "parameters": {
+        "cdp_endpoint": "http://127.0.0.1:9222",
+        "allowed_origins": [
+          "https://cinejoy.pk"
+        ],
+        "target_id": "60659DA738FA90900E48A3EAE30DE01E",
+        "observation_ms": 45000,
+        "include_accessibility_text": false,
+        "include_console_text": false,
+        "include_json_body_shapes": false,
+        "include_websocket_shapes": false,
+        "include_storage_keys": false,
+        "include_storage_fingerprints": false,
+        "include_script_sources": false
+      },
+      "network_count": 0,
+      "resource_count": 0,
+      "completeness": {
+        "status": "policy_filtered",
+        "conditions": [
+          "attach_limited",
+          "policy_filtered"
+        ],
+        "policy_filtered_sections": [
+          "accessibility",
+          "console_text",
+          "json_body_shapes",
+          "metadata",
+          "resources",
+          "script_sources",
+          "scripts",
+          "storage_keys",
+          "websocket_shapes",
+          "workers"
+        ],
+        "attach_limited_sections": [
+          "console_events",
+          "metadata",
+          "network_requests",
+          "websocket_connections",
+          "websocket_frames"
+        ],
+        "truncated_sections": [],
+        "unavailable_sections": [],
+        "excluded": [
+          {
+            "section": "accessibility",
+            "reason": "not_approved",
+            "count": 102
+          },
+          {
+            "section": "console_text",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "json_body_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "metadata",
+            "reason": "disallowed_origin",
+            "count": 136
+          },
+          {
+            "section": "metadata",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "resources",
+            "reason": "disallowed_origin",
+            "count": 2
+          },
+          {
+            "section": "script_sources",
+            "reason": "not_approved",
+            "count": 83
+          },
+          {
+            "section": "scripts",
+            "reason": "disallowed_origin",
+            "count": 5
+          },
+          {
+            "section": "scripts",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "storage_keys",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "websocket_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "workers",
+            "reason": "out_of_target_scope",
+            "count": 1
+          }
+        ],
+        "dropped_events": {
+          "scripts": 0,
+          "network_requests": 0,
+          "console_events": 0,
+          "websocket_connections": 0,
+          "websocket_frames": 0,
+          "webmcp_tools": 0,
+          "timeline_events": 0,
+          "total": 0
+        }
+      },
+      "raw_receipt_sha256": "5c2d701d8f5f8d16f0618804c9eab916927cea1ad47aaae422f7666f5e12d3ba",
+      "raw_temporary_path": "C:\\Users\\jay03\\AppData\\Local\\Temp\\vdh-rea-20261015\\cinejoy-user-selected-followup.json"
+    },
+    {
+      "name": "cinejoy-ready-playback",
+      "evidence_id": "ev_4a3a87e721d86379ca957ba2a74a1c77103d0285a32d7743b31e46c2499ebd78",
+      "capture_window": {
+        "started_at": "2026-10-15T23:45:58.957Z",
+        "ended_at": "2026-10-15T23:46:44.059Z",
+        "observation_ms": 45000
+      },
+      "parameters": {
+        "cdp_endpoint": "http://127.0.0.1:9222",
+        "allowed_origins": [
+          "https://cinejoy.pk",
+          "https://nebula.bright67.online"
+        ],
+        "target_id": "60659DA738FA90900E48A3EAE30DE01E",
+        "observation_ms": 45000,
+        "include_accessibility_text": false,
+        "include_console_text": false,
+        "include_json_body_shapes": false,
+        "include_websocket_shapes": false,
+        "include_storage_keys": false,
+        "include_storage_fingerprints": false,
+        "include_script_sources": false
+      },
+      "network_count": 0,
+      "resource_count": 0,
+      "completeness": {
+        "status": "policy_filtered",
+        "conditions": [
+          "attach_limited",
+          "policy_filtered"
+        ],
+        "policy_filtered_sections": [
+          "accessibility",
+          "console_text",
+          "json_body_shapes",
+          "metadata",
+          "resources",
+          "script_sources",
+          "scripts",
+          "storage_keys",
+          "websocket_shapes",
+          "workers"
+        ],
+        "attach_limited_sections": [
+          "console_events",
+          "metadata",
+          "network_requests",
+          "websocket_connections",
+          "websocket_frames"
+        ],
+        "truncated_sections": [],
+        "unavailable_sections": [],
+        "excluded": [
+          {
+            "section": "accessibility",
+            "reason": "not_approved",
+            "count": 102
+          },
+          {
+            "section": "console_text",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "json_body_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "metadata",
+            "reason": "disallowed_origin",
+            "count": 114
+          },
+          {
+            "section": "metadata",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "resources",
+            "reason": "disallowed_origin",
+            "count": 2
+          },
+          {
+            "section": "script_sources",
+            "reason": "not_approved",
+            "count": 83
+          },
+          {
+            "section": "scripts",
+            "reason": "disallowed_origin",
+            "count": 5
+          },
+          {
+            "section": "scripts",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "storage_keys",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "websocket_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "workers",
+            "reason": "out_of_target_scope",
+            "count": 1
+          }
+        ],
+        "dropped_events": {
+          "scripts": 0,
+          "network_requests": 0,
+          "console_events": 0,
+          "websocket_connections": 0,
+          "websocket_frames": 0,
+          "webmcp_tools": 0,
+          "timeline_events": 0,
+          "total": 0
+        }
+      },
+      "raw_receipt_sha256": "735d76b85bd7a513a1554311a47043af1aa8e2eda6def26f88f8f9f951c80ce5",
+      "raw_temporary_path": "C:\\Users\\jay03\\AppData\\Local\\Temp\\vdh-rea-20261015\\cinejoy-ready-playback.json"
+    },
+    {
+      "name": "cinejoy-ui-playback",
+      "evidence_id": "ev_1110593d2d5706d93dd7a3ebfb372a8159527d8d0913483626e494c89ab5b5e0",
+      "capture_window": {
+        "started_at": "2026-10-15T23:48:16.784Z",
+        "ended_at": "2026-10-15T23:49:01.985Z",
+        "observation_ms": 45000
+      },
+      "parameters": {
+        "cdp_endpoint": "http://127.0.0.1:9222",
+        "allowed_origins": [
+          "https://cinejoy.pk",
+          "https://nebula.bright67.online"
+        ],
+        "target_id": "60659DA738FA90900E48A3EAE30DE01E",
+        "observation_ms": 45000,
+        "include_accessibility_text": false,
+        "include_console_text": false,
+        "include_json_body_shapes": false,
+        "include_websocket_shapes": false,
+        "include_storage_keys": false,
+        "include_storage_fingerprints": false,
+        "include_script_sources": false
+      },
+      "network_count": 0,
+      "resource_count": 0,
+      "completeness": {
+        "status": "policy_filtered",
+        "conditions": [
+          "attach_limited",
+          "policy_filtered"
+        ],
+        "policy_filtered_sections": [
+          "accessibility",
+          "console_text",
+          "json_body_shapes",
+          "metadata",
+          "resources",
+          "script_sources",
+          "scripts",
+          "storage_keys",
+          "websocket_shapes",
+          "workers"
+        ],
+        "attach_limited_sections": [
+          "console_events",
+          "metadata",
+          "network_requests",
+          "websocket_connections",
+          "websocket_frames"
+        ],
+        "truncated_sections": [],
+        "unavailable_sections": [],
+        "excluded": [
+          {
+            "section": "accessibility",
+            "reason": "not_approved",
+            "count": 102
+          },
+          {
+            "section": "console_text",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "json_body_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "metadata",
+            "reason": "disallowed_origin",
+            "count": 114
+          },
+          {
+            "section": "metadata",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "resources",
+            "reason": "disallowed_origin",
+            "count": 2
+          },
+          {
+            "section": "script_sources",
+            "reason": "not_approved",
+            "count": 83
+          },
+          {
+            "section": "scripts",
+            "reason": "disallowed_origin",
+            "count": 5
+          },
+          {
+            "section": "scripts",
+            "reason": "unattributed_origin",
+            "count": 18
+          },
+          {
+            "section": "scripts",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "storage_keys",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "websocket_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "workers",
+            "reason": "out_of_target_scope",
+            "count": 2
+          }
+        ],
+        "dropped_events": {
+          "scripts": 0,
+          "network_requests": 0,
+          "console_events": 0,
+          "websocket_connections": 0,
+          "websocket_frames": 0,
+          "webmcp_tools": 0,
+          "timeline_events": 0,
+          "total": 0
+        }
+      },
+      "raw_receipt_sha256": "2965d8944efda79912d25fd31db9d022457340e11e7927ada090e5bca8e0966f",
+      "raw_temporary_path": "C:\\Users\\jay03\\AppData\\Local\\Temp\\vdh-rea-20261015\\cinejoy-ui-playback.json"
+    },
+    {
+      "name": "cinejoy-controls-playback",
+      "evidence_id": "ev_a8103d19691edfb109f9e2eb1284fda7206c129da7304a1786ac653cbb645349",
+      "capture_window": {
+        "started_at": "2026-10-15T23:49:34.773Z",
+        "ended_at": "2026-10-15T23:50:04.882Z",
+        "observation_ms": 30000
+      },
+      "parameters": {
+        "cdp_endpoint": "http://127.0.0.1:9222",
+        "allowed_origins": [
+          "https://cinejoy.pk",
+          "https://nebula.bright67.online"
+        ],
+        "target_id": "60659DA738FA90900E48A3EAE30DE01E",
+        "observation_ms": 30000,
+        "include_accessibility_text": false,
+        "include_console_text": false,
+        "include_json_body_shapes": false,
+        "include_websocket_shapes": false,
+        "include_storage_keys": false,
+        "include_storage_fingerprints": false,
+        "include_script_sources": false
+      },
+      "network_count": 0,
+      "resource_count": 0,
+      "completeness": {
+        "status": "policy_filtered",
+        "conditions": [
+          "attach_limited",
+          "policy_filtered"
+        ],
+        "policy_filtered_sections": [
+          "accessibility",
+          "console_text",
+          "json_body_shapes",
+          "metadata",
+          "resources",
+          "script_sources",
+          "scripts",
+          "storage_keys",
+          "websocket_shapes",
+          "workers"
+        ],
+        "attach_limited_sections": [
+          "console_events",
+          "metadata",
+          "network_requests",
+          "websocket_connections",
+          "websocket_frames"
+        ],
+        "truncated_sections": [],
+        "unavailable_sections": [],
+        "excluded": [
+          {
+            "section": "accessibility",
+            "reason": "not_approved",
+            "count": 102
+          },
+          {
+            "section": "console_text",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "json_body_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "metadata",
+            "reason": "disallowed_origin",
+            "count": 114
+          },
+          {
+            "section": "metadata",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "resources",
+            "reason": "disallowed_origin",
+            "count": 2
+          },
+          {
+            "section": "script_sources",
+            "reason": "not_approved",
+            "count": 83
+          },
+          {
+            "section": "scripts",
+            "reason": "disallowed_origin",
+            "count": 5
+          },
+          {
+            "section": "scripts",
+            "reason": "unattributed_origin",
+            "count": 30
+          },
+          {
+            "section": "scripts",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "storage_keys",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "websocket_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "workers",
+            "reason": "out_of_target_scope",
+            "count": 2
+          }
+        ],
+        "dropped_events": {
+          "scripts": 0,
+          "network_requests": 0,
+          "console_events": 0,
+          "websocket_connections": 0,
+          "websocket_frames": 0,
+          "webmcp_tools": 0,
+          "timeline_events": 0,
+          "total": 0
+        }
+      },
+      "raw_receipt_sha256": "f9ac88e67219e1a5d390efb179a118eb45026475b6304fed4459a1bde7b075df",
+      "raw_temporary_path": "C:\\Users\\jay03\\AppData\\Local\\Temp\\vdh-rea-20261015\\cinejoy-controls-playback.json"
+    },
+    {
+      "name": "cinejoy-cdp-playback",
+      "evidence_id": "ev_30e40812fd6342d6870d552d053066e9530b039a297ac0af7068d946124468d7",
+      "capture_window": {
+        "started_at": "2026-10-15T23:51:25.334Z",
+        "ended_at": "2026-10-15T23:51:55.459Z",
+        "observation_ms": 30000
+      },
+      "parameters": {
+        "cdp_endpoint": "http://127.0.0.1:9222",
+        "allowed_origins": [
+          "https://cinejoy.pk",
+          "https://nebula.bright67.online"
+        ],
+        "target_id": "60659DA738FA90900E48A3EAE30DE01E",
+        "observation_ms": 30000,
+        "include_accessibility_text": false,
+        "include_console_text": false,
+        "include_json_body_shapes": false,
+        "include_websocket_shapes": false,
+        "include_storage_keys": false,
+        "include_storage_fingerprints": false,
+        "include_script_sources": false
+      },
+      "network_count": 0,
+      "resource_count": 0,
+      "completeness": {
+        "status": "policy_filtered",
+        "conditions": [
+          "attach_limited",
+          "policy_filtered"
+        ],
+        "policy_filtered_sections": [
+          "accessibility",
+          "console_text",
+          "json_body_shapes",
+          "metadata",
+          "resources",
+          "script_sources",
+          "scripts",
+          "storage_keys",
+          "websocket_shapes",
+          "workers"
+        ],
+        "attach_limited_sections": [
+          "console_events",
+          "metadata",
+          "network_requests",
+          "websocket_connections",
+          "websocket_frames"
+        ],
+        "truncated_sections": [],
+        "unavailable_sections": [],
+        "excluded": [
+          {
+            "section": "accessibility",
+            "reason": "not_approved",
+            "count": 102
+          },
+          {
+            "section": "console_text",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "json_body_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "metadata",
+            "reason": "disallowed_origin",
+            "count": 114
+          },
+          {
+            "section": "metadata",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "resources",
+            "reason": "disallowed_origin",
+            "count": 2
+          },
+          {
+            "section": "script_sources",
+            "reason": "not_approved",
+            "count": 83
+          },
+          {
+            "section": "scripts",
+            "reason": "disallowed_origin",
+            "count": 5
+          },
+          {
+            "section": "scripts",
+            "reason": "unattributed_origin",
+            "count": 29
+          },
+          {
+            "section": "scripts",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "storage_keys",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "websocket_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "workers",
+            "reason": "out_of_target_scope",
+            "count": 1
+          }
+        ],
+        "dropped_events": {
+          "scripts": 0,
+          "network_requests": 0,
+          "console_events": 0,
+          "websocket_connections": 0,
+          "websocket_frames": 0,
+          "webmcp_tools": 0,
+          "timeline_events": 0,
+          "total": 0
+        }
+      },
+      "raw_receipt_sha256": "cce07df11abab9d6770bf6888200b3ca433fd7ebcce337f125c837580a7ee6ff",
+      "raw_temporary_path": "C:\\Users\\jay03\\AppData\\Local\\Temp\\vdh-rea-20261015\\cinejoy-cdp-playback.json"
+    },
+    {
+      "name": "cinejoy-resumed-playback",
+      "evidence_id": "ev_07d0726e7a6c3acf80f4d05b5e5ecd566861931d3bb6bafb92ec18d5b749ba13",
+      "capture_window": {
+        "started_at": "2026-10-15T23:54:41.466Z",
+        "ended_at": "2026-10-15T23:55:11.574Z",
+        "observation_ms": 30000
+      },
+      "parameters": {
+        "cdp_endpoint": "http://127.0.0.1:9222",
+        "allowed_origins": [
+          "https://cinejoy.pk",
+          "https://nebula.bright67.online"
+        ],
+        "target_id": "60659DA738FA90900E48A3EAE30DE01E",
+        "observation_ms": 30000,
+        "include_accessibility_text": false,
+        "include_console_text": false,
+        "include_json_body_shapes": false,
+        "include_websocket_shapes": false,
+        "include_storage_keys": false,
+        "include_storage_fingerprints": false,
+        "include_script_sources": false
+      },
+      "network_count": 0,
+      "resource_count": 0,
+      "completeness": {
+        "status": "policy_filtered",
+        "conditions": [
+          "attach_limited",
+          "policy_filtered"
+        ],
+        "policy_filtered_sections": [
+          "accessibility",
+          "console_text",
+          "json_body_shapes",
+          "metadata",
+          "resources",
+          "script_sources",
+          "scripts",
+          "storage_keys",
+          "websocket_shapes",
+          "workers"
+        ],
+        "attach_limited_sections": [
+          "console_events",
+          "metadata",
+          "network_requests",
+          "websocket_connections",
+          "websocket_frames"
+        ],
+        "truncated_sections": [],
+        "unavailable_sections": [],
+        "excluded": [
+          {
+            "section": "accessibility",
+            "reason": "not_approved",
+            "count": 102
+          },
+          {
+            "section": "console_text",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "json_body_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "metadata",
+            "reason": "disallowed_origin",
+            "count": 114
+          },
+          {
+            "section": "metadata",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "resources",
+            "reason": "disallowed_origin",
+            "count": 2
+          },
+          {
+            "section": "script_sources",
+            "reason": "not_approved",
+            "count": 83
+          },
+          {
+            "section": "scripts",
+            "reason": "disallowed_origin",
+            "count": 5
+          },
+          {
+            "section": "scripts",
+            "reason": "unattributed_origin",
+            "count": 29
+          },
+          {
+            "section": "scripts",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "storage_keys",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "websocket_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "workers",
+            "reason": "out_of_target_scope",
+            "count": 2
+          }
+        ],
+        "dropped_events": {
+          "scripts": 0,
+          "network_requests": 0,
+          "console_events": 0,
+          "websocket_connections": 0,
+          "websocket_frames": 0,
+          "webmcp_tools": 0,
+          "timeline_events": 0,
+          "total": 0
+        }
+      },
+      "raw_receipt_sha256": "826dbd42007fdcd0468e2b179c3563592c5c66958942311fdfb4e9b3834821c4",
+      "raw_temporary_path": "C:\\Users\\jay03\\AppData\\Local\\Temp\\vdh-rea-20261015\\cinejoy-resumed-playback.json"
+    },
+    {
+      "name": "cinejoy-resumed2-playback",
+      "evidence_id": "ev_1aa15c1819a7dc5002f6c559eb502bca101155dcb8973ab3cbe1b9844e89f5f9",
+      "capture_window": {
+        "started_at": "2026-10-15T23:55:08.020Z",
+        "ended_at": "2026-10-15T23:55:38.125Z",
+        "observation_ms": 30000
+      },
+      "parameters": {
+        "cdp_endpoint": "http://127.0.0.1:9222",
+        "allowed_origins": [
+          "https://cinejoy.pk",
+          "https://nebula.bright67.online"
+        ],
+        "target_id": "60659DA738FA90900E48A3EAE30DE01E",
+        "observation_ms": 30000,
+        "include_accessibility_text": false,
+        "include_console_text": false,
+        "include_json_body_shapes": false,
+        "include_websocket_shapes": false,
+        "include_storage_keys": false,
+        "include_storage_fingerprints": false,
+        "include_script_sources": false
+      },
+      "network_count": 0,
+      "resource_count": 0,
+      "completeness": {
+        "status": "policy_filtered",
+        "conditions": [
+          "attach_limited",
+          "policy_filtered"
+        ],
+        "policy_filtered_sections": [
+          "accessibility",
+          "console_text",
+          "json_body_shapes",
+          "metadata",
+          "resources",
+          "script_sources",
+          "scripts",
+          "storage_keys",
+          "websocket_shapes",
+          "workers"
+        ],
+        "attach_limited_sections": [
+          "console_events",
+          "metadata",
+          "network_requests",
+          "websocket_connections",
+          "websocket_frames"
+        ],
+        "truncated_sections": [],
+        "unavailable_sections": [],
+        "excluded": [
+          {
+            "section": "accessibility",
+            "reason": "not_approved",
+            "count": 102
+          },
+          {
+            "section": "console_text",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "json_body_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "metadata",
+            "reason": "disallowed_origin",
+            "count": 114
+          },
+          {
+            "section": "metadata",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "resources",
+            "reason": "disallowed_origin",
+            "count": 2
+          },
+          {
+            "section": "script_sources",
+            "reason": "not_approved",
+            "count": 83
+          },
+          {
+            "section": "scripts",
+            "reason": "disallowed_origin",
+            "count": 5
+          },
+          {
+            "section": "scripts",
+            "reason": "unattributed_origin",
+            "count": 39
+          },
+          {
+            "section": "scripts",
+            "reason": "unsupported_url",
+            "count": 1
+          },
+          {
+            "section": "storage_keys",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "websocket_shapes",
+            "reason": "not_approved",
+            "count": null
+          },
+          {
+            "section": "workers",
+            "reason": "out_of_target_scope",
+            "count": 2
+          }
+        ],
+        "dropped_events": {
+          "scripts": 0,
+          "network_requests": 0,
+          "console_events": 0,
+          "websocket_connections": 0,
+          "websocket_frames": 0,
+          "webmcp_tools": 0,
+          "timeline_events": 0,
+          "total": 0
+        }
+      },
+      "raw_receipt_sha256": "3985d3f29b89d77a6007efa6ad27ecc790234a305ac8cf9532f2ce5485e6247f",
+      "raw_temporary_path": "C:\\Users\\jay03\\AppData\\Local\\Temp\\vdh-rea-20261015\\cinejoy-resumed2-playback.json"
+    }
+  ],
+  "supplemental_actions": [
+    {
+      "authority": "Supplemental Playwright UI actions through existing CDP connection; REA passive observation captures network separately",
+      "steps": [
+        {
+          "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Play', exact: true })\u001b[22m\n"
+        }
+      ],
+      "media": [
+        {
+          "paused": true,
+          "currentTime": 60.922129,
+          "readyState": 4,
+          "currentSrc": "blob:https://cinejoy.pk/36f24d9d-07e4-474f-bdf1-dfdb3a6014d0"
+        }
+      ]
+    },
+    {
+      "authority": "Supplemental Playwright UI actions in selected existing tab; concurrent REA passive network observation",
+      "steps": [
+        {
+          "error": "locator.hover: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('video')\u001b[22m\n"
+        }
+      ],
+      "media": [
+        {
+          "paused": true,
+          "currentTime": 60.922129,
+          "readyState": 4,
+          "currentSrc": "blob:https://cinejoy.pk/36f24d9d-07e4-474f-bdf1-dfdb3a6014d0"
+        }
+      ]
+    },
+    {
+      "authority": "Supplemental CDP native pointer input at inspected player controls; concurrent REA passive observation",
+      "steps": [
+        {
+          "action": "native pointer click Play",
+          "at": 1792108294876
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108294882
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108295092
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108295263
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108295418
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108295569
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108295715
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108295850
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108296008
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108296156
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108296291
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108296471
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108296611
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108296763
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108296906
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108297049
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108297192
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108297336
+        },
+        {
+          "action": "native pointer click Forward 10s",
+          "at": 1792108297477
+        }
+      ],
+      "media": {
+        "paused": true,
+        "currentTime": 60.922129,
+        "readyState": 4,
+        "currentSrc": "blob:https://cinejoy.pk/36f24d9d-07e4-474f-bdf1-dfdb3a6014d0"
+      }
+    },
+    {
+      "authority": "Supplemental Playwright UI replay and debugger-pause recovery; REA network observation separate",
+      "steps": [
+        {
+          "debuggerPause": "other",
+          "at": 1792108507928
+        },
+        {
+          "debuggerPause": "other",
+          "at": 1792108507959
+        },
+        {
+          "error": "locator.hover: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('video')\u001b[22m\n"
+        }
+      ],
+      "media": [
+        {
+          "paused": true,
+          "currentTime": 60.922129,
+          "readyState": 4,
+          "currentSrc": "blob:https://cinejoy.pk/36f24d9d-07e4-474f-bdf1-dfdb3a6014d0"
+        }
+      ]
+    }
+  ]
+}

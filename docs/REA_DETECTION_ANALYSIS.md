@@ -144,7 +144,9 @@ This case demonstrates a useful capability: an HLS master can enumerate valid re
 
 ### Passive reproduction window
 
-A fresh [REA inspect_web_page capture](rea-evidence/runtime/cinejoy-playback-observation.json), Evidence `ev_e2f320045028292990d87b9fc2d3bebddb7c8b1e3f2859af0bea60ed5a28dabd`, observed 23:04:10–23:04:55 UTC for 45 seconds with both page and media CDN origins allowed. No new requests were retained. The earlier page snapshot was paused and buffered; the result is a **no-activity window**, not a successful playback capture or negative detection result. A replay/seek reproduction has been requested from the user.
+A fresh [REA inspect_web_page capture](rea-evidence/runtime/cinejoy-playback-observation.json), Evidence `ev_e2f320045028292990d87b9fc2d3bebddb7c8b1e3f2859af0bea60ed5a28dabd`, observed 23:04:10–23:04:55 UTC for 45 seconds with both page and media CDN origins allowed. No new requests were retained. The earlier page snapshot was paused and buffered; the result is a **no-activity window**, not a successful playback capture or negative detection result.
+
+The user subsequently selected this page from `rea-video-capture.json` and signaled readiness. [Follow-up receipts](rea-evidence/runtime/cinejoy-replay-attempts.json) retain seven more attempts and their distinct limitations, including unsuccessful supplemental UI actions. Player reads stayed paused at 60.922129 seconds; debugger pauses were observed. Even the [final retained REA window](rea-evidence/runtime/cinejoy-resumed-playback.json), Evidence `ev_1aa15c1819a7dc5002f6c559eb502bca101155dcb8973ab3cbe1b9844e89f5f9`, recorded no new requests. Playback was **not successfully reproduced**. Debugger interference is a reasonable explanation for some failed interaction, but its exact source and causal extent remain unverified. No detection miss or fresh-playback latency follows from these empty windows.
 
 Opening the original panel HTML in a normal tab initially changed active-tab tracking and displayed an empty list. Returning the video tab to the foreground and allowing its state update produced **one `com-media` row** in the original shared panel, with 1920x1080 and 1280x720 variant labels. See the [rendered panel snapshot](rea-evidence/runtime/original-panel-rendered.json). This verifies the stored discovery reaches the original component tree while the intended page is active. The snapshot reads Shadow DOM text including hidden control labels; it is not a pixel/visibility audit or a toolbar-action test, and hidden DRM labels must not be interpreted as a positive DRM finding.
 
@@ -158,25 +160,25 @@ State polling also found transient prior-source snapshots during navigation and 
 
 | Capability | Evidence state | Original implementation implication | Equivalent original MV3 approach |
 | --- | --- | --- | --- |
-| Direct MP4/WebM | Verified static and single controlled original trials; new-engine comparison pending | MIME/container classification plus HTTP metadata | Combine response MIME/status with observed element/resource URL evidence. |
+| Direct MP4/WebM | Verified static and original runtime trials; separate paired measurements in `BROWSER_COMPARISON.md` | MIME/container classification plus HTTP metadata | Combine response MIME/status with observed element/resource URL evidence. |
 | HLS/DASH master discovery | Static plus original HLS/DASH runtime group observations | Refetch candidate manifest; parse representations | Bounded independent manifest fetch/parser; explicit fetch-failed state. |
-| Dynamic JS/AJAX playback | Static network path plus SourceBuffer Load trial; user-page replay pending | New requests can be observed after load | Network listener plus DOM mutation/media events and late resource inventory. |
+| Dynamic JS/AJAX playback | Static network path plus SourceBuffer Load trial; user-page replay inconclusive | New requests can be observed after load | Network listener plus DOM mutation/media events and late resource inventory. |
 | Blob/MSE | Blob-plus-HLS, DASH and direct-source correlations; generic interception absent in bounded sweep | Underlying HTTP manifests/sources can suffice | Correlate with network/manifests; label unassociated blobs unresolved. |
 | Cross-origin frames | Static declarations plus three MDN iframe sources attributed to the top tab; exact per-source frame IDs remain unverified in original state | Site-matched all-frame injection and request tab IDs | Collect sender tab/frame/document IDs; use supported related-frame injection rules. |
 | Variant grouping | Static plus two/five HLS and ten DASH choices in original sessions | Parent manifest owns known child variants | Merge only explicit parser relationships; retain separate media otherwise. |
 | Segment suppression | Static suffix/size rules verified | Reduce standalone fragment rows | Prefer parent/child relationships and MIME/manifest segment evidence; keep ambiguous observations pending. |
-| Navigation/restarts | Static restoration/clearing verified; lifecycle tests pending | Shared storage outlives popup/worker instance | Synchronous listeners, serialized reducers, document generations, session persistence. |
+| Navigation/restarts | Original static restoration/clearing and bounded navigation observations verified; exact original restart behavior remains uninstrumented | Shared storage outlives popup/worker instance | Synchronous listeners, serialized reducers, document generations, session persistence; new-engine lifecycle tests are documented separately. |
 | Companion/helper | Browser worker/OPFS/LibAV path verified static | No native companion path established for this version | Detection engine needs no native helper or media processing runtime. |
 | Protected/inaccessible media | Coverage unknown; known DRM flag blocks download | No basis for bypass claims | Report unsupported/protected state; no DRM/paywall/access-control bypass. |
 
 Additional content-script/resource signals in the proposed engine are **design choices**, not claims about undiscovered original code. [DETECTION_ARCHITECTURE.md](DETECTION_ARCHITECTURE.md) and [DETECTION_TEST_MATRIX.md](DETECTION_TEST_MATRIX.md) define the proposed scope and proof requirements.
 
-## Remaining research gates
+## Research limits and follow-up
 
-1. Capture an actual user playback/seek window with media requests and observe the original list with the correct active tab.
-2. Extend the initial direct/HLS/DASH/blob/embedded/multi-source/negative trials with precise frame/document provenance, lifecycle and repeated-trial measurements on authorized controlled pages.
-3. Distinguish observation time, parse completion and list visibility when measuring latency.
-4. Verify originals/new-engine behavior across worker stop/restart, navigation races, denied hosts and failed manifest fetches.
-5. Treat site-specific behavior outside the inspected version and uninstrumented WASM internals as unknown.
+1. The user-selected playback/seek reproduction was attempted after readiness, but produced zero fresh requests and no established playback. A future successful replay is needed to measure that page's new-engine detection.
+2. Repeated paired measurements now cover all eight requested categories on controlled/public pages. New-engine frame/document provenance and lifecycle checks are recorded in [BROWSER_COMPARISON.md](BROWSER_COMPARISON.md); the original's exact internal frame attribution remains unverified.
+3. The comparison distinguishes response, persisted observation and actual popup visibility. It does not expose the original's internal parse-completion time.
+4. New-engine worker stop/restart, navigation races and failed-fetch fixtures have separate evidence. Exhaustive denied-host/browser-policy behavior and the original's corresponding internal transitions remain unverified.
+5. Site-specific behavior outside the inspected version and uninstrumented WASM internals remain unknown.
 
-Phase 1 has substantial static evidence, bounded original direct/HLS/DASH/blob/negative observations, and an observed navigation-state risk. It is not an exhaustive detection-capability or comparative-runtime study. No production detector has been implemented.
+Phase 1 established static behavior and bounded runtime observations. An original detector has since been implemented under the goal's Phase 3; its separate implementation and comparison status is tracked in [DEVELOPMENT_PROGRESS.md](DEVELOPMENT_PROGRESS.md). New-engine behavior is not evidence of how the proprietary original works, and this report does not claim exhaustive cross-website replication.
