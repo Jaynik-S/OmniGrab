@@ -1,5 +1,5 @@
 import type { MediaItem, ProbeJob, Snapshot } from '../core/model.ts';
-import { applyManifest, probeFailed, probeStarted } from '../core/reducer.ts';
+import { applyManifest, probeFailed, probeStarted, resolveProbeJob } from '../core/reducer.ts';
 import { normalizeUrl } from '../core/identity.ts';
 import { parseHls } from '../manifests/hls.ts';
 import { parseDash } from '../manifests/dash.ts';
@@ -21,16 +21,18 @@ function pending(item: MediaItem): boolean {
   return (item.type === 'hls' || item.type === 'dash') && (item.status === 'observed' || item.status === 'probing');
 }
 function current(snapshot: Snapshot, job: ProbeJob): boolean {
-  const tab = snapshot.tabs[job.tabId];
-  const item = tab?.media[job.itemId];
-  return tab?.epoch === job.epoch && !!item && item.instance === job.instance && item.url === job.url && item.type === job.kind && pending(item);
+  const target = resolveProbeJob(snapshot, job);
+  return !!target && (target.child ? target.child.status === 'observed' || target.child.status === 'probing' : pending(target.item));
 }
 const keyOf = (job: ProbeJob) => JSON.stringify([job.tabId, job.epoch, job.url, job.instance]);
 
 function pendingJobs(snapshot: Snapshot): ProbeJob[] {
-  return Object.values(snapshot.tabs).flatMap(tab => Object.values(tab.media).filter(pending).map(item => ({
-    tabId: tab.id, epoch: tab.epoch, itemId: item.id, url: item.url, kind: item.type as 'hls' | 'dash', instance: item.instance,
-  })));
+  return Object.values(snapshot.tabs).flatMap(tab => Object.values(tab.media).flatMap(item => [
+    ...(pending(item) ? [{ tabId: tab.id, epoch: tab.epoch, itemId: item.id, url: item.url, kind: item.type as 'hls' | 'dash', instance: item.instance }] : []),
+    ...(item.childManifests ?? []).filter(child => child.status === 'observed' || child.status === 'probing').map(child => ({
+      tabId: tab.id, epoch: tab.epoch, itemId: child.url, url: child.url, kind: 'hls' as const, instance: child.instance,
+    })),
+  ]));
 }
 
 async function readBody(response: Response, maxBytes: number, signal: AbortSignal): Promise<string> {

@@ -85,6 +85,16 @@ export interface MediaItem {
   segmentPatterns?: SegmentPattern[];
   protected?: boolean;
   live?: boolean;
+  /** Only observed HLS children, including grouped in-flight jobs; never all renditions. */
+  childManifests?: ChildManifest[];
+}
+
+export interface ChildManifest {
+  url: string;
+  instance?: number;
+  status: 'observed' | 'probing' | 'confirmed' | 'unresolved';
+  frameIds: number[];
+  reason?: string;
 }
 
 export interface TabState {

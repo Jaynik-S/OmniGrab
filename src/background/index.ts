@@ -5,6 +5,7 @@ import { ManifestProbe } from './manifest-probe.ts';
 import { RequestTracker } from './network.ts';
 import { DocumentLifecycle } from './lifecycle.ts';
 import type { LifecycleToken } from './lifecycle.ts';
+import { persistedText } from '../core/limits.ts';
 
 const KEY = 'detectionState';
 const store = new DetectionStore({
@@ -32,7 +33,7 @@ async function accept(observations: Observation[], token: LifecycleToken | undef
 
 // Register all event listeners synchronously. Restoration is serialized inside the store.
 chrome.webNavigation.onBeforeNavigate.addListener(details => {
-  lifecycle.before(details.tabId, details.frameId);
+  lifecycle.before(details.tabId, details.frameId, details.url);
   if (details.frameId === 0) void store.dispatch(s => navigate(s, details.tabId, details.url, Date.now())).catch(report);
   else void store.dispatch(s => bindDocument(s, details.tabId, details.frameId, `pending:${details.timeStamp}`)).catch(report);
 });
@@ -50,6 +51,7 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(details => {
   void store.dispatch(s => {
     if (!lifecycle.current(token)) return s;
     const tab = s.tabs[details.tabId];
+    if (!persistedText(details.url)) return s;
     if (!tab) return navigate(s, details.tabId, details.url, Date.now(), details.documentId);
     if (tab.documentId !== details.documentId || tab.url === details.url) return s;
     return { ...s, revision: s.revision + 1, tabs: { ...s.tabs,
@@ -59,7 +61,15 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(details => {
       return chrome.tabs.sendMessage(details.tabId, { type: 'rescan' }).catch(() => undefined);
   }).catch(report);
 });
-chrome.webNavigation.onErrorOccurred.addListener(details => lifecycle.failed(details.tabId, details.frameId));
+chrome.webNavigation.onErrorOccurred.addListener(details => {
+  if (!lifecycle.failed(details.tabId, details.frameId, details.url)) return;
+  const token = lifecycle.capture(details.tabId, details.frameId);
+  void chrome.webNavigation.getFrame({ tabId: details.tabId, frameId: details.frameId }).then(frame => {
+    if (!frame?.documentId || !lifecycle.current(token)) return;
+    return store.dispatch(s => lifecycle.current(token)
+      ? bindDocument(s, details.tabId, details.frameId, frame.documentId, frame.url) : s);
+  }).then(() => probes.recover()).catch(report);
+});
 chrome.tabs.onRemoved.addListener(tabId => {
   lifecycle.removed(tabId);
   void store.dispatch(s => removeTab(s, tabId)).catch(report);
@@ -93,7 +103,7 @@ function claims(value: unknown): Partial<Observation> | undefined {
   if (typeof raw.url !== 'string' || raw.url.length > 16384 || !['dom', 'resource'].includes(String(raw.method))) return;
   const clean: Record<string, unknown> = { url: raw.url, method: raw.method };
   for (const [name, limit] of [['mime', 256], ['title', 512], ['poster', 16384], ['elementId', 128]] as const) {
-    if (typeof raw[name] === 'string') clean[name] = raw[name].slice(0, limit);
+    if (typeof raw[name] === 'string' && (name !== 'poster' || raw[name].length <= limit)) clean[name] = raw[name].slice(0, limit);
   }
   for (const name of ['width', 'height', 'duration'] as const) if (typeof raw[name] === 'number' && Number.isFinite(raw[name]) && raw[name] >= 0) clean[name] = raw[name];
   if (raw.role === 'current' || raw.role === 'alternative') clean.role = raw.role;

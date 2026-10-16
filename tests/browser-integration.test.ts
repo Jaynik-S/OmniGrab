@@ -211,3 +211,43 @@ test('content validated before navigation cannot write stale evidence from the s
   await observing; await bg.snapshot();
   assert.equal(written.some(snapshot => !!snapshot.tabs[1]?.media['https://cdn.test/stale.mp4']), false);
 });
+
+test('aborted iframe navigation restores the surviving document binding', async () => {
+  const bg = await background();
+  bg.commit(); bg.commit('child-old', 7); await bg.snapshot();
+  bg.navigation.onBeforeNavigate.fire({ tabId: 1, frameId: 7, url: 'https://frame.test/new/', timeStamp: 2 });
+  bg.navigation.onErrorOccurred.fire({ tabId: 1, frameId: 7, url: 'https://frame.test/new/', error: 'net::ERR_ABORTED', timeStamp: 3 });
+  await bg.snapshot();
+  await bg.observe('https://cdn.test/surviving.mp4', 'child-old', 7);
+  assert.equal((await bg.snapshot())!.documents[7], 'child-old');
+  assert.ok((await bg.snapshot())!.media['https://cdn.test/surviving.mp4']);
+});
+
+test('aborted iframe lookup cannot overwrite newer navigation or reopen a closed tab', async () => {
+  for (const close of [false, true]) {
+    const bg = await background();
+    bg.commit(); bg.commit('child-old', 7); await bg.snapshot();
+    const frame = deferred<{ documentId: string }>();
+    bg.setGetFrame(() => frame.promise);
+    bg.navigation.onBeforeNavigate.fire({ tabId: 1, frameId: 7, url: 'https://frame.test/a/', timeStamp: 2 });
+    bg.navigation.onErrorOccurred.fire({ tabId: 1, frameId: 7, url: 'https://frame.test/a/', error: 'net::ERR_ABORTED', timeStamp: 3 });
+    if (close) bg.onRemoved.fire(1);
+    else { bg.navigation.onBeforeNavigate.fire({ tabId: 1, frameId: 7, url: 'https://frame.test/b/', timeStamp: 4 }); bg.commit('child-new', 7); }
+    frame.resolve({ documentId: 'child-old' });
+    const tab = await bg.snapshot();
+    if (close) assert.equal(tab, undefined);
+    else assert.equal(tab!.documents[7], 'child-new');
+  }
+});
+
+test('a late error for an older target cannot release a newer iframe navigation fence', async () => {
+  const bg = await background();
+  bg.commit(); bg.commit('child-old', 7); await bg.snapshot();
+  bg.navigation.onBeforeNavigate.fire({ tabId: 1, frameId: 7, url: 'https://frame.test/a/', timeStamp: 2 });
+  bg.navigation.onBeforeNavigate.fire({ tabId: 1, frameId: 7, url: 'https://frame.test/b/', timeStamp: 3 });
+  bg.navigation.onErrorOccurred.fire({ tabId: 1, frameId: 7, url: 'https://frame.test/a/', error: 'net::ERR_ABORTED', timeStamp: 4 });
+  await bg.snapshot();
+  const result = await bg.observe('https://cdn.test/stale.mp4', 'child-old', 7);
+  assert.equal(result.ignored, 'navigation-pending');
+  assert.deepEqual(Object.keys((await bg.snapshot())!.media), []);
+});

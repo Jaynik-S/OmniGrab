@@ -1,6 +1,7 @@
 import type { Snapshot } from '../core/model.ts';
 import { emptySnapshot, MAX_ITEMS } from '../core/reducer.ts';
 import { MAX_SEGMENT_PATTERNS, validSegmentPattern } from '../core/segments.ts';
+import { MAX_CHILD_MANIFESTS, persistedText } from '../core/limits.ts';
 
 export interface SnapshotPersistence {
   load: () => Promise<Snapshot | undefined>;
@@ -9,7 +10,7 @@ export interface SnapshotPersistence {
 
 const record = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
-const text = (value: unknown): value is string => typeof value === 'string' && value.length <= 16_384;
+const text = persistedText;
 const finite = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value);
 const natural = (value: unknown): value is number => finite(value) && Number.isSafeInteger(value) && value >= 0;
 const optional = (value: unknown, validate: (value: unknown) => boolean) => value === undefined || validate(value);
@@ -35,6 +36,9 @@ function validMedia(value: unknown, key: string): boolean {
       !list(value.frameIds, 100, natural) || !list(value.documentIds, 100, text) || !list(value.elementIds, 100, text) ||
       !list(value.variants, 20, validVariant) || !list(value.childUrls, 10_000, text) || !list(value.segmentUrls, 10_000, text)) return false;
   if (!optional(value.segmentPatterns, patterns => Array.isArray(patterns) && list(Array.from(patterns), MAX_SEGMENT_PATTERNS, validSegmentPattern))) return false;
+  if (!optional(value.childManifests, children => list(children, MAX_CHILD_MANIFESTS, child => record(child) && text(child.url) &&
+      optional(child.instance, natural) && ['observed', 'probing', 'confirmed', 'unresolved'].includes(String(child.status)) &&
+      list(child.frameIds, 100, natural) && optional(child.reason, text)))) return false;
   for (const name of ['mime', 'title', 'poster', 'reason']) if (!optional(value[name], text)) return false;
   for (const name of ['bytes', 'width', 'height', 'duration']) if (!optional(value[name], finite)) return false;
   return optional(value.protected, flag => typeof flag === 'boolean') && optional(value.live, flag => typeof flag === 'boolean');
@@ -89,6 +93,7 @@ export class DetectionStore {
       if (next === input) return structuredClone(this.state);
       const committed = structuredClone(next);
       try {
+        if (!validSnapshot(committed)) throw new Error('Invalid detection transition');
         await this.persistence.save(structuredClone(committed));
       } catch (error) {
         this.error = error instanceof Error ? error.message : String(error);

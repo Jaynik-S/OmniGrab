@@ -1,7 +1,8 @@
 import { classify, rejectedResponseReason } from './classify.ts';
 import { normalizeUrl } from './identity.ts';
-import type { ManifestInfo, MediaItem, Observation, ProbeJob, SegmentPattern, Snapshot, TabState, Variant } from './model.ts';
+import type { ChildManifest, ManifestInfo, MediaItem, Observation, ProbeJob, SegmentPattern, Snapshot, TabState, Variant } from './model.ts';
 import { matchesSegmentPattern, MAX_SEGMENT_PATTERNS, segmentPatternKey } from './segments.ts';
+import { boundedManifestValues, MAX_CHILD_MANIFESTS, MAX_REFERENCE_CHARS, persistedText } from './limits.ts';
 
 export const MAX_ITEMS = 200;
 export const MAX_DOCUMENTS = 100;
@@ -16,6 +17,28 @@ function bounded<T>(tab: TabState, a: T[], b: T[], limit: number, reason: string
   const all = [...new Set([...a, ...b])];
   dropped(tab, Math.max(0, all.length - limit), reason);
   return all.slice(0, limit);
+}
+function mergeReferences(tab: TabState, item: MediaItem, incoming: Pick<ManifestInfo, 'childUrls' | 'segmentUrls'>): void {
+  let size = 0;
+  for (const key of ['childUrls', 'segmentUrls'] as const) {
+    const all = [...new Set([...item[key], ...incoming[key]])];
+    item[key] = all.filter((url, index) => {
+      if (index >= 10000 || size + url.length > MAX_REFERENCE_CHARS) { dropped(tab, 1, 'relationship-limit'); return false; }
+      size += url.length;
+      return true;
+    });
+  }
+}
+function rememberChild(tab: TabState, item: MediaItem, child: ChildManifest): ChildManifest | undefined {
+  const work = item.childManifests ??= [];
+  const existing = work.find(previous => previous.url === child.url);
+  if (existing) {
+    existing.frameIds = bounded(tab, existing.frameIds, child.frameIds, 100, 'provenance-limit');
+    return existing;
+  }
+  if (work.length >= MAX_CHILD_MANIFESTS) { dropped(tab, 1, 'child-manifest-limit'); return; }
+  work.push(structuredClone(child));
+  return work[work.length - 1];
 }
 function mergeProvenance(tab: TabState, item: MediaItem, other: Pick<MediaItem, 'methods' | 'frameIds' | 'documentIds' | 'elementIds' | 'firstSeen' | 'lastSeen'>): void {
   item.methods = unique(item.methods, other.methods);
@@ -42,6 +65,13 @@ function mergeSegmentPatterns(tab: TabState, item: MediaItem, incoming: SegmentP
 function detachFrame(tab: TabState, frameId: number, instance: number): void {
   const documentId = tab.documents[frameId];
   for (const item of Object.values(tab.media)) {
+    if (item.childManifests) item.childManifests = item.childManifests.filter(child => {
+      if (!child.frameIds.includes(frameId)) return true;
+      child.frameIds = child.frameIds.filter(id => id !== frameId);
+      child.instance = instance;
+      if (child.status === 'probing') child.status = 'observed';
+      return child.frameIds.length > 0;
+    });
     const removedProvenance = item.frameIds.includes(frameId) || documentId !== undefined && item.documentIds.includes(documentId) ||
       item.elementIds.some(id => id.startsWith(`${frameId}:`));
     item.frameIds = item.frameIds.filter(id => id !== frameId);
@@ -70,13 +100,19 @@ function replace(s: Snapshot, tab: TabState): Snapshot {
   return { ...s, revision: s.revision + 1, tabs };
 }
 export function navigate(s: Snapshot, tabId: number, url: string, now: number, documentId?: string): Snapshot {
+  const invalid = !persistedText(url) || documentId !== undefined && !persistedText(documentId);
+  if (!persistedText(url)) url = '';
+  if (documentId !== undefined && !persistedText(documentId)) documentId = undefined;
   return replace(s, { id: tabId, url, epoch: (s.tabs[tabId]?.epoch ?? 0) + 1, documentId,
-    documents: documentId ? { 0: documentId } : {}, media: {}, updatedAt: now, dropped: 0, errors: [] });
+    documents: documentId ? { 0: documentId } : {}, media: {}, updatedAt: now, dropped: invalid ? 1 : 0, errors: invalid ? ['value-limit'] : [] });
 }
 export function bindDocument(s: Snapshot, tabId: number, frameId: number, documentId: string, url?: string): Snapshot {
   const old = s.tabs[tabId];
   if (!old || old.documents[frameId] === documentId) return s;
   const tab = structuredClone(old);
+  if (!persistedText(documentId) || url !== undefined && !persistedText(url)) {
+    dropped(tab, 1, 'value-limit'); return replace(s, tab);
+  }
   if (!tab.documents[frameId] && Object.keys(tab.documents).length >= MAX_DOCUMENTS) {
     dropped(tab, 1, 'document-limit');
     return replace(s, tab);
@@ -108,6 +144,9 @@ export function ingest(s: Snapshot, o: Observation): { state: Snapshot; probe?: 
   const rejection = rejectedResponseReason(o);
   if (!classification && !owner && !(rejection && old.media[url])) return { state: s };
   const tab = structuredClone(old);
+  if (!persistedText(url) || o.documentId !== undefined && !persistedText(o.documentId)) {
+    dropped(tab, 1, 'value-limit'); return { state: replace(s, tab) };
+  }
   if (o.documentId && !tab.documents[o.frameId]) {
     if (Object.keys(tab.documents).length >= MAX_DOCUMENTS) {
       dropped(tab, 1, 'document-limit');
@@ -119,40 +158,61 @@ export function ingest(s: Snapshot, o: Observation): { state: Snapshot; probe?: 
   const now = o.observedAt ?? Date.now();
   const existing = tab.media[owner?.id ?? url];
   if (!existing && Object.keys(tab.media).length >= MAX_ITEMS) {
-    dropped(tab, 1, 'item-limit');
-    return { state: replace(s, tab) };
+    const strength = (status: string, type: string) => status === 'confirmed' || status === 'unsupported' ? 3 : type === 'hls' || type === 'dash' ? 2 : 1;
+    const incoming = strength(classification!.status, classification!.kind);
+    const weakest = Object.values(tab.media).filter(candidate => strength(candidate.status, candidate.type) < incoming)
+      .sort((a, b) => strength(a.status, a.type) - strength(b.status, b.type) || a.firstSeen - b.firstSeen)[0];
+    if (!weakest) { dropped(tab, 1, 'item-limit'); return { state: replace(s, tab) }; }
+    delete tab.media[weakest.id];
+    dropped(tab, 1, 'item-evicted');
   }
   // The guard above guarantees classification for every newly created candidate.
   const item: MediaItem = existing ?? { id: url, url, instance: s.revision + 1, type: classification!.kind, status: classification!.status,
     methods: [], frameIds: [], documentIds: [], elementIds: [], firstSeen: now, lastSeen: now, variants: [], childUrls: [], segmentUrls: [], reason: classification!.reason };
   const hadNetworkEvidence = item.methods.includes('network');
   mergeProvenance(tab, item, { methods: [o.method], frameIds: [o.frameId], documentIds: o.documentId ? [o.documentId] : [],
-    elementIds: o.elementId ? [`${o.frameId}:${o.elementId}`] : [], firstSeen: now, lastSeen: now });
+    elementIds: o.elementId && persistedText(`${o.frameId}:${o.elementId}`) ? [`${o.frameId}:${o.elementId}`] : [], firstSeen: now, lastSeen: now });
   const strongerType = !owner && classification && classification.kind !== item.type && !item.methods.includes('manifest') &&
     (classification.probe || o.method === 'network') && (o.method === 'network' || !hadNetworkEvidence);
   if (strongerType) { item.type = classification.kind; item.status = classification.status; item.reason = classification.reason; }
   if (rejection && owner) {
     tab.errors = unique(tab.errors, [`child-response:${rejection}:${url}`.slice(0, 1000)]);
   } else if (rejection && item.status !== 'unsupported') {
-    item.status = 'unresolved'; item.reason = rejection;
+    item.status = 'unresolved'; item.reason = rejection.slice(0, 1000);
   } else if (!owner && classification?.status === 'confirmed' && item.status !== 'unsupported' &&
       (item.type === 'direct') && (o.method === 'network' || !item.reason?.startsWith('network-'))) {
     item.status = 'confirmed'; item.reason = undefined;
   }
   if (!owner) for (const key of ['mime', 'bytes', 'title', 'width', 'height', 'duration', 'poster'] as const) {
     if (key === 'mime' && o.method !== 'network' && hadNetworkEvidence) continue;
-    const value = o[key]; if (value !== undefined) Object.assign(item, { [key]: value });
+    const value = o[key];
+    if (value !== undefined) {
+      if (typeof value === 'string' ? persistedText(value) : Number.isFinite(value)) Object.assign(item, { [key]: value });
+      else dropped(tab, 1, 'value-limit');
+    }
   }
   tab.media[item.id] = item; tab.updatedAt = now;
-  if (o.frameId === 0 && o.title) tab.title = o.title;
-  const probe = !owner && classification?.probe && (!existing || strongerType) ? { tabId: o.tabId, epoch: tab.epoch, itemId: url, url,
+  if (o.frameId === 0 && o.title && persistedText(o.title)) tab.title = o.title;
+  let probe: ProbeJob | undefined = !owner && classification?.probe && (!existing || strongerType) ? { tabId: o.tabId, epoch: tab.epoch, itemId: url, url,
     kind: classification.kind as 'hls' | 'dash', instance: item.instance } : undefined;
+  if (owner && item.type === 'hls' && item.childUrls.includes(url) && !rejection?.startsWith('network-http:')) {
+    const child = rememberChild(tab, item, { url, instance: s.revision + 1, status: 'observed', frameIds: [o.frameId] });
+    if (child && (child.status === 'observed' || child.status === 'probing')) probe = { tabId: tab.id, epoch: tab.epoch, itemId: url, url, kind: 'hls', instance: child.instance };
+  }
   return { state: replace(s, tab), probe };
 }
-function jobTab(s: Snapshot, job: ProbeJob): TabState | undefined {
+
+/** Resolve both ordinary jobs and child jobs transferred to a current owner during grouping. */
+export function resolveProbeJob(s: Snapshot, job: ProbeJob): { tab: TabState; item: MediaItem; child?: ChildManifest } | undefined {
   const tab = s.tabs[job.tabId];
+  if (!tab || tab.epoch !== job.epoch) return;
   const item = tab?.media[job.itemId];
-  return tab?.epoch === job.epoch && item?.url === job.url && item.type === job.kind && item.instance === job.instance ? structuredClone(tab) : undefined;
+  if (item?.url === job.url && item.type === job.kind && item.instance === job.instance) return { tab, item };
+  if (job.kind !== 'hls' || job.itemId !== job.url) return;
+  for (const owner of Object.values(tab.media)) {
+    const child = owner.childManifests?.find(work => work.url === job.url && work.instance === job.instance);
+    if (owner.type === 'hls' && child) return { tab, item: owner, child };
+  }
 }
 function mergeVariants(tab: TabState, preferred: Variant[], previous: Variant[]): Variant[] {
   const variants = new Map<string, Variant>();
@@ -164,13 +224,16 @@ function mergeVariants(tab: TabState, preferred: Variant[], previous: Variant[])
   return [...variants.values()].slice(0, 20);
 }
 export function applyManifest(s: Snapshot, job: ProbeJob, info: ManifestInfo): Snapshot {
-  const tab = jobTab(s, job); if (!tab) return s;
-  const item = tab.media[job.itemId];
+  const target = resolveProbeJob(s, job); if (!target) return s;
+  if (!boundedManifestValues(info)) return probeFailed(s, job, 'manifest-value-limit');
+  const tab = structuredClone(target.tab);
+  const item = tab.media[target.item.id];
+  if (target.child) item.childManifests!.find(child => child.url === job.url)!.status = 'confirmed';
   item.type = info.type;
   item.methods = unique(item.methods, ['manifest']);
-  item.variants = mergeVariants(tab, info.variants, item.variants); item.live = mergeLive(info.live, item.live); item.protected = info.protected || item.protected === true;
-  item.childUrls = bounded(tab, item.childUrls, info.childUrls, 10000, 'relationship-limit');
-  item.segmentUrls = bounded(tab, item.segmentUrls, info.segmentUrls, 10000, 'relationship-limit');
+  item.variants = target.child ? mergeVariants(tab, item.variants, info.variants) : mergeVariants(tab, info.variants, item.variants);
+  item.live = mergeLive(info.live, item.live); item.protected = info.protected || item.protected === true;
+  mergeReferences(tab, item, info);
   mergeSegmentPatterns(tab, item, info.segmentPatterns);
   if (info.duration !== undefined) item.duration = info.duration;
   // Child evidence may introduce more descendants; revisit until every known row is grouped.
@@ -179,9 +242,13 @@ export function applyManifest(s: Snapshot, job: ProbeJob, info: ManifestInfo): S
     grouped = false;
     for (const other of Object.values(tab.media)) if (other.id !== item.id && ownsUrl(item, other.url)) {
       mergeProvenance(tab, item, other);
+      if (item.type === 'hls' && item.childUrls.includes(other.url)) {
+        rememberChild(tab, item, { url: other.url, instance: other.instance, frameIds: other.frameIds,
+          status: other.type !== 'hls' ? 'observed' : other.status === 'unsupported' ? 'confirmed' : other.status });
+        for (const child of other.childManifests ?? []) rememberChild(tab, item, child);
+      }
       item.variants = mergeVariants(tab, item.variants, other.variants);
-      item.childUrls = bounded(tab, item.childUrls, other.childUrls, 10000, 'relationship-limit');
-      item.segmentUrls = bounded(tab, item.segmentUrls, other.segmentUrls, 10000, 'relationship-limit');
+      mergeReferences(tab, item, other);
       mergeSegmentPatterns(tab, item, other.segmentPatterns);
       item.protected = item.protected || other.protected === true; item.live = mergeLive(item.live, other.live);
       if (item.duration === undefined && other.duration !== undefined) item.duration = other.duration;
@@ -196,12 +263,20 @@ export function applyManifest(s: Snapshot, job: ProbeJob, info: ManifestInfo): S
   return replace(s, tab);
 }
 export function probeFailed(s: Snapshot, job: ProbeJob, reason: string): Snapshot {
-  const tab = jobTab(s, job); if (!tab) return s;
-  Object.assign(tab.media[job.itemId], { status: 'unresolved', reason });
+  const target = resolveProbeJob(s, job); if (!target) return s;
+  const tab = structuredClone(target.tab);
+  const item = tab.media[target.item.id];
+  if (target.child) {
+    Object.assign(item.childManifests!.find(child => child.url === job.url)!, { status: 'unresolved', reason: reason.slice(0, 1000) });
+    tab.errors = unique(tab.errors, [`child-manifest:${reason}:${job.url}`.slice(0, 1000)]);
+  } else Object.assign(item, { status: 'unresolved', reason: reason.slice(0, 1000) });
   return replace(s, tab);
 }
 export function probeStarted(s: Snapshot, job: ProbeJob): Snapshot {
-  const tab = jobTab(s, job); if (!tab) return s;
-  tab.media[job.itemId].status = 'probing';
+  const target = resolveProbeJob(s, job); if (!target) return s;
+  const tab = structuredClone(target.tab);
+  const item = tab.media[target.item.id];
+  if (target.child) item.childManifests!.find(child => child.url === job.url)!.status = 'probing';
+  else item.status = 'probing';
   return replace(s, tab);
 }

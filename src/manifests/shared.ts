@@ -1,8 +1,10 @@
 import type { ManifestInfo, SegmentPattern, Variant } from '../core/model.ts';
 import { MAX_SEGMENT_PATTERNS, segmentPatternKey, validSegmentPattern } from '../core/segments.ts';
+import { boundedManifestValues, MAX_REFERENCE_CHARS, persistedText } from '../core/limits.ts';
 
 export const MAX_VARIANTS = 20;
 const MAX_REFERENCES = 10_000;
+const referenceSizes = new WeakMap<string[], number>();
 
 export function checkText(text: string): void {
   if (typeof text !== 'string' || !text.trim()) throw new Error('Empty manifest');
@@ -19,11 +21,15 @@ export function resolveHttp(reference: string, baseUrl: string): string {
     throw new Error('Unsafe manifest URL: HTTP(S) without credentials required');
   }
   url.hash = '';
+  if (!persistedText(url.href)) throw new Error('Manifest URL length limit exceeded');
   return url.href;
 }
 
 export function addReference(target: string[], url: string): void {
+  const size = (referenceSizes.get(target) ?? 0) + url.length;
+  if (!persistedText(url) || size > MAX_REFERENCE_CHARS) throw new Error('Manifest reference size limit exceeded');
   if (target.length >= MAX_REFERENCES) throw new Error('Manifest reference limit exceeded');
+  referenceSizes.set(target, size);
   target.push(url);
 }
 
@@ -37,6 +43,7 @@ export function addSegmentPattern(info: ManifestInfo, pattern: SegmentPattern): 
 }
 
 export function addVariant(info: ManifestInfo, variant: Variant): void {
+  if (!boundedManifestValues(variant)) throw new Error('Manifest variant value length limit exceeded');
   if (variant.url) addReference(info.childUrls, variant.url);
   variant.id = `${info.type}:${info.variants.length + (info.truncated ?? 0)}`;
   if (info.variants.length < MAX_VARIANTS) info.variants.push(variant);
@@ -59,6 +66,8 @@ export function positiveNumber(value: string | undefined, field: string): number
 }
 
 export function uniqueReferences(info: ManifestInfo): ManifestInfo {
+  const size = [...info.childUrls, ...info.segmentUrls, ...(info.segmentPatterns ?? []).flatMap(pattern => pattern.literals)].reduce((sum, url) => sum + url.length, 0);
+  if (size > MAX_REFERENCE_CHARS) throw new Error('Manifest reference size limit exceeded');
   info.childUrls = [...new Set(info.childUrls)];
   info.segmentUrls = [...new Set(info.segmentUrls)];
   return info;

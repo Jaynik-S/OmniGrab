@@ -1,10 +1,11 @@
-interface FrameLifecycle { token: bigint; pending: boolean }
+interface FrameLifecycle { token: bigint; pending: boolean; url?: string }
 interface TabLifecycle {
   token: bigint;
   pending: boolean;
   closed: boolean;
   frames: Map<number, FrameLifecycle>;
   unknownFramesBlocked: boolean;
+  url?: string;
 }
 export interface LifecycleToken { tabId: number; frameId: number; tab: bigint; frame: bigint }
 
@@ -60,15 +61,15 @@ export class DocumentLifecycle {
       !!frame && !frame.pending && frame.token === token.frame;
   }
 
-  before(tabId: number, frameId: number): void {
+  before(tabId: number, frameId: number, url?: string): void {
     const tab = this.tab(tabId, true);
     if (!tab) return;
     if (frameId === 0) {
-      tab.token = ++this.next; tab.pending = true; tab.closed = false;
+      tab.token = ++this.next; tab.pending = true; tab.closed = false; tab.url = url;
       tab.frames.clear(); tab.unknownFramesBlocked = false;
     } else if (!tab.closed && !tab.pending) {
       const frame = this.frame(tab, frameId, true);
-      if (frame) { frame.token = ++this.next; frame.pending = true; }
+      if (frame) { frame.token = ++this.next; frame.pending = true; frame.url = url; }
     }
   }
 
@@ -89,14 +90,19 @@ export class DocumentLifecycle {
     return { pending };
   }
 
-  failed(tabId: number, frameId: number): void {
+  failed(tabId: number, frameId: number, url?: string): boolean {
     const tab = this.tabs.get(tabId);
-    if (!tab) return;
-    if (frameId === 0) { tab.token = ++this.next; tab.pending = false; }
+    if (!tab || tab.closed) return false;
+    if (frameId === 0) {
+      if (!tab.pending || url !== undefined && tab.url !== url) return false;
+      tab.token = ++this.next; tab.pending = false;
+    }
     else {
       const frame = tab.frames.get(frameId);
-      if (frame) { frame.token = ++this.next; frame.pending = false; }
+      if (tab.pending || !frame?.pending || url !== undefined && frame.url !== url) return false;
+      frame.token = ++this.next; frame.pending = false;
     }
+    return true;
   }
 
   removed(tabId: number): void {
