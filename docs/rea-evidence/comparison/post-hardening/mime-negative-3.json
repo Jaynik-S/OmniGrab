@@ -1,0 +1,221 @@
+{
+  "id": "mime-negative",
+  "trial": 3,
+  "category": "misleading .mp4 with HTML MIME",
+  "url": "http://127.0.0.1:4562/mime-negative",
+  "expected": [],
+  "tabId": 337631542,
+  "startedAt": "2026-10-16T00:11:35.215Z",
+  "actions": "Navigate only",
+  "errors": [],
+  "responses": [],
+  "changes": [
+    {
+      "wallMs": 1792109495249.7444,
+      "ours": {
+        "browserWallMs": 1792109495225,
+        "revision": 426,
+        "tabId": 337631542,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792109495248,
+        "tabId": 337631542,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792109495438.1826,
+      "ours": {
+        "browserWallMs": 1792109495437,
+        "revision": 429,
+        "tabId": 337631542,
+        "tabUrl": "http://127.0.0.1:4562/mime-negative",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:4563/misleading.mp4",
+            "type": "direct",
+            "status": "observed",
+            "firstSeen": 1792109495336,
+            "lastSeen": 1792109495336,
+            "methods": [
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "3AADCFE64EA097054A73814FA6D14110"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792109495435,
+        "tabId": 337631542,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792109495660.667,
+      "ours": {
+        "browserWallMs": 1792109495659,
+        "revision": 430,
+        "tabId": 337631542,
+        "tabUrl": "http://127.0.0.1:4562/mime-negative",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:4563/misleading.mp4",
+            "type": "direct",
+            "status": "observed",
+            "firstSeen": 1792109495336,
+            "lastSeen": 1792109495434,
+            "methods": [
+              "resource",
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "3AADCFE64EA097054A73814FA6D14110"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792109495658,
+        "tabId": 337631542,
+        "items": []
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792109495214.823,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792109502259,
+      "revision": 430,
+      "tabId": 337631542,
+      "tabUrl": "http://127.0.0.1:4562/mime-negative",
+      "epoch": 2,
+      "errors": [],
+      "items": [
+        {
+          "url": "http://127.0.0.1:4563/misleading.mp4",
+          "type": "direct",
+          "status": "observed",
+          "firstSeen": 1792109495336,
+          "lastSeen": 1792109495434,
+          "methods": [
+            "resource",
+            "dom"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "3AADCFE64EA097054A73814FA6D14110"
+          ],
+          "elementIds": [
+            "0:media-1"
+          ],
+          "variants": [],
+          "childUrls": []
+        }
+      ]
+    },
+    "original": {
+      "browserWallMs": 1792109502258,
+      "tabId": 337631542,
+      "items": []
+    }
+  },
+  "documentStatus": 200,
+  "dom": [
+    {
+      "frameUrl": "http://127.0.0.1:4562/mime-negative",
+      "media": [
+        {
+          "currentSrc": "http://127.0.0.1:4563/misleading.mp4",
+          "src": "http://127.0.0.1:4563/misleading.mp4",
+          "readyState": 0,
+          "width": 0,
+          "height": 0,
+          "paused": true,
+          "errorCode": 4
+        }
+      ]
+    }
+  ],
+  "popup": {
+    "openedWallMs": 1792109501850.4578,
+    "observedWallMs": 1792109502245.7964,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nNegative MIME evidence\n\nhttp://127.0.0.1:4562/mime-negative\n\nRevision 430 · Tab 337631542 · Generation 2\n\nNegative MIME evidence\ndirect · observed\n\nhttp://127.0.0.1:4563/misleading.mp4\n\nCopy URL\n\nMethods: resource, dom · Frames: 0\n\nFirst seen 8:11:35 PM · Last seen 8:11:35 PM\n\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 1,
+    "context": "Negative MIME evidence\n\nhttp://127.0.0.1:4562/mime-negative\n\nRevision 430 · Tab 337631542 · Generation 2",
+    "status": "",
+    "viewport": {
+      "width": 460,
+      "height": 495,
+      "devicePixelRatio": 1,
+      "bodyWidth": 460
+    },
+    "expectedContextVisible": true,
+    "artifact": "mime-negative-3-popup.png",
+    "kind": "Actual chrome.action popup"
+  },
+  "polling": {
+    "samples": 35,
+    "requestedMs": 200,
+    "minIntervalMs": 198.3291015625,
+    "maxIntervalMs": 223.6962890625
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": null,
+    "firstConfirmedAfterNavigationMs": null,
+    "originalFirstAfterNavigationMs": null,
+    "firstExpectedResponseAfterNavigationMs": null,
+    "candidateAfterExpectedResponseMs": null,
+    "confirmedAfterExpectedResponseMs": null,
+    "originalAfterExpectedResponseMs": null,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 1,
+      "confirmedGroups": 0,
+      "blobContexts": 0,
+      "expectedMatched": 0,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    },
+    "original": {
+      "groups": 0,
+      "confirmedGroups": 0,
+      "blobContexts": 0,
+      "expectedMatched": 0,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "pass",
+  "originalStatus": "pass",
+  "endedAt": "2026-10-16T00:11:42.451Z"
+}

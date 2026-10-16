@@ -1,0 +1,963 @@
+{
+  "id": "hls-child-master-inflight",
+  "trial": 1,
+  "category": "controlled HLS observed-child request order",
+  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+  "expected": [
+    "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8"
+  ],
+  "expectedVideoVariants": 2,
+  "tabId": 1123594969,
+  "startedAt": "2026-10-16T00:28:03.243Z",
+  "actions": "Navigate, then declared page button interaction",
+  "errors": [
+    {
+      "type": "setup-or-action",
+      "message": "Actual action popup target unavailable after chrome.action.openPopup"
+    }
+  ],
+  "responses": [
+    {
+      "wallMs": 1792110483311.7537,
+      "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+      "status": 200
+    },
+    {
+      "wallMs": 1792110483324.3171,
+      "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+      "status": 200
+    }
+  ],
+  "changes": [
+    {
+      "wallMs": 1792110483296.31,
+      "ours": {
+        "browserWallMs": 1792110483259,
+        "revision": 22,
+        "tabId": 1123594969,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792110483290,
+        "tabId": 1123594969,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110483471.4517,
+      "ours": {
+        "browserWallMs": 1792110483451,
+        "revision": 33,
+        "tabId": 1123594969,
+        "tabUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+            "type": "hls",
+            "status": "unsupported",
+            "reason": "protected-manifest",
+            "firstSeen": 1792110483306,
+            "lastSeen": 1792110483438,
+            "bytes": 140,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "0094D89D9200B2D5A83AA0113BB40658"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 1000000,
+                "height": 540,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                "width": 960
+              },
+              {
+                "bandwidth": 500000,
+                "height": 270,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8",
+                "width": 480
+              }
+            ],
+            "childUrls": [
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8"
+            ],
+            "segmentUrls": [
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/init.mp4",
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-002.mp4"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 25,
+                "status": "confirmed",
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8"
+              }
+            ],
+            "duration": 5.005,
+            "protected": true,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110483471,
+        "tabId": 1123594969,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110483675.0186,
+      "ours": {
+        "browserWallMs": 1792110483672,
+        "revision": 34,
+        "tabId": 1123594969,
+        "tabUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+            "type": "hls",
+            "status": "unsupported",
+            "reason": "protected-manifest",
+            "firstSeen": 1792110483306,
+            "lastSeen": 1792110483538,
+            "bytes": 140,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "0094D89D9200B2D5A83AA0113BB40658"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 1000000,
+                "height": 540,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                "width": 960
+              },
+              {
+                "bandwidth": 500000,
+                "height": 270,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8",
+                "width": 480
+              }
+            ],
+            "childUrls": [
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8"
+            ],
+            "segmentUrls": [
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/init.mp4",
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-002.mp4"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 25,
+                "status": "confirmed",
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8"
+              }
+            ],
+            "duration": 5.005,
+            "protected": true,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110483673,
+        "tabId": 1123594969,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110484091.653,
+      "ours": {
+        "browserWallMs": 1792110484083,
+        "revision": 34,
+        "tabId": 1123594969,
+        "tabUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+            "type": "hls",
+            "status": "unsupported",
+            "reason": "protected-manifest",
+            "firstSeen": 1792110483306,
+            "lastSeen": 1792110483538,
+            "bytes": 140,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "0094D89D9200B2D5A83AA0113BB40658"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 1000000,
+                "height": 540,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                "width": 960
+              },
+              {
+                "bandwidth": 500000,
+                "height": 270,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8",
+                "width": 480
+              }
+            ],
+            "childUrls": [
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8"
+            ],
+            "segmentUrls": [
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/init.mp4",
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+              "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-002.mp4"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 25,
+                "status": "confirmed",
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8"
+              }
+            ],
+            "duration": 5.005,
+            "protected": true,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110484090,
+        "tabId": 1123594969,
+        "tabUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+            "discoveredAt": 1792110483424,
+            "protected": false,
+            "variants": [
+              {
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                "width": 960,
+                "height": 540,
+                "bandwidth": 1000000
+              },
+              {
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8",
+                "width": 480,
+                "height": 270,
+                "bandwidth": 500000
+              }
+            ]
+          },
+          {
+            "type": "http_playlist",
+            "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+            "discoveredAt": 1792110483469,
+            "extension": "mp4",
+            "protected": false,
+            "variants": [
+              {
+                "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+                "bandwidth": null
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792110483242.3816,
+  "documentStatus": 200,
+  "actionWallMs": 1792110483288.0776,
+  "order": {
+    "mode": "genuine ffmpeg-remuxed CC0 fMP4 HLS assets; network-order test only",
+    "expectedDuration": 5.005,
+    "expectedProtected": true,
+    "protectionDeclarationOnly": true,
+    "playbackClaim": false,
+    "stages": [
+      {
+        "label": "independent child probe in progress",
+        "observedWallMs": 1792110483318.4365,
+        "state": {
+          "browserWallMs": 1792110483317,
+          "revision": 26,
+          "tabId": 1123594969,
+          "tabUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+          "epoch": 2,
+          "errors": [],
+          "items": [
+            {
+              "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+              "type": "hls",
+              "status": "probing",
+              "firstSeen": 1792110483306,
+              "lastSeen": 1792110483306,
+              "bytes": 257,
+              "methods": [
+                "network"
+              ],
+              "frameIds": [
+                0
+              ],
+              "documentIds": [
+                "0094D89D9200B2D5A83AA0113BB40658"
+              ],
+              "elementIds": [],
+              "variants": [],
+              "childUrls": [],
+              "segmentUrls": []
+            }
+          ]
+        }
+      },
+      {
+        "label": "master parsed before child completion",
+        "observedWallMs": 1792110483412.3733,
+        "state": {
+          "browserWallMs": 1792110483408,
+          "revision": 31,
+          "tabId": 1123594969,
+          "tabUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+          "epoch": 2,
+          "errors": [],
+          "items": [
+            {
+              "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+              "type": "hls",
+              "status": "confirmed",
+              "firstSeen": 1792110483306,
+              "lastSeen": 1792110483364,
+              "bytes": 140,
+              "methods": [
+                "network",
+                "manifest",
+                "resource"
+              ],
+              "frameIds": [
+                0
+              ],
+              "documentIds": [
+                "0094D89D9200B2D5A83AA0113BB40658"
+              ],
+              "elementIds": [],
+              "variants": [
+                {
+                  "bandwidth": 1000000,
+                  "height": 540,
+                  "id": "hls:0",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                  "width": 960
+                },
+                {
+                  "bandwidth": 500000,
+                  "height": 270,
+                  "id": "hls:1",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8",
+                  "width": 480
+                }
+              ],
+              "childUrls": [
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8"
+              ],
+              "segmentUrls": [],
+              "childManifests": [
+                {
+                  "frameIds": [
+                    0
+                  ],
+                  "instance": 25,
+                  "status": "probing",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8"
+                }
+              ],
+              "protected": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "durable observed-child descriptor probing",
+        "observedWallMs": 1792110483415.9993,
+        "state": {
+          "browserWallMs": 1792110483415,
+          "revision": 31,
+          "tabId": 1123594969,
+          "tabUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+          "epoch": 2,
+          "errors": [],
+          "items": [
+            {
+              "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+              "type": "hls",
+              "status": "confirmed",
+              "firstSeen": 1792110483306,
+              "lastSeen": 1792110483364,
+              "bytes": 140,
+              "methods": [
+                "network",
+                "manifest",
+                "resource"
+              ],
+              "frameIds": [
+                0
+              ],
+              "documentIds": [
+                "0094D89D9200B2D5A83AA0113BB40658"
+              ],
+              "elementIds": [],
+              "variants": [
+                {
+                  "bandwidth": 1000000,
+                  "height": 540,
+                  "id": "hls:0",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                  "width": 960
+                },
+                {
+                  "bandwidth": 500000,
+                  "height": 270,
+                  "id": "hls:1",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8",
+                  "width": 480
+                }
+              ],
+              "childUrls": [
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8"
+              ],
+              "segmentUrls": [],
+              "childManifests": [
+                {
+                  "frameIds": [
+                    0
+                  ],
+                  "instance": 25,
+                  "status": "probing",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8"
+                }
+              ],
+              "protected": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "selected child metadata merged into parent",
+        "observedWallMs": 1792110483425.15,
+        "state": {
+          "browserWallMs": 1792110483424,
+          "revision": 32,
+          "tabId": 1123594969,
+          "tabUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+          "epoch": 2,
+          "errors": [],
+          "items": [
+            {
+              "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+              "type": "hls",
+              "status": "unsupported",
+              "reason": "protected-manifest",
+              "firstSeen": 1792110483306,
+              "lastSeen": 1792110483364,
+              "bytes": 140,
+              "methods": [
+                "network",
+                "manifest",
+                "resource"
+              ],
+              "frameIds": [
+                0
+              ],
+              "documentIds": [
+                "0094D89D9200B2D5A83AA0113BB40658"
+              ],
+              "elementIds": [],
+              "variants": [
+                {
+                  "bandwidth": 1000000,
+                  "height": 540,
+                  "id": "hls:0",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                  "width": 960
+                },
+                {
+                  "bandwidth": 500000,
+                  "height": 270,
+                  "id": "hls:1",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8",
+                  "width": 480
+                }
+              ],
+              "childUrls": [
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8"
+              ],
+              "segmentUrls": [
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/init.mp4",
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-002.mp4"
+              ],
+              "childManifests": [
+                {
+                  "frameIds": [
+                    0
+                  ],
+                  "instance": 25,
+                  "status": "confirmed",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8"
+                }
+              ],
+              "duration": 5.005,
+              "protected": true,
+              "live": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "observed MP4 segment remains owned by one master",
+        "observedWallMs": 1792110483451.445,
+        "state": {
+          "browserWallMs": 1792110483451,
+          "revision": 33,
+          "tabId": 1123594969,
+          "tabUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+          "epoch": 2,
+          "errors": [],
+          "items": [
+            {
+              "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+              "type": "hls",
+              "status": "unsupported",
+              "reason": "protected-manifest",
+              "firstSeen": 1792110483306,
+              "lastSeen": 1792110483438,
+              "bytes": 140,
+              "methods": [
+                "network",
+                "manifest",
+                "resource"
+              ],
+              "frameIds": [
+                0
+              ],
+              "documentIds": [
+                "0094D89D9200B2D5A83AA0113BB40658"
+              ],
+              "elementIds": [],
+              "variants": [
+                {
+                  "bandwidth": 1000000,
+                  "height": 540,
+                  "id": "hls:0",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                  "width": 960
+                },
+                {
+                  "bandwidth": 500000,
+                  "height": 270,
+                  "id": "hls:1",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8",
+                  "width": 480
+                }
+              ],
+              "childUrls": [
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8"
+              ],
+              "segmentUrls": [
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/init.mp4",
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+                "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-002.mp4"
+              ],
+              "childManifests": [
+                {
+                  "frameIds": [
+                    0
+                  ],
+                  "instance": 25,
+                  "status": "confirmed",
+                  "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8"
+                }
+              ],
+              "duration": 5.005,
+              "protected": true,
+              "live": false
+            }
+          ]
+        }
+      }
+    ],
+    "workerRequests": [
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+        "observedWallMs": 1792110483316.769,
+        "source": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+      },
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+        "observedWallMs": 1792110483331.6702,
+        "source": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+      }
+    ],
+    "requestObservations": [
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+        "observedWallMs": 1792110483294.3188,
+        "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js"
+      },
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+        "observedWallMs": 1792110483303.1135,
+        "source": "page-or-unattributed"
+      },
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+        "observedWallMs": 1792110483308.5862,
+        "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js"
+      },
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+        "observedWallMs": 1792110483316.769,
+        "source": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+      },
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+        "observedWallMs": 1792110483321.8416,
+        "source": "page-or-unattributed"
+      },
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+        "observedWallMs": 1792110483328.849,
+        "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js"
+      },
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+        "observedWallMs": 1792110483331.6702,
+        "source": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+      },
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+        "observedWallMs": 1792110483340.471,
+        "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js"
+      },
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+        "observedWallMs": 1792110483432.0535,
+        "source": "page-or-unattributed"
+      },
+      {
+        "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+        "observedWallMs": 1792110483440.232,
+        "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js"
+      }
+    ],
+    "parentFirstSeen": 1792110483306,
+    "assessment": {
+      "onePrimaryGroup": true,
+      "childConfirmed": true,
+      "childDurationMerged": true,
+      "childLiveMerged": true,
+      "childProtectionMerged": true,
+      "firstSeenPreserved": true,
+      "noUnusedChildWork": true
+    },
+    "serverRequests": [
+      {
+        "name": "",
+        "method": "GET",
+        "at": 1792110483260
+      },
+      {
+        "name": "",
+        "method": "GET",
+        "at": 1792110483299
+      },
+      {
+        "name": "child.m3u8",
+        "method": "POST",
+        "at": 1792110483304
+      },
+      {
+        "name": "child.m3u8",
+        "method": "GET",
+        "at": 1792110483311
+      },
+      {
+        "name": "child.m3u8",
+        "method": "GET",
+        "at": 1792110483319
+      },
+      {
+        "name": "master.m3u8",
+        "method": "POST",
+        "at": 1792110483323
+      },
+      {
+        "name": "master.m3u8",
+        "method": "GET",
+        "at": 1792110483331
+      },
+      {
+        "name": "master.m3u8",
+        "method": "GET",
+        "at": 1792110483334
+      },
+      {
+        "name": "child.m3u8",
+        "method": "GET",
+        "at": 1792110483342
+      },
+      {
+        "name": "video-001.mp4",
+        "method": "POST",
+        "at": 1792110483434
+      },
+      {
+        "name": "video-001.mp4",
+        "method": "GET",
+        "at": 1792110483442
+      }
+    ],
+    "noAutomaticUnusedFetch": true,
+    "noKeyFetch": true,
+    "passed": true
+  },
+  "final": {
+    "ours": {
+      "browserWallMs": 1792110493947,
+      "revision": 34,
+      "tabId": 1123594969,
+      "tabUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+      "epoch": 2,
+      "errors": [],
+      "items": [
+        {
+          "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+          "type": "hls",
+          "status": "unsupported",
+          "reason": "protected-manifest",
+          "firstSeen": 1792110483306,
+          "lastSeen": 1792110483538,
+          "bytes": 140,
+          "methods": [
+            "network",
+            "manifest",
+            "resource"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "0094D89D9200B2D5A83AA0113BB40658"
+          ],
+          "elementIds": [],
+          "variants": [
+            {
+              "bandwidth": 1000000,
+              "height": 540,
+              "id": "hls:0",
+              "kind": "video",
+              "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+              "width": 960
+            },
+            {
+              "bandwidth": 500000,
+              "height": 270,
+              "id": "hls:1",
+              "kind": "video",
+              "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8",
+              "width": 480
+            }
+          ],
+          "childUrls": [
+            "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+            "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8"
+          ],
+          "segmentUrls": [
+            "http://127.0.0.1:9906/order/hls-child-master-inflight-1/init.mp4",
+            "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+            "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-002.mp4"
+          ],
+          "childManifests": [
+            {
+              "frameIds": [
+                0
+              ],
+              "instance": 25,
+              "status": "confirmed",
+              "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8"
+            }
+          ],
+          "duration": 5.005,
+          "protected": true,
+          "live": false
+        }
+      ]
+    },
+    "original": {
+      "browserWallMs": 1792110493948,
+      "tabId": 1123594969,
+      "tabUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+      "items": [
+        {
+          "type": "m3u8_playlist",
+          "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8",
+          "discoveredAt": 1792110483424,
+          "protected": false,
+          "variants": [
+            {
+              "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/child.m3u8",
+              "width": 960,
+              "height": 540,
+              "bandwidth": 1000000
+            },
+            {
+              "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/unused.m3u8",
+              "width": 480,
+              "height": 270,
+              "bandwidth": 500000
+            }
+          ]
+        },
+        {
+          "type": "http_playlist",
+          "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+          "discoveredAt": 1792110483469,
+          "extension": "mp4",
+          "protected": false,
+          "variants": [
+            {
+              "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4",
+              "bandwidth": null
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "actionCompletedWallMs": 1792110483452.086,
+  "dom": [
+    {
+      "frameUrl": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+      "media": []
+    }
+  ],
+  "setupPage": {
+    "title": "HLS request-order control",
+    "url": "http://127.0.0.1:9906/order/hls-child-master-inflight-1/",
+    "controls": [],
+    "inputs": []
+  },
+  "polling": {
+    "samples": 53,
+    "requestedMs": 200,
+    "minIntervalMs": 198.772216796875,
+    "maxIntervalMs": 223.23291015625,
+    "deliberatePauses": []
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": 229.070068359375,
+    "firstConfirmedAfterNavigationMs": null,
+    "originalFirstAfterNavigationMs": 849.271484375,
+    "firstExpectedResponseAfterNavigationMs": 81.935546875,
+    "candidateAfterExpectedResponseMs": 147.134521484375,
+    "confirmedAfterExpectedResponseMs": null,
+    "originalAfterExpectedResponseMs": 767.3359375,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 1,
+      "confirmedGroups": 0,
+      "blobContexts": 0,
+      "expectedMatched": 0,
+      "missed": [
+        "http://127.0.0.1:9906/order/hls-child-master-inflight-1/master.m3u8"
+      ],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0,
+      "videoVariants": 2,
+      "expectedOwnerStatus": "unsupported",
+      "expectedOwnerPresent": true,
+      "orderedMetadataPassed": true
+    },
+    "original": {
+      "groups": 2,
+      "confirmedGroups": 2,
+      "blobContexts": 0,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [
+        "http://127.0.0.1:9906/order/hls-child-master-inflight-1/video-001.mp4"
+      ],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "blocked",
+  "originalStatus": "blocked",
+  "endedAt": "2026-10-16T00:28:14.149Z"
+}

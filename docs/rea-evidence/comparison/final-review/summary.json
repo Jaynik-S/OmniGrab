@@ -1,0 +1,406 @@
+{
+  "command": "node scripts/browser-comparison.mjs --trials=3 --cases=direct-mp4,direct-webm,hls,dash,multiple,no-video,mime-negative,hls-master-child,hls-child-master-inflight,hls-pending-child-restart --output=docs/rea-evidence/comparison/final-review",
+  "exitCode": 0,
+  "build": {
+    "gitRevision": "be4669b1b3b75b1cda89b6cbc47a5bb64777529f",
+    "files": {
+      "background.js": "a97773cd68c25a1a845ca3b25da4a1c36049aa87b0a8667d0b04b4659eb90d50",
+      "content.js": "e816cb4d19c77db16f55c792f8e55c83c8af878cf124eab40c0fc829eda0248c",
+      "popup/index.js": "2f0f2b4e63970ac310920cc3212ec2b0ae5c0afb91a9cbcf7a9876e69eb52981",
+      "popup/index.html": "0b4b915030a6524adfd88f5d46a3008c0c3e30b438f11ce8806888ff7ea124fd",
+      "popup/style.css": "c0718d0d8a5dff73495c52179ac88e56bec719ad55eb6b20c891296491fd943e",
+      "manifest.json": "f251c7f0e66a883d451d2aaa7dfc24fe9178969acb367943e7b4e7126538f410"
+    }
+  },
+  "browser": "153.0.8010.12",
+  "startedAt": "2026-10-16T00:33:02.406Z",
+  "endedAt": "2026-10-16T00:37:19.644Z",
+  "debuggingPort": 9013,
+  "browserEndpointClosed": true,
+  "caseCount": 30,
+  "newPass": 30,
+  "originalPass": 21,
+  "ordinaryCases": {
+    "count": 21,
+    "newPass": 21,
+    "originalPass": 21
+  },
+  "orderCases": {
+    "count": 9,
+    "newPass": 9,
+    "originalPass": 0,
+    "oneOwner": true,
+    "metadataAssertionsPassed": true,
+    "ownUnusedFetches": 0,
+    "allCallerUnusedRequests": 0,
+    "allCallerKeyRequests": 0,
+    "restarts": [
+      {
+        "versionId": "0",
+        "stopped": true,
+        "sentinelCleared": true,
+        "instrumentation": "Ephemeral own-worker global sentinel only; no source/fetch modification",
+        "wokeWithOrdinarySnapshot": true
+      },
+      {
+        "versionId": "0",
+        "stopped": true,
+        "sentinelCleared": true,
+        "instrumentation": "Ephemeral own-worker global sentinel only; no source/fetch modification",
+        "wokeWithOrdinarySnapshot": true
+      },
+      {
+        "versionId": "0",
+        "stopped": true,
+        "sentinelCleared": true,
+        "instrumentation": "Ephemeral own-worker global sentinel only; no source/fetch modification",
+        "wokeWithOrdinarySnapshot": true
+      }
+    ],
+    "protectedOwnerStatuses": [
+      "unsupported",
+      "unsupported",
+      "unsupported"
+    ]
+  },
+  "newFp": 0,
+  "originalFp": 9,
+  "newDuplicates": 0,
+  "originalDuplicates": 0,
+  "pollIntervalRangeMs": [
+    198,
+    417
+  ],
+  "deliberatePollPauses": [
+    {
+      "startedWallMs": 1792110857096.0984,
+      "endedWallMs": 1792110857990.2573,
+      "reason": "Actual pending-child worker stop/wake; no worker storage evaluations during stop"
+    },
+    {
+      "startedWallMs": 1792110934627.6726,
+      "endedWallMs": 1792110935644.6143,
+      "reason": "Actual pending-child worker stop/wake; no worker storage evaluations during stop"
+    },
+    {
+      "startedWallMs": 1792111012409.3677,
+      "endedWallMs": 1792111013301.3264,
+      "reason": "Actual pending-child worker stop/wake; no worker storage evaluations during stop"
+    }
+  ],
+  "popupBodyWidths": [
+    460
+  ],
+  "caseErrors": [],
+  "workerErrors": [],
+  "requiredLifecycleStatus": "pass",
+  "abortedFrame": {
+    "status": "blocked",
+    "setupLimitation": "page.waitForEvent: Timeout 2000ms exceeded while waiting for event \"requestfailed\"\n=========================== logs ===========================\nwaiting for event \"requestfailed\""
+  },
+  "livePopupRenderedAfterResponseMs": 226.890625,
+  "cases": [
+    {
+      "id": "direct-mp4",
+      "newPass": 3,
+      "originalPass": 3,
+      "newCandidateMs": [
+        141,
+        190
+      ],
+      "newConfirmedMs": [
+        141,
+        190
+      ],
+      "originalPolledMs": [
+        568,
+        630
+      ],
+      "groups": [
+        1,
+        1,
+        1
+      ],
+      "confirmedGroups": [
+        1,
+        1,
+        1
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "direct-webm",
+      "newPass": 3,
+      "originalPass": 3,
+      "newCandidateMs": [
+        186,
+        205
+      ],
+      "newConfirmedMs": [
+        186,
+        205
+      ],
+      "originalPolledMs": [
+        598,
+        613
+      ],
+      "groups": [
+        1,
+        1,
+        1
+      ],
+      "confirmedGroups": [
+        1,
+        1,
+        1
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hls",
+      "newPass": 3,
+      "originalPass": 3,
+      "newCandidateMs": [
+        36,
+        179
+      ],
+      "newConfirmedMs": [
+        36,
+        179
+      ],
+      "originalPolledMs": [
+        579,
+        735
+      ],
+      "groups": [
+        1,
+        1,
+        1
+      ],
+      "confirmedGroups": [
+        1,
+        1,
+        1
+      ],
+      "videoVariants": [
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "id": "dash",
+      "newPass": 3,
+      "originalPass": 3,
+      "newCandidateMs": [
+        18,
+        204
+      ],
+      "newConfirmedMs": [
+        153,
+        241
+      ],
+      "originalPolledMs": [
+        574,
+        830
+      ],
+      "groups": [
+        1,
+        1,
+        1
+      ],
+      "confirmedGroups": [
+        1,
+        1,
+        1
+      ],
+      "videoVariants": [
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "id": "multiple",
+      "newPass": 3,
+      "originalPass": 3,
+      "newCandidateMs": [
+        123,
+        151
+      ],
+      "newConfirmedMs": [
+        123,
+        151
+      ],
+      "originalPolledMs": [
+        546,
+        569
+      ],
+      "groups": [
+        2,
+        2,
+        2
+      ],
+      "confirmedGroups": [
+        2,
+        2,
+        2
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "no-video",
+      "newPass": 3,
+      "originalPass": 3,
+      "newCandidateMs": null,
+      "newConfirmedMs": null,
+      "originalPolledMs": null,
+      "groups": [
+        0,
+        0,
+        0
+      ],
+      "confirmedGroups": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "mime-negative",
+      "newPass": 3,
+      "originalPass": 3,
+      "newCandidateMs": null,
+      "newConfirmedMs": null,
+      "originalPolledMs": null,
+      "groups": [
+        1,
+        1,
+        1
+      ],
+      "confirmedGroups": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "hls-master-child",
+      "newPass": 3,
+      "originalPass": 0,
+      "newCandidateMs": [
+        112,
+        157
+      ],
+      "newConfirmedMs": [
+        112,
+        157
+      ],
+      "originalPolledMs": [
+        736,
+        806
+      ],
+      "groups": [
+        1,
+        1,
+        1
+      ],
+      "confirmedGroups": [
+        1,
+        1,
+        1
+      ],
+      "videoVariants": [
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "id": "hls-child-master-inflight",
+      "newPass": 3,
+      "originalPass": 0,
+      "newCandidateMs": [
+        98,
+        125
+      ],
+      "newConfirmedMs": [
+        101,
+        101
+      ],
+      "originalPolledMs": [
+        708,
+        746
+      ],
+      "groups": [
+        1,
+        1,
+        1
+      ],
+      "confirmedGroups": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "id": "hls-pending-child-restart",
+      "newPass": 3,
+      "originalPass": 0,
+      "newCandidateMs": [
+        116,
+        146
+      ],
+      "newConfirmedMs": [
+        116,
+        146
+      ],
+      "originalPolledMs": [
+        1710,
+        1901
+      ],
+      "groups": [
+        1,
+        1,
+        1
+      ],
+      "confirmedGroups": [
+        1,
+        1,
+        1
+      ],
+      "videoVariants": [
+        2,
+        2,
+        2
+      ]
+    }
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "id": "blob-mse",
+  "trial": 3,
+  "category": "blob / MSE with remote MP4",
+  "url": "https://mdn.github.io/dom-examples/sourcebuffer/",
+  "expected": [
+    "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4"
+  ],
+  "tabId": 1240425990,
+  "startedAt": "2026-10-16T00:05:59.341Z",
+  "actions": "Navigate, then declared page button interaction",
+  "errors": [],
+  "responses": [
+    {
+      "wallMs": 1792109159520.4392,
+      "url": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+      "status": 200
+    }
+  ],
+  "changes": [
+    {
+      "wallMs": 1792109159358.1597,
+      "ours": {
+        "browserWallMs": 1792109159352,
+        "revision": 469,
+        "tabId": 1240425990,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792109159354,
+        "tabId": 1240425990,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792109159559.9343,
+      "ours": {
+        "browserWallMs": 1792109159558,
+        "revision": 472,
+        "tabId": 1240425990,
+        "tabUrl": "https://mdn.github.io/dom-examples/sourcebuffer/",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+            "type": "direct",
+            "status": "confirmed",
+            "firstSeen": 1792109159517,
+            "lastSeen": 1792109159517,
+            "bytes": 5524488,
+            "methods": [
+              "network"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "EEAAB9D1543C8EDE25C72A950500DD87"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792109159558,
+        "tabId": 1240425990,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792109159755.7666,
+      "ours": {
+        "browserWallMs": 1792109159754,
+        "revision": 474,
+        "tabId": 1240425990,
+        "tabUrl": "https://mdn.github.io/dom-examples/sourcebuffer/",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://mdn.github.io/9cf0296c-950b-4366-b037-c3a67bf2e817",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792109159631,
+            "lastSeen": 1792109159631,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "EEAAB9D1543C8EDE25C72A950500DD87"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+            "type": "direct",
+            "status": "confirmed",
+            "firstSeen": 1792109159517,
+            "lastSeen": 1792109159631,
+            "bytes": 5524488,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "EEAAB9D1543C8EDE25C72A950500DD87"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792109159754,
+        "tabId": 1240425990,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792109160161.888,
+      "ours": {
+        "browserWallMs": 1792109160160,
+        "revision": 474,
+        "tabId": 1240425990,
+        "tabUrl": "https://mdn.github.io/dom-examples/sourcebuffer/",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://mdn.github.io/9cf0296c-950b-4366-b037-c3a67bf2e817",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792109159631,
+            "lastSeen": 1792109159631,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "EEAAB9D1543C8EDE25C72A950500DD87"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+            "type": "direct",
+            "status": "confirmed",
+            "firstSeen": 1792109159517,
+            "lastSeen": 1792109159631,
+            "bytes": 5524488,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "EEAAB9D1543C8EDE25C72A950500DD87"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792109160160,
+        "tabId": 1240425990,
+        "tabUrl": "https://mdn.github.io/dom-examples/sourcebuffer/",
+        "items": [
+          {
+            "type": "http_playlist",
+            "url": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+            "discoveredAt": 1792109159517,
+            "extension": "mp4",
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+                "bandwidth": null
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792109159340.8062,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792109166554,
+      "revision": 474,
+      "tabId": 1240425990,
+      "tabUrl": "https://mdn.github.io/dom-examples/sourcebuffer/",
+      "epoch": 2,
+      "errors": [],
+      "items": [
+        {
+          "url": "blob:https://mdn.github.io/9cf0296c-950b-4366-b037-c3a67bf2e817",
+          "type": "blob",
+          "status": "unresolved",
+          "reason": "local-blob-without-remote-link",
+          "firstSeen": 1792109159631,
+          "lastSeen": 1792109159631,
+          "methods": [
+            "dom"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "EEAAB9D1543C8EDE25C72A950500DD87"
+          ],
+          "elementIds": [
+            "0:media-1"
+          ],
+          "variants": [],
+          "childUrls": []
+        },
+        {
+          "url": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+          "type": "direct",
+          "status": "confirmed",
+          "firstSeen": 1792109159517,
+          "lastSeen": 1792109159631,
+          "bytes": 5524488,
+          "methods": [
+            "network",
+            "resource"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "EEAAB9D1543C8EDE25C72A950500DD87"
+          ],
+          "elementIds": [],
+          "variants": [],
+          "childUrls": []
+        }
+      ]
+    },
+    "original": {
+      "browserWallMs": 1792109166566,
+      "tabId": 1240425990,
+      "tabUrl": "https://mdn.github.io/dom-examples/sourcebuffer/",
+      "items": [
+        {
+          "type": "http_playlist",
+          "url": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+          "discoveredAt": 1792109159517,
+          "extension": "mp4",
+          "protected": false,
+          "variants": [
+            {
+              "url": "https://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4",
+              "bandwidth": null
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "documentStatus": 200,
+  "actionWallMs": 1792109159409.1797,
+  "actionCompletedWallMs": 1792109159512.2122,
+  "dom": [
+    {
+      "frameUrl": "https://mdn.github.io/dom-examples/sourcebuffer/",
+      "media": [
+        {
+          "currentSrc": "blob:https://mdn.github.io/9cf0296c-950b-4366-b037-c3a67bf2e817",
+          "src": "blob:https://mdn.github.io/9cf0296c-950b-4366-b037-c3a67bf2e817",
+          "readyState": 4,
+          "width": 640,
+          "height": 360,
+          "paused": false,
+          "errorCode": null
+        }
+      ]
+    }
+  ],
+  "popup": {
+    "openedWallMs": 1792109166112.545,
+    "observedWallMs": 1792109166553.4553,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nSourceBuffer example\n\nhttps://mdn.github.io/dom-examples/sourcebuffer/\n\nRevision 474 · Tab 1240425990 · Generation 2\n\nMedia source\ndirect · confirmed\n\nhttps://mdn.github.io/dom-examples/sourcebuffer/frag_bunny.mp4\n\nCopy URL\n\nMethods: network, resource · Frames: 0\n\n5,524,488 bytes · video/mp4\n\nFirst seen 8:05:59 PM · Last seen 8:05:59 PM\n\nSourceBuffer example\nblob · unresolved\n\nblob:https://mdn.github.io/9cf0296c-950b-4366-b037-c3a67bf2e817\n\nCopy URL\n\nMethods: dom · Frames: 0\n\n640 × 360 · 60.14 s\n\nlocal-blob-without-remote-link\n\nFirst seen 8:05:59 PM · Last seen 8:05:59 PM\n\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 2,
+    "context": "SourceBuffer example\n\nhttps://mdn.github.io/dom-examples/sourcebuffer/\n\nRevision 474 · Tab 1240425990 · Generation 2",
+    "status": "",
+    "viewport": {
+      "width": 610,
+      "height": 510,
+      "devicePixelRatio": 1
+    },
+    "expectedContextVisible": true,
+    "artifact": "blob-mse-3-popup.png",
+    "kind": "Actual chrome.action popup"
+  },
+  "polling": {
+    "samples": 36,
+    "requestedMs": 200,
+    "minIntervalMs": 199.79931640625,
+    "maxIntervalMs": 221.685546875
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": 219.128173828125,
+    "firstConfirmedAfterNavigationMs": 219.128173828125,
+    "originalFirstAfterNavigationMs": 821.081787109375,
+    "firstExpectedResponseAfterNavigationMs": 179.633056640625,
+    "candidateAfterExpectedResponseMs": 39.4951171875,
+    "confirmedAfterExpectedResponseMs": 39.4951171875,
+    "originalAfterExpectedResponseMs": 641.44873046875,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 1,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0,
+      "videoVariants": 0
+    },
+    "original": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 0,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "pass",
+  "originalStatus": "pass",
+  "endedAt": "2026-10-16T00:06:06.761Z"
+}

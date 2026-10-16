@@ -1,0 +1,359 @@
+{
+  "build": {
+    "gitRevision": "dca40433390ae521a1bd03b82269968ba90b7697",
+    "files": {
+      "background.js": "f632eea8cb9b75481d0dc0f514b9632ce2b23d58b449335e1c67a8cdc8a696f3",
+      "content.js": "e816cb4d19c77db16f55c792f8e55c83c8af878cf124eab40c0fc829eda0248c",
+      "popup/index.js": "2f0f2b4e63970ac310920cc3212ec2b0ae5c0afb91a9cbcf7a9876e69eb52981",
+      "popup/index.html": "0b4b915030a6524adfd88f5d46a3008c0c3e30b438f11ce8806888ff7ea124fd",
+      "popup/style.css": "c0718d0d8a5dff73495c52179ac88e56bec719ad55eb6b20c891296491fd943e",
+      "manifest.json": "f251c7f0e66a883d451d2aaa7dfc24fe9178969acb367943e7b4e7126538f410"
+    }
+  },
+  "browser": "153.0.8010.12",
+  "startedAt": "2026-10-16T00:02:47.002Z",
+  "endedAt": "2026-10-16T00:06:48.780Z",
+  "caseCount": 30,
+  "newPass": 30,
+  "originalPass": 30,
+  "newFp": 0,
+  "originalFp": 0,
+  "newDuplicates": 0,
+  "originalDuplicates": 0,
+  "pollRange": [
+    198,
+    281
+  ],
+  "popupWidths": [
+    550,
+    610,
+    580,
+    460
+  ],
+  "caseErrors": [],
+  "workerErrors": [],
+  "livePopup": {
+    "observedWallMs": 1792109208751.2,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nActive tab\n\nhttp://127.0.0.1:7118/popup-delayed\n\nRevision 558 · Tab 1240426000 · Generation 9\n\nMedia source\ndirect · confirmed\n\nhttp://127.0.0.1:7119/media/popup.mp4\n\nCopy URL\n\nMethods: network · Frames: 0\n\n1,128,375 bytes · video/mp4\n\nFirst seen 8:06:48 PM · Last seen 8:06:48 PM\n\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 1,
+    "context": "Active tab\n\nhttp://127.0.0.1:7118/popup-delayed\n\nRevision 558 · Tab 1240426000 · Generation 9",
+    "status": "",
+    "viewport": {
+      "width": 550,
+      "height": 510,
+      "devicePixelRatio": 1
+    },
+    "expectedContextVisible": true,
+    "artifact": "lifecycle-live-popup.png",
+    "kind": "Actual chrome.action popup",
+    "expectedMediaResponseWallMs": 1792109208488.4382,
+    "renderedAfterResponseMs": 262.76171875,
+    "expectedSourceVisible": true,
+    "renderedWithinTwoSeconds": true
+  },
+  "lifecycle": "pass",
+  "cases": [
+    {
+      "id": "direct-mp4",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        140,
+        197
+      ],
+      "newConfirmed": [
+        140,
+        197
+      ],
+      "original": [
+        543,
+        618
+      ],
+      "groupCounts": [
+        1,
+        1,
+        1
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "direct-webm",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        189,
+        198
+      ],
+      "newConfirmed": [
+        189,
+        198
+      ],
+      "original": [
+        601,
+        624
+      ],
+      "groupCounts": [
+        1,
+        1,
+        1
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hls",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        36,
+        201
+      ],
+      "newConfirmed": [
+        36,
+        201
+      ],
+      "original": [
+        590,
+        645
+      ],
+      "groupCounts": [
+        1,
+        1,
+        1
+      ],
+      "blobContexts": [
+        1,
+        1,
+        1
+      ],
+      "videoVariants": [
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "id": "dash",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        62,
+        152
+      ],
+      "newConfirmed": [
+        62,
+        152
+      ],
+      "original": [
+        627,
+        756
+      ],
+      "groupCounts": [
+        1,
+        1,
+        1
+      ],
+      "blobContexts": [
+        1,
+        1,
+        1
+      ],
+      "videoVariants": [
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "id": "dynamic",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        94,
+        163
+      ],
+      "newConfirmed": [
+        94,
+        163
+      ],
+      "original": [
+        593,
+        706
+      ],
+      "groupCounts": [
+        1,
+        1,
+        1
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "blob-mse",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        39,
+        212
+      ],
+      "newConfirmed": [
+        39,
+        212
+      ],
+      "original": [
+        605,
+        658
+      ],
+      "groupCounts": [
+        1,
+        1,
+        1
+      ],
+      "blobContexts": [
+        1,
+        1,
+        1
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "cross-origin-frame",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        107,
+        130
+      ],
+      "newConfirmed": [
+        107,
+        130
+      ],
+      "original": [
+        529,
+        563
+      ],
+      "groupCounts": [
+        1,
+        1,
+        1
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "multiple",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        153,
+        177
+      ],
+      "newConfirmed": [
+        153,
+        177
+      ],
+      "original": [
+        574,
+        589
+      ],
+      "groupCounts": [
+        2,
+        2,
+        2
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "no-video",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": null,
+      "newConfirmed": null,
+      "original": null,
+      "groupCounts": [
+        0,
+        0,
+        0
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "mime-negative",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": null,
+      "newConfirmed": null,
+      "original": null,
+      "groupCounts": [
+        0,
+        0,
+        0
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        null,
+        null,
+        null
+      ]
+    }
+  ]
+}

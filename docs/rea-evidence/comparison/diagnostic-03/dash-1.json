@@ -1,0 +1,101 @@
+{
+  "id": "dash",
+  "trial": 1,
+  "category": "DASH / qualities / MSE",
+  "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+  "expected": [
+    "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd"
+  ],
+  "expectedVideoVariants": 10,
+  "tabId": 86074281,
+  "startedAt": "2026-10-15T23:52:00.959Z",
+  "actions": "Navigate, then declared page button interaction",
+  "errors": [
+    {
+      "type": "setup-or-action",
+      "message": "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Options', exact: true })\u001b[22m"
+    }
+  ],
+  "responses": [],
+  "changes": [
+    {
+      "wallMs": 1792108320971,
+      "ours": {
+        "browserWallMs": 1792108320969,
+        "revision": 27,
+        "tabId": 86074281,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792108320971,
+        "tabId": 86074281,
+        "items": []
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792108320959,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792108331566,
+      "revision": 33,
+      "tabId": 86074281,
+      "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+      "epoch": 2,
+      "errors": [],
+      "items": []
+    },
+    "original": {
+      "browserWallMs": 1792108331607,
+      "tabId": 86074281,
+      "items": []
+    }
+  },
+  "documentStatus": 200,
+  "actionWallMs": 1792108321558,
+  "polling": {
+    "samples": 52,
+    "requestedMs": 200,
+    "minIntervalMs": 200,
+    "maxIntervalMs": 237
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": null,
+    "firstConfirmedAfterNavigationMs": null,
+    "originalFirstAfterNavigationMs": null,
+    "firstExpectedResponseAfterNavigationMs": null,
+    "candidateAfterExpectedResponseMs": null,
+    "confirmedAfterExpectedResponseMs": null,
+    "originalAfterExpectedResponseMs": null,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 0,
+      "confirmedGroups": 0,
+      "blobContexts": 0,
+      "expectedMatched": 0,
+      "missed": [
+        "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd"
+      ],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    },
+    "original": {
+      "groups": 0,
+      "confirmedGroups": 0,
+      "blobContexts": 0,
+      "expectedMatched": 0,
+      "missed": [
+        "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd"
+      ],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "blocked",
+  "originalStatus": "blocked",
+  "endedAt": "2026-10-15T23:52:11.738Z"
+}

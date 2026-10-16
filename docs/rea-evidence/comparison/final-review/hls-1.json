@@ -1,0 +1,3210 @@
+{
+  "id": "hls",
+  "trial": 1,
+  "category": "HLS / qualities / MSE",
+  "url": "https://hlsjs.video-dev.org/demo/basic-usage",
+  "expected": [
+    "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+  ],
+  "expectedVideoVariants": 5,
+  "tabId": 1419626082,
+  "startedAt": "2026-10-16T00:33:20.897Z",
+  "actions": "Navigate only",
+  "errors": [],
+  "responses": [
+    {
+      "wallMs": 1792110801597.4866,
+      "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+      "status": 200
+    },
+    {
+      "wallMs": 1792110801674.502,
+      "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+      "status": 200
+    },
+    {
+      "wallMs": 1792110802199.1821,
+      "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+      "status": 200
+    }
+  ],
+  "changes": [
+    {
+      "wallMs": 1792110800920.545,
+      "ours": {
+        "browserWallMs": 1792110800913,
+        "revision": 23,
+        "tabId": 1419626082,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792110800916,
+        "tabId": 1419626082,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110801753.5876,
+      "ours": {
+        "browserWallMs": 1792110801738,
+        "revision": 33,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110801593,
+            "lastSeen": 1792110801593,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110801587,
+            "lastSeen": 1792110801704,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 2149280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 720,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 246440,
+                "codecs": "mp4a.40.5,avc1.42000d",
+                "height": 184,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              },
+              {
+                "bandwidth": 460560,
+                "codecs": "mp4a.40.5,avc1.420016",
+                "height": 288,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 836280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 480,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 6221600,
+                "codecs": "mp4a.40.2,avc1.640028",
+                "height": 1080,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+            ],
+            "segmentUrls": [],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 29,
+                "status": "probing",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8"
+              }
+            ],
+            "protected": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110801753,
+        "tabId": 1419626082,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110801928.9946,
+      "ours": {
+        "browserWallMs": 1792110801926,
+        "revision": 36,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110801593,
+            "lastSeen": 1792110801865,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.584
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110801587,
+            "lastSeen": 1792110801746,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 2149280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 720,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 246440,
+                "codecs": "mp4a.40.5,avc1.42000d",
+                "height": 184,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              },
+              {
+                "bandwidth": 460560,
+                "codecs": "mp4a.40.5,avc1.420016",
+                "height": 288,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 836280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 480,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 6221600,
+                "codecs": "mp4a.40.2,avc1.640028",
+                "height": 1080,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+            ],
+            "segmentUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_463/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_464/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_465/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_466/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_467/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_468/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_469/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_470/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_471/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_472/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_473/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_474/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_475/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_476/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_477/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_478/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_479/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_480/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_481/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_482/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_483/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_484/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_485/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_486/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_487/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_488/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_489/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_490/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_491/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_492/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_493/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_494/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_495/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_496/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_497/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_498/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_499/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_500/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_501/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_502/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_503/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_504/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_505/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_506/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_507/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_508/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_509/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_510/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_511/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_512/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_513/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_514/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_515/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_516/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_517/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_518/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_519/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_520/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_521/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_522/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_523/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_524/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_525/193039199_mp4_h264_aac_hd_7.ts"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 29,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8"
+              }
+            ],
+            "duration": 634.584,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110801926,
+        "tabId": 1419626082,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110802332.1165,
+      "ours": {
+        "browserWallMs": 1792110802326,
+        "revision": 42,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110801593,
+            "lastSeen": 1792110802289,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.584
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110801587,
+            "lastSeen": 1792110802289,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 2149280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 720,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 246440,
+                "codecs": "mp4a.40.5,avc1.42000d",
+                "height": 184,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              },
+              {
+                "bandwidth": 460560,
+                "codecs": "mp4a.40.5,avc1.420016",
+                "height": 288,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 836280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 480,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 6221600,
+                "codecs": "mp4a.40.2,avc1.640028",
+                "height": 1080,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+            ],
+            "segmentUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_463/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_464/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_465/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_466/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_467/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_468/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_469/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_470/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_471/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_472/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_473/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_474/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_475/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_476/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_477/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_478/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_479/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_480/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_481/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_482/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_483/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_484/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_485/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_486/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_487/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_488/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_489/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_490/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_491/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_492/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_493/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_494/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_495/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_496/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_497/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_498/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_499/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_500/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_501/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_502/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_503/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_504/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_505/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_506/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_507/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_508/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_509/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_510/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_511/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_512/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_513/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_514/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_515/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_516/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_517/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_518/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_519/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_520/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_521/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_522/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_523/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_524/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_525/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_590/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_599/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_600/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_601/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_602/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_603/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_604/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_605/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_606/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_607/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_608/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_609/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_610/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_611/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_612/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_613/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_614/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_615/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_616/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_617/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_618/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_619/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_620/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_621/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_622/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_623/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_624/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_625/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_626/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_627/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_628/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_629/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_630/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_631/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_632/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_633/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_634/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_635/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_636/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_637/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_638/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_639/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_640/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_641/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_642/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_643/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_644/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_645/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_646/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_647/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_648/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_649/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_650/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_651/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_652/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_653/193039199_mp4_h264_aac_fhd_7.ts"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 29,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8"
+              },
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 37,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+              }
+            ],
+            "duration": 634.567,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110802327,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "discoveredAt": 1792110801751,
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 6221600
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 2149280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848,
+                "height": 480,
+                "bandwidth": 836280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512,
+                "height": 288,
+                "bandwidth": 460560
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320,
+                "height": 184,
+                "bandwidth": 246440
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110802959.3552,
+      "ours": {
+        "browserWallMs": 1792110802948,
+        "revision": 43,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110801593,
+            "lastSeen": 1792110802289,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.584
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110801587,
+            "lastSeen": 1792110802836,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 2149280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 720,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 246440,
+                "codecs": "mp4a.40.5,avc1.42000d",
+                "height": 184,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              },
+              {
+                "bandwidth": 460560,
+                "codecs": "mp4a.40.5,avc1.420016",
+                "height": 288,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 836280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 480,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 6221600,
+                "codecs": "mp4a.40.2,avc1.640028",
+                "height": 1080,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+            ],
+            "segmentUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_463/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_464/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_465/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_466/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_467/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_468/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_469/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_470/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_471/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_472/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_473/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_474/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_475/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_476/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_477/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_478/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_479/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_480/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_481/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_482/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_483/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_484/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_485/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_486/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_487/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_488/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_489/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_490/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_491/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_492/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_493/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_494/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_495/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_496/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_497/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_498/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_499/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_500/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_501/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_502/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_503/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_504/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_505/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_506/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_507/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_508/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_509/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_510/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_511/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_512/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_513/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_514/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_515/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_516/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_517/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_518/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_519/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_520/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_521/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_522/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_523/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_524/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_525/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_590/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_599/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_600/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_601/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_602/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_603/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_604/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_605/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_606/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_607/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_608/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_609/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_610/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_611/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_612/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_613/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_614/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_615/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_616/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_617/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_618/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_619/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_620/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_621/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_622/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_623/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_624/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_625/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_626/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_627/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_628/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_629/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_630/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_631/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_632/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_633/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_634/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_635/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_636/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_637/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_638/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_639/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_640/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_641/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_642/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_643/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_644/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_645/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_646/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_647/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_648/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_649/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_650/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_651/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_652/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_653/193039199_mp4_h264_aac_fhd_7.ts"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 29,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8"
+              },
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 37,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+              }
+            ],
+            "duration": 634.567,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110802950,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "discoveredAt": 1792110801751,
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 6221600
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 2149280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848,
+                "height": 480,
+                "bandwidth": 836280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512,
+                "height": 288,
+                "bandwidth": 460560
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320,
+                "height": 184,
+                "bandwidth": 246440
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110804393.8079,
+      "ours": {
+        "browserWallMs": 1792110804385,
+        "revision": 44,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110801593,
+            "lastSeen": 1792110802289,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.584
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110801587,
+            "lastSeen": 1792110804333,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 2149280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 720,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 246440,
+                "codecs": "mp4a.40.5,avc1.42000d",
+                "height": 184,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              },
+              {
+                "bandwidth": 460560,
+                "codecs": "mp4a.40.5,avc1.420016",
+                "height": 288,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 836280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 480,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 6221600,
+                "codecs": "mp4a.40.2,avc1.640028",
+                "height": 1080,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+            ],
+            "segmentUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_463/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_464/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_465/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_466/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_467/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_468/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_469/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_470/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_471/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_472/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_473/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_474/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_475/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_476/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_477/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_478/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_479/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_480/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_481/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_482/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_483/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_484/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_485/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_486/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_487/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_488/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_489/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_490/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_491/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_492/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_493/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_494/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_495/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_496/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_497/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_498/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_499/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_500/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_501/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_502/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_503/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_504/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_505/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_506/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_507/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_508/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_509/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_510/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_511/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_512/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_513/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_514/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_515/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_516/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_517/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_518/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_519/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_520/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_521/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_522/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_523/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_524/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_525/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_590/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_599/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_600/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_601/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_602/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_603/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_604/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_605/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_606/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_607/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_608/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_609/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_610/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_611/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_612/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_613/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_614/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_615/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_616/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_617/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_618/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_619/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_620/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_621/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_622/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_623/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_624/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_625/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_626/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_627/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_628/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_629/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_630/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_631/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_632/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_633/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_634/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_635/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_636/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_637/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_638/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_639/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_640/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_641/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_642/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_643/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_644/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_645/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_646/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_647/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_648/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_649/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_650/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_651/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_652/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_653/193039199_mp4_h264_aac_fhd_7.ts"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 29,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8"
+              },
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 37,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+              }
+            ],
+            "duration": 634.567,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110804386,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "discoveredAt": 1792110801751,
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 6221600
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 2149280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848,
+                "height": 480,
+                "bandwidth": 836280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512,
+                "height": 288,
+                "bandwidth": 460560
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320,
+                "height": 184,
+                "bandwidth": 246440
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110805184.2056,
+      "ours": {
+        "browserWallMs": 1792110805178,
+        "revision": 45,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110801593,
+            "lastSeen": 1792110802289,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.584
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110801587,
+            "lastSeen": 1792110805072,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 2149280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 720,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 246440,
+                "codecs": "mp4a.40.5,avc1.42000d",
+                "height": 184,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              },
+              {
+                "bandwidth": 460560,
+                "codecs": "mp4a.40.5,avc1.420016",
+                "height": 288,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 836280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 480,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 6221600,
+                "codecs": "mp4a.40.2,avc1.640028",
+                "height": 1080,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+            ],
+            "segmentUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_463/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_464/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_465/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_466/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_467/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_468/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_469/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_470/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_471/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_472/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_473/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_474/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_475/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_476/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_477/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_478/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_479/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_480/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_481/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_482/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_483/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_484/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_485/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_486/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_487/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_488/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_489/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_490/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_491/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_492/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_493/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_494/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_495/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_496/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_497/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_498/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_499/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_500/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_501/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_502/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_503/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_504/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_505/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_506/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_507/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_508/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_509/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_510/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_511/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_512/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_513/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_514/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_515/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_516/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_517/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_518/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_519/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_520/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_521/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_522/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_523/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_524/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_525/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_590/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_599/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_600/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_601/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_602/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_603/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_604/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_605/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_606/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_607/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_608/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_609/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_610/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_611/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_612/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_613/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_614/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_615/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_616/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_617/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_618/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_619/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_620/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_621/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_622/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_623/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_624/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_625/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_626/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_627/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_628/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_629/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_630/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_631/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_632/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_633/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_634/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_635/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_636/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_637/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_638/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_639/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_640/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_641/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_642/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_643/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_644/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_645/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_646/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_647/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_648/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_649/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_650/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_651/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_652/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_653/193039199_mp4_h264_aac_fhd_7.ts"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 29,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8"
+              },
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 37,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+              }
+            ],
+            "duration": 634.567,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110805178,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "discoveredAt": 1792110801751,
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 6221600
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 2149280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848,
+                "height": 480,
+                "bandwidth": 836280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512,
+                "height": 288,
+                "bandwidth": 460560
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320,
+                "height": 184,
+                "bandwidth": 246440
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110805418.0193,
+      "ours": {
+        "browserWallMs": 1792110805406,
+        "revision": 46,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110801593,
+            "lastSeen": 1792110802289,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.584
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110801587,
+            "lastSeen": 1792110805322,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 2149280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 720,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 246440,
+                "codecs": "mp4a.40.5,avc1.42000d",
+                "height": 184,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              },
+              {
+                "bandwidth": 460560,
+                "codecs": "mp4a.40.5,avc1.420016",
+                "height": 288,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 836280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 480,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 6221600,
+                "codecs": "mp4a.40.2,avc1.640028",
+                "height": 1080,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+            ],
+            "segmentUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_463/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_464/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_465/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_466/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_467/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_468/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_469/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_470/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_471/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_472/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_473/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_474/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_475/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_476/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_477/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_478/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_479/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_480/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_481/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_482/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_483/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_484/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_485/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_486/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_487/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_488/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_489/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_490/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_491/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_492/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_493/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_494/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_495/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_496/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_497/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_498/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_499/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_500/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_501/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_502/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_503/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_504/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_505/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_506/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_507/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_508/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_509/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_510/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_511/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_512/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_513/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_514/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_515/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_516/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_517/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_518/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_519/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_520/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_521/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_522/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_523/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_524/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_525/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_590/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_599/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_600/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_601/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_602/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_603/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_604/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_605/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_606/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_607/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_608/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_609/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_610/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_611/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_612/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_613/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_614/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_615/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_616/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_617/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_618/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_619/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_620/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_621/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_622/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_623/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_624/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_625/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_626/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_627/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_628/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_629/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_630/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_631/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_632/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_633/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_634/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_635/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_636/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_637/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_638/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_639/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_640/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_641/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_642/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_643/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_644/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_645/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_646/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_647/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_648/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_649/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_650/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_651/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_652/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_653/193039199_mp4_h264_aac_fhd_7.ts"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 29,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8"
+              },
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 37,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+              }
+            ],
+            "duration": 634.567,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110805407,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "discoveredAt": 1792110801751,
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 6221600
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 2149280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848,
+                "height": 480,
+                "bandwidth": 836280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512,
+                "height": 288,
+                "bandwidth": 460560
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320,
+                "height": 184,
+                "bandwidth": 246440
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110805791.196,
+      "ours": {
+        "browserWallMs": 1792110805788,
+        "revision": 47,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110801593,
+            "lastSeen": 1792110802289,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.584
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110801587,
+            "lastSeen": 1792110805736,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 2149280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 720,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 246440,
+                "codecs": "mp4a.40.5,avc1.42000d",
+                "height": 184,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              },
+              {
+                "bandwidth": 460560,
+                "codecs": "mp4a.40.5,avc1.420016",
+                "height": 288,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 836280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 480,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 6221600,
+                "codecs": "mp4a.40.2,avc1.640028",
+                "height": 1080,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+            ],
+            "segmentUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_463/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_464/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_465/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_466/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_467/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_468/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_469/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_470/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_471/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_472/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_473/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_474/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_475/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_476/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_477/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_478/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_479/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_480/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_481/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_482/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_483/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_484/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_485/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_486/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_487/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_488/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_489/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_490/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_491/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_492/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_493/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_494/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_495/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_496/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_497/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_498/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_499/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_500/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_501/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_502/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_503/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_504/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_505/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_506/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_507/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_508/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_509/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_510/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_511/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_512/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_513/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_514/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_515/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_516/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_517/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_518/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_519/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_520/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_521/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_522/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_523/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_524/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_525/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_590/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_599/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_600/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_601/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_602/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_603/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_604/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_605/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_606/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_607/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_608/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_609/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_610/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_611/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_612/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_613/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_614/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_615/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_616/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_617/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_618/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_619/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_620/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_621/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_622/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_623/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_624/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_625/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_626/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_627/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_628/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_629/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_630/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_631/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_632/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_633/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_634/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_635/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_636/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_637/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_638/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_639/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_640/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_641/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_642/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_643/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_644/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_645/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_646/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_647/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_648/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_649/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_650/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_651/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_652/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_653/193039199_mp4_h264_aac_fhd_7.ts"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 29,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8"
+              },
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 37,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+              }
+            ],
+            "duration": 634.567,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110805788,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "discoveredAt": 1792110801751,
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 6221600
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 2149280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848,
+                "height": 480,
+                "bandwidth": 836280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512,
+                "height": 288,
+                "bandwidth": 460560
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320,
+                "height": 184,
+                "bandwidth": 246440
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110806039.457,
+      "ours": {
+        "browserWallMs": 1792110806013,
+        "revision": 48,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110801593,
+            "lastSeen": 1792110802289,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.584
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110801587,
+            "lastSeen": 1792110805880,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 2149280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 720,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 246440,
+                "codecs": "mp4a.40.5,avc1.42000d",
+                "height": 184,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              },
+              {
+                "bandwidth": 460560,
+                "codecs": "mp4a.40.5,avc1.420016",
+                "height": 288,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 836280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 480,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 6221600,
+                "codecs": "mp4a.40.2,avc1.640028",
+                "height": 1080,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+            ],
+            "segmentUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_463/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_464/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_465/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_466/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_467/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_468/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_469/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_470/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_471/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_472/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_473/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_474/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_475/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_476/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_477/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_478/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_479/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_480/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_481/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_482/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_483/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_484/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_485/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_486/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_487/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_488/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_489/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_490/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_491/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_492/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_493/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_494/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_495/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_496/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_497/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_498/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_499/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_500/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_501/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_502/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_503/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_504/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_505/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_506/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_507/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_508/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_509/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_510/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_511/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_512/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_513/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_514/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_515/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_516/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_517/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_518/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_519/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_520/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_521/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_522/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_523/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_524/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_525/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_590/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_599/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_600/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_601/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_602/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_603/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_604/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_605/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_606/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_607/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_608/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_609/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_610/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_611/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_612/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_613/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_614/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_615/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_616/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_617/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_618/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_619/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_620/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_621/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_622/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_623/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_624/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_625/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_626/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_627/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_628/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_629/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_630/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_631/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_632/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_633/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_634/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_635/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_636/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_637/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_638/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_639/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_640/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_641/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_642/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_643/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_644/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_645/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_646/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_647/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_648/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_649/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_650/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_651/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_652/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_653/193039199_mp4_h264_aac_fhd_7.ts"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 29,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8"
+              },
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 37,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+              }
+            ],
+            "duration": 634.567,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110806013,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "discoveredAt": 1792110801751,
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 6221600
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 2149280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848,
+                "height": 480,
+                "bandwidth": 836280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512,
+                "height": 288,
+                "bandwidth": 460560
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320,
+                "height": 184,
+                "bandwidth": 246440
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110806208.9617,
+      "ours": {
+        "browserWallMs": 1792110806204,
+        "revision": 49,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110801593,
+            "lastSeen": 1792110802289,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.584
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110801587,
+            "lastSeen": 1792110806036,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4C3E2ACD26E0695809C203DE132BF270"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 2149280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 720,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 246440,
+                "codecs": "mp4a.40.5,avc1.42000d",
+                "height": 184,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              },
+              {
+                "bandwidth": 460560,
+                "codecs": "mp4a.40.5,avc1.420016",
+                "height": 288,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 836280,
+                "codecs": "mp4a.40.2,avc1.64001f",
+                "height": 480,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 6221600,
+                "codecs": "mp4a.40.2,avc1.640028",
+                "height": 1080,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+            ],
+            "segmentUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_463/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_464/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_465/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_466/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_467/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_468/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_469/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_470/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_471/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_472/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_473/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_474/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_475/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_476/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_477/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_478/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_479/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_480/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_481/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_482/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_483/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_484/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_485/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_486/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_487/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_488/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_489/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_490/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_491/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_492/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_493/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_494/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_495/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_496/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_497/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_498/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_499/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_500/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_501/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_502/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_503/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_504/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_505/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_506/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_507/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_508/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_509/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_510/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_511/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_512/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_513/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_514/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_515/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_516/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_517/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_518/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_519/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_520/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_521/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_522/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_523/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_524/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_0/url_525/193039199_mp4_h264_aac_hd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_590/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_599/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_600/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_601/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_602/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_603/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_604/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_605/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_606/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_607/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_608/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_609/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_610/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_611/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_612/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_613/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_614/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_615/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_616/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_617/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_618/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_619/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_620/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_621/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_622/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_623/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_624/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_625/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_626/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_627/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_628/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_629/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_630/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_631/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_632/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_633/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_634/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_635/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_636/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_637/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_638/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_639/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_640/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_641/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_642/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_643/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_644/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_645/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_646/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_647/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_648/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_649/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_650/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_651/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_652/193039199_mp4_h264_aac_fhd_7.ts",
+              "https://test-streams.mux.dev/x36xhzz/url_8/url_653/193039199_mp4_h264_aac_fhd_7.ts"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 29,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8"
+              },
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 37,
+                "status": "confirmed",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+              }
+            ],
+            "duration": 634.567,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110806205,
+        "tabId": 1419626082,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "discoveredAt": 1792110801751,
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 6221600
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 2149280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848,
+                "height": 480,
+                "bandwidth": 836280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512,
+                "height": 288,
+                "bandwidth": 460560
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320,
+                "height": 184,
+                "bandwidth": 246440
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792110800897.5315,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792110808500,
+      "revision": 49,
+      "tabId": 1419626082,
+      "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+      "epoch": 2,
+      "errors": [],
+      "items": [
+        {
+          "url": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+          "type": "blob",
+          "status": "unresolved",
+          "reason": "local-blob-without-remote-link",
+          "firstSeen": 1792110801593,
+          "lastSeen": 1792110802289,
+          "methods": [
+            "dom"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "4C3E2ACD26E0695809C203DE132BF270"
+          ],
+          "elementIds": [
+            "0:media-1"
+          ],
+          "variants": [],
+          "childUrls": [],
+          "segmentUrls": [],
+          "duration": 634.584
+        },
+        {
+          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+          "type": "hls",
+          "status": "confirmed",
+          "firstSeen": 1792110801587,
+          "lastSeen": 1792110806036,
+          "bytes": 752,
+          "methods": [
+            "network",
+            "manifest",
+            "resource"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "4C3E2ACD26E0695809C203DE132BF270"
+          ],
+          "elementIds": [],
+          "variants": [
+            {
+              "bandwidth": 2149280,
+              "codecs": "mp4a.40.2,avc1.64001f",
+              "height": 720,
+              "id": "hls:0",
+              "kind": "video",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "width": 1280
+            },
+            {
+              "bandwidth": 246440,
+              "codecs": "mp4a.40.5,avc1.42000d",
+              "height": 184,
+              "id": "hls:1",
+              "kind": "video",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "width": 320
+            },
+            {
+              "bandwidth": 460560,
+              "codecs": "mp4a.40.5,avc1.420016",
+              "height": 288,
+              "id": "hls:2",
+              "kind": "video",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "width": 512
+            },
+            {
+              "bandwidth": 836280,
+              "codecs": "mp4a.40.2,avc1.64001f",
+              "height": 480,
+              "id": "hls:3",
+              "kind": "video",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "width": 848
+            },
+            {
+              "bandwidth": 6221600,
+              "codecs": "mp4a.40.2,avc1.640028",
+              "height": 1080,
+              "id": "hls:4",
+              "kind": "video",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+              "width": 1920
+            }
+          ],
+          "childUrls": [
+            "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+            "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+            "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+            "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+            "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+          ],
+          "segmentUrls": [
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_462/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_463/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_464/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_465/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_466/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_467/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_468/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_469/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_470/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_471/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_472/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_473/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_474/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_475/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_476/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_477/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_478/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_479/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_480/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_481/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_482/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_483/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_484/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_485/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_486/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_487/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_488/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_489/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_490/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_491/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_492/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_493/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_494/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_495/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_496/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_497/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_498/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_499/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_500/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_501/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_502/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_503/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_504/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_505/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_506/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_507/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_508/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_509/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_510/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_511/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_512/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_513/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_514/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_515/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_516/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_517/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_518/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_519/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_520/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_521/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_522/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_523/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_524/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_0/url_525/193039199_mp4_h264_aac_hd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_590/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_591/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_592/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_593/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_594/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_595/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_596/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_597/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_598/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_599/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_600/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_601/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_602/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_603/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_604/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_605/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_606/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_607/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_608/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_609/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_610/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_611/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_612/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_613/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_614/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_615/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_616/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_617/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_618/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_619/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_620/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_621/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_622/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_623/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_624/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_625/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_626/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_627/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_628/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_629/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_630/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_631/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_632/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_633/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_634/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_635/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_636/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_637/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_638/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_639/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_640/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_641/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_642/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_643/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_644/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_645/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_646/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_647/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_648/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_649/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_650/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_651/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_652/193039199_mp4_h264_aac_fhd_7.ts",
+            "https://test-streams.mux.dev/x36xhzz/url_8/url_653/193039199_mp4_h264_aac_fhd_7.ts"
+          ],
+          "childManifests": [
+            {
+              "frameIds": [
+                0
+              ],
+              "instance": 29,
+              "status": "confirmed",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8"
+            },
+            {
+              "frameIds": [
+                0
+              ],
+              "instance": 37,
+              "status": "confirmed",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8"
+            }
+          ],
+          "duration": 634.567,
+          "protected": false,
+          "live": false
+        }
+      ]
+    },
+    "original": {
+      "browserWallMs": 1792110808502,
+      "tabId": 1419626082,
+      "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+      "items": [
+        {
+          "type": "m3u8_playlist",
+          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+          "discoveredAt": 1792110801751,
+          "protected": false,
+          "variants": [
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+              "width": 1920,
+              "height": 1080,
+              "bandwidth": 6221600
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "width": 1280,
+              "height": 720,
+              "bandwidth": 2149280
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "width": 848,
+              "height": 480,
+              "bandwidth": 836280
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "width": 512,
+              "height": 288,
+              "bandwidth": 460560
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "width": 320,
+              "height": 184,
+              "bandwidth": 246440
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "documentStatus": 200,
+  "dom": [
+    {
+      "frameUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+      "media": [
+        {
+          "currentSrc": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+          "src": "blob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc",
+          "readyState": 4,
+          "width": 1280,
+          "height": 720,
+          "paused": false,
+          "errorCode": null
+        }
+      ]
+    }
+  ],
+  "popup": {
+    "openedWallMs": 1792110808109.6775,
+    "observedWallMs": 1792110808539.1187,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nHls.js demo - basic usage\n\nhttps://hlsjs.video-dev.org/demo/basic-usage\n\nRevision 49 · Tab 1419626082 · Generation 2\n\nMedia source\nhls · confirmed\n\nhttps://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8\n\nCopy URL\n\nMethods: network, manifest, resource · Frames: 0\n\n634.57 s · 752 bytes · audio/mpegurl · VOD\n\nFirst seen 8:33:21 PM · Last seen 8:33:26 PM\n\n5 variants\nHls.js demo - basic usage\nblob · unresolved\n\nblob:https://hlsjs.video-dev.org/223404fa-4685-419d-a506-4b37aa6ab7cc\n\nCopy URL\n\nMethods: dom · Frames: 0\n\n1280 × 720 · 634.58 s\n\nlocal-blob-without-remote-link\n\nFirst seen 8:33:21 PM · Last seen 8:33:22 PM\n\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 2,
+    "context": "Hls.js demo - basic usage\n\nhttps://hlsjs.video-dev.org/demo/basic-usage\n\nRevision 49 · Tab 1419626082 · Generation 2",
+    "status": "",
+    "viewport": {
+      "width": 580,
+      "height": 510,
+      "devicePixelRatio": 1,
+      "bodyWidth": 460
+    },
+    "expectedContextVisible": true,
+    "artifact": "hls-1-popup.png",
+    "kind": "Actual chrome.action popup"
+  },
+  "polling": {
+    "samples": 38,
+    "requestedMs": 200,
+    "minIntervalMs": 199.52392578125,
+    "maxIntervalMs": 219.357177734375,
+    "deliberatePauses": []
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": 856.05615234375,
+    "firstConfirmedAfterNavigationMs": 856.05615234375,
+    "originalFirstAfterNavigationMs": 1434.5849609375,
+    "firstExpectedResponseAfterNavigationMs": 699.955078125,
+    "candidateAfterExpectedResponseMs": 156.10107421875,
+    "confirmedAfterExpectedResponseMs": 156.10107421875,
+    "originalAfterExpectedResponseMs": 734.6298828125,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 1,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0,
+      "videoVariants": 5
+    },
+    "original": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 0,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "pass",
+  "originalStatus": "pass",
+  "endedAt": "2026-10-16T00:33:28.715Z"
+}

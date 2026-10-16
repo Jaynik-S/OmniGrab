@@ -1,0 +1,539 @@
+{
+  "id": "hls-master-only",
+  "trial": 1,
+  "category": "master-only HLS live-state regression",
+  "url": "http://127.0.0.1:11962/master-only",
+  "expected": [
+    "http://127.0.0.1:11962/master-only.m3u8"
+  ],
+  "expectedVideoVariants": 5,
+  "tabId": 1842092153,
+  "startedAt": "2026-10-16T00:12:24.179Z",
+  "actions": "Navigate, then declared page button interaction",
+  "errors": [],
+  "responses": [
+    {
+      "wallMs": 1792109544349.958,
+      "url": "http://127.0.0.1:11962/master-only.m3u8",
+      "status": 200
+    }
+  ],
+  "changes": [
+    {
+      "wallMs": 1792109544213.2402,
+      "ours": {
+        "browserWallMs": 1792109544193,
+        "revision": 7,
+        "tabId": 1842092153,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792109544200,
+        "tabId": 1842092153,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792109544394.056,
+      "ours": {
+        "browserWallMs": 1792109544391,
+        "revision": 12,
+        "tabId": 1842092153,
+        "tabUrl": "http://127.0.0.1:11962/master-only",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:11962/master-only.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792109544348,
+            "lastSeen": 1792109544348,
+            "bytes": 661,
+            "methods": [
+              "network",
+              "manifest"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "5C34ABAB3C0395478728C95B6140CF55"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 6221600,
+                "height": 1080,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              },
+              {
+                "bandwidth": 2149280,
+                "height": 720,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 836280,
+                "height": 480,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 460560,
+                "height": 288,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 246440,
+                "height": 184,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8"
+            ],
+            "protected": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792109544391,
+        "tabId": 1842092153,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792109544596.9622,
+      "ours": {
+        "browserWallMs": 1792109544594,
+        "revision": 13,
+        "tabId": 1842092153,
+        "tabUrl": "http://127.0.0.1:11962/master-only",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:11962/master-only.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792109544348,
+            "lastSeen": 1792109544492,
+            "bytes": 661,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "5C34ABAB3C0395478728C95B6140CF55"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 6221600,
+                "height": 1080,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              },
+              {
+                "bandwidth": 2149280,
+                "height": 720,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 836280,
+                "height": 480,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 460560,
+                "height": 288,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 246440,
+                "height": 184,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8"
+            ],
+            "protected": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792109544595,
+        "tabId": 1842092153,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792109545019.264,
+      "ours": {
+        "browserWallMs": 1792109545001,
+        "revision": 13,
+        "tabId": 1842092153,
+        "tabUrl": "http://127.0.0.1:11962/master-only",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:11962/master-only.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792109544348,
+            "lastSeen": 1792109544492,
+            "bytes": 661,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "5C34ABAB3C0395478728C95B6140CF55"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 6221600,
+                "height": 1080,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920
+              },
+              {
+                "bandwidth": 2149280,
+                "height": 720,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280
+              },
+              {
+                "bandwidth": 836280,
+                "height": 480,
+                "id": "hls:2",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848
+              },
+              {
+                "bandwidth": 460560,
+                "height": 288,
+                "id": "hls:3",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512
+              },
+              {
+                "bandwidth": 246440,
+                "height": 184,
+                "id": "hls:4",
+                "kind": "video",
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320
+              }
+            ],
+            "childUrls": [
+              "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8"
+            ],
+            "protected": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792109545015,
+        "tabId": 1842092153,
+        "tabUrl": "http://127.0.0.1:11962/master-only",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "http://127.0.0.1:11962/master-only.m3u8",
+            "discoveredAt": 1792109544480,
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 6221600
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 2149280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848,
+                "height": 480,
+                "bandwidth": 836280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512,
+                "height": 288,
+                "bandwidth": 460560
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320,
+                "height": 184,
+                "bandwidth": 246440
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792109544178.848,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792109551263,
+      "revision": 13,
+      "tabId": 1842092153,
+      "tabUrl": "http://127.0.0.1:11962/master-only",
+      "epoch": 2,
+      "errors": [],
+      "items": [
+        {
+          "url": "http://127.0.0.1:11962/master-only.m3u8",
+          "type": "hls",
+          "status": "confirmed",
+          "firstSeen": 1792109544348,
+          "lastSeen": 1792109544492,
+          "bytes": 661,
+          "methods": [
+            "network",
+            "manifest",
+            "resource"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "5C34ABAB3C0395478728C95B6140CF55"
+          ],
+          "elementIds": [],
+          "variants": [
+            {
+              "bandwidth": 6221600,
+              "height": 1080,
+              "id": "hls:0",
+              "kind": "video",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+              "width": 1920
+            },
+            {
+              "bandwidth": 2149280,
+              "height": 720,
+              "id": "hls:1",
+              "kind": "video",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "width": 1280
+            },
+            {
+              "bandwidth": 836280,
+              "height": 480,
+              "id": "hls:2",
+              "kind": "video",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "width": 848
+            },
+            {
+              "bandwidth": 460560,
+              "height": 288,
+              "id": "hls:3",
+              "kind": "video",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "width": 512
+            },
+            {
+              "bandwidth": 246440,
+              "height": 184,
+              "id": "hls:4",
+              "kind": "video",
+              "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "width": 320
+            }
+          ],
+          "childUrls": [
+            "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+            "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+            "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+            "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+            "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8"
+          ],
+          "protected": false
+        }
+      ]
+    },
+    "original": {
+      "browserWallMs": 1792109551264,
+      "tabId": 1842092153,
+      "tabUrl": "http://127.0.0.1:11962/master-only",
+      "items": [
+        {
+          "type": "m3u8_playlist",
+          "url": "http://127.0.0.1:11962/master-only.m3u8",
+          "discoveredAt": 1792109544480,
+          "protected": false,
+          "variants": [
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+              "width": 1920,
+              "height": 1080,
+              "bandwidth": 6221600
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "width": 1280,
+              "height": 720,
+              "bandwidth": 2149280
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "width": 848,
+              "height": 480,
+              "bandwidth": 836280
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "width": 512,
+              "height": 288,
+              "bandwidth": 460560
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "width": 320,
+              "height": 184,
+              "bandwidth": 246440
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "documentStatus": 200,
+  "actionWallMs": 1792109544232.84,
+  "actionCompletedWallMs": 1792109544349.6006,
+  "dom": [
+    {
+      "frameUrl": "http://127.0.0.1:11962/master-only",
+      "media": []
+    }
+  ],
+  "popup": {
+    "openedWallMs": 1792109550907.7664,
+    "observedWallMs": 1792109551446.7742,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nActive tab\n\nhttp://127.0.0.1:11962/master-only\n\nRevision 13 · Tab 1842092153 · Generation 2\n\nMedia source\nhls · confirmed\n\nhttp://127.0.0.1:11962/master-only.m3u8\n\nCopy URL\n\nMethods: network, manifest, resource · Frames: 0\n\n661 bytes · application/vnd.apple.mpegurl\n\nFirst seen 8:12:24 PM · Last seen 8:12:24 PM\n\n5 variants\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 1,
+    "context": "Active tab\n\nhttp://127.0.0.1:11962/master-only\n\nRevision 13 · Tab 1842092153 · Generation 2",
+    "status": "",
+    "viewport": {
+      "width": 640,
+      "height": 510,
+      "devicePixelRatio": 1,
+      "bodyWidth": 460
+    },
+    "expectedContextVisible": true,
+    "artifact": "hls-master-only-1-popup.png",
+    "kind": "Actual chrome.action popup"
+  },
+  "polling": {
+    "samples": 35,
+    "requestedMs": 200,
+    "minIntervalMs": 199.938232421875,
+    "maxIntervalMs": 232.958251953125
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": 215.2080078125,
+    "firstConfirmedAfterNavigationMs": 215.2080078125,
+    "originalFirstAfterNavigationMs": 840.416015625,
+    "firstExpectedResponseAfterNavigationMs": 171.110107421875,
+    "candidateAfterExpectedResponseMs": 44.097900390625,
+    "confirmedAfterExpectedResponseMs": 44.097900390625,
+    "originalAfterExpectedResponseMs": 669.305908203125,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 0,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0,
+      "videoVariants": 5,
+      "liveStateUnknown": true,
+      "popupOmitsLiveMode": true
+    },
+    "original": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 0,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "pass",
+  "originalStatus": "pass",
+  "endedAt": "2026-10-16T00:12:31.463Z"
+}

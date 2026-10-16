@@ -1,0 +1,261 @@
+{
+  "build": {
+    "gitRevision": "82883ce589f52b4b5bab08453d0f30586671a795",
+    "files": {
+      "background.js": "b0c1ec60e3357b1ad3981820eca50696fcd0e3052003898d3c448b7618cf286d",
+      "content.js": "e816cb4d19c77db16f55c792f8e55c83c8af878cf124eab40c0fc829eda0248c",
+      "popup/index.js": "2f0f2b4e63970ac310920cc3212ec2b0ae5c0afb91a9cbcf7a9876e69eb52981",
+      "popup/index.html": "0b4b915030a6524adfd88f5d46a3008c0c3e30b438f11ce8806888ff7ea124fd",
+      "popup/style.css": "c0718d0d8a5dff73495c52179ac88e56bec719ad55eb6b20c891296491fd943e",
+      "manifest.json": "f251c7f0e66a883d451d2aaa7dfc24fe9178969acb367943e7b4e7126538f410"
+    }
+  },
+  "browser": "153.0.8010.12",
+  "startedAt": "2026-10-16T00:08:58.270Z",
+  "endedAt": "2026-10-16T00:11:55.154Z",
+  "caseCount": 21,
+  "newPass": 21,
+  "originalPass": 21,
+  "newFp": 0,
+  "originalFp": 0,
+  "newDuplicates": 0,
+  "originalDuplicates": 0,
+  "pollRange": [
+    198,
+    306
+  ],
+  "popupBodyWidths": [
+    460
+  ],
+  "caseErrors": [],
+  "workerErrors": [],
+  "livePopup": {
+    "observedWallMs": 1792109515116.8674,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nActive tab\n\nhttp://127.0.0.1:4562/popup-delayed\n\nRevision 481 · Tab 337631544 · Generation 9\n\nMedia source\ndirect · confirmed\n\nhttp://127.0.0.1:4563/media/popup.mp4\n\nCopy URL\n\nMethods: network · Frames: 0\n\n1,128,375 bytes · video/mp4\n\nFirst seen 8:11:54 PM · Last seen 8:11:54 PM\n\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 1,
+    "context": "Active tab\n\nhttp://127.0.0.1:4562/popup-delayed\n\nRevision 481 · Tab 337631544 · Generation 9",
+    "status": "",
+    "viewport": {
+      "width": 580,
+      "height": 510,
+      "devicePixelRatio": 1,
+      "bodyWidth": 460
+    },
+    "expectedContextVisible": true,
+    "artifact": "lifecycle-live-popup.png",
+    "kind": "Actual chrome.action popup",
+    "expectedMediaResponseWallMs": 1792109514911.4631,
+    "renderedAfterResponseMs": 205.404296875,
+    "expectedSourceVisible": true,
+    "renderedWithinTwoSeconds": true
+  },
+  "lifecycle": "pass",
+  "cases": [
+    {
+      "id": "direct-mp4",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        148,
+        217
+      ],
+      "newConfirmed": [
+        148,
+        217
+      ],
+      "original": [
+        614,
+        761
+      ],
+      "groupCounts": [
+        1,
+        1,
+        1
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "direct-webm",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        197,
+        204
+      ],
+      "newConfirmed": [
+        197,
+        204
+      ],
+      "original": [
+        618,
+        637
+      ],
+      "groupCounts": [
+        1,
+        1,
+        1
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hls",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        152,
+        171
+      ],
+      "newConfirmed": [
+        152,
+        171
+      ],
+      "original": [
+        563,
+        769
+      ],
+      "groupCounts": [
+        1,
+        1,
+        1
+      ],
+      "blobContexts": [
+        1,
+        1,
+        1
+      ],
+      "videoVariants": [
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "id": "dash",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        23,
+        164
+      ],
+      "newConfirmed": [
+        146,
+        224
+      ],
+      "original": [
+        560,
+        841
+      ],
+      "groupCounts": [
+        1,
+        1,
+        1
+      ],
+      "blobContexts": [
+        1,
+        1,
+        1
+      ],
+      "videoVariants": [
+        10,
+        10,
+        10
+      ]
+    },
+    {
+      "id": "multiple",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": [
+        143,
+        157
+      ],
+      "newConfirmed": [
+        143,
+        157
+      ],
+      "original": [
+        560,
+        595
+      ],
+      "groupCounts": [
+        2,
+        2,
+        2
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "no-video",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": null,
+      "newConfirmed": null,
+      "original": null,
+      "groupCounts": [
+        0,
+        0,
+        0
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": "mime-negative",
+      "oursPass": 3,
+      "originalPass": 3,
+      "newCandidate": null,
+      "newConfirmed": null,
+      "original": null,
+      "groupCounts": [
+        0,
+        0,
+        0
+      ],
+      "blobContexts": [
+        0,
+        0,
+        0
+      ],
+      "videoVariants": [
+        null,
+        null,
+        null
+      ]
+    }
+  ]
+}

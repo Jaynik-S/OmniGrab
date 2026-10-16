@@ -1,0 +1,9 @@
+﻿{
+  "status": "blocked",
+  "authority": "Harness setup diagnostic, no detector outcome inferred",
+  "build": "be4669b",
+  "case": "hls-master-child",
+  "reason": "The first order case did not complete. Its count-based GET holding could also hold the page observation if an extension GET reached the selected child first; requester attribution was not retained before the isolated process was stopped. No detector result is inferred from this aborted setup attempt.",
+  "correction": "Controlled page observations use explicit POST requests; extension GET probes are held after HTTP 200 headers. Page fetches now have a 3-second timeout. Own-worker Network request URLs establish probe attribution. No production source changed.",
+  "user_browser_9222": "untouched"
+}

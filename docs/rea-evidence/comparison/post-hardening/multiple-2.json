@@ -1,0 +1,382 @@
+{
+  "id": "multiple",
+  "trial": 2,
+  "category": "multiple independent videos",
+  "url": "http://127.0.0.1:4562/multiple",
+  "expected": [
+    "http://127.0.0.1:4563/media/first.mp4",
+    "http://127.0.0.1:4563/media/second.webm"
+  ],
+  "tabId": 337631524,
+  "startedAt": "2026-10-16T00:10:27.846Z",
+  "actions": "Navigate only",
+  "errors": [],
+  "responses": [
+    {
+      "wallMs": 1792109427909.1208,
+      "url": "http://127.0.0.1:4563/media/first.mp4",
+      "status": 206
+    },
+    {
+      "wallMs": 1792109427910.852,
+      "url": "http://127.0.0.1:4563/media/second.webm",
+      "status": 206
+    }
+  ],
+  "changes": [
+    {
+      "wallMs": 1792109427886.6074,
+      "ours": {
+        "browserWallMs": 1792109427859,
+        "revision": 270,
+        "tabId": 337631524,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792109427878,
+        "tabId": 337631524,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792109428065.6948,
+      "ours": {
+        "browserWallMs": 1792109428064,
+        "revision": 278,
+        "tabId": 337631524,
+        "tabUrl": "http://127.0.0.1:4562/multiple",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:4563/media/first.mp4",
+            "type": "direct",
+            "status": "confirmed",
+            "firstSeen": 1792109427899,
+            "lastSeen": 1792109428045,
+            "bytes": 1128375,
+            "methods": [
+              "network",
+              "resource",
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "A5E190FEECF3589E2632440B8B583ED3"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "http://127.0.0.1:4563/media/second.webm",
+            "type": "direct",
+            "status": "confirmed",
+            "firstSeen": 1792109427901,
+            "lastSeen": 1792109428045,
+            "bytes": 554058,
+            "methods": [
+              "network",
+              "resource",
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "A5E190FEECF3589E2632440B8B583ED3"
+            ],
+            "elementIds": [
+              "0:media-2"
+            ],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792109428064,
+        "tabId": 337631524,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792109428503.9001,
+      "ours": {
+        "browserWallMs": 1792109428491,
+        "revision": 278,
+        "tabId": 337631524,
+        "tabUrl": "http://127.0.0.1:4562/multiple",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:4563/media/first.mp4",
+            "type": "direct",
+            "status": "confirmed",
+            "firstSeen": 1792109427899,
+            "lastSeen": 1792109428045,
+            "bytes": 1128375,
+            "methods": [
+              "network",
+              "resource",
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "A5E190FEECF3589E2632440B8B583ED3"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "http://127.0.0.1:4563/media/second.webm",
+            "type": "direct",
+            "status": "confirmed",
+            "firstSeen": 1792109427901,
+            "lastSeen": 1792109428045,
+            "bytes": 554058,
+            "methods": [
+              "network",
+              "resource",
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "A5E190FEECF3589E2632440B8B583ED3"
+            ],
+            "elementIds": [
+              "0:media-2"
+            ],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792109428492,
+        "tabId": 337631524,
+        "tabUrl": "http://127.0.0.1:4562/multiple",
+        "items": [
+          {
+            "type": "http_playlist",
+            "url": "http://127.0.0.1:4563/media/first.mp4",
+            "discoveredAt": 1792109427899,
+            "extension": "mp4",
+            "protected": false,
+            "variants": [
+              {
+                "url": "http://127.0.0.1:4563/media/first.mp4",
+                "bandwidth": null
+              }
+            ]
+          },
+          {
+            "type": "http_playlist",
+            "url": "http://127.0.0.1:4563/media/second.webm",
+            "discoveredAt": 1792109427901,
+            "extension": "mkv",
+            "protected": false,
+            "variants": [
+              {
+                "url": "http://127.0.0.1:4563/media/second.webm",
+                "bandwidth": null
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792109427847.0317,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792109434844,
+      "revision": 278,
+      "tabId": 337631524,
+      "tabUrl": "http://127.0.0.1:4562/multiple",
+      "epoch": 2,
+      "errors": [],
+      "items": [
+        {
+          "url": "http://127.0.0.1:4563/media/first.mp4",
+          "type": "direct",
+          "status": "confirmed",
+          "firstSeen": 1792109427899,
+          "lastSeen": 1792109428045,
+          "bytes": 1128375,
+          "methods": [
+            "network",
+            "resource",
+            "dom"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "A5E190FEECF3589E2632440B8B583ED3"
+          ],
+          "elementIds": [
+            "0:media-1"
+          ],
+          "variants": [],
+          "childUrls": []
+        },
+        {
+          "url": "http://127.0.0.1:4563/media/second.webm",
+          "type": "direct",
+          "status": "confirmed",
+          "firstSeen": 1792109427901,
+          "lastSeen": 1792109428045,
+          "bytes": 554058,
+          "methods": [
+            "network",
+            "resource",
+            "dom"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "A5E190FEECF3589E2632440B8B583ED3"
+          ],
+          "elementIds": [
+            "0:media-2"
+          ],
+          "variants": [],
+          "childUrls": []
+        }
+      ]
+    },
+    "original": {
+      "browserWallMs": 1792109434844,
+      "tabId": 337631524,
+      "tabUrl": "http://127.0.0.1:4562/multiple",
+      "items": [
+        {
+          "type": "http_playlist",
+          "url": "http://127.0.0.1:4563/media/first.mp4",
+          "discoveredAt": 1792109427899,
+          "extension": "mp4",
+          "protected": false,
+          "variants": [
+            {
+              "url": "http://127.0.0.1:4563/media/first.mp4",
+              "bandwidth": null
+            }
+          ]
+        },
+        {
+          "type": "http_playlist",
+          "url": "http://127.0.0.1:4563/media/second.webm",
+          "discoveredAt": 1792109427901,
+          "extension": "mkv",
+          "protected": false,
+          "variants": [
+            {
+              "url": "http://127.0.0.1:4563/media/second.webm",
+              "bandwidth": null
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "documentStatus": 200,
+  "dom": [
+    {
+      "frameUrl": "http://127.0.0.1:4562/multiple",
+      "media": [
+        {
+          "currentSrc": "http://127.0.0.1:4563/media/first.mp4",
+          "src": "http://127.0.0.1:4563/media/first.mp4",
+          "readyState": 4,
+          "width": 960,
+          "height": 540,
+          "paused": true,
+          "errorCode": null
+        },
+        {
+          "currentSrc": "http://127.0.0.1:4563/media/second.webm",
+          "src": "http://127.0.0.1:4563/media/second.webm",
+          "readyState": 4,
+          "width": 960,
+          "height": 540,
+          "paused": true,
+          "errorCode": null
+        }
+      ]
+    }
+  ],
+  "popup": {
+    "openedWallMs": 1792109434512.4258,
+    "observedWallMs": 1792109434979.6855,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nTwo independent videos\n\nhttp://127.0.0.1:4562/multiple\n\nRevision 278 · Tab 337631524 · Generation 2\n\nTwo independent videos\ndirect · confirmed\n\nhttp://127.0.0.1:4563/media/first.mp4\n\nCopy URL\n\nMethods: network, resource, dom · Frames: 0\n\n960 × 540 · 5.05 s · 1,128,375 bytes · video/mp4\n\nFirst seen 8:10:27 PM · Last seen 8:10:28 PM\n\nTwo independent videos\ndirect · confirmed\n\nhttp://127.0.0.1:4563/media/second.webm\n\nCopy URL\n\nMethods: network, resource, dom · Frames: 0\n\n960 × 540 · 5.06 s · 554,058 bytes · video/webm\n\nFirst seen 8:10:27 PM · Last seen 8:10:28 PM\n\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 2,
+    "context": "Two independent videos\n\nhttp://127.0.0.1:4562/multiple\n\nRevision 278 · Tab 337631524 · Generation 2",
+    "status": "",
+    "viewport": {
+      "width": 550,
+      "height": 510,
+      "devicePixelRatio": 1,
+      "bodyWidth": 460
+    },
+    "expectedContextVisible": true,
+    "artifact": "multiple-2-popup.png",
+    "kind": "Actual chrome.action popup"
+  },
+  "polling": {
+    "samples": 34,
+    "requestedMs": 200,
+    "minIntervalMs": 199.932373046875,
+    "maxIntervalMs": 254.59716796875
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": 218.6630859375,
+    "firstConfirmedAfterNavigationMs": 218.6630859375,
+    "originalFirstAfterNavigationMs": 656.868408203125,
+    "firstExpectedResponseAfterNavigationMs": 62.089111328125,
+    "candidateAfterExpectedResponseMs": 156.573974609375,
+    "confirmedAfterExpectedResponseMs": 156.573974609375,
+    "originalAfterExpectedResponseMs": 594.779296875,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 2,
+      "confirmedGroups": 2,
+      "blobContexts": 0,
+      "expectedMatched": 2,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0,
+      "videoVariants": 0
+    },
+    "original": {
+      "groups": 2,
+      "confirmedGroups": 2,
+      "blobContexts": 0,
+      "expectedMatched": 2,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "pass",
+  "originalStatus": "pass",
+  "endedAt": "2026-10-16T00:10:35.032Z"
+}

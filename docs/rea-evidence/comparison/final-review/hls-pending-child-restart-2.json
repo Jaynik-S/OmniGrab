@@ -1,0 +1,1074 @@
+{
+  "id": "hls-pending-child-restart",
+  "trial": 2,
+  "category": "controlled HLS observed-child request order",
+  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+  "expected": [
+    "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8"
+  ],
+  "expectedVideoVariants": 2,
+  "tabId": 1419626118,
+  "startedAt": "2026-10-16T00:35:34.349Z",
+  "actions": "Navigate, then declared page button interaction",
+  "errors": [],
+  "responses": [
+    {
+      "wallMs": 1792110934443.6091,
+      "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+      "status": 200
+    },
+    {
+      "wallMs": 1792110934542.4172,
+      "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+      "status": 200
+    }
+  ],
+  "changes": [
+    {
+      "wallMs": 1792110934400.599,
+      "ours": {
+        "browserWallMs": 1792110934364,
+        "revision": 399,
+        "tabId": 1419626118,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792110934385,
+        "tabId": 1419626118,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110934559.854,
+      "ours": {
+        "browserWallMs": 1792110934558,
+        "revision": 407,
+        "tabId": 1419626118,
+        "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110934436,
+            "lastSeen": 1792110934543,
+            "bytes": 140,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "DFC525974705D3CFCAA51B50026D3641"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 1000000,
+                "height": 540,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                "width": 960
+              },
+              {
+                "bandwidth": 500000,
+                "height": 270,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+                "width": 480
+              }
+            ],
+            "childUrls": [
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8"
+            ],
+            "segmentUrls": [],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 406,
+                "status": "probing",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8"
+              }
+            ],
+            "protected": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110934557,
+        "tabId": 1419626118,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110935681.6765,
+      "ours": {
+        "browserWallMs": 1792110935680,
+        "revision": 415,
+        "tabId": 1419626118,
+        "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110934436,
+            "lastSeen": 1792110934627,
+            "bytes": 140,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "DFC525974705D3CFCAA51B50026D3641"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 1000000,
+                "height": 540,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                "width": 960
+              },
+              {
+                "bandwidth": 500000,
+                "height": 270,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+                "width": 480
+              }
+            ],
+            "childUrls": [
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8"
+            ],
+            "segmentUrls": [
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/init.mp4",
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-002.mp4"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 406,
+                "status": "confirmed",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8"
+              }
+            ],
+            "duration": 5.005,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110935676,
+        "tabId": 1419626118,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110935889.9507,
+      "ours": {
+        "browserWallMs": 1792110935889,
+        "revision": 417,
+        "tabId": 1419626118,
+        "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110934436,
+            "lastSeen": 1792110935773,
+            "bytes": 140,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "DFC525974705D3CFCAA51B50026D3641"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 1000000,
+                "height": 540,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                "width": 960
+              },
+              {
+                "bandwidth": 500000,
+                "height": 270,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+                "width": 480
+              }
+            ],
+            "childUrls": [
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8"
+            ],
+            "segmentUrls": [
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/init.mp4",
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-002.mp4"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 406,
+                "status": "confirmed",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8"
+              }
+            ],
+            "duration": 5.005,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110935889,
+        "tabId": 1419626118,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110936344.9587,
+      "ours": {
+        "browserWallMs": 1792110936342,
+        "revision": 417,
+        "tabId": 1419626118,
+        "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "firstSeen": 1792110934436,
+            "lastSeen": 1792110935773,
+            "bytes": 140,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "DFC525974705D3CFCAA51B50026D3641"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 1000000,
+                "height": 540,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                "width": 960
+              },
+              {
+                "bandwidth": 500000,
+                "height": 270,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+                "width": 480
+              }
+            ],
+            "childUrls": [
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8"
+            ],
+            "segmentUrls": [
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/init.mp4",
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+              "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-002.mp4"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 406,
+                "status": "confirmed",
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8"
+              }
+            ],
+            "duration": 5.005,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110936342,
+        "tabId": 1419626118,
+        "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+            "discoveredAt": 1792110935657,
+            "protected": false,
+            "variants": [
+              {
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                "width": 960,
+                "height": 540,
+                "bandwidth": 1000000
+              },
+              {
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+                "width": 480,
+                "height": 270,
+                "bandwidth": 500000
+              }
+            ]
+          },
+          {
+            "type": "http_playlist",
+            "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+            "discoveredAt": 1792110935715,
+            "extension": "mp4",
+            "protected": false,
+            "variants": [
+              {
+                "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+                "bandwidth": null
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792110934349.0232,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792110942765,
+      "revision": 417,
+      "tabId": 1419626118,
+      "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+      "epoch": 2,
+      "errors": [],
+      "items": [
+        {
+          "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+          "type": "hls",
+          "status": "confirmed",
+          "firstSeen": 1792110934436,
+          "lastSeen": 1792110935773,
+          "bytes": 140,
+          "methods": [
+            "network",
+            "manifest",
+            "resource"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "DFC525974705D3CFCAA51B50026D3641"
+          ],
+          "elementIds": [],
+          "variants": [
+            {
+              "bandwidth": 1000000,
+              "height": 540,
+              "id": "hls:0",
+              "kind": "video",
+              "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+              "width": 960
+            },
+            {
+              "bandwidth": 500000,
+              "height": 270,
+              "id": "hls:1",
+              "kind": "video",
+              "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+              "width": 480
+            }
+          ],
+          "childUrls": [
+            "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+            "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8"
+          ],
+          "segmentUrls": [
+            "http://127.0.0.1:9011/order/hls-pending-child-restart-2/init.mp4",
+            "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+            "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-002.mp4"
+          ],
+          "childManifests": [
+            {
+              "frameIds": [
+                0
+              ],
+              "instance": 406,
+              "status": "confirmed",
+              "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8"
+            }
+          ],
+          "duration": 5.005,
+          "protected": false,
+          "live": false
+        }
+      ]
+    },
+    "original": {
+      "browserWallMs": 1792110942766,
+      "tabId": 1419626118,
+      "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+      "items": [
+        {
+          "type": "m3u8_playlist",
+          "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+          "discoveredAt": 1792110935657,
+          "protected": false,
+          "variants": [
+            {
+              "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+              "width": 960,
+              "height": 540,
+              "bandwidth": 1000000
+            },
+            {
+              "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+              "width": 480,
+              "height": 270,
+              "bandwidth": 500000
+            }
+          ]
+        },
+        {
+          "type": "http_playlist",
+          "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+          "discoveredAt": 1792110935715,
+          "extension": "mp4",
+          "protected": false,
+          "variants": [
+            {
+              "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+              "bandwidth": null
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "documentStatus": 200,
+  "actionWallMs": 1792110934402.1748,
+  "order": {
+    "mode": "genuine ffmpeg-remuxed CC0 fMP4 HLS assets; network-order test only",
+    "expectedDuration": 5.005,
+    "expectedProtected": false,
+    "protectionDeclarationOnly": false,
+    "playbackClaim": false,
+    "stages": [
+      {
+        "label": "master parsed before child completion",
+        "observedWallMs": 1792110934526.0105,
+        "state": {
+          "browserWallMs": 1792110934525,
+          "revision": 405,
+          "tabId": 1419626118,
+          "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+          "epoch": 2,
+          "errors": [],
+          "items": [
+            {
+              "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+              "type": "hls",
+              "status": "confirmed",
+              "firstSeen": 1792110934436,
+              "lastSeen": 1792110934474,
+              "bytes": 140,
+              "methods": [
+                "network",
+                "manifest",
+                "resource"
+              ],
+              "frameIds": [
+                0
+              ],
+              "documentIds": [
+                "DFC525974705D3CFCAA51B50026D3641"
+              ],
+              "elementIds": [],
+              "variants": [
+                {
+                  "bandwidth": 1000000,
+                  "height": 540,
+                  "id": "hls:0",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                  "width": 960
+                },
+                {
+                  "bandwidth": 500000,
+                  "height": 270,
+                  "id": "hls:1",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+                  "width": 480
+                }
+              ],
+              "childUrls": [
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8"
+              ],
+              "segmentUrls": [],
+              "protected": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "durable observed-child descriptor probing",
+        "observedWallMs": 1792110934627.2498,
+        "state": {
+          "browserWallMs": 1792110934625,
+          "revision": 407,
+          "tabId": 1419626118,
+          "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+          "epoch": 2,
+          "errors": [],
+          "items": [
+            {
+              "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+              "type": "hls",
+              "status": "confirmed",
+              "firstSeen": 1792110934436,
+              "lastSeen": 1792110934543,
+              "bytes": 140,
+              "methods": [
+                "network",
+                "manifest",
+                "resource"
+              ],
+              "frameIds": [
+                0
+              ],
+              "documentIds": [
+                "DFC525974705D3CFCAA51B50026D3641"
+              ],
+              "elementIds": [],
+              "variants": [
+                {
+                  "bandwidth": 1000000,
+                  "height": 540,
+                  "id": "hls:0",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                  "width": 960
+                },
+                {
+                  "bandwidth": 500000,
+                  "height": 270,
+                  "id": "hls:1",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+                  "width": 480
+                }
+              ],
+              "childUrls": [
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8"
+              ],
+              "segmentUrls": [],
+              "childManifests": [
+                {
+                  "frameIds": [
+                    0
+                  ],
+                  "instance": 406,
+                  "status": "probing",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8"
+                }
+              ],
+              "protected": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "pending child restored after actual worker stop",
+        "observedWallMs": 1792110935650.5066,
+        "state": {
+          "browserWallMs": 1792110935647,
+          "revision": 414,
+          "tabId": 1419626118,
+          "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+          "epoch": 2,
+          "errors": [],
+          "items": [
+            {
+              "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+              "type": "hls",
+              "status": "confirmed",
+              "firstSeen": 1792110934436,
+              "lastSeen": 1792110934627,
+              "bytes": 140,
+              "methods": [
+                "network",
+                "manifest",
+                "resource"
+              ],
+              "frameIds": [
+                0
+              ],
+              "documentIds": [
+                "DFC525974705D3CFCAA51B50026D3641"
+              ],
+              "elementIds": [],
+              "variants": [
+                {
+                  "bandwidth": 1000000,
+                  "height": 540,
+                  "id": "hls:0",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                  "width": 960
+                },
+                {
+                  "bandwidth": 500000,
+                  "height": 270,
+                  "id": "hls:1",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+                  "width": 480
+                }
+              ],
+              "childUrls": [
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8"
+              ],
+              "segmentUrls": [],
+              "childManifests": [
+                {
+                  "frameIds": [
+                    0
+                  ],
+                  "instance": 406,
+                  "status": "probing",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8"
+                }
+              ],
+              "protected": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "selected child metadata merged into parent",
+        "observedWallMs": 1792110935679.8457,
+        "state": {
+          "browserWallMs": 1792110935677,
+          "revision": 415,
+          "tabId": 1419626118,
+          "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+          "epoch": 2,
+          "errors": [],
+          "items": [
+            {
+              "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+              "type": "hls",
+              "status": "confirmed",
+              "firstSeen": 1792110934436,
+              "lastSeen": 1792110934627,
+              "bytes": 140,
+              "methods": [
+                "network",
+                "manifest",
+                "resource"
+              ],
+              "frameIds": [
+                0
+              ],
+              "documentIds": [
+                "DFC525974705D3CFCAA51B50026D3641"
+              ],
+              "elementIds": [],
+              "variants": [
+                {
+                  "bandwidth": 1000000,
+                  "height": 540,
+                  "id": "hls:0",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                  "width": 960
+                },
+                {
+                  "bandwidth": 500000,
+                  "height": 270,
+                  "id": "hls:1",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+                  "width": 480
+                }
+              ],
+              "childUrls": [
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8"
+              ],
+              "segmentUrls": [
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/init.mp4",
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-002.mp4"
+              ],
+              "childManifests": [
+                {
+                  "frameIds": [
+                    0
+                  ],
+                  "instance": 406,
+                  "status": "confirmed",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8"
+                }
+              ],
+              "duration": 5.005,
+              "protected": false,
+              "live": false
+            }
+          ]
+        }
+      },
+      {
+        "label": "observed MP4 segment remains owned by one master",
+        "observedWallMs": 1792110935706.2964,
+        "state": {
+          "browserWallMs": 1792110935704,
+          "revision": 416,
+          "tabId": 1419626118,
+          "tabUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+          "epoch": 2,
+          "errors": [],
+          "items": [
+            {
+              "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+              "type": "hls",
+              "status": "confirmed",
+              "firstSeen": 1792110934436,
+              "lastSeen": 1792110935691,
+              "bytes": 140,
+              "methods": [
+                "network",
+                "manifest",
+                "resource"
+              ],
+              "frameIds": [
+                0
+              ],
+              "documentIds": [
+                "DFC525974705D3CFCAA51B50026D3641"
+              ],
+              "elementIds": [],
+              "variants": [
+                {
+                  "bandwidth": 1000000,
+                  "height": 540,
+                  "id": "hls:0",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                  "width": 960
+                },
+                {
+                  "bandwidth": 500000,
+                  "height": 270,
+                  "id": "hls:1",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8",
+                  "width": 480
+                }
+              ],
+              "childUrls": [
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/unused.m3u8"
+              ],
+              "segmentUrls": [
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/init.mp4",
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+                "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-002.mp4"
+              ],
+              "childManifests": [
+                {
+                  "frameIds": [
+                    0
+                  ],
+                  "instance": 406,
+                  "status": "confirmed",
+                  "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8"
+                }
+              ],
+              "duration": 5.005,
+              "protected": false,
+              "live": false
+            }
+          ]
+        }
+      }
+    ],
+    "workerRequests": [
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+        "observedWallMs": 1792110934448.8257,
+        "source": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+      },
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+        "observedWallMs": 1792110934558.2869,
+        "source": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+      }
+    ],
+    "requestObservations": [
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+        "observedWallMs": 1792110934415.573,
+        "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js"
+      },
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+        "observedWallMs": 1792110934432.057,
+        "source": "page-or-unattributed"
+      },
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+        "observedWallMs": 1792110934443.1997,
+        "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js"
+      },
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8",
+        "observedWallMs": 1792110934448.8257,
+        "source": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+      },
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+        "observedWallMs": 1792110934462.2112,
+        "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js"
+      },
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+        "observedWallMs": 1792110934530.1655,
+        "source": "page-or-unattributed"
+      },
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+        "observedWallMs": 1792110934545.5564,
+        "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js"
+      },
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/child.m3u8",
+        "observedWallMs": 1792110934558.2869,
+        "source": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+      },
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+        "observedWallMs": 1792110935689.305,
+        "source": "page-or-unattributed"
+      },
+      {
+        "url": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4",
+        "observedWallMs": 1792110935695.1855,
+        "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js"
+      }
+    ],
+    "parentFirstSeen": 1792110934436,
+    "restart": {
+      "versionId": "0",
+      "stopped": true,
+      "sentinelCleared": true,
+      "instrumentation": "Ephemeral own-worker global sentinel only; no source/fetch modification",
+      "wokeWithOrdinarySnapshot": true
+    },
+    "assessment": {
+      "onePrimaryGroup": true,
+      "childConfirmed": true,
+      "childDurationMerged": true,
+      "childLiveMerged": true,
+      "childProtectionMerged": true,
+      "firstSeenPreserved": true,
+      "noUnusedChildWork": true
+    },
+    "serverRequests": [
+      {
+        "name": "",
+        "method": "GET",
+        "at": 1792110934369
+      },
+      {
+        "name": "",
+        "method": "GET",
+        "at": 1792110934426
+      },
+      {
+        "name": "master.m3u8",
+        "method": "POST",
+        "at": 1792110934433
+      },
+      {
+        "name": "master.m3u8",
+        "method": "GET",
+        "at": 1792110934446
+      },
+      {
+        "name": "master.m3u8",
+        "method": "GET",
+        "at": 1792110934450
+      },
+      {
+        "name": "child.m3u8",
+        "method": "GET",
+        "at": 1792110934463
+      },
+      {
+        "name": "child.m3u8",
+        "method": "POST",
+        "at": 1792110934534
+      },
+      {
+        "name": "child.m3u8",
+        "method": "GET",
+        "at": 1792110934547
+      },
+      {
+        "name": "child.m3u8",
+        "method": "GET",
+        "at": 1792110934559
+      },
+      {
+        "name": "child.m3u8",
+        "method": "GET",
+        "at": 1792110935479
+      },
+      {
+        "name": "video-001.mp4",
+        "method": "POST",
+        "at": 1792110935687
+      },
+      {
+        "name": "video-001.mp4",
+        "method": "GET",
+        "at": 1792110935696
+      }
+    ],
+    "noAutomaticUnusedFetch": true,
+    "noKeyFetch": true,
+    "passed": true
+  },
+  "actionCompletedWallMs": 1792110935706.875,
+  "dom": [
+    {
+      "frameUrl": "http://127.0.0.1:9011/order/hls-pending-child-restart-2/",
+      "media": []
+    }
+  ],
+  "popup": {
+    "openedWallMs": 1792110942328.0442,
+    "observedWallMs": 1792110942795.2986,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nActive tab\n\nhttp://127.0.0.1:9011/order/hls-pending-child-restart-2/\n\nRevision 417 · Tab 1419626118 · Generation 2\n\nMedia source\nhls · confirmed\n\nhttp://127.0.0.1:9011/order/hls-pending-child-restart-2/master.m3u8\n\nCopy URL\n\nMethods: network, manifest, resource · Frames: 0\n\n5 s · 140 bytes · application/vnd.apple.mpegurl · VOD\n\nFirst seen 8:35:34 PM · Last seen 8:35:35 PM\n\n2 variants\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 1,
+    "context": "Active tab\n\nhttp://127.0.0.1:9011/order/hls-pending-child-restart-2/\n\nRevision 417 · Tab 1419626118 · Generation 2",
+    "status": "",
+    "viewport": {
+      "width": 580,
+      "height": 510,
+      "devicePixelRatio": 1,
+      "bodyWidth": 460
+    },
+    "expectedContextVisible": true,
+    "artifact": "hls-pending-child-restart-2-popup.png",
+    "kind": "Actual chrome.action popup"
+  },
+  "polling": {
+    "samples": 37,
+    "requestedMs": 200,
+    "minIntervalMs": 198.443359375,
+    "maxIntervalMs": 228.086181640625,
+    "deliberatePauses": [
+      {
+        "startedWallMs": 1792110934627.6726,
+        "endedWallMs": 1792110935644.6143,
+        "reason": "Actual pending-child worker stop/wake; no worker storage evaluations during stop"
+      }
+    ]
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": 210.830810546875,
+    "firstConfirmedAfterNavigationMs": 210.830810546875,
+    "originalFirstAfterNavigationMs": 1995.935546875,
+    "firstExpectedResponseAfterNavigationMs": 94.5859375,
+    "candidateAfterExpectedResponseMs": 116.244873046875,
+    "confirmedAfterExpectedResponseMs": 116.244873046875,
+    "originalAfterExpectedResponseMs": 1901.349609375,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 0,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0,
+      "videoVariants": 2,
+      "expectedOwnerStatus": "confirmed",
+      "expectedOwnerPresent": true,
+      "orderedMetadataPassed": true
+    },
+    "original": {
+      "groups": 2,
+      "confirmedGroups": 2,
+      "blobContexts": 0,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [
+        "http://127.0.0.1:9011/order/hls-pending-child-restart-2/video-001.mp4"
+      ],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "pass",
+  "originalStatus": "fail",
+  "endedAt": "2026-10-16T00:35:42.974Z"
+}

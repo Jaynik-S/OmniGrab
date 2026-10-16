@@ -1,0 +1,3639 @@
+{
+  "id": "dash",
+  "trial": 3,
+  "category": "DASH / qualities / MSE",
+  "url": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+  "expected": [
+    "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd"
+  ],
+  "expectedVideoVariants": 10,
+  "tabId": 1419626128,
+  "startedAt": "2026-10-16T00:36:05.567Z",
+  "actions": "Navigate, then declared page button interaction",
+  "errors": [],
+  "responses": [
+    {
+      "wallMs": 1792110967202.667,
+      "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+      "status": 200
+    }
+  ],
+  "changes": [
+    {
+      "wallMs": 1792110965599.4639,
+      "ours": {
+        "browserWallMs": 1792110965585,
+        "revision": 464,
+        "tabId": 1419626128,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792110965593,
+        "tabId": 1419626128,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110967406.4087,
+      "ours": {
+        "browserWallMs": 1792110967402,
+        "revision": 482,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110967315,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110967334,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110967403,
+        "tabId": 1419626128,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110967614.9998,
+      "ours": {
+        "browserWallMs": 1792110967610,
+        "revision": 486,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110967405,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110967405,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110967610,
+        "tabId": 1419626128,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110967834.2434,
+      "ours": {
+        "browserWallMs": 1792110967805,
+        "revision": 487,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110967405,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110967691,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110967832,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "items": [
+          {
+            "type": "mpd_playlist",
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "discoveredAt": 1792110967248,
+            "protected": false,
+            "variants": [
+              {
+                "width": 3840,
+                "height": 2160,
+                "bandwidth": 14931538,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 9914554,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 4952892,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1024,
+                "height": 576,
+                "bandwidth": 3134488,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 768,
+                "height": 432,
+                "bandwidth": 1883700,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1254758,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1013310,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 480,
+                "height": 270,
+                "bandwidth": 759798,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 507246,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 254320,
+                "audioId": "bbb_a64k"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110968245.5374,
+      "ours": {
+        "browserWallMs": 1792110968240,
+        "revision": 489,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110967405,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110968108,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110968236,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "items": [
+          {
+            "type": "mpd_playlist",
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "discoveredAt": 1792110967248,
+            "protected": false,
+            "variants": [
+              {
+                "width": 3840,
+                "height": 2160,
+                "bandwidth": 14931538,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 9914554,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 4952892,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1024,
+                "height": 576,
+                "bandwidth": 3134488,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 768,
+                "height": 432,
+                "bandwidth": 1883700,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1254758,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1013310,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 480,
+                "height": 270,
+                "bandwidth": 759798,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 507246,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 254320,
+                "audioId": "bbb_a64k"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110968423.0164,
+      "ours": {
+        "browserWallMs": 1792110968418,
+        "revision": 499,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110967405,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110968405,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110968421,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "items": [
+          {
+            "type": "mpd_playlist",
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "discoveredAt": 1792110967248,
+            "protected": false,
+            "variants": [
+              {
+                "width": 3840,
+                "height": 2160,
+                "bandwidth": 14931538,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 9914554,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 4952892,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1024,
+                "height": 576,
+                "bandwidth": 3134488,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 768,
+                "height": 432,
+                "bandwidth": 1883700,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1254758,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1013310,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 480,
+                "height": 270,
+                "bandwidth": 759798,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 507246,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 254320,
+                "audioId": "bbb_a64k"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110968630.7915,
+      "ours": {
+        "browserWallMs": 1792110968625,
+        "revision": 507,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110967405,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110968600,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110968626,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "items": [
+          {
+            "type": "mpd_playlist",
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "discoveredAt": 1792110967248,
+            "protected": false,
+            "variants": [
+              {
+                "width": 3840,
+                "height": 2160,
+                "bandwidth": 14931538,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 9914554,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 4952892,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1024,
+                "height": 576,
+                "bandwidth": 3134488,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 768,
+                "height": 432,
+                "bandwidth": 1883700,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1254758,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1013310,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 480,
+                "height": 270,
+                "bandwidth": 759798,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 507246,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 254320,
+                "audioId": "bbb_a64k"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110968833.083,
+      "ours": {
+        "browserWallMs": 1792110968825,
+        "revision": 512,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110967405,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110968805,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110968830,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "items": [
+          {
+            "type": "mpd_playlist",
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "discoveredAt": 1792110967248,
+            "protected": false,
+            "variants": [
+              {
+                "width": 3840,
+                "height": 2160,
+                "bandwidth": 14931538,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 9914554,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 4952892,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1024,
+                "height": 576,
+                "bandwidth": 3134488,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 768,
+                "height": 432,
+                "bandwidth": 1883700,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1254758,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1013310,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 480,
+                "height": 270,
+                "bandwidth": 759798,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 507246,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 254320,
+                "audioId": "bbb_a64k"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110969031.0334,
+      "ours": {
+        "browserWallMs": 1792110969028,
+        "revision": 529,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110967405,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110969005,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110969029,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "items": [
+          {
+            "type": "mpd_playlist",
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "discoveredAt": 1792110967248,
+            "protected": false,
+            "variants": [
+              {
+                "width": 3840,
+                "height": 2160,
+                "bandwidth": 14931538,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 9914554,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 4952892,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1024,
+                "height": 576,
+                "bandwidth": 3134488,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 768,
+                "height": 432,
+                "bandwidth": 1883700,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1254758,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1013310,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 480,
+                "height": 270,
+                "bandwidth": 759798,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 507246,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 254320,
+                "audioId": "bbb_a64k"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110969242.5059,
+      "ours": {
+        "browserWallMs": 1792110969239,
+        "revision": 546,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110967405,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110969216,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110969241,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "items": [
+          {
+            "type": "mpd_playlist",
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "discoveredAt": 1792110967248,
+            "protected": false,
+            "variants": [
+              {
+                "width": 3840,
+                "height": 2160,
+                "bandwidth": 14931538,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 9914554,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 4952892,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1024,
+                "height": 576,
+                "bandwidth": 3134488,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 768,
+                "height": 432,
+                "bandwidth": 1883700,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1254758,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1013310,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 480,
+                "height": 270,
+                "bandwidth": 759798,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 507246,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 254320,
+                "audioId": "bbb_a64k"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110969652.0754,
+      "ours": {
+        "browserWallMs": 1792110969647,
+        "revision": 548,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110967405,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110969637,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110969640,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "items": [
+          {
+            "type": "mpd_playlist",
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "discoveredAt": 1792110967248,
+            "protected": false,
+            "variants": [
+              {
+                "width": 3840,
+                "height": 2160,
+                "bandwidth": 14931538,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 9914554,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 4952892,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1024,
+                "height": 576,
+                "bandwidth": 3134488,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 768,
+                "height": 432,
+                "bandwidth": 1883700,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1254758,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1013310,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 480,
+                "height": 270,
+                "bandwidth": 759798,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 507246,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 254320,
+                "audioId": "bbb_a64k"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110969844.6387,
+      "ours": {
+        "browserWallMs": 1792110969837,
+        "revision": 553,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110969822,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110969732,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110969839,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "items": [
+          {
+            "type": "mpd_playlist",
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "discoveredAt": 1792110967248,
+            "protected": false,
+            "variants": [
+              {
+                "width": 3840,
+                "height": 2160,
+                "bandwidth": 14931538,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 9914554,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 4952892,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1024,
+                "height": 576,
+                "bandwidth": 3134488,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 768,
+                "height": 432,
+                "bandwidth": 1883700,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1254758,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1013310,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 480,
+                "height": 270,
+                "bandwidth": 759798,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 507246,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 254320,
+                "audioId": "bbb_a64k"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110971948.1277,
+      "ours": {
+        "browserWallMs": 1792110971940,
+        "revision": 555,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110969822,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110971875,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110971942,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "items": [
+          {
+            "type": "mpd_playlist",
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "discoveredAt": 1792110967248,
+            "protected": false,
+            "variants": [
+              {
+                "width": 3840,
+                "height": 2160,
+                "bandwidth": 14931538,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 9914554,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 4952892,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1024,
+                "height": 576,
+                "bandwidth": 3134488,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 768,
+                "height": 432,
+                "bandwidth": 1883700,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1254758,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1013310,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 480,
+                "height": 270,
+                "bandwidth": 759798,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 507246,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 254320,
+                "audioId": "bbb_a64k"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "wallMs": 1792110972355.6506,
+      "ours": {
+        "browserWallMs": 1792110972352,
+        "revision": 557,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792110967315,
+            "lastSeen": 1792110969822,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 634.566
+          },
+          {
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "type": "dash",
+            "status": "confirmed",
+            "firstSeen": 1792110967206,
+            "lastSeen": 1792110972255,
+            "bytes": 910,
+            "methods": [
+              "network",
+              "manifest",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "915CF79DE9D4A056C821B59EE984C377"
+            ],
+            "elementIds": [],
+            "variants": [
+              {
+                "bandwidth": 3134488,
+                "codecs": "avc1.64001f",
+                "height": 576,
+                "id": "dash:0",
+                "kind": "video",
+                "representationId": "bbb_30fps_1024x576_2500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1024
+              },
+              {
+                "bandwidth": 4952892,
+                "codecs": "avc1.64001f",
+                "height": 720,
+                "id": "dash:1",
+                "kind": "video",
+                "representationId": "bbb_30fps_1280x720_4000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1280
+              },
+              {
+                "bandwidth": 9914554,
+                "codecs": "avc1.640028",
+                "height": 1080,
+                "id": "dash:2",
+                "kind": "video",
+                "representationId": "bbb_30fps_1920x1080_8000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 1920
+              },
+              {
+                "bandwidth": 254320,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:3",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_200k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 507246,
+                "codecs": "avc1.64000d",
+                "height": 180,
+                "id": "dash:4",
+                "kind": "video",
+                "representationId": "bbb_30fps_320x180_400k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 320
+              },
+              {
+                "bandwidth": 759798,
+                "codecs": "avc1.640015",
+                "height": 270,
+                "id": "dash:5",
+                "kind": "video",
+                "representationId": "bbb_30fps_480x270_600k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 480
+              },
+              {
+                "bandwidth": 1254758,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:6",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_1000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1013310,
+                "codecs": "avc1.64001e",
+                "height": 360,
+                "id": "dash:7",
+                "kind": "video",
+                "representationId": "bbb_30fps_640x360_800k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 640
+              },
+              {
+                "bandwidth": 1883700,
+                "codecs": "avc1.64001e",
+                "height": 432,
+                "id": "dash:8",
+                "kind": "video",
+                "representationId": "bbb_30fps_768x432_1500k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 768
+              },
+              {
+                "bandwidth": 14931538,
+                "codecs": "avc1.640033",
+                "height": 2160,
+                "id": "dash:9",
+                "kind": "video",
+                "representationId": "bbb_30fps_3840x2160_12000k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+                "width": 3840
+              },
+              {
+                "bandwidth": 67071,
+                "codecs": "mp4a.40.5",
+                "id": "dash:10",
+                "kind": "audio",
+                "representationId": "bbb_a64k",
+                "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+              }
+            ],
+            "childUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/"
+            ],
+            "segmentUrls": [
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+              "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+            ],
+            "duration": 634.566,
+            "protected": false,
+            "live": false
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110972352,
+        "tabId": 1419626128,
+        "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+        "items": [
+          {
+            "type": "mpd_playlist",
+            "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+            "discoveredAt": 1792110967248,
+            "protected": false,
+            "variants": [
+              {
+                "width": 3840,
+                "height": 2160,
+                "bandwidth": 14931538,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 9914554,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 4952892,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 1024,
+                "height": 576,
+                "bandwidth": 3134488,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 768,
+                "height": 432,
+                "bandwidth": 1883700,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1254758,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1013310,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 480,
+                "height": 270,
+                "bandwidth": 759798,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 507246,
+                "audioId": "bbb_a64k"
+              },
+              {
+                "width": 320,
+                "height": 180,
+                "bandwidth": 254320,
+                "audioId": "bbb_a64k"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792110965567.4595,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792110974213,
+      "revision": 557,
+      "tabId": 1419626128,
+      "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+      "epoch": 2,
+      "errors": [],
+      "items": [
+        {
+          "url": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+          "type": "blob",
+          "status": "unresolved",
+          "reason": "local-blob-without-remote-link",
+          "firstSeen": 1792110967315,
+          "lastSeen": 1792110969822,
+          "methods": [
+            "dom"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "915CF79DE9D4A056C821B59EE984C377"
+          ],
+          "elementIds": [
+            "0:media-1"
+          ],
+          "variants": [],
+          "childUrls": [],
+          "segmentUrls": [],
+          "duration": 634.566
+        },
+        {
+          "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+          "type": "dash",
+          "status": "confirmed",
+          "firstSeen": 1792110967206,
+          "lastSeen": 1792110972255,
+          "bytes": 910,
+          "methods": [
+            "network",
+            "manifest",
+            "resource"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "915CF79DE9D4A056C821B59EE984C377"
+          ],
+          "elementIds": [],
+          "variants": [
+            {
+              "bandwidth": 3134488,
+              "codecs": "avc1.64001f",
+              "height": 576,
+              "id": "dash:0",
+              "kind": "video",
+              "representationId": "bbb_30fps_1024x576_2500k",
+              "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+              "width": 1024
+            },
+            {
+              "bandwidth": 4952892,
+              "codecs": "avc1.64001f",
+              "height": 720,
+              "id": "dash:1",
+              "kind": "video",
+              "representationId": "bbb_30fps_1280x720_4000k",
+              "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+              "width": 1280
+            },
+            {
+              "bandwidth": 9914554,
+              "codecs": "avc1.640028",
+              "height": 1080,
+              "id": "dash:2",
+              "kind": "video",
+              "representationId": "bbb_30fps_1920x1080_8000k",
+              "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+              "width": 1920
+            },
+            {
+              "bandwidth": 254320,
+              "codecs": "avc1.64000d",
+              "height": 180,
+              "id": "dash:3",
+              "kind": "video",
+              "representationId": "bbb_30fps_320x180_200k",
+              "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+              "width": 320
+            },
+            {
+              "bandwidth": 507246,
+              "codecs": "avc1.64000d",
+              "height": 180,
+              "id": "dash:4",
+              "kind": "video",
+              "representationId": "bbb_30fps_320x180_400k",
+              "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+              "width": 320
+            },
+            {
+              "bandwidth": 759798,
+              "codecs": "avc1.640015",
+              "height": 270,
+              "id": "dash:5",
+              "kind": "video",
+              "representationId": "bbb_30fps_480x270_600k",
+              "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+              "width": 480
+            },
+            {
+              "bandwidth": 1254758,
+              "codecs": "avc1.64001e",
+              "height": 360,
+              "id": "dash:6",
+              "kind": "video",
+              "representationId": "bbb_30fps_640x360_1000k",
+              "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+              "width": 640
+            },
+            {
+              "bandwidth": 1013310,
+              "codecs": "avc1.64001e",
+              "height": 360,
+              "id": "dash:7",
+              "kind": "video",
+              "representationId": "bbb_30fps_640x360_800k",
+              "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+              "width": 640
+            },
+            {
+              "bandwidth": 1883700,
+              "codecs": "avc1.64001e",
+              "height": 432,
+              "id": "dash:8",
+              "kind": "video",
+              "representationId": "bbb_30fps_768x432_1500k",
+              "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+              "width": 768
+            },
+            {
+              "bandwidth": 14931538,
+              "codecs": "avc1.640033",
+              "height": 2160,
+              "id": "dash:9",
+              "kind": "video",
+              "representationId": "bbb_30fps_3840x2160_12000k",
+              "url": "https://dash.akamaized.net/akamai/bbb_30fps/",
+              "width": 3840
+            },
+            {
+              "bandwidth": 67071,
+              "codecs": "mp4a.40.5",
+              "id": "dash:10",
+              "kind": "audio",
+              "representationId": "bbb_a64k",
+              "url": "https://dash.akamaized.net/akamai/bbb_30fps/"
+            }
+          ],
+          "childUrls": [
+            "https://dash.akamaized.net/akamai/bbb_30fps/"
+          ],
+          "segmentUrls": [
+            "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1024x576_2500k/bbb_30fps_1024x576_2500k_0.m4v",
+            "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1280x720_4000k/bbb_30fps_1280x720_4000k_0.m4v",
+            "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_1920x1080_8000k/bbb_30fps_1920x1080_8000k_0.m4v",
+            "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_200k/bbb_30fps_320x180_200k_0.m4v",
+            "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_320x180_400k/bbb_30fps_320x180_400k_0.m4v",
+            "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_480x270_600k/bbb_30fps_480x270_600k_0.m4v",
+            "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_1000k/bbb_30fps_640x360_1000k_0.m4v",
+            "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_640x360_800k/bbb_30fps_640x360_800k_0.m4v",
+            "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_768x432_1500k/bbb_30fps_768x432_1500k_0.m4v",
+            "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps_3840x2160_12000k/bbb_30fps_3840x2160_12000k_0.m4v",
+            "https://dash.akamaized.net/akamai/bbb_30fps/bbb_a64k/bbb_a64k_0.m4a"
+          ],
+          "duration": 634.566,
+          "protected": false,
+          "live": false
+        }
+      ]
+    },
+    "original": {
+      "browserWallMs": 1792110974213,
+      "tabId": 1419626128,
+      "tabUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+      "items": [
+        {
+          "type": "mpd_playlist",
+          "url": "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd",
+          "discoveredAt": 1792110967248,
+          "protected": false,
+          "variants": [
+            {
+              "width": 3840,
+              "height": 2160,
+              "bandwidth": 14931538,
+              "audioId": "bbb_a64k"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "bandwidth": 9914554,
+              "audioId": "bbb_a64k"
+            },
+            {
+              "width": 1280,
+              "height": 720,
+              "bandwidth": 4952892,
+              "audioId": "bbb_a64k"
+            },
+            {
+              "width": 1024,
+              "height": 576,
+              "bandwidth": 3134488,
+              "audioId": "bbb_a64k"
+            },
+            {
+              "width": 768,
+              "height": 432,
+              "bandwidth": 1883700,
+              "audioId": "bbb_a64k"
+            },
+            {
+              "width": 640,
+              "height": 360,
+              "bandwidth": 1254758,
+              "audioId": "bbb_a64k"
+            },
+            {
+              "width": 640,
+              "height": 360,
+              "bandwidth": 1013310,
+              "audioId": "bbb_a64k"
+            },
+            {
+              "width": 480,
+              "height": 270,
+              "bandwidth": 759798,
+              "audioId": "bbb_a64k"
+            },
+            {
+              "width": 320,
+              "height": 180,
+              "bandwidth": 507246,
+              "audioId": "bbb_a64k"
+            },
+            {
+              "width": 320,
+              "height": 180,
+              "bandwidth": 254320,
+              "audioId": "bbb_a64k"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "documentStatus": 200,
+  "actionWallMs": 1792110965864.608,
+  "actionCompletedWallMs": 1792110967203.3574,
+  "dom": [
+    {
+      "frameUrl": "https://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html",
+      "media": [
+        {
+          "currentSrc": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+          "src": "blob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8",
+          "readyState": 4,
+          "width": 3840,
+          "height": 2160,
+          "paused": false,
+          "errorCode": null
+        }
+      ]
+    },
+    {
+      "frameUrl": "https://ghbtns.com/github-btn.html?user=Dash-Industry-Forum&repo=dash.js&type=star&count=true",
+      "media": []
+    },
+    {
+      "frameUrl": "https://ghbtns.com/github-btn.html?user=Dash-Industry-Forum&repo=dash.js&type=fork&count=true",
+      "media": []
+    }
+  ],
+  "popup": {
+    "openedWallMs": 1792110973842.0278,
+    "observedWallMs": 1792110974285.872,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nDASH-IF Reference Client\n\nhttps://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html\n\nRevision 557 · Tab 1419626128 · Generation 2\n\nMedia source\ndash · confirmed\n\nhttps://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd\n\nCopy URL\n\nMethods: network, manifest, resource · Frames: 0\n\n634.57 s · 910 bytes · application/dash+xml · VOD\n\nFirst seen 8:36:07 PM · Last seen 8:36:12 PM\n\n11 variants\nDASH-IF Reference Client\nblob · unresolved\n\nblob:https://reference.dashif.org/fd05cc68-ea2b-4e3b-8e0e-cd6b060484b8\n\nCopy URL\n\nMethods: dom · Frames: 0\n\n3840 × 2160 · 634.57 s\n\nlocal-blob-without-remote-link\n\nFirst seen 8:36:07 PM · Last seen 8:36:09 PM\n\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 2,
+    "context": "DASH-IF Reference Client\n\nhttps://reference.dashif.org/dash.js/latest/samples/dash-if-reference-player/index.html\n\nRevision 557 · Tab 1419626128 · Generation 2",
+    "status": "",
+    "viewport": {
+      "width": 550,
+      "height": 510,
+      "devicePixelRatio": 1,
+      "bodyWidth": 460
+    },
+    "expectedContextVisible": true,
+    "artifact": "dash-3-popup.png",
+    "kind": "Actual chrome.action popup"
+  },
+  "polling": {
+    "samples": 43,
+    "requestedMs": 200,
+    "minIntervalMs": 199.144775390625,
+    "maxIntervalMs": 219.060546875,
+    "deliberatePauses": []
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": 1838.94921875,
+    "firstConfirmedAfterNavigationMs": 1838.94921875,
+    "originalFirstAfterNavigationMs": 2266.783935546875,
+    "firstExpectedResponseAfterNavigationMs": 1635.20751953125,
+    "candidateAfterExpectedResponseMs": 203.74169921875,
+    "confirmedAfterExpectedResponseMs": 203.74169921875,
+    "originalAfterExpectedResponseMs": 631.576416015625,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 1,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0,
+      "videoVariants": 10
+    },
+    "original": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 0,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "pass",
+  "originalStatus": "pass",
+  "endedAt": "2026-10-16T00:36:14.425Z"
+}

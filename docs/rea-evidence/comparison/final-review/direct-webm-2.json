@@ -1,0 +1,321 @@
+{
+  "id": "direct-webm",
+  "trial": 2,
+  "category": "direct WebM",
+  "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+  "expected": [
+    "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
+  ],
+  "tabId": 1419626102,
+  "startedAt": "2026-10-16T00:34:32.914Z",
+  "actions": "Navigate only",
+  "errors": [],
+  "responses": [
+    {
+      "wallMs": 1792110872940.1077,
+      "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+      "status": 200
+    },
+    {
+      "wallMs": 1792110872992.8618,
+      "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+      "status": 206
+    }
+  ],
+  "changes": [
+    {
+      "wallMs": 1792110872963.4348,
+      "ours": {
+        "browserWallMs": 1792110872931,
+        "revision": 226,
+        "tabId": 1419626102,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792110872949,
+        "tabId": 1419626102,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110873145.5718,
+      "ours": {
+        "browserWallMs": 1792110873145,
+        "revision": 230,
+        "tabId": 1419626102,
+        "tabUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+            "type": "direct",
+            "status": "confirmed",
+            "firstSeen": 1792110872982,
+            "lastSeen": 1792110873035,
+            "bytes": 554058,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4E13AA7EBE406163096470D9066FA85D"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110873142,
+        "tabId": 1419626102,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110873337.251,
+      "ours": {
+        "browserWallMs": 1792110873336,
+        "revision": 231,
+        "tabId": 1419626102,
+        "tabUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+            "type": "direct",
+            "status": "confirmed",
+            "firstSeen": 1792110872982,
+            "lastSeen": 1792110873141,
+            "bytes": 554058,
+            "methods": [
+              "network",
+              "resource",
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4E13AA7EBE406163096470D9066FA85D"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 5.059
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110873336,
+        "tabId": 1419626102,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792110873538.4727,
+      "ours": {
+        "browserWallMs": 1792110873536,
+        "revision": 231,
+        "tabId": 1419626102,
+        "tabUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+            "type": "direct",
+            "status": "confirmed",
+            "firstSeen": 1792110872982,
+            "lastSeen": 1792110873141,
+            "bytes": 554058,
+            "methods": [
+              "network",
+              "resource",
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "4E13AA7EBE406163096470D9066FA85D"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": [],
+            "duration": 5.059
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792110873538,
+        "tabId": 1419626102,
+        "tabUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        "items": [
+          {
+            "type": "http_playlist",
+            "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+            "discoveredAt": 1792110872950,
+            "extension": "mkv",
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+                "bandwidth": null
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792110872914.0547,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792110879915,
+      "revision": 231,
+      "tabId": 1419626102,
+      "tabUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+      "epoch": 2,
+      "errors": [],
+      "items": [
+        {
+          "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+          "type": "direct",
+          "status": "confirmed",
+          "firstSeen": 1792110872982,
+          "lastSeen": 1792110873141,
+          "bytes": 554058,
+          "methods": [
+            "network",
+            "resource",
+            "dom"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "4E13AA7EBE406163096470D9066FA85D"
+          ],
+          "elementIds": [
+            "0:media-1"
+          ],
+          "variants": [],
+          "childUrls": [],
+          "segmentUrls": [],
+          "duration": 5.059
+        }
+      ]
+    },
+    "original": {
+      "browserWallMs": 1792110879916,
+      "tabId": 1419626102,
+      "tabUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+      "items": [
+        {
+          "type": "http_playlist",
+          "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+          "discoveredAt": 1792110872950,
+          "extension": "mkv",
+          "protected": false,
+          "variants": [
+            {
+              "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+              "bandwidth": null
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "documentStatus": 200,
+  "dom": [
+    {
+      "frameUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+      "media": [
+        {
+          "currentSrc": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+          "src": null,
+          "readyState": 4,
+          "width": 960,
+          "height": 540,
+          "paused": true,
+          "errorCode": null
+        }
+      ]
+    }
+  ],
+  "popup": {
+    "openedWallMs": 1792110879580.4097,
+    "observedWallMs": 1792110880013.5898,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nActive tab\n\nhttps://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm\n\nRevision 231 · Tab 1419626102 · Generation 2\n\nMedia source\ndirect · confirmed\n\nhttps://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm\n\nCopy URL\n\nMethods: network, resource, dom · Frames: 0\n\n960 × 540 · 5.06 s · 554,058 bytes · video/webm\n\nFirst seen 8:34:32 PM · Last seen 8:34:33 PM\n\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 1,
+    "context": "Active tab\n\nhttps://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm\n\nRevision 231 · Tab 1419626102 · Generation 2",
+    "status": "",
+    "viewport": {
+      "width": 610,
+      "height": 510,
+      "devicePixelRatio": 1,
+      "bodyWidth": 460
+    },
+    "expectedContextVisible": true,
+    "artifact": "direct-webm-2-popup.png",
+    "kind": "Actual chrome.action popup"
+  },
+  "polling": {
+    "samples": 35,
+    "requestedMs": 200,
+    "minIntervalMs": 199.013427734375,
+    "maxIntervalMs": 215.4130859375,
+    "deliberatePauses": []
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": 231.51708984375,
+    "firstConfirmedAfterNavigationMs": 231.51708984375,
+    "originalFirstAfterNavigationMs": 624.41796875,
+    "firstExpectedResponseAfterNavigationMs": 26.052978515625,
+    "candidateAfterExpectedResponseMs": 205.464111328125,
+    "confirmedAfterExpectedResponseMs": 205.464111328125,
+    "originalAfterExpectedResponseMs": 598.364990234375,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 0,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0,
+      "videoVariants": 0
+    },
+    "original": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 0,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "pass",
+  "originalStatus": "pass",
+  "endedAt": "2026-10-16T00:34:40.122Z"
+}

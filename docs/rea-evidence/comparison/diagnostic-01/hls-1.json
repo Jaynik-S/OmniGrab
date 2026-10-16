@@ -1,0 +1,762 @@
+{
+  "id": "hls",
+  "trial": 1,
+  "category": "HLS / qualities / MSE",
+  "url": "https://hlsjs.video-dev.org/demo/basic-usage",
+  "expected": [
+    "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+  ],
+  "expectedVideoVariants": 5,
+  "tabId": 788325049,
+  "startedAt": "2026-10-15T23:50:06.783Z",
+  "actions": "Navigate only",
+  "errors": [
+    {
+      "type": "setup-or-action",
+      "message": "locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#results .context') to be visible\u001b[22m"
+    }
+  ],
+  "responses": [
+    {
+      "wallMs": 1792108207633,
+      "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+      "status": 200
+    },
+    {
+      "wallMs": 1792108207672,
+      "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+      "status": 200
+    },
+    {
+      "wallMs": 1792108207999,
+      "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+      "status": 200
+    }
+  ],
+  "changes": [
+    {
+      "wallMs": 1792108206804,
+      "ours": {
+        "browserWallMs": 1792108206799,
+        "revision": 31,
+        "tabId": 788325049,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792108206803,
+        "tabId": 788325049,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792108207610,
+      "ours": {
+        "browserWallMs": 1792108207609,
+        "revision": 37,
+        "tabId": 788325049,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/2bd0d84c-aefe-4122-a078-a5e47371c7c7",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792108207593,
+            "lastSeen": 1792108207593,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207596,
+            "lastSeen": 1792108207596,
+            "bytes": 752,
+            "methods": [
+              "network"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792108207607,
+        "tabId": 788325049,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792108207815,
+      "ours": {
+        "browserWallMs": 1792108207813,
+        "revision": 42,
+        "tabId": 788325049,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/2bd0d84c-aefe-4122-a078-a5e47371c7c7",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792108207593,
+            "lastSeen": 1792108207593,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207664,
+            "lastSeen": 1792108207733,
+            "bytes": 3606,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207596,
+            "lastSeen": 1792108207733,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792108207813,
+        "tabId": 788325049,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792108208010,
+      "ours": {
+        "browserWallMs": 1792108208009,
+        "revision": 46,
+        "tabId": 788325049,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/2bd0d84c-aefe-4122-a078-a5e47371c7c7",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792108207593,
+            "lastSeen": 1792108207867,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207664,
+            "lastSeen": 1792108207733,
+            "bytes": 3606,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207973,
+            "lastSeen": 1792108207973,
+            "bytes": 3670,
+            "methods": [
+              "network"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207596,
+            "lastSeen": 1792108207733,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792108208009,
+        "tabId": 788325049,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792108208214,
+      "ours": {
+        "browserWallMs": 1792108208213,
+        "revision": 48,
+        "tabId": 788325049,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/2bd0d84c-aefe-4122-a078-a5e47371c7c7",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792108207593,
+            "lastSeen": 1792108208095,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207664,
+            "lastSeen": 1792108207733,
+            "bytes": 3606,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207973,
+            "lastSeen": 1792108208095,
+            "bytes": 3670,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207596,
+            "lastSeen": 1792108207733,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792108208214,
+        "tabId": 788325049,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792108208413,
+      "ours": {
+        "browserWallMs": 1792108208413,
+        "revision": 48,
+        "tabId": 788325049,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "blob:https://hlsjs.video-dev.org/2bd0d84c-aefe-4122-a078-a5e47371c7c7",
+            "type": "blob",
+            "status": "unresolved",
+            "reason": "local-blob-without-remote-link",
+            "firstSeen": 1792108207593,
+            "lastSeen": 1792108208095,
+            "methods": [
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207664,
+            "lastSeen": 1792108207733,
+            "bytes": 3606,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207973,
+            "lastSeen": 1792108208095,
+            "bytes": 3670,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          },
+          {
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+            "firstSeen": 1792108207596,
+            "lastSeen": 1792108207733,
+            "bytes": 752,
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "9F1B2801C36DEC06FE717135ED6C49B2"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792108208413,
+        "tabId": 788325049,
+        "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+        "items": [
+          {
+            "type": "m3u8_playlist",
+            "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+            "discoveredAt": 1792108207761,
+            "protected": false,
+            "variants": [
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 6221600
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 2149280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+                "width": 848,
+                "height": 480,
+                "bandwidth": 836280
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+                "width": 512,
+                "height": 288,
+                "bandwidth": 460560
+              },
+              {
+                "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+                "width": 320,
+                "height": 184,
+                "bandwidth": 246440
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792108206783,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792108219161,
+      "revision": 52,
+      "tabId": 788325049,
+      "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+      "epoch": 2,
+      "errors": [],
+      "items": [
+        {
+          "url": "blob:https://hlsjs.video-dev.org/2bd0d84c-aefe-4122-a078-a5e47371c7c7",
+          "type": "blob",
+          "status": "unresolved",
+          "reason": "local-blob-without-remote-link",
+          "firstSeen": 1792108207593,
+          "lastSeen": 1792108208095,
+          "methods": [
+            "dom"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "9F1B2801C36DEC06FE717135ED6C49B2"
+          ],
+          "elementIds": [
+            "0:media-1"
+          ],
+          "variants": [],
+          "childUrls": []
+        },
+        {
+          "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+          "type": "hls",
+          "status": "unresolved",
+          "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+          "firstSeen": 1792108207664,
+          "lastSeen": 1792108207733,
+          "bytes": 3606,
+          "methods": [
+            "network",
+            "resource"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "9F1B2801C36DEC06FE717135ED6C49B2"
+          ],
+          "elementIds": [],
+          "variants": [],
+          "childUrls": []
+        },
+        {
+          "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+          "type": "hls",
+          "status": "unresolved",
+          "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+          "firstSeen": 1792108207973,
+          "lastSeen": 1792108208095,
+          "bytes": 3670,
+          "methods": [
+            "network",
+            "resource"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "9F1B2801C36DEC06FE717135ED6C49B2"
+          ],
+          "elementIds": [],
+          "variants": [],
+          "childUrls": []
+        },
+        {
+          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+          "type": "hls",
+          "status": "unresolved",
+          "reason": "Failed to execute 'fetch' on 'WorkerGlobalScope': Illegal invocation",
+          "firstSeen": 1792108207596,
+          "lastSeen": 1792108207733,
+          "bytes": 752,
+          "methods": [
+            "network",
+            "resource"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "9F1B2801C36DEC06FE717135ED6C49B2"
+          ],
+          "elementIds": [],
+          "variants": [],
+          "childUrls": []
+        }
+      ]
+    },
+    "original": {
+      "browserWallMs": 1792108219162,
+      "tabId": 788325049,
+      "tabUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+      "items": [
+        {
+          "type": "m3u8_playlist",
+          "url": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+          "discoveredAt": 1792108207761,
+          "protected": false,
+          "variants": [
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_8/193039199_mp4_h264_aac_fhd_7.m3u8",
+              "width": 1920,
+              "height": 1080,
+              "bandwidth": 6221600
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_0/193039199_mp4_h264_aac_hd_7.m3u8",
+              "width": 1280,
+              "height": 720,
+              "bandwidth": 2149280
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8",
+              "width": 848,
+              "height": 480,
+              "bandwidth": 836280
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_4/193039199_mp4_h264_aac_7.m3u8",
+              "width": 512,
+              "height": 288,
+              "bandwidth": 460560
+            },
+            {
+              "url": "https://test-streams.mux.dev/x36xhzz/url_2/193039199_mp4_h264_aac_ld_7.m3u8",
+              "width": 320,
+              "height": 184,
+              "bandwidth": 246440
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "documentStatus": 200,
+  "dom": [
+    {
+      "frameUrl": "https://hlsjs.video-dev.org/demo/basic-usage",
+      "media": [
+        {
+          "currentSrc": "blob:https://hlsjs.video-dev.org/2bd0d84c-aefe-4122-a078-a5e47371c7c7",
+          "src": "blob:https://hlsjs.video-dev.org/2bd0d84c-aefe-4122-a078-a5e47371c7c7",
+          "readyState": 4,
+          "width": 1280,
+          "height": 720,
+          "paused": false,
+          "errorCode": null
+        }
+      ]
+    }
+  ],
+  "polling": {
+    "samples": 61,
+    "requestedMs": 200,
+    "minIntervalMs": 199,
+    "maxIntervalMs": 232
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": 827,
+    "firstConfirmedAfterNavigationMs": null,
+    "originalFirstAfterNavigationMs": 1630,
+    "firstExpectedResponseAfterNavigationMs": 850,
+    "candidateAfterExpectedResponseMs": -23,
+    "confirmedAfterExpectedResponseMs": null,
+    "originalAfterExpectedResponseMs": 780,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 3,
+      "confirmedGroups": 0,
+      "blobContexts": 1,
+      "expectedMatched": 0,
+      "missed": [
+        "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+      ],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0,
+      "videoVariants": 0
+    },
+    "original": {
+      "groups": 1,
+      "confirmedGroups": 1,
+      "blobContexts": 0,
+      "expectedMatched": 1,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "blocked",
+  "originalStatus": "blocked",
+  "endedAt": "2026-10-15T23:50:19.355Z"
+}

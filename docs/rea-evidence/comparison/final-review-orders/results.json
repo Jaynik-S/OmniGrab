@@ -1,0 +1,721 @@
+{
+  "authority": "Independent Playwright/CDP read-only extension storage and public-page observations; not REA Evidence",
+  "startedAt": "2026-10-16T00:23:41.102Z",
+  "pollRequestedMs": 200,
+  "trialsRequested": 1,
+  "cases": [
+    {
+      "id": "hls-master-child",
+      "trial": 1,
+      "category": "controlled HLS observed-child request order",
+      "url": "http://127.0.0.1:13263/order/hls-master-child-1/",
+      "expected": [
+        "http://127.0.0.1:13263/order/hls-master-child-1/master.m3u8"
+      ],
+      "expectedVideoVariants": 2,
+      "tabId": 691294800,
+      "startedAt": "2026-10-16T00:23:44.855Z",
+      "actions": "Navigate, then declared page button interaction",
+      "errors": [
+        {
+          "type": "setup-or-action",
+          "message": "page.evaluate: Target page, context or browser has been closed"
+        }
+      ],
+      "responses": [
+        {
+          "wallMs": 1792110224943.2622,
+          "url": "http://127.0.0.1:13263/order/hls-master-child-1/master.m3u8",
+          "status": 200
+        },
+        {
+          "wallMs": 1792110225051.691,
+          "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+          "status": 200
+        }
+      ],
+      "changes": [
+        {
+          "wallMs": 1792110224887.9824,
+          "ours": {
+            "browserWallMs": 1792110224873,
+            "revision": 7,
+            "tabId": 691294800,
+            "tabUrl": "about:blank",
+            "epoch": 1,
+            "errors": [],
+            "items": []
+          },
+          "original": {
+            "browserWallMs": 1792110224877,
+            "tabId": 691294800,
+            "items": []
+          }
+        },
+        {
+          "wallMs": 1792110225077.715,
+          "ours": {
+            "browserWallMs": 1792110225072,
+            "revision": 15,
+            "tabId": 691294800,
+            "tabUrl": "http://127.0.0.1:13263/order/hls-master-child-1/",
+            "epoch": 2,
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:13263/order/hls-master-child-1/master.m3u8",
+                "type": "hls",
+                "status": "confirmed",
+                "firstSeen": 1792110224941,
+                "lastSeen": 1792110225049,
+                "bytes": 140,
+                "methods": [
+                  "network",
+                  "manifest",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "5D57617352370A87591968A9EF6B7FCF"
+                ],
+                "elementIds": [],
+                "variants": [
+                  {
+                    "bandwidth": 1000000,
+                    "height": 540,
+                    "id": "hls:0",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                    "width": 960
+                  },
+                  {
+                    "bandwidth": 500000,
+                    "height": 270,
+                    "id": "hls:1",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8",
+                    "width": 480
+                  }
+                ],
+                "childUrls": [
+                  "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                  "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8"
+                ],
+                "segmentUrls": [],
+                "childManifests": [
+                  {
+                    "frameIds": [
+                      0
+                    ],
+                    "instance": 14,
+                    "status": "probing",
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8"
+                  }
+                ],
+                "protected": false
+              }
+            ]
+          },
+          "original": {
+            "browserWallMs": 1792110225073,
+            "tabId": 691294800,
+            "items": []
+          }
+        },
+        {
+          "wallMs": 1792110225505.5862,
+          "ours": {
+            "browserWallMs": 1792110225484,
+            "revision": 15,
+            "tabId": 691294800,
+            "tabUrl": "http://127.0.0.1:13263/order/hls-master-child-1/",
+            "epoch": 2,
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:13263/order/hls-master-child-1/master.m3u8",
+                "type": "hls",
+                "status": "confirmed",
+                "firstSeen": 1792110224941,
+                "lastSeen": 1792110225049,
+                "bytes": 140,
+                "methods": [
+                  "network",
+                  "manifest",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "5D57617352370A87591968A9EF6B7FCF"
+                ],
+                "elementIds": [],
+                "variants": [
+                  {
+                    "bandwidth": 1000000,
+                    "height": 540,
+                    "id": "hls:0",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                    "width": 960
+                  },
+                  {
+                    "bandwidth": 500000,
+                    "height": 270,
+                    "id": "hls:1",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8",
+                    "width": 480
+                  }
+                ],
+                "childUrls": [
+                  "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                  "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8"
+                ],
+                "segmentUrls": [],
+                "childManifests": [
+                  {
+                    "frameIds": [
+                      0
+                    ],
+                    "instance": 14,
+                    "status": "probing",
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8"
+                  }
+                ],
+                "protected": false
+              }
+            ]
+          },
+          "original": {
+            "browserWallMs": 1792110225502,
+            "tabId": 691294800,
+            "tabUrl": "http://127.0.0.1:13263/order/hls-master-child-1/",
+            "items": [
+              {
+                "type": "m3u8_playlist",
+                "url": "http://127.0.0.1:13263/order/hls-master-child-1/master.m3u8",
+                "discoveredAt": 1792110224971,
+                "protected": false,
+                "variants": [
+                  {
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                    "width": 960,
+                    "height": 540,
+                    "bandwidth": 1000000
+                  },
+                  {
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8",
+                    "width": 480,
+                    "height": 270,
+                    "bandwidth": 500000
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "wallMs": 1792110230252.0989,
+          "ours": {
+            "browserWallMs": 1792110230248,
+            "revision": 16,
+            "tabId": 691294800,
+            "tabUrl": "http://127.0.0.1:13263/order/hls-master-child-1/",
+            "epoch": 2,
+            "errors": [
+              "child-manifest:manifest-timeout:http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8"
+            ],
+            "items": [
+              {
+                "url": "http://127.0.0.1:13263/order/hls-master-child-1/master.m3u8",
+                "type": "hls",
+                "status": "confirmed",
+                "firstSeen": 1792110224941,
+                "lastSeen": 1792110225049,
+                "bytes": 140,
+                "methods": [
+                  "network",
+                  "manifest",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "5D57617352370A87591968A9EF6B7FCF"
+                ],
+                "elementIds": [],
+                "variants": [
+                  {
+                    "bandwidth": 1000000,
+                    "height": 540,
+                    "id": "hls:0",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                    "width": 960
+                  },
+                  {
+                    "bandwidth": 500000,
+                    "height": 270,
+                    "id": "hls:1",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8",
+                    "width": 480
+                  }
+                ],
+                "childUrls": [
+                  "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                  "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8"
+                ],
+                "segmentUrls": [],
+                "childManifests": [
+                  {
+                    "frameIds": [
+                      0
+                    ],
+                    "instance": 14,
+                    "reason": "manifest-timeout",
+                    "status": "unresolved",
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8"
+                  }
+                ],
+                "protected": false
+              }
+            ]
+          },
+          "original": {
+            "browserWallMs": 1792110230248,
+            "tabId": 691294800,
+            "tabUrl": "http://127.0.0.1:13263/order/hls-master-child-1/",
+            "items": [
+              {
+                "type": "m3u8_playlist",
+                "url": "http://127.0.0.1:13263/order/hls-master-child-1/master.m3u8",
+                "discoveredAt": 1792110224971,
+                "protected": false,
+                "variants": [
+                  {
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                    "width": 960,
+                    "height": 540,
+                    "bandwidth": 1000000
+                  },
+                  {
+                    "url": "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8",
+                    "width": 480,
+                    "height": 270,
+                    "bandwidth": 500000
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "navigationCallWallMs": 1792110224854.4902,
+      "final": {
+        "ours": {
+          "browserWallMs": 1792110731238,
+          "revision": 16,
+          "tabId": 691294800,
+          "tabUrl": "http://127.0.0.1:13263/order/hls-master-child-1/",
+          "epoch": 2,
+          "errors": [
+            "child-manifest:manifest-timeout:http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8"
+          ],
+          "items": [
+            {
+              "url": "http://127.0.0.1:13263/order/hls-master-child-1/master.m3u8",
+              "type": "hls",
+              "status": "confirmed",
+              "firstSeen": 1792110224941,
+              "lastSeen": 1792110225049,
+              "bytes": 140,
+              "methods": [
+                "network",
+                "manifest",
+                "resource"
+              ],
+              "frameIds": [
+                0
+              ],
+              "documentIds": [
+                "5D57617352370A87591968A9EF6B7FCF"
+              ],
+              "elementIds": [],
+              "variants": [
+                {
+                  "bandwidth": 1000000,
+                  "height": 540,
+                  "id": "hls:0",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                  "width": 960
+                },
+                {
+                  "bandwidth": 500000,
+                  "height": 270,
+                  "id": "hls:1",
+                  "kind": "video",
+                  "url": "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8",
+                  "width": 480
+                }
+              ],
+              "childUrls": [
+                "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8"
+              ],
+              "segmentUrls": [],
+              "childManifests": [
+                {
+                  "frameIds": [
+                    0
+                  ],
+                  "instance": 14,
+                  "reason": "manifest-timeout",
+                  "status": "unresolved",
+                  "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8"
+                }
+              ],
+              "protected": false
+            }
+          ]
+        },
+        "original": {
+          "browserWallMs": 1792110731238,
+          "tabId": 691294800,
+          "tabUrl": "http://127.0.0.1:13263/order/hls-master-child-1/",
+          "items": [
+            {
+              "type": "m3u8_playlist",
+              "url": "http://127.0.0.1:13263/order/hls-master-child-1/master.m3u8",
+              "discoveredAt": 1792110224971,
+              "protected": false,
+              "variants": [
+                {
+                  "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                  "width": 960,
+                  "height": 540,
+                  "bandwidth": 1000000
+                },
+                {
+                  "url": "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8",
+                  "width": 480,
+                  "height": 270,
+                  "bandwidth": 500000
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "documentStatus": 200,
+      "actionWallMs": 1792110224900.9924,
+      "order": {
+        "mode": "genuine ffmpeg-remuxed CC0 fMP4 HLS assets; network-order test only",
+        "expectedDuration": 5.005,
+        "expectedProtected": false,
+        "protectionDeclarationOnly": false,
+        "playbackClaim": false,
+        "stages": [
+          {
+            "label": "master parsed before child completion",
+            "observedWallMs": 1792110225034.4895,
+            "state": {
+              "browserWallMs": 1792110225026,
+              "revision": 13,
+              "tabId": 691294800,
+              "tabUrl": "http://127.0.0.1:13263/order/hls-master-child-1/",
+              "epoch": 2,
+              "errors": [],
+              "items": [
+                {
+                  "url": "http://127.0.0.1:13263/order/hls-master-child-1/master.m3u8",
+                  "type": "hls",
+                  "status": "confirmed",
+                  "firstSeen": 1792110224941,
+                  "lastSeen": 1792110224977,
+                  "bytes": 140,
+                  "methods": [
+                    "network",
+                    "manifest",
+                    "resource"
+                  ],
+                  "frameIds": [
+                    0
+                  ],
+                  "documentIds": [
+                    "5D57617352370A87591968A9EF6B7FCF"
+                  ],
+                  "elementIds": [],
+                  "variants": [
+                    {
+                      "bandwidth": 1000000,
+                      "height": 540,
+                      "id": "hls:0",
+                      "kind": "video",
+                      "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                      "width": 960
+                    },
+                    {
+                      "bandwidth": 500000,
+                      "height": 270,
+                      "id": "hls:1",
+                      "kind": "video",
+                      "url": "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8",
+                      "width": 480
+                    }
+                  ],
+                  "childUrls": [
+                    "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+                    "http://127.0.0.1:13263/order/hls-master-child-1/unused.m3u8"
+                  ],
+                  "segmentUrls": [],
+                  "protected": false
+                }
+              ]
+            }
+          }
+        ],
+        "workerRequests": [
+          {
+            "url": "http://127.0.0.1:13263/order/hls-master-child-1/master.m3u8",
+            "observedWallMs": 1792110224953.9912
+          },
+          {
+            "url": "http://127.0.0.1:13263/order/hls-master-child-1/child.m3u8",
+            "observedWallMs": 1792110225069.138
+          }
+        ],
+        "parentFirstSeen": 1792110224941,
+        "serverRequests": [
+          {
+            "name": "",
+            "at": 1792110224873
+          },
+          {
+            "name": "",
+            "at": 1792110224907
+          },
+          {
+            "name": "master.m3u8",
+            "at": 1792110224939
+          },
+          {
+            "name": "master.m3u8",
+            "at": 1792110224947
+          },
+          {
+            "name": "master.m3u8",
+            "at": 1792110224958
+          },
+          {
+            "name": "child.m3u8",
+            "at": 1792110224961
+          },
+          {
+            "name": "child.m3u8",
+            "at": 1792110225043
+          },
+          {
+            "name": "child.m3u8",
+            "at": 1792110225058
+          },
+          {
+            "name": "child.m3u8",
+            "at": 1792110225065
+          }
+        ],
+        "noAutomaticUnusedFetch": true,
+        "noKeyFetch": true
+      },
+      "setupPage": {
+        "title": "",
+        "url": "http://127.0.0.1:13263/order/hls-master-child-1/",
+        "controls": [],
+        "inputs": []
+      },
+      "polling": {
+        "samples": 2469,
+        "requestedMs": 200,
+        "minIntervalMs": 198.634521484375,
+        "maxIntervalMs": 252.949462890625,
+        "deliberatePauses": []
+      },
+      "timing": {
+        "firstCandidateAfterNavigationMs": 223.224853515625,
+        "firstConfirmedAfterNavigationMs": 223.224853515625,
+        "originalFirstAfterNavigationMs": 651.095947265625,
+        "firstExpectedResponseAfterNavigationMs": 88.77197265625,
+        "candidateAfterExpectedResponseMs": 134.452880859375,
+        "confirmedAfterExpectedResponseMs": 134.452880859375,
+        "originalAfterExpectedResponseMs": 562.323974609375,
+        "automaticRenderedRowLatencyMs": null
+      },
+      "assessment": {
+        "ours": {
+          "groups": 1,
+          "confirmedGroups": 1,
+          "blobContexts": 0,
+          "expectedMatched": 1,
+          "missed": [],
+          "unexpectedConfirmed": [],
+          "duplicatePrimaryUrls": 0,
+          "videoVariants": 2,
+          "expectedOwnerStatus": "confirmed",
+          "expectedOwnerPresent": true,
+          "orderedMetadataPassed": false
+        },
+        "original": {
+          "groups": 1,
+          "confirmedGroups": 1,
+          "blobContexts": 0,
+          "expectedMatched": 1,
+          "missed": [],
+          "unexpectedConfirmed": [],
+          "duplicatePrimaryUrls": 0
+        }
+      },
+      "status": "blocked",
+      "originalStatus": "blocked",
+      "endedAt": "2026-10-16T00:32:11.432Z"
+    }
+  ],
+  "errors": [
+    "browserContext.newPage: Target page, context or browser has been closed"
+  ],
+  "clockMapping": {
+    "hostWallMs": 1792110221103,
+    "hostMonotonicMs": 502.5501,
+    "hostTimeOriginMs": 1792110220600.172
+  },
+  "timingDefinition": "One monotonic host clock (performance.timeOrigin + performance.now) for navigation/action/response/poll/render observations. Epoch-shaped fields keep WallMs names for readability. Poll completion is an upper bound; no rendered latency is inferred from storage. Original discovery timestamps are supplemental browser-wall fields.",
+  "limitations": [
+    "Single isolated browser profile contains both extensions. Original welcome tab remains outside case accounting.",
+    "No original download, Force detection, cookie clearing or proprietary-source inspection.",
+    "Default command performs three trials; local fixture media bytes are fetched CC0 samples, held only in memory.",
+    "Broad host access and unpacked-extension launch flags are testing conditions, not added production permissions."
+  ],
+  "fixtures": {
+    "pageOrigin": "http://127.0.0.1:13263",
+    "frameOrigin": "http://localhost:13263",
+    "mediaOrigin": "http://127.0.0.1:13264",
+    "sampleSizes": {
+      "mp4": 1128375,
+      "webm": 554058
+    },
+    "mediaLicense": "MDN CC0 flower samples",
+    "mediaSource": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/",
+    "hlsOrderAssets": {
+      "mode": "genuine ffmpeg-remuxed CC0 fMP4 HLS assets; network-order test only",
+      "duration": 5.005,
+      "files": [
+        {
+          "name": "child.m3u8",
+          "bytes": 203
+        },
+        {
+          "name": "init.mp4",
+          "bytes": 878
+        },
+        {
+          "name": "video-001.mp4",
+          "bytes": 587513
+        },
+        {
+          "name": "video-002.mp4",
+          "bytes": 376360
+        }
+      ]
+    }
+  },
+  "profileKind": "New temporary isolated profile; existing 9222 profile untouched",
+  "build": {
+    "gitRevision": "be4669b1b3b75b1cda89b6cbc47a5bb64777529f",
+    "files": {
+      "background.js": "a97773cd68c25a1a845ca3b25da4a1c36049aa87b0a8667d0b04b4659eb90d50",
+      "content.js": "e816cb4d19c77db16f55c792f8e55c83c8af878cf124eab40c0fc829eda0248c",
+      "popup/index.js": "2f0f2b4e63970ac310920cc3212ec2b0ae5c0afb91a9cbcf7a9876e69eb52981",
+      "popup/index.html": "0b4b915030a6524adfd88f5d46a3008c0c3e30b438f11ce8806888ff7ea124fd",
+      "popup/style.css": "c0718d0d8a5dff73495c52179ac88e56bec719ad55eb6b20c891296491fd943e",
+      "manifest.json": "f251c7f0e66a883d451d2aaa7dfc24fe9178969acb367943e7b4e7126538f410"
+    }
+  },
+  "browser": "153.0.8010.12",
+  "extensions": {
+    "original": {
+      "id": "lmjnegcaeklhafolokijcfjliaokphfk",
+      "version": "10.6.1.2"
+    },
+    "ours": {
+      "id": "ealkgjbgomnenhfiaoknbgcmegjldcam",
+      "version": "0.1.0"
+    }
+  },
+  "grantedPermissions": {
+    "ours": {
+      "origins": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "permissions": [
+        "storage",
+        "webNavigation",
+        "webRequest"
+      ]
+    },
+    "original": {
+      "origins": [
+        "*://*.91porna.com/*",
+        "*://*.9n6gyt.umydsfs.cc/*",
+        "*://*.bilibili.com/*",
+        "*://*.bilibili.tv/*",
+        "*://*.canva.com/*",
+        "*://*.chaturbate.com/*",
+        "*://*.chaturbate.eu/*",
+        "*://*.chaturbate.global/*",
+        "*://*.facebook.com/*",
+        "*://*.instagram.com/*",
+        "*://*.iq.com/*",
+        "*://*.javrank.com/*",
+        "*://*.kick.com/*",
+        "*://*.m.ok.ru/*",
+        "*://*.ok.ru/*",
+        "*://*.osmosis.org/*",
+        "*://*.taiav.com/*",
+        "*://*.twitcasting.tv/*",
+        "*://*.vimeo.com/*",
+        "*://*.vk.com/*",
+        "*://*.vk.ru/*",
+        "*://*.vkvideo.ru/*",
+        "*://*.youtube.com/*",
+        "*://live.vkvideo.ru/*",
+        "<all_urls>",
+        "https://app.downloadhelper.net/activate*",
+        "https://downloadhelper.net/activate*",
+        "https://downloadhelper.net/premium*",
+        "https://v10.downloadhelper.net/activate*"
+      ],
+      "permissions": [
+        "contextMenus",
+        "downloads",
+        "notifications",
+        "storage",
+        "tabs",
+        "unlimitedStorage",
+        "webNavigation",
+        "webRequest",
+        "declarativeNetRequest",
+        "scripting",
+        "offscreen",
+        "sidePanel"
+      ]
+    }
+  },
+  "cacheConditions": "New temporary profile starts cold. No cache/service-worker/cookie purge; subsequent cases and repeated fresh tabs may use warm HTTP caches.",
+  "endedAt": "2026-10-16T00:32:11.447Z"
+}
