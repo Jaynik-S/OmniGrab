@@ -1,5 +1,6 @@
 import type { Snapshot } from '../core/model.ts';
 import { emptySnapshot, MAX_ITEMS } from '../core/reducer.ts';
+import { MAX_SEGMENT_PATTERNS, validSegmentPattern } from '../core/segments.ts';
 
 export interface SnapshotPersistence {
   load: () => Promise<Snapshot | undefined>;
@@ -33,6 +34,7 @@ function validMedia(value: unknown, key: string): boolean {
   if (!list(value.methods, 100, method => ['network', 'dom', 'resource', 'manifest', 'adapter'].includes(String(method))) ||
       !list(value.frameIds, 100, natural) || !list(value.documentIds, 100, text) || !list(value.elementIds, 100, text) ||
       !list(value.variants, 20, validVariant) || !list(value.childUrls, 10_000, text) || !list(value.segmentUrls, 10_000, text)) return false;
+  if (!optional(value.segmentPatterns, patterns => Array.isArray(patterns) && list(Array.from(patterns), MAX_SEGMENT_PATTERNS, validSegmentPattern))) return false;
   for (const name of ['mime', 'title', 'poster', 'reason']) if (!optional(value[name], text)) return false;
   for (const name of ['bytes', 'width', 'height', 'duration']) if (!optional(value[name], finite)) return false;
   return optional(value.protected, flag => typeof flag === 'boolean') && optional(value.live, flag => typeof flag === 'boolean');

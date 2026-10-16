@@ -17,11 +17,18 @@ export interface Variant {
   representationId?: string;
 }
 
+/** Exact URL literals separated only by bounded decimal DASH Number/Time values. */
+export interface SegmentPattern {
+  literals: string[];
+  minDigits: number[];
+}
+
 export interface ManifestInfo {
   type: 'hls' | 'dash';
   variants: Variant[];
   childUrls: string[];
   segmentUrls: string[];
+  segmentPatterns?: SegmentPattern[];
   live: boolean;
   protected: boolean;
   duration?: number;
@@ -73,6 +80,7 @@ export interface MediaItem {
   variants: Variant[];
   childUrls: string[];
   segmentUrls: string[];
+  segmentPatterns?: SegmentPattern[];
   protected?: boolean;
   live?: boolean;
 }

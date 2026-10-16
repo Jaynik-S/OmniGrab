@@ -1,6 +1,7 @@
 import type { ManifestInfo } from '../core/model.ts';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
-import { addReference, addVariant, checkText, positiveNumber, resolveHttp, uniqueReferences } from './shared.ts';
+import { MAX_SEGMENT_DIGITS, MAX_SEGMENT_GAPS, MAX_SEGMENT_URL_LENGTH } from '../core/segments.ts';
+import { addReference, addSegmentPattern, addVariant, checkText, positiveNumber, resolveHttp, uniqueReferences } from './shared.ts';
 
 type Node = { [name: string]: string | Node | Node[] | undefined };
 interface Context {
@@ -77,13 +78,51 @@ function isoDuration(value: string | undefined): number | undefined {
   return duration;
 }
 
-/** Preserve only concrete references: templates requiring timeline/number expansion are not URLs. */
-function templateReference(value: string, id: string | undefined, bandwidth: string | undefined): string | undefined {
-  let result = value;
-  if (id !== undefined) result = result.replaceAll('$RepresentationID$', id);
-  if (bandwidth !== undefined) result = result.replaceAll('$Bandwidth$', bandwidth);
-  if (/\$(?!\$)/.test(result.replaceAll('$$', ''))) return undefined;
-  return result.replaceAll('$$', '$');
+/** Resolve representation constants; Number/Time stay numeric relationships, without enumerating live segments. */
+function templateReference(info: ManifestInfo, value: string, context: Context, id: string | undefined): void {
+  if (value.length > MAX_SEGMENT_URL_LENGTH) throw new Error('DASH template URL limit exceeded');
+  let marker = 'dashsegmentplaceholder';
+  while ([value, context.base, id ?? '', context.metadata.bandwidth ?? ''].some(text => text.toLowerCase().includes(marker))) marker += 'x';
+  const markers: string[] = [];
+  const minDigits: number[] = [];
+  const tokens = /\$\$|\$(RepresentationID|Bandwidth|Number|Time)(?:%0([1-9]\d*)d)?\$/g;
+  let resolved = '';
+  let offset = 0;
+  for (const match of value.matchAll(tokens)) {
+    const literal = value.slice(offset, match.index);
+    if (literal.includes('$')) return;
+    resolved += literal;
+    offset = match.index + match[0].length;
+    if (match[0] === '$$') { resolved += '$'; continue; }
+    const width = match[2] === undefined ? 1 : Number(match[2]);
+    if (!Number.isInteger(width) || width > MAX_SEGMENT_DIGITS) throw new Error('DASH template numeric width limit exceeded');
+    if (match[1] === 'RepresentationID') {
+      if (id === undefined || match[2] !== undefined) return;
+      resolved += id;
+    } else if (match[1] === 'Bandwidth') {
+      const bandwidth = context.metadata.bandwidth;
+      if (bandwidth === undefined || match[2] !== undefined && !/^\d+$/.test(bandwidth)) return;
+      resolved += bandwidth.padStart(width, '0');
+    } else {
+      if (markers.length >= MAX_SEGMENT_GAPS) throw new Error('DASH template numeric gap limit exceeded');
+      const token = `${marker}${markers.length}end`;
+      markers.push(token); minDigits.push(width); resolved += token;
+    }
+  }
+  const suffix = value.slice(offset);
+  if (suffix.includes('$')) return;
+  const url = resolveHttp(resolved + suffix, context.base);
+  if (url.length > MAX_SEGMENT_URL_LENGTH) throw new Error('DASH template URL limit exceeded');
+  if (!markers.length) { addReference(info.segmentUrls, url); return; }
+  const literals: string[] = [];
+  let start = 0;
+  for (const token of markers) {
+    const index = url.indexOf(token, start);
+    if (index < 0) return;
+    literals.push(url.slice(start, index)); start = index + token.length;
+  }
+  literals.push(url.slice(start));
+  addSegmentPattern(info, { literals, minDigits });
 }
 
 function segments(info: ManifestInfo, context: Context, id: string | undefined): void {
@@ -95,7 +134,7 @@ function segments(info: ManifestInfo, context: Context, id: string | undefined):
   if (descriptor.kind === 'SegmentTemplate') {
     for (const name of ['initialization', 'media']) {
       const value = attribute(descriptor.node, name);
-      if (value) record(templateReference(value, id, context.metadata.bandwidth));
+      if (value) templateReference(info, value, context, id);
     }
   } else {
     for (const init of children(descriptor.node, 'Initialization')) record(attribute(init, 'sourceURL'));

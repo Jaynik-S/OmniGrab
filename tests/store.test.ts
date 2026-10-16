@@ -89,3 +89,34 @@ test('a rejected restore exposes its error and does not poison subsequent dispat
   assert.match(store.error ?? '', /session unavailable/);
   assert.equal((await store.dispatch(s => navigate(s, 1, 'https://page.test/', 1))).revision, 1);
 });
+
+test('restoration validates bounded structured fragment patterns and supports snapshots without them', async () => {
+  const original = ingest(navigate(emptySnapshot(), 1, 'https://page.test/', 1), {
+    tabId: 1, frameId: 0, url: 'https://cdn.test/movie.m4v', method: 'network', mime: 'video/mp4', observedAt: 2,
+  }).state;
+  const snapshotWithPatterns = (patterns: unknown) => {
+    const state = structuredClone(original);
+    Object.assign(state.tabs[1].media['https://cdn.test/movie.m4v'], { segmentPatterns: patterns });
+    return state;
+  };
+  const valid = snapshotWithPatterns([{ literals: ['https://cdn.test/video-', '.m4v?sig=one'], minDigits: [5] }]);
+  const restored = new DetectionStore({ load: async () => valid, save: async () => {} });
+  assert.deepEqual(await restored.read(), valid);
+  assert.equal(restored.error, undefined);
+  const legacy = new DetectionStore({ load: async () => original, save: async () => {} });
+  assert.deepEqual(await legacy.read(), original);
+  for (const patterns of [
+    '.*', Array(1), [{ literals: ['https://cdn.test/', '.m4v'], minDigits: [0] }],
+    [{ literals: ['https://cdn.test/', '.m4v'], minDigits: [21] }],
+    [{ literals: ['https://cdn.test/', '.m4v'], minDigits: [1, 1] }],
+    [{ literals: ['https://cdn.test/', '.m4v'], minDigits: Array(1) }],
+    [{ literals: ['https://cdn.test/', '', '', '', '', '.m4v'], minDigits: [1, 1, 1, 1, 1] }],
+    [{ literals: ['x'.repeat(16_385), '.m4v'], minDigits: [1] }],
+    [{ literals: ['javascript:', ''], minDigits: [1] }],
+    Array.from({ length: 201 }, () => ({ literals: ['https://cdn.test/', '.m4v'], minDigits: [1] })),
+  ]) {
+    const store = new DetectionStore({ load: async () => snapshotWithPatterns(patterns), save: async () => {} });
+    assert.deepEqual(await store.read(), emptySnapshot());
+    assert.match(store.error ?? '', /snapshot/i);
+  }
+});

@@ -5,6 +5,7 @@ import { classify } from '../src/core/classify.ts';
 import { emptySnapshot, navigate, ingest, applyManifest, probeFailed, probeStarted, bindDocument } from '../src/core/reducer.ts';
 import * as core from '../src/core/reducer.ts';
 import type { Observation, ManifestInfo } from '../src/core/model.ts';
+import { parseDash } from '../src/manifests/dash.ts';
 
 const observation = (url: string, more: Partial<Observation> = {}): Observation => ({
   tabId: 1, frameId: 0, epoch: 1, documentId: 'doc-a', method: 'network',
@@ -311,5 +312,62 @@ test('an explicitly linked image-suffixed child cannot demote its verified manif
   assert.equal(item.reason, undefined);
   assert.deepEqual(item.variants, [{ id: '720', url: child, height: 720 }]);
   assert.ok(s.tabs[1].errors.some(reason => reason.includes(child) && reason.includes('network-mime:image/jpeg')));
+  assert.equal(Object.keys(s.tabs[1].media).length, 1);
+});
+
+test('DASH groups observed and future template fragments while retaining unrelated direct media and exact signed queries', () => {
+  const manifestUrl = 'https://cdn.test/asset/master.mpd';
+  const firstFragment = 'https://cdn.test/asset/video-v1-00007.m4v?sig=a%2Fb&key=2';
+  const futureFragment = 'https://cdn.test/asset/audio-a1-987654321.m4a?sig=a%2Fb';
+  const unrelated = [
+    'https://cdn.test/asset/movie.m4v', 'https://cdn.test/asset/song.m4a',
+    'https://cdn.test/asset/video-v1-7.m4v?sig=a%2Fb&key=2',
+    'https://cdn.test/asset/video-v2-00007.m4v?sig=a%2Fb&key=2',
+    'https://cdn.test/asset/video-v1-00007.m4v?sig=other&key=2',
+    'https://cdn.test/asset/video-v1-00007.m4v?key=2&sig=a%2Fb',
+    'https://cdn.test/asset/audio-a1-123456789012345678901.m4a?sig=a%2Fb',
+  ];
+  let s = bindDocument(start(), 1, 7, 'fragment-document');
+  s = ingest(s, observation(firstFragment, { frameId: 7, documentId: 'fragment-document', elementId: 'fragment', observedAt: 900 })).state;
+  for (const url of unrelated) s = ingest(s, observation(url)).state;
+  const parent = ingest(s, observation(manifestUrl, { mime: 'application/dash+xml' }));
+  assert.ok(parent.probe);
+  const info = parseDash('<MPD><Period><AdaptationSet contentType="video"><SegmentTemplate initialization="start-$RepresentationID$.m4v" media="video-$RepresentationID$-$Number%05d$.m4v?sig=a%2Fb&amp;key=2"/><Representation id="v1"/></AdaptationSet><AdaptationSet contentType="audio"><SegmentTemplate media="audio-$RepresentationID$-$Time$.m4a?sig=a%2Fb"/><Representation id="a1"/></AdaptationSet></Period></MPD>', manifestUrl);
+  s = applyManifest(parent.state, parent.probe, info);
+  assert.equal(s.tabs[1].media[firstFragment], undefined);
+  assert.equal(Object.keys(s.tabs[1].media).length, unrelated.length + 1);
+  for (const url of unrelated) assert.equal(s.tabs[1].media[url]?.type, 'direct', url);
+  s = ingest(s, observation(futureFragment, { frameId: 7, documentId: 'fragment-document', mime: 'audio/mp4', observedAt: 1200 })).state;
+  s = ingest(s, observation('https://cdn.test/asset/start-v1.m4v')).state;
+  const item = s.tabs[1].media[manifestUrl];
+  assert.equal(Object.keys(s.tabs[1].media).length, unrelated.length + 1);
+  assert.deepEqual(item.frameIds, [0, 7]);
+  assert.deepEqual(item.documentIds, ['doc-a', 'fragment-document']);
+  assert.deepEqual(item.elementIds, ['7:fragment']);
+  assert.equal(item.firstSeen, 900);
+  assert.equal(item.lastSeen, 1200);
+  assert.equal(item.type, 'dash');
+  assert.equal(item.mime, 'application/dash+xml');
+  assert.equal(item.status, 'confirmed');
+  assert.equal(item.reason, undefined);
+});
+
+test('a late manifest parent retains child fragment patterns and protection without aliasing parser input', () => {
+  const childUrl = 'https://cdn.test/child.mpd';
+  const child = ingest(start(), observation(childUrl, { mime: 'application/dash+xml' }));
+  assert.ok(child.probe);
+  const childInfo = parseDash('<MPD><Period><AdaptationSet><ContentProtection/><SegmentTemplate media="video-$Time$.m4v?sig=one"/><Representation id="v"/></AdaptationSet></Period></MPD>', childUrl);
+  let s = applyManifest(child.state, child.probe, childInfo);
+  const parent = ingest(s, observation('https://cdn.test/master.m3u8', { mime: 'application/x-mpegurl' }));
+  assert.ok(parent.probe);
+  s = applyManifest(parent.state, parent.probe, { type: 'hls', variants: [], childUrls: [childUrl], segmentUrls: [], protected: false, live: false });
+  s = ingest(s, observation('https://cdn.test/video-12345.m4v?sig=one', { method: 'resource', observedAt: 1500 })).state;
+  assert.equal(Object.keys(s.tabs[1].media).length, 1);
+  assert.equal(s.tabs[1].media[parent.probe.itemId].status, 'unsupported');
+  assert.equal(s.tabs[1].media[parent.probe.itemId].reason, 'protected-manifest');
+  assert.equal(s.tabs[1].media[parent.probe.itemId].lastSeen, 1500);
+  const patterns = childInfo.segmentPatterns!;
+  patterns[0].literals[0] = 'https://changed.test/';
+  s = ingest(s, observation('https://cdn.test/video-12346.m4v?sig=one')).state;
   assert.equal(Object.keys(s.tabs[1].media).length, 1);
 });

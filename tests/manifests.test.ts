@@ -150,3 +150,36 @@ test('excessive concrete segment lists fail explicitly rather than silently lose
   assert.throws(() => parseHls('#EXTM3U\n' + '#EXTINF:1,\na.ts\n'.repeat(10_001), 'https://cdn.test/m'), /reference limit/i);
   assert.throws(() => parseDash('<MPD><Period><AdaptationSet><Representation><SegmentList>' + '<SegmentURL media="a.m4s"/>'.repeat(10_001) + '</SegmentList></Representation></AdaptationSet></Period></MPD>', 'https://cdn.test/m'), /reference limit/i);
 });
+
+test('DASH derives bounded numeric fragment patterns after inherited bases and concrete template substitutions', () => {
+  const info = parseDash(`<MPD type="dynamic"><BaseURL>../assets/</BaseURL><Period><BaseURL>period/</BaseURL>
+    <AdaptationSet contentType="video"><BaseURL>video/</BaseURL><SegmentTemplate initialization="init-$RepresentationID$-$Bandwidth%08d$.mp4?sig=a%2Fb&amp;k=2" media="clip-$$-$RepresentationID$-$Bandwidth$-$Number%05d$.m4v?sig=a%2Fb&amp;k=2"/>
+      <Representation id="v720" bandwidth="900000"><BaseURL>720/</BaseURL></Representation>
+    </AdaptationSet><AdaptationSet contentType="audio"><SegmentTemplate media="audio-$RepresentationID$-$Time$.m4a?auth=x%2Fy"/><Representation id="a1" bandwidth="48000"/></AdaptationSet>
+    </Period></MPD>`, 'https://cdn.test/manifests/master.mpd?parent=secret');
+  assert.deepEqual(info.segmentUrls, ['https://cdn.test/assets/period/video/720/init-v720-00900000.mp4?sig=a%2Fb&k=2']);
+  assert.deepEqual(info.segmentPatterns, [
+    { literals: ['https://cdn.test/assets/period/video/720/clip-$-v720-900000-', '.m4v?sig=a%2Fb&k=2'], minDigits: [5] },
+    { literals: ['https://cdn.test/assets/period/audio-a1-', '.m4a?auth=x%2Fy'], minDigits: [1] },
+  ]);
+  assert.equal(info.live, true);
+});
+
+test('DASH does not turn unresolved or unsupported template identifiers into fragment patterns', () => {
+  const info = parseDash('<MPD><Period><AdaptationSet><SegmentTemplate media="track-$RepresentationID$-$Number$.m4v"/><Representation/></AdaptationSet><AdaptationSet><SegmentTemplate media="track-$Unknown$-$Time$.m4a"/><Representation id="a"/></AdaptationSet></Period></MPD>', 'https://cdn.test/master.mpd');
+  assert.deepEqual(info.segmentUrls, []);
+  assert.equal(info.segmentPatterns?.length ?? 0, 0);
+});
+
+test('DASH rejects excessive fragment patterns and oversized templates before snapshot persistence', () => {
+  const representations = Array.from({ length: 201 }, (_, i) => `<Representation id="v${i}"/>`).join('');
+  assert.throws(() => parseDash(`<MPD><Period><AdaptationSet><SegmentTemplate media="$RepresentationID$-$Number$.m4v"/>${representations}</AdaptationSet></Period></MPD>`, 'https://cdn.test/m'), /pattern limit/i);
+  assert.throws(() => parseDash(`<MPD><Period><AdaptationSet><SegmentTemplate media="${'x'.repeat(16_384)}-$Time$.m4a"/><Representation id="v"/></AdaptationSet></Period></MPD>`, 'https://cdn.test/m'), /template.*limit/i);
+});
+
+test('DASH URL normalization cannot confuse a literal hostname with a numeric template gap', () => {
+  const info = parseDash('<MPD><Period><AdaptationSet><SegmentTemplate media="https://DASHSEGMENTPLACEHOLDER0END.cdn.test/video-$Number$.m4v"/><Representation id="v"/></AdaptationSet></Period></MPD>', 'https://cdn.test/master.mpd');
+  assert.deepEqual(info.segmentPatterns, [
+    { literals: ['https://dashsegmentplaceholder0end.cdn.test/video-', '.m4v'], minDigits: [1] },
+  ]);
+});

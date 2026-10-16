@@ -1,6 +1,7 @@
 import { classify, rejectedResponseReason } from './classify.ts';
 import { normalizeUrl } from './identity.ts';
-import type { ManifestInfo, MediaItem, Observation, ProbeJob, Snapshot, TabState, Variant } from './model.ts';
+import type { ManifestInfo, MediaItem, Observation, ProbeJob, SegmentPattern, Snapshot, TabState, Variant } from './model.ts';
+import { matchesSegmentPattern, MAX_SEGMENT_PATTERNS, segmentPatternKey } from './segments.ts';
 
 export const MAX_ITEMS = 200;
 export const MAX_DOCUMENTS = 100;
@@ -22,6 +23,20 @@ function mergeProvenance(tab: TabState, item: MediaItem, other: Pick<MediaItem, 
   item.elementIds = bounded(tab, item.elementIds, other.elementIds, 100, 'provenance-limit');
   item.firstSeen = Math.min(item.firstSeen, other.firstSeen);
   item.lastSeen = Math.max(item.lastSeen, other.lastSeen);
+}
+function ownsUrl(item: MediaItem, url: string): boolean {
+  return item.childUrls.includes(url) || item.segmentUrls.includes(url) ||
+    item.segmentPatterns?.some(pattern => matchesSegmentPattern(url, pattern)) === true;
+}
+function mergeSegmentPatterns(tab: TabState, item: MediaItem, incoming: SegmentPattern[] | undefined): void {
+  if (!incoming?.length) return;
+  const patterns = new Map<string, SegmentPattern>();
+  for (const pattern of [...(item.segmentPatterns ?? []), ...incoming]) {
+    const key = segmentPatternKey(pattern);
+    if (!patterns.has(key)) patterns.set(key, { literals: [...pattern.literals], minDigits: [...pattern.minDigits] });
+  }
+  dropped(tab, Math.max(0, patterns.size - MAX_SEGMENT_PATTERNS), 'relationship-limit');
+  item.segmentPatterns = [...patterns.values()].slice(0, MAX_SEGMENT_PATTERNS);
 }
 function detachFrame(tab: TabState, frameId: number, instance: number): void {
   const documentId = tab.documents[frameId];
@@ -88,7 +103,7 @@ export function ingest(s: Snapshot, o: Observation): { state: Snapshot; probe?: 
   const classification = classify(o);
   const url = classification?.kind === 'blob' ? o.url : normalizeUrl(o.url);
   if (!url) return { state: s };
-  const owner = Object.values(old.media).find(m => m.url !== url && (m.childUrls.includes(url) || m.segmentUrls.includes(url)));
+  const owner = Object.values(old.media).find(m => m.url !== url && ownsUrl(m, url));
   const rejection = rejectedResponseReason(o);
   if (!classification && !owner && !(rejection && old.media[url])) return { state: s };
   const tab = structuredClone(old);
@@ -155,16 +170,18 @@ export function applyManifest(s: Snapshot, job: ProbeJob, info: ManifestInfo): S
   item.variants = mergeVariants(tab, info.variants, item.variants); item.live = info.live || item.live === true; item.protected = info.protected || item.protected === true;
   item.childUrls = bounded(tab, item.childUrls, info.childUrls, 10000, 'relationship-limit');
   item.segmentUrls = bounded(tab, item.segmentUrls, info.segmentUrls, 10000, 'relationship-limit');
+  mergeSegmentPatterns(tab, item, info.segmentPatterns);
   if (info.duration !== undefined) item.duration = info.duration;
   // Child evidence may introduce more descendants; revisit until every known row is grouped.
   let grouped: boolean;
   do {
     grouped = false;
-    for (const other of Object.values(tab.media)) if (other.id !== item.id && (item.childUrls.includes(other.url) || item.segmentUrls.includes(other.url))) {
+    for (const other of Object.values(tab.media)) if (other.id !== item.id && ownsUrl(item, other.url)) {
       mergeProvenance(tab, item, other);
       item.variants = mergeVariants(tab, item.variants, other.variants);
       item.childUrls = bounded(tab, item.childUrls, other.childUrls, 10000, 'relationship-limit');
       item.segmentUrls = bounded(tab, item.segmentUrls, other.segmentUrls, 10000, 'relationship-limit');
+      mergeSegmentPatterns(tab, item, other.segmentPatterns);
       item.protected = item.protected || other.protected === true; item.live = item.live || other.live === true;
       if (item.duration === undefined && other.duration !== undefined) item.duration = other.duration;
       delete tab.media[other.id]; grouped = true;

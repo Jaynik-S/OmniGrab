@@ -1,4 +1,5 @@
-import type { ManifestInfo, Variant } from '../core/model.ts';
+import type { ManifestInfo, SegmentPattern, Variant } from '../core/model.ts';
+import { MAX_SEGMENT_PATTERNS, segmentPatternKey, validSegmentPattern } from '../core/segments.ts';
 
 export const MAX_VARIANTS = 20;
 const MAX_REFERENCES = 10_000;
@@ -24,6 +25,15 @@ export function resolveHttp(reference: string, baseUrl: string): string {
 export function addReference(target: string[], url: string): void {
   if (target.length >= MAX_REFERENCES) throw new Error('Manifest reference limit exceeded');
   target.push(url);
+}
+
+export function addSegmentPattern(info: ManifestInfo, pattern: SegmentPattern): void {
+  if (!validSegmentPattern(pattern)) throw new Error('Invalid DASH template pattern or URL limit');
+  const patterns = info.segmentPatterns ??= [];
+  const key = segmentPatternKey(pattern);
+  if (patterns.some(previous => segmentPatternKey(previous) === key)) return;
+  if (patterns.length >= MAX_SEGMENT_PATTERNS) throw new Error('Manifest segment pattern limit exceeded');
+  patterns.push(pattern);
 }
 
 export function addVariant(info: ManifestInfo, variant: Variant): void {
