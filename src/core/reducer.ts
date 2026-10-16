@@ -6,6 +6,7 @@ import { matchesSegmentPattern, MAX_SEGMENT_PATTERNS, segmentPatternKey } from '
 export const MAX_ITEMS = 200;
 export const MAX_DOCUMENTS = 100;
 const unique = <T>(a: T[], b: T[], limit = 100) => [...new Set([...a, ...b])].slice(0, limit);
+const mergeLive = (a: boolean | undefined, b: boolean | undefined): boolean | undefined => a === true || b === true ? true : a ?? b;
 function dropped(tab: TabState, count: number, reason: string): void {
   if (!count) return;
   tab.dropped += count;
@@ -33,7 +34,7 @@ function mergeSegmentPatterns(tab: TabState, item: MediaItem, incoming: SegmentP
   const patterns = new Map<string, SegmentPattern>();
   for (const pattern of [...(item.segmentPatterns ?? []), ...incoming]) {
     const key = segmentPatternKey(pattern);
-    if (!patterns.has(key)) patterns.set(key, { literals: [...pattern.literals], minDigits: [...pattern.minDigits] });
+    if (!patterns.has(key)) patterns.set(key, { literals: [...pattern.literals], minDigits: [...pattern.minDigits], variables: [...pattern.variables] });
   }
   dropped(tab, Math.max(0, patterns.size - MAX_SEGMENT_PATTERNS), 'relationship-limit');
   item.segmentPatterns = [...patterns.values()].slice(0, MAX_SEGMENT_PATTERNS);
@@ -167,7 +168,7 @@ export function applyManifest(s: Snapshot, job: ProbeJob, info: ManifestInfo): S
   const item = tab.media[job.itemId];
   item.type = info.type;
   item.methods = unique(item.methods, ['manifest']);
-  item.variants = mergeVariants(tab, info.variants, item.variants); item.live = info.live || item.live === true; item.protected = info.protected || item.protected === true;
+  item.variants = mergeVariants(tab, info.variants, item.variants); item.live = mergeLive(info.live, item.live); item.protected = info.protected || item.protected === true;
   item.childUrls = bounded(tab, item.childUrls, info.childUrls, 10000, 'relationship-limit');
   item.segmentUrls = bounded(tab, item.segmentUrls, info.segmentUrls, 10000, 'relationship-limit');
   mergeSegmentPatterns(tab, item, info.segmentPatterns);
@@ -182,7 +183,7 @@ export function applyManifest(s: Snapshot, job: ProbeJob, info: ManifestInfo): S
       item.childUrls = bounded(tab, item.childUrls, other.childUrls, 10000, 'relationship-limit');
       item.segmentUrls = bounded(tab, item.segmentUrls, other.segmentUrls, 10000, 'relationship-limit');
       mergeSegmentPatterns(tab, item, other.segmentPatterns);
-      item.protected = item.protected || other.protected === true; item.live = item.live || other.live === true;
+      item.protected = item.protected || other.protected === true; item.live = mergeLive(item.live, other.live);
       if (item.duration === undefined && other.duration !== undefined) item.duration = other.duration;
       delete tab.media[other.id]; grouped = true;
     }

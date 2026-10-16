@@ -34,7 +34,7 @@ export function parseHls(text: string, baseUrl: string): ManifestInfo {
   resolveHttp(baseUrl, baseUrl);
   const lines = text.replace(/^\uFEFF/, '').split(/\r?\n/).map(line => line.trim());
   if (lines.shift() !== '#EXTM3U') throw new Error('Missing HLS EXTM3U header');
-  const info: ManifestInfo = { type: 'hls', variants: [], childUrls: [], segmentUrls: [], live: true, protected: false };
+  const info: ManifestInfo = { type: 'hls', variants: [], childUrls: [], segmentUrls: [], protected: false };
   let stream: Record<string, string> | undefined;
   let segmentDuration: number | undefined;
   let duration = 0;
@@ -111,6 +111,6 @@ export function parseHls(text: string, baseUrl: string): ManifestInfo {
   }
   if (stream || segmentDuration !== undefined) throw new Error('Missing HLS URI');
   if (!master && !media) throw new Error('Unsupported empty HLS playlist');
-  if (media) info.duration = duration;
+  if (media) { info.duration = duration; info.live ??= true; }
   return uniqueReferences(info);
 }

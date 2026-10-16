@@ -1,4 +1,4 @@
-import type { ManifestInfo } from '../core/model.ts';
+import type { ManifestInfo, SegmentVariable } from '../core/model.ts';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
 import { MAX_SEGMENT_DIGITS, MAX_SEGMENT_GAPS, MAX_SEGMENT_URL_LENGTH } from '../core/segments.ts';
 import { addReference, addSegmentPattern, addVariant, checkText, positiveNumber, resolveHttp, uniqueReferences } from './shared.ts';
@@ -85,6 +85,7 @@ function templateReference(info: ManifestInfo, value: string, context: Context, 
   while ([value, context.base, id ?? '', context.metadata.bandwidth ?? ''].some(text => text.toLowerCase().includes(marker))) marker += 'x';
   const markers: string[] = [];
   const minDigits: number[] = [];
+  const variables: SegmentVariable[] = [];
   const tokens = /\$\$|\$(RepresentationID|Bandwidth|Number|Time)(?:%0([1-9]\d*)d)?\$/g;
   let resolved = '';
   let offset = 0;
@@ -106,7 +107,7 @@ function templateReference(info: ManifestInfo, value: string, context: Context, 
     } else {
       if (markers.length >= MAX_SEGMENT_GAPS) throw new Error('DASH template numeric gap limit exceeded');
       const token = `${marker}${markers.length}end`;
-      markers.push(token); minDigits.push(width); resolved += token;
+      markers.push(token); minDigits.push(width); variables.push(match[1] === 'Number' ? 'Number' : 'Time'); resolved += token;
     }
   }
   const suffix = value.slice(offset);
@@ -122,7 +123,7 @@ function templateReference(info: ManifestInfo, value: string, context: Context, 
     literals.push(url.slice(start, index)); start = index + token.length;
   }
   literals.push(url.slice(start));
-  addSegmentPattern(info, { literals, minDigits });
+  addSegmentPattern(info, { literals, minDigits, variables });
 }
 
 function segments(info: ManifestInfo, context: Context, id: string | undefined): void {

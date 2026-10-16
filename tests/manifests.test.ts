@@ -36,6 +36,14 @@ test('HLS live playlists and session protection are recognized', () => {
   assert.equal(parseHls('#EXTM3U\n#EXT-X-SESSION-KEY:METHOD=SAMPLE-AES,URI="skd://asset"\n#EXT-X-STREAM-INF:BANDWIDTH=1\na.m3u8', 'https://cdn.test/list').protected, true);
 });
 
+test('HLS masters do not infer live or VOD status from absent media timing tags', () => {
+  for (const text of [
+    '#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=100\nvideo.m3u8',
+    '#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="a",NAME="English",URI="audio.m3u8"',
+    '#EXTM3U\n#EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=100,URI="iframe.m3u8"',
+  ]) assert.equal(parseHls(text, 'https://cdn.test/master.m3u8').live, undefined);
+});
+
 test('HLS rejects malformed structures, unsafe URLs and unbounded input', () => {
   for (const text of ['plain text', '#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=1', '#EXTM3U\n#EXTINF:2,', '#EXTM3U\n#EXTINF:no,\na.ts', '#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="bad', '#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=1\njavascript:alert(1)', '#EXTM3U\n#EXTINF:2,\nfoo.ts\n#EXT-X-STREAM-INF:BANDWIDTH=1\na.m3u8']) {
     assert.throws(() => parseHls(text, 'https://cdn.test/list'), Error, text);
@@ -159,8 +167,8 @@ test('DASH derives bounded numeric fragment patterns after inherited bases and c
     </Period></MPD>`, 'https://cdn.test/manifests/master.mpd?parent=secret');
   assert.deepEqual(info.segmentUrls, ['https://cdn.test/assets/period/video/720/init-v720-00900000.mp4?sig=a%2Fb&k=2']);
   assert.deepEqual(info.segmentPatterns, [
-    { literals: ['https://cdn.test/assets/period/video/720/clip-$-v720-900000-', '.m4v?sig=a%2Fb&k=2'], minDigits: [5] },
-    { literals: ['https://cdn.test/assets/period/audio-a1-', '.m4a?auth=x%2Fy'], minDigits: [1] },
+    { literals: ['https://cdn.test/assets/period/video/720/clip-$-v720-900000-', '.m4v?sig=a%2Fb&k=2'], minDigits: [5], variables: ['Number'] },
+    { literals: ['https://cdn.test/assets/period/audio-a1-', '.m4a?auth=x%2Fy'], minDigits: [1], variables: ['Time'] },
   ]);
   assert.equal(info.live, true);
 });
@@ -180,6 +188,6 @@ test('DASH rejects excessive fragment patterns and oversized templates before sn
 test('DASH URL normalization cannot confuse a literal hostname with a numeric template gap', () => {
   const info = parseDash('<MPD><Period><AdaptationSet><SegmentTemplate media="https://DASHSEGMENTPLACEHOLDER0END.cdn.test/video-$Number$.m4v"/><Representation id="v"/></AdaptationSet></Period></MPD>', 'https://cdn.test/master.mpd');
   assert.deepEqual(info.segmentPatterns, [
-    { literals: ['https://dashsegmentplaceholder0end.cdn.test/video-', '.m4v'], minDigits: [1] },
+    { literals: ['https://dashsegmentplaceholder0end.cdn.test/video-', '.m4v'], minDigits: [1], variables: ['Number'] },
   ]);
 });

@@ -6,6 +6,7 @@ import { emptySnapshot, navigate, ingest, applyManifest, probeFailed, probeStart
 import * as core from '../src/core/reducer.ts';
 import type { Observation, ManifestInfo } from '../src/core/model.ts';
 import { parseDash } from '../src/manifests/dash.ts';
+import { parseHls } from '../src/manifests/hls.ts';
 
 const observation = (url: string, more: Partial<Observation> = {}): Observation => ({
   tabId: 1, frameId: 0, epoch: 1, documentId: 'doc-a', method: 'network',
@@ -370,4 +371,55 @@ test('a late manifest parent retains child fragment patterns and protection with
   patterns[0].literals[0] = 'https://changed.test/';
   s = ingest(s, observation('https://cdn.test/video-12346.m4v?sig=one')).state;
   assert.equal(Object.keys(s.tabs[1].media).length, 1);
+});
+
+test('DASH template grouping preserves token identity and canonical decimal padding for existing and future rows', () => {
+  const cases = [
+    { template: 'video-$Number$-copy-$Number$.m4v', valid: ['video-7-copy-7.m4v', 'video-0-copy-0.m4v'], invalid: ['video-7-copy-8.m4v', 'video-0007-copy-0007.m4v'] },
+    { template: 'audio-$Time$-copy-$Time$.m4a', valid: ['audio-7-copy-7.m4a', 'audio-0-copy-0.m4a'], invalid: ['audio-7-copy-8.m4a', 'audio-0007-copy-0007.m4a'] },
+    { template: 'video-$Number%05d$.m4v', valid: ['video-00007.m4v', 'video-123456.m4v', 'video-00000.m4v'], invalid: ['video-000007.m4v', 'video-000000.m4v', 'video-0000123456.m4v'] },
+    { template: 'audio-$Time%05d$.m4a', valid: ['audio-00007.m4a', 'audio-123456.m4a', 'audio-00000.m4a'], invalid: ['audio-000007.m4a', 'audio-000000.m4a', 'audio-0000123456.m4a'] },
+    { template: 'video-$Number$-copy-$Number%05d$.m4v', valid: ['video-7-copy-00007.m4v', 'video-123456-copy-123456.m4v'], invalid: ['video-7-copy-00008.m4v', 'video-00007-copy-00007.m4v', 'video-7-copy-000007.m4v'] },
+    { template: 'audio-$Time$-copy-$Time%05d$.m4a', valid: ['audio-7-copy-00007.m4a', 'audio-123456-copy-123456.m4a'], invalid: ['audio-7-copy-00008.m4a', 'audio-00007-copy-00007.m4a', 'audio-7-copy-000007.m4a'] },
+    { template: 'video-$Number$-time-$Time$.m4v', valid: ['video-7-time-8.m4v', 'video-0-time-1.m4v'], invalid: ['video-07-time-8.m4v', 'video-7-time-08.m4v'] },
+    { template: 'video-$Number$$Time$$Number$$Time$.m4v', valid: ['video-1212.m4v', 'video-123123.m4v', `video-${'1'.repeat(80)}.m4v`], invalid: ['video-1234.m4v', `video-${'1'.repeat(81)}.m4v`] },
+  ];
+  const base = 'https://cdn.test/identity/';
+  for (const example of cases) for (const phase of ['existing', 'future']) {
+    let s = start();
+    if (phase === 'existing') for (const path of [...example.valid, ...example.invalid]) s = ingest(s, observation(base + path)).state;
+    const parent = ingest(s, observation(base + 'master.mpd', { mime: 'application/dash+xml' }));
+    assert.ok(parent.probe);
+    const info = parseDash(`<MPD><Period><AdaptationSet><SegmentTemplate media="${example.template}"/><Representation id="v"/></AdaptationSet></Period></MPD>`, base + 'master.mpd');
+    s = applyManifest(parent.state, parent.probe, info);
+    if (phase === 'future') for (const path of [...example.valid, ...example.invalid]) s = ingest(s, observation(base + path)).state;
+    for (const path of example.valid) assert.equal(s.tabs[1].media[base + path], undefined, `${phase}: ${example.template}: ${path}`);
+    for (const path of example.invalid) {
+      assert.equal(s.tabs[1].media[base + path]?.type, 'direct', `${phase}: ${example.template}: ${path}`);
+      assert.equal(s.tabs[1].media[base + path]?.status, 'confirmed', `${phase}: ${example.template}: ${path}`);
+    }
+    assert.equal(Object.keys(s.tabs[1].media).length, example.invalid.length + 1, `${phase}: ${example.template}`);
+  }
+});
+
+test('an HLS master keeps live status unknown until a parsed media child establishes live or VOD', () => {
+  const parentUrl = 'https://cdn.test/master.m3u8';
+  const childUrl = 'https://cdn.test/video.m3u8';
+  const master = parseHls('#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=100\nvideo.m3u8', parentUrl);
+  const first = ingest(start(), observation(parentUrl, { mime: 'application/x-mpegurl' }));
+  assert.ok(first.probe);
+  assert.equal(applyManifest(first.state, first.probe, master).tabs[1].media[parentUrl].live, undefined);
+  for (const live of [false, true]) {
+    const child = ingest(start(), observation(childUrl, { mime: 'application/x-mpegurl' }));
+    assert.ok(child.probe);
+    const media = parseHls('#EXTM3U\n#EXT-X-TARGETDURATION:2\n#EXTINF:2,\nsegment.ts' + (live ? '' : '\n#EXT-X-ENDLIST'), childUrl);
+    const parsed = applyManifest(child.state, child.probe, media);
+    const parent = ingest(parsed, observation(parentUrl, { mime: 'application/x-mpegurl' }));
+    assert.ok(parent.probe);
+    let s = applyManifest(parent.state, parent.probe, master);
+    assert.equal(s.tabs[1].media[parentUrl].live, live);
+    assert.equal(Object.keys(s.tabs[1].media).length, 1);
+    s = applyManifest(s, parent.probe, master);
+    assert.equal(s.tabs[1].media[parentUrl].live, live);
+  }
 });

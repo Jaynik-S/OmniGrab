@@ -18,9 +18,11 @@ export interface Variant {
 }
 
 /** Exact URL literals separated only by bounded decimal DASH Number/Time values. */
+export type SegmentVariable = 'Number' | 'Time';
 export interface SegmentPattern {
   literals: string[];
   minDigits: number[];
+  variables: SegmentVariable[];
 }
 
 export interface ManifestInfo {
@@ -29,7 +31,7 @@ export interface ManifestInfo {
   childUrls: string[];
   segmentUrls: string[];
   segmentPatterns?: SegmentPattern[];
-  live: boolean;
+  live?: boolean;
   protected: boolean;
   duration?: number;
   truncated?: number;
