@@ -138,6 +138,10 @@ try {
   report.cases.push({ id: 'close-reopen-current-job', reopened, screenshot: await capture('02-reopened') });
   await popup.evaluate(id => document.querySelector(`[data-job-id="${id}"] .download-cancel`).click(), firstId);
   await until(() => popup.evaluate(id => document.querySelector(`[data-job-id="${id}"] .job-phase`)?.textContent, firstId), phase => phase === 'Canceled', 'UI cancel');
+  await until(() => popup.evaluate(async id => {
+    const job = (await chrome.storage.local.get('downloadState')).downloadState.jobs.find(job => job.id === id);
+    return job?.phase === 'canceled' && !job.attachment && !job.tempFile && !document.querySelector(`[data-job-id="${id}"] .download-retry`)?.disabled;
+  }, firstId), Boolean, 'cancel cleanup safely settled before retry');
   slow = false;
   await popup.evaluate(id => document.querySelector(`[data-job-id="${id}"] .download-retry`).click(), firstId);
   const saved = await until(() => popup.evaluate(async () => ({ jobs: (await chrome.storage.local.get('downloadState')).downloadState.jobs, text: document.querySelector('.download-jobs').textContent })), value => value.jobs.length === 2 && value.jobs.some(job => job.phase === 'complete') && value.text.includes('Saved by Chrome'), 'UI retry and Chrome complete', 60000);
@@ -151,6 +155,50 @@ try {
   execFileSync('ffmpeg', ['-v', 'error', '-xerror', '-i', browser.filename, '-f', 'null', '-'], { stdio: 'pipe' });
   await popup.evaluate(() => document.querySelector('.download-jobs').scrollIntoView());
   report.cases.push({ id: 'UI-cancel-retry-independent-saved-file-validation', jobs: saved.jobs, browser, probe: { duration: probe.format.duration, streams: probe.streams.map(track => ({ codec: track.codec_name, height: track.height, channels: track.channels, frames: track.nb_frames })) }, decode: 'ffmpeg -xerror exit 0', screenshot: await capture('03-saved') });
+  if (process.argv.includes('--repeat-settled')) {
+    const snapshot = () => popup.evaluate(async () => ({ jobs: (await chrome.storage.local.get('downloadState')).downloadState.jobs,
+      saves: (await chrome.downloads.search({})).filter(item => item.byExtensionId === chrome.runtime.id) }));
+    let previous = completed;
+    for (const reopen of [false, true]) {
+      if (reopen) {
+        await popup.evaluate(() => { setTimeout(() => window.close(), 50); return true; }); await sleep(150); popup.close();
+        await openPopup();
+        await until(() => popup.evaluate(() => !!document.querySelector('.download-controls select option')), Boolean, 'repeat controls after reopen');
+      }
+      const before = await snapshot();
+      const buttonState = await popup.evaluate(() => {
+        const article = [...document.querySelectorAll('.primary-media article')].find(article => article.querySelectorAll('select option').length === 2);
+        const quality = article.querySelector('select'); quality.value = [...quality.options].find(option => option.textContent === '720p').value;
+        quality.dispatchEvent(new Event('change', { bubbles: true }));
+        const filename = article.querySelector('input'); filename.value = 'Popup 720 fixture.mp4'; filename.dispatchEvent(new Event('input', { bubbles: true }));
+        const button = article.querySelector('.download-start'); button.scrollIntoView();
+        return { text: button.textContent, disabled: button.disabled, quality: quality.options[quality.selectedIndex].textContent, filename: filename.value };
+      });
+      assert.deepEqual(buttonState, { text: 'Download again', disabled: false, quality: '720p', filename: 'Popup 720 fixture.mp4' });
+      await sleep(600);
+      const idle = await snapshot(); assert.equal(idle.jobs.length, before.jobs.length); assert.equal(idle.saves.length, before.saves.length);
+      await popup.evaluate(() => { const button = document.querySelector('.download-start'); button.click(); button.click(); });
+      const after = await until(snapshot, value => value.jobs.length === before.jobs.length + 1 && value.jobs.filter(job => job.phase === 'complete').length === before.jobs.filter(job => job.phase === 'complete').length + 1, 'one explicit renewed save', 60000);
+      const repeated = after.jobs.find(job => !before.jobs.some(old => old.id === job.id));
+      assert.notEqual(repeated.requestId, previous.requestId);
+      assert.ok(!before.jobs.some(job => job.requestId === repeated.requestId));
+      assert.equal(repeated.selection.filename, 'Popup 720 fixture.mp4'); assert.equal(repeated.selection.height, 720); assert.equal(repeated.selection.requestedVariantId, chosen.quality);
+      assert.equal(after.saves.length, before.saves.length + 1, 'one explicit action yields exactly one Chrome save');
+      const item = after.saves.find(item => item.id === repeated.browserDownloadId);
+      assert.equal(item.state, 'complete'); assert.equal(path.basename(item.filename), `Popup 720 fixture (${reopen ? 2 : 1}).mp4`);
+      const probe = JSON.parse(execFileSync('ffprobe', ['-v', 'error', '-show_streams', '-show_format', '-of', 'json', item.filename], { encoding: 'utf8' }));
+      assert.deepEqual(probe.streams.map(track => track.codec_name), ['h264', 'aac']); assert.equal(probe.streams[0].height, 720);
+      assert.ok(Math.abs(Number(probe.format.duration) - 1.2) < 0.1);
+      execFileSync('ffmpeg', ['-v', 'error', '-xerror', '-i', item.filename, '-f', 'null', '-'], { stdio: 'pipe' });
+      await sleep(600);
+      const settled = await snapshot(); assert.equal(settled.jobs.length, after.jobs.length); assert.equal(settled.saves.length, after.saves.length);
+      report.cases.push({ id: reopen ? 'reopen-explicit-same-selection-new-intent' : 'explicit-same-selection-new-intent', buttonState, priorRequestId: previous.requestId,
+        job: repeated, browser: item, beforeJobs: before.jobs.length, afterJobs: after.jobs.length, beforeSaves: before.saves.length, afterSaves: after.saves.length,
+        idleStable: true, decode: 'ffmpeg -xerror exit 0', probe: { duration: probe.format.duration, codecs: probe.streams.map(track => track.codec_name), height: probe.streams[0].height },
+        screenshot: await capture(reopen ? '05-reopened-repeat' : '04-download-again') });
+      previous = repeated;
+    }
+  }
   report.ok = true;
 } catch (error) { report.ok = false; report.errors.push(String(error.stack || error)); process.exitCode = 1; }
 finally {

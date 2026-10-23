@@ -302,3 +302,98 @@ test('keeps an explicitly selected quality unavailable instead of silently switc
   assert.equal(target.querySelector<HTMLButtonElement>('.download-start')!.disabled, true);
   assert.match(target.textContent!, /Selected quality is no longer confirmed/);
 });
+
+function repeatSource() {
+  const source = item('https://cdn.test/master.m3u8', { protected: false, variants: [
+    { id: 'v720', kind: 'video', height: 720, url: 'https://cdn.test/720.m3u8' },
+  ] });
+  const tab: TabState = { id: 7, epoch: 1, url: 'https://page.test/', title: 'Episode', documents: { 0: 'doc-a' },
+    media: { [source.id]: source }, updatedAt: 1, dropped: 0, errors: [] };
+  const memory = new Map<string, string>();
+  const intentStorage = { getItem: (key: string) => memory.get(key) ?? null, setItem: (key: string, value: string) => { memory.set(key, value); } };
+  const record = (requestId: string, phase: DownloadJob['phase']): DownloadJob => ({ ...job(phase), id: 'job-' + requestId, requestId,
+    selection: { ...job().selection, tabId: 7, epoch: 1, mediaId: source.id, instance: 0,
+      pageUrl: tab.url, documentId: 'doc-a', sourceUrl: source.url, videoUrl: 'https://cdn.test/720.m3u8', requestedVariantId: 'v720', filename: 'Episode.mp4' } });
+  return { source, tab, intentStorage, record };
+}
+
+test('safe terminal settlement enables explicit same-selection Download again with a fresh ID, including popup reopen', async () => {
+  for (const phase of ['complete', 'canceled', 'failed', 'interrupted'] as const) {
+    const { source, tab, intentStorage, record } = repeatSource();
+    let { target } = render([source]);
+    const requests: any[] = [];
+    const options = { jobs: [] as DownloadJob[], intentStorage, start: async (request: any) => {
+      requests.push(request); const queued = record(request.requestId, 'queued');
+      options.jobs.push(queued); return { ok: true as const, job: queued };
+    } };
+    const refresh = () => renderSnapshot(target, { tab, revision: 1 }, () => {}, options);
+    const button = () => target.querySelector<HTMLButtonElement>('.download-start')!;
+    refresh(); button().click(); await new Promise(resolve => setTimeout(resolve, 0));
+    const originalId = requests[0].requestId;
+    options.jobs[0].phase = phase; refresh();
+    assert.equal(requests.length, 1, 'settlement must never initiate a download');
+    assert.equal(button().disabled, false, phase);
+    assert.equal(button().textContent, 'Download again');
+    if (phase === 'complete') { target = render([source]).target; refresh(); assert.equal(button().disabled, false, 'reopen retains safe renewal'); }
+    button().click(); await new Promise(resolve => setTimeout(resolve, 0));
+    assert.equal(requests.length, 2);
+    assert.notEqual(requests[1].requestId, originalId);
+    assert.equal(requests[1].filename, 'Episode.mp4'); assert.equal(requests[1].variantId, 'v720');
+    refresh(); assert.equal(requests.length, 2); assert.equal(button().disabled, true, 'new queued work stays protected');
+  }
+});
+
+test('renewed intent keeps its ID through double clicks and a lost response while older settled history remains', async () => {
+  const { source, tab, intentStorage, record } = repeatSource();
+  let { target } = render([source]);
+  const requests: any[] = [];
+  let reject!: (error: Error) => void;
+  const options = { jobs: [] as DownloadJob[], intentStorage, start: async (request: any) => {
+    requests.push(request);
+    if (requests.length === 1) { const queued = record(request.requestId, 'queued'); options.jobs.push(queued); return { ok: true as const, job: queued }; }
+    await new Promise<void>((_, fail) => { reject = fail; }); throw Error('lost');
+  } };
+  const refresh = () => renderSnapshot(target, { tab, revision: 1 }, () => {}, options);
+  const button = () => target.querySelector<HTMLButtonElement>('.download-start')!;
+  refresh(); button().click(); await new Promise(resolve => setTimeout(resolve, 0));
+  options.jobs[0].phase = 'complete'; refresh();
+  assert.equal(button().disabled, false, 'safe settlement must allow renewal');
+  const oldButton = button(); oldButton.click(); oldButton.click(); refresh(); button().click();
+  assert.equal(requests.length, 2); assert.equal(button().disabled, true);
+  const renewedId = requests[1].requestId;
+  assert.notEqual(renewedId, requests[0].requestId);
+  reject(Error('Response lost')); await new Promise(resolve => setTimeout(resolve, 0));
+  target = render([source]).target; refresh(); button().click();
+  assert.equal(requests.length, 3);
+  assert.equal(requests[2].requestId, renewedId, 'the older complete record cannot authorize another new ID');
+  reject(Error('Response lost')); await new Promise(resolve => setTimeout(resolve, 0));
+});
+
+test('Download again stays blocked for active, uncertain-save and unresolved cleanup records', async () => {
+  const { source, tab, intentStorage, record } = repeatSource();
+  const { target } = render([source]);
+  let initialRequest: any;
+  const options = { jobs: [] as DownloadJob[], intentStorage, start: async (request: any) => {
+    initialRequest = request; const queued = record(request.requestId, 'queued'); options.jobs = [queued]; return { ok: true as const, job: queued };
+  } };
+  const refresh = () => renderSnapshot(target, { tab, revision: 1 }, () => {}, options);
+  refresh(); target.querySelector<HTMLButtonElement>('.download-start')!.click(); await new Promise(resolve => setTimeout(resolve, 0));
+  const base = record(initialRequest.requestId, 'complete');
+  const protectedRecords: DownloadJob[] = [
+    ...(['queued', 'resolving', 'processing', 'ready-to-save', 'saving'] as const).map(phase => ({ ...base, phase })),
+    { ...base, phase: 'interrupted', failure: { code: 'download-save-uncertain', message: 'Save outcome unknown.' } },
+    { ...base, tempFile: 'owned.mp4', failure: { code: 'download-cleanup-pending', message: 'Close the original source tab.' } },
+    { ...base, saveIntent: { objectUrl: 'blob:chrome-extension://' + 'a'.repeat(32) + '/owned', attemptedAt: 1 } },
+    { ...base, tempFile: 'owned.mp4' },
+    { ...base, attachment: { jobId: base.id, capability: 'a'.repeat(32), tabId: 7, frameId: 0, documentId: 'doc-a' } },
+  ];
+  for (const protectedRecord of protectedRecords) {
+    options.jobs = [protectedRecord]; refresh();
+    assert.equal(target.querySelector<HTMLButtonElement>('.download-start')!.disabled, true, JSON.stringify(protectedRecord));
+  }
+  options.jobs = [base, { ...record('different-running-request', 'processing'), id: 'running-job' }]; refresh();
+  assert.equal(target.querySelector<HTMLButtonElement>('.download-start')!.disabled, true, 'safe older history cannot supersede another active same-selection job');
+  // The coordinator retains the earlier diagnostic after positively acknowledged cleanup clears ownership.
+  options.jobs = [{ ...base, failure: { code: 'download-cleanup-pending', message: 'Close the original source tab.' } }]; refresh();
+  assert.equal(target.querySelector<HTMLButtonElement>('.download-start')!.disabled, false, 'cleared terminal ownership is authoritative settlement despite an old diagnostic');
+});

@@ -20,6 +20,11 @@ interface ViewState {
 const states = new WeakMap<HTMLElement, ViewState>();
 const intentKey = 'popupDownloadIntents-v1';
 const active = new Set(['queued', 'resolving', 'processing', 'ready-to-save', 'saving']);
+function safelySettled(job: DownloadJob): boolean {
+  return !active.has(job.phase) && !job.attachment && !job.tempFile &&
+    job.failure?.code !== 'download-save-uncertain' &&
+    (!job.saveIntent || job.browserDownloadId !== undefined);
+}
 
 function element(document: Document, tag: string, text?: string, className?: string): HTMLElement {
   const value = document.createElement(tag);
@@ -54,7 +59,11 @@ function getState(target: HTMLElement, options: DownloadViewOptions, redraw: () 
   state.redraw = redraw;
   return state;
 }
-function requestId(state: ViewState, key: string, options: DownloadViewOptions): string {
+function requestId(state: ViewState, key: string, options: DownloadViewOptions, renew = false): string {
+  if (renew) {
+    state.intents = state.intents.filter(intent => intent.key !== key);
+    state.accepted.delete(key);
+  }
   const previous = state.intents.find(intent => intent.key === key);
   if (previous) return previous.id;
   const id = crypto.randomUUID();
@@ -119,19 +128,28 @@ export function downloadView(target: HTMLElement, options: DownloadViewOptions, 
       const button = element(document, 'button', 'Download MP4', 'download-start') as HTMLButtonElement;
       button.type = 'button'; button.dataset.control = key + ':download';
       const intent = () => JSON.stringify(['start', key, form.variantId, form.filename]);
-      function updateButton() {
+      function intentStatus() {
         const current = intent();
         const known = state.intents.find(i => i.key === current);
-        const accepted = state.accepted.has(current) || !!known && options.jobs.some(job => job.requestId === known.id);
-        button.disabled = state.pending.has(current) || accepted || !form.filename.trim() || selectedUnavailable();
+        const previous = known && options.jobs.find(job => job.requestId === known.id);
+        const videoUrl = variants.find(variant => variant.id === form.variantId)?.url;
+        const unsettled = !!previous && !safelySettled(previous) || options.jobs.some(job =>
+          job.selection.sourceUrl === item.url && (!videoUrl || job.selection.videoUrl === videoUrl) && !safelySettled(job));
+        return { accepted: state.accepted.has(current) || !!previous, renewable: !!previous && safelySettled(previous) && !unsettled, unsettled };
+      }
+      function updateButton() {
+        const current = intent();
+        const { accepted, renewable, unsettled } = intentStatus();
+        button.disabled = state.pending.has(current) || unsettled || accepted && !renewable || !form.filename.trim() || selectedUnavailable();
         selectionMessage.textContent = selectedUnavailable() ? 'Selected quality is no longer confirmed. Choose an available rendition.' : '';
-        button.textContent = state.pending.has(current) ? 'Starting…' : accepted ? 'Download started' : 'Download MP4';
+        button.textContent = state.pending.has(current) ? 'Starting…' : renewable ? 'Download again' : accepted ? 'Download started' : 'Download MP4';
       }
       updateButton();
       button.addEventListener('click', () => {
-        if (button.disabled) return;
         const current = intent();
-        const request: DownloadStartRequest = { requestId: requestId(state, current, options), tabId: tab.id, epoch: tab.epoch,
+        if (button.disabled || state.pending.has(current)) return;
+        // Renew only on this explicit click after the matching request has safely settled.
+        const request: DownloadStartRequest = { requestId: requestId(state, current, options, intentStatus().renewable), tabId: tab.id, epoch: tab.epoch,
           mediaId: item.id, instance: item.instance ?? 0, filename: form.filename, ...(form.variantId ? { variantId: form.variantId } : {}) };
         void perform(state, current, () => options.start(request));
       });
