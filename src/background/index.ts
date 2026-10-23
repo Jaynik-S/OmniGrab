@@ -7,6 +7,10 @@ import { RequestTracker } from './network.ts';
 import { DocumentLifecycle } from './lifecycle.ts';
 import type { LifecycleToken } from './lifecycle.ts';
 import { persistedText } from '../core/limits.ts';
+import { DownloadStore } from '../downloads/store.ts';
+import { createDownloadCoordinator, trustedPopup } from '../downloads/coordinator.ts';
+import { createBrowserDownloadAdapter } from '../downloads/browser-adapter.ts';
+import type { DownloadStartRequest } from '../downloads/model.ts';
 
 const KEY = 'detectionState';
 const store = new DetectionStore({
@@ -18,6 +22,16 @@ const requests = new RequestTracker();
 const lifecycle = new DocumentLifecycle();
 const requestTokens = new Map<string, LifecycleToken>();
 const report = (error: unknown) => console.warn('Detection operation failed:', error instanceof Error ? error.message : String(error));
+const downloadStore = new DownloadStore({
+  load: async () => (await chrome.storage.local.get('downloadState')).downloadState,
+  save: async state => { await chrome.storage.local.set({ downloadState: state }); },
+});
+const downloadAdapter = createBrowserDownloadAdapter(() => store.read(), selection => {
+  const token = lifecycle.capture(selection.tabId, selection.frameId);
+  return () => lifecycle.current(token);
+});
+const downloads = createDownloadCoordinator({ store: downloadStore, ...downloadAdapter });
+chrome.downloads.onChanged.addListener(() => { void downloads.reconcile(); });
 
 async function accept(observations: Observation[], token: LifecycleToken | undefined) {
   const jobs: ProbeJob[] = [];
@@ -114,6 +128,22 @@ function claims(value: unknown): Partial<Observation> | undefined {
 async function message(raw: unknown, sender: chrome.runtime.MessageSender) {
   if (!raw || typeof raw !== 'object') throw new Error('Invalid message');
   const m = raw as Record<string, unknown>;
+  if (m.target === 'download-coordinator') {
+    if (sender.id !== chrome.runtime.id || sender.tab || sender.url !== chrome.runtime.getURL('offscreen.html'))
+      return { ok: false, error: { code: 'download-sender-invalid', message: 'Invalid download sender' } };
+    // This validator deliberately bypasses coordinator serialization: host readiness depends on it.
+    if (m.action === 'validate') return { ok: true, valid: await downloadAdapter.validate(m.selection as import('../downloads/model.ts').DownloadSelection) };
+    if (m.action === 'changed') return downloads.reconcile();
+  }
+  if (typeof m.type === 'string' && m.type.startsWith('download-')) {
+    if (!trustedPopup(sender, chrome.runtime.id, chrome.runtime.getURL('popup/index.html')))
+      return { ok: false, error: { code: 'download-sender-invalid', message: 'Popup required' } };
+    if (m.type === 'download-start') return downloads.start(m.request as DownloadStartRequest);
+    if (m.type === 'download-cancel' && typeof m.jobId === 'string') return downloads.cancel(m.jobId);
+    if (m.type === 'download-retry' && typeof m.jobId === 'string' && typeof m.requestId === 'string') return downloads.retry(m.jobId, m.requestId);
+    if (m.type === 'download-snapshot') return downloads.snapshot();
+    return { ok: false, error: { code: 'download-message-invalid', message: 'Invalid download request' } };
+  }
   if (m.type === 'observe') {
     const tabId = sender.tab?.id; const frameId = sender.frameId ?? 0;
     if (tabId === undefined || !sender.documentId || !Array.isArray(m.observations) || m.observations.length > 100) throw new Error('Invalid observation sender or batch');
@@ -154,9 +184,11 @@ async function message(raw: unknown, sender: chrome.runtime.MessageSender) {
   throw new Error('Unknown message type');
 }
 chrome.runtime.onMessage.addListener((raw, sender, reply) => {
+  if (raw?.target === 'download-host') return;
   void message(raw, sender).then(reply, error => reply({ error: error instanceof Error ? error.message : String(error) }));
   return true;
 });
+void downloads.reconcile();
 
 void store.read().then(async restored => {
   const tokens = new Map(Object.keys(restored.tabs).map(Number).map(tabId => [tabId, lifecycle.capture(tabId, 0)]));

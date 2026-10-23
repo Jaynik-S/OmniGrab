@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "Local media detection diagnostics for direct sources, HLS and DASH.",
   "minimum_chrome_version": "120",
-  "permissions": ["webRequest", "webNavigation", "storage"],
+  "permissions": ["webRequest", "webNavigation", "storage", "downloads", "offscreen", "unlimitedStorage"],
   "host_permissions": ["http://*/*", "https://*/*"],
   "background": { "service_worker": "background.js", "type": "module" },
   "action": { "default_title": "Media Detection Lab", "default_popup": "popup/index.html" },

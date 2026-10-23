@@ -98,3 +98,26 @@ test('retains the newest 50 terminal records without pruning pending work', asyn
   const restored = new DownloadStore({ load: async () => persisted, save: async () => {} });
   assert.deepEqual(await restored.read(), result);
 });
+test('validates durable attachment identity and exact unique extension blob save intent', async () => {
+  const active = job('active', 'ready-to-save');
+  active.attachment = { jobId: active.id, capability: 'a'.repeat(64), tabId: 7, frameId: 0, documentId: 'doc' };
+  active.saveIntent = { objectUrl: 'blob:chrome-extension://' + 'a'.repeat(32) + '/unique-file', attemptedAt: 2 };
+  const good = new DownloadStore({ load: async () => state(active), save: async () => {} });
+  assert.equal((await good.read()).jobs.length, 1);
+  for (const change of [
+    (j: DownloadJob) => { j.attachment!.jobId = 'other'; },
+    (j: DownloadJob) => { j.attachment!.frameId = 9; },
+    (j: DownloadJob) => { j.attachment!.documentId = 'other'; },
+    (j: DownloadJob) => { j.attachment!.capability = 'short'; },
+    (j: DownloadJob) => { j.saveIntent!.objectUrl = 'blob:https://site.test/file'; },
+    (j: DownloadJob) => { j.saveIntent!.attemptedAt = 99; },
+    (j: DownloadJob) => { j.phase = 'queued'; },
+  ]) {
+    const invalid = structuredClone(active); change(invalid);
+    const store = new DownloadStore({ load: async () => state(invalid), save: async () => {} });
+    assert.equal((await store.read()).jobs.length, 0); assert.ok(store.error);
+  }
+  const duplicate = { ...job('other', 'complete'), saveIntent: active.saveIntent };
+  const store = new DownloadStore({ load: async () => state(active, duplicate), save: async () => {} });
+  assert.equal((await store.read()).jobs.length, 0); assert.ok(store.error);
+});

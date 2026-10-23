@@ -28,11 +28,15 @@ async function background() {
   const onMessage = event();
   const onRemoved = event();
   const chromeMock = {
-    storage: { session: { get: async () => ({ detectionState: saved }), set: async (value: { detectionState: Snapshot }) => save(value.detectionState) } },
+    storage: { session: { get: async () => ({ detectionState: saved }), set: async (value: { detectionState: Snapshot }) => save(value.detectionState) },
+      local: { get: async () => ({}), set: async () => {} } },
+    downloads: { onChanged: event() },
+    offscreen: { Reason: { WORKERS: 'WORKERS', BLOBS: 'BLOBS' }, createDocument: async () => {} },
     webNavigation: navigation,
     webRequest: network,
     tabs: { onRemoved, query: async () => [{ id: 1 }], sendMessage: async () => undefined },
-    runtime: { onMessage, getURL: (path: string) => `chrome-extension://fixture/${path}` },
+    runtime: { id: 'fixture', onMessage, getURL: (path: string) => `chrome-extension://fixture/${path}`,
+      ContextType: { OFFSCREEN_DOCUMENT: 'OFFSCREEN_DOCUMENT' }, getContexts: async () => [], sendMessage: async () => ({ ok: true }) },
   };
   Object.defineProperty(globalThis, 'chrome', { configurable: true, value: chromeMock });
   await import(`../src/background/index.ts?integration=${instance++}`);
@@ -270,4 +274,19 @@ test('a late error for an older target cannot release a newer iframe navigation 
   const result = await bg.observe('https://cdn.test/stale.mp4', 'child-old', 7);
   assert.equal(result.ignored, 'navigation-pending');
   assert.deepEqual(Object.keys((await bg.snapshot())!.media), []);
+});
+test('download validator fences a navigation beginning while the exact frame lookup is pending', async t => {
+  t.mock.method(globalThis, 'fetch', async () => new Response('#EXTM3U\n#EXTINF:1,\npart.ts\n#EXT-X-ENDLIST\n'));
+  const bg = await background(); bg.commit(); const url = 'https://cdn.test/download.m3u8'; await bg.observe(url);
+  const tab = (await bg.snapshot())!, item = tab.media[url]; assert.equal(item.status, 'confirmed');
+  const pending = deferred<{ documentId: string; documentLifecycle: string }>(); let checking = false;
+  bg.setGetFrame(async () => { checking = true; return pending.promise; });
+  const result = bg.message({ target: 'download-coordinator', action: 'validate', selection: {
+    tabId: 1, epoch: tab.epoch, mediaId: item.id, instance: item.instance ?? 0, pageUrl: tab.url,
+    frameId: 0, documentId: 'top-old', sourceUrl: url, videoUrl: url, filename: 'video.mp4', output: 'mp4',
+  } }, { id: 'fixture', url: 'chrome-extension://fixture/offscreen.html' });
+  await settle(); assert.equal(checking, true);
+  bg.navigation.onBeforeNavigate.fire({ tabId: 1, frameId: 0, url: 'https://page.test/new/', timeStamp: 2 });
+  pending.resolve({ documentId: 'top-old', documentLifecycle: 'active' });
+  assert.deepEqual(await result, { ok: true, valid: false });
 });

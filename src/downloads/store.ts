@@ -17,7 +17,7 @@ const id = (value: unknown) => text(value, 128);
 
 function validJob(value: unknown): value is DownloadJob {
   if (!record(value) || !onlyKeys(value, ['version', 'id', 'requestId', 'selection', 'phase', 'createdAt', 'updatedAt', 'progress',
-    'tempFile', 'browserDownloadId', 'failure']) || value.version !== 1 || !id(value.id) || !id(value.requestId) ||
+    'tempFile', 'browserDownloadId', 'failure', 'attachment', 'saveIntent']) || value.version !== 1 || !id(value.id) || !id(value.requestId) ||
     !validSelection(value.selection) || !phases.includes(value.phase as DownloadPhase) ||
     !natural(value.createdAt) || !natural(value.updatedAt) || value.updatedAt < value.createdAt || !record(value.progress) ||
     !onlyKeys(value.progress, ['phase', 'inputBytes', 'outputBytes', 'seconds', 'duration']) ||
@@ -25,6 +25,15 @@ function validJob(value: unknown): value is DownloadJob {
     !optional(value.progress.seconds, nonnegative) || !optional(value.progress.duration, nonnegative) ||
     !optional(value.tempFile, file => text(file, 200) && /^[a-z0-9][a-z0-9._-]*$/i.test(file) && !file.includes('..')) ||
     !optional(value.browserDownloadId, natural)) return false;
+  const selection = value.selection, createdAt = value.createdAt, updatedAt = value.updatedAt;
+  if (value.phase === 'queued' && value.attachment !== undefined ||
+    !['ready-to-save', 'saving', ...terminals].includes(String(value.phase)) && value.saveIntent !== undefined) return false;
+  if (!optional(value.attachment, a => record(a) && onlyKeys(a, ['jobId', 'capability', 'tabId', 'frameId', 'documentId']) &&
+    a.jobId === value.id && typeof a.capability === 'string' && /^[a-zA-Z0-9_-]{32,128}$/.test(a.capability) &&
+    a.tabId === selection.tabId && a.frameId === selection.frameId && a.documentId === selection.documentId)) return false;
+  if (!optional(value.saveIntent, s => record(s) && onlyKeys(s, ['objectUrl', 'attemptedAt']) &&
+    typeof s.objectUrl === 'string' && /^blob:chrome-extension:\/\/[a-p]{32}\/[a-zA-Z0-9_-]{1,128}$/.test(s.objectUrl) &&
+    natural(s.attemptedAt) && s.attemptedAt >= createdAt && s.attemptedAt <= updatedAt)) return false;
   return optional(value.failure, failure => record(failure) && onlyKeys(failure, ['code', 'message']) &&
     text(failure.code, 64) && /^[a-z0-9_-]+$/i.test(failure.code) && text(failure.message, 512) && !/\b(?:https?|blob|file):/i.test(failure.message));
 }
@@ -34,11 +43,15 @@ function validateState(value: unknown, restoring: boolean): DownloadState {
       value.jobs.length > MAX_TERMINAL_DOWNLOADS + MAX_QUEUED_DOWNLOADS + (restoring ? 1 : 2) || !value.jobs.every(validJob))
     throw new Error('Invalid download metadata');
   const jobs: DownloadJob[] = value.jobs;
-  const ids = new Set<string>(); const requests = new Set<string>(); const selections = new Set<string>();
+  const ids = new Set<string>(); const requests = new Set<string>(); const selections = new Set<string>(); const intents = new Set<string>();
   let active = 0; let queued = 0;
   for (const job of jobs) {
     if (ids.has(job.id) || requests.has(job.requestId)) throw new Error('Duplicate download identity');
     ids.add(job.id); requests.add(job.requestId);
+    if (job.saveIntent) {
+      if (intents.has(job.saveIntent.objectUrl)) throw new Error('Duplicate browser save intent');
+      intents.add(job.saveIntent.objectUrl);
+    }
     if (isTerminalPhase(job.phase)) continue;
     if (job.phase === 'queued') queued++; else active++;
     const key = JSON.stringify([job.selection.sourceUrl, job.selection.videoUrl, job.selection.audioUrl ?? null]);

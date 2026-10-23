@@ -35,11 +35,16 @@ export interface RemuxResult {
 }
 export type DownloadPhase = 'queued' | 'resolving' | 'processing' | 'ready-to-save' | 'saving' |
   'complete' | 'failed' | 'canceled' | 'interrupted';
+export interface DownloadAttachmentIdentity {
+  jobId: string; capability: string; tabId: number; frameId: number; documentId: string;
+}
 export interface DownloadJob {
   version: 1; id: string; requestId: string; selection: DownloadSelection;
   phase: DownloadPhase; createdAt: number; updatedAt: number;
   progress: RemuxProgress;
   tempFile?: string; browserDownloadId?: number;
+  attachment?: DownloadAttachmentIdentity;
+  saveIntent?: { objectUrl: string; attemptedAt: number };
   failure?: { code: string; message: string };
 }
 export interface DownloadState { version: 1; jobs: DownloadJob[]; }
