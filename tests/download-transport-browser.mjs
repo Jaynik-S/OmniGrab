@@ -9,16 +9,17 @@ import { build } from 'esbuild';
 import { chromium } from 'playwright-core';
 
 const output = path.resolve('.cache/download-transport', `native-${Date.now()}-${process.pid}`);
+const fixRound1 = process.argv.includes('--fix-round1');
 const extension = path.join(output, 'extension'); await mkdir(extension, { recursive: true });
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const report = { started: new Date().toISOString(), requests: [], cases: [], errors: [] };
 const sockets = new Set(), timers = new Set();
-let pageOrigin, mediaOrigin, context;
+let pageOrigin, mediaOrigin, embedOrigin, context;
 const media = createServer((req, res) => {
-  const url = new URL(req.url, 'http://fixture.invalid'); const page = req.headers.referer?.startsWith(pageOrigin) === true;
+  const url = new URL(req.url, 'http://fixture.invalid'); const page = [pageOrigin, embedOrigin].some(origin => req.headers.referer?.startsWith(origin));
   const entry = { url: url.pathname, page, range: req.headers.range, origin: req.headers.origin, referer: req.headers.referer, start: Date.now(), bytes: 0 };
   report.requests.push(entry); res.on('close', () => { entry.closed = Date.now(); entry.incomplete = !res.writableFinished; });
-  const cors = url.pathname.includes('cors-deny') ? {} : { 'access-control-allow-origin': pageOrigin, 'access-control-expose-headers': 'Content-Range, Content-Length, Accept-Ranges' };
+  const cors = url.pathname.includes('cors-deny') ? {} : { 'access-control-allow-origin': req.headers.origin === embedOrigin ? embedOrigin : pageOrigin, 'access-control-expose-headers': 'Content-Range, Content-Length, Accept-Ranges' };
   const send = (status, bytes, extra = {}) => { entry.status = status; res.writeHead(status, { ...cors, 'cache-control': 'no-store', 'content-type': 'image/jpeg', 'content-length': String(bytes.length), ...extra }); entry.bytes += bytes.length; res.end(bytes); };
   if (!page && !url.pathname.includes('retry')) { send(404, Buffer.from('context unavailable')); return; }
   if (url.pathname.includes('retry')) { send(503, Buffer.from('retryable')); return; }
@@ -40,12 +41,12 @@ const media = createServer((req, res) => {
   }
   send(200, bytes);
 });
-const pages = createServer((_q, res) => { res.writeHead(200, { 'content-type': 'text/html' }); res.end('<!doctype html><meta name="referrer" content="origin"><title>Owned transport fixture</title>'); });
+const pages = createServer((q, res) => { res.writeHead(200, { 'content-type': 'text/html' }); res.end('<!doctype html><meta name="referrer" content="origin"><title>Owned transport fixture</title>' + (q.url === '/iframe-watch' ? `<iframe src="${embedOrigin}/embed-player"></iframe>` : '')); });
 for (const server of [pages, media]) server.on('connection', socket => { sockets.add(socket); socket.once('close', () => sockets.delete(socket)); });
 const listen = server => new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-await listen(pages); pageOrigin = `http://127.0.0.1:${pages.address().port}`; await listen(media); mediaOrigin = `http://127.0.0.1:${media.address().port}`;
+await listen(pages); pageOrigin = `http://127.0.0.1:${pages.address().port}`; embedOrigin = `http://localhost:${pages.address().port}`; await listen(media); mediaOrigin = `http://127.0.0.1:${media.address().port}`;
 const bundle = async (name, contents) => build({ stdin: { contents, resolveDir: path.resolve('.'), loader: 'ts' }, outfile: path.join(extension, name), bundle: true, format: name === 'content.js' ? 'iife' : 'esm', platform: 'browser', target: 'chrome120' });
-await writeFile(path.join(extension, 'manifest.json'), JSON.stringify({ manifest_version: 3, name: 'Owned bounded transport fixture', version: '1.0', minimum_chrome_version: '120', permissions: ['offscreen', 'tabs', 'webNavigation', 'storage'], host_permissions: ['http://127.0.0.1/*'], background: { service_worker: 'worker.js', type: 'module' }, content_scripts: [{ matches: ['http://127.0.0.1/*'], js: ['content.js'], run_at: 'document_start' }] }));
+await writeFile(path.join(extension, 'manifest.json'), JSON.stringify({ manifest_version: 3, name: 'Owned bounded transport fixture', version: '1.0', minimum_chrome_version: '120', permissions: ['offscreen', 'tabs', 'webNavigation', 'storage'], host_permissions: ['http://127.0.0.1/*', 'http://localhost/*'], background: { service_worker: 'worker.js', type: 'module' }, content_scripts: [{ matches: ['http://127.0.0.1/*', 'http://localhost/*'], js: ['content.js'], run_at: 'document_start', all_frames: true }] }));
 await writeFile(path.join(extension, 'host.html'), '<!doctype html><script type="module" src="host.js"></script>');
 await writeFile(path.join(extension, 'controller.html'), '<!doctype html><title>Native transport controls</title>');
 await bundle('content.js', `import {createDownloadAttachmentHandler} from './src/content/download-fetch.ts'; let ownedPort;const handler=createDownloadAttachmentHandler(chrome.runtime.id,{connect:name=>{ownedPort=chrome.runtime.connect({name});return ownedPort;}}); chrome.runtime.onMessage.addListener(handler);chrome.runtime.onMessage.addListener((m,s,reply)=>{if(m.type==='fixture-drop'&&s.id===chrome.runtime.id&&!s.tab){ownedPort.disconnect();reply({ok:true});}});`);
@@ -53,14 +54,14 @@ await bundle('worker.js', `
 chrome.runtime.onMessage.addListener((m,s,reply)=>{
  if(m.target!=='coordinator') return;
  (async()=>{
-  if(m.action==='validate'){ const f=await chrome.webNavigation.getFrame({tabId:m.selection.tabId,frameId:m.selection.frameId}); return !!f&&f.documentId===m.selection.documentId&&f.url===m.selection.pageUrl; }
+  if(m.action==='validate'){ const f=await chrome.webNavigation.getFrame({tabId:m.selection.tabId,frameId:m.selection.frameId}); const tab=await chrome.tabs.get(m.selection.tabId);return !!f&&f.documentId===m.selection.documentId&&tab.url===m.selection.pageUrl; }
   if(m.action==='init'){
    if(!await chrome.offscreen.hasDocument()) await chrome.offscreen.createDocument({url:'host.html',reasons:['BLOBS'],justification:'Native local bounded binary transport verification'});
-   const tab=(await chrome.tabs.query({})).find(t=>t.url===m.pageUrl); const f=await chrome.webNavigation.getFrame({tabId:tab.id,frameId:0});
-   const selection={tabId:tab.id,frameId:0,documentId:f.documentId,epoch:1,mediaId:'native',instance:1,pageUrl:m.pageUrl,sourceUrl:m.sourceUrl,videoUrl:m.sourceUrl,filename:'native.mp4',output:'mp4'};
+   const tab=(await chrome.tabs.query({})).find(t=>t.url===m.pageUrl);const frameId=m.frameUrl?(await chrome.webNavigation.getAllFrames({tabId:tab.id})).find(f=>f.url===m.frameUrl).frameId:0; const f=await chrome.webNavigation.getFrame({tabId:tab.id,frameId});
+   const selection={tabId:tab.id,frameId,documentId:f.documentId,epoch:1,mediaId:'native',instance:1,pageUrl:m.pageUrl,sourceUrl:m.sourceUrl,videoUrl:m.sourceUrl,filename:'native.mp4',output:'mp4'};
    const hostReply=await chrome.runtime.sendMessage({target:'host',action:'init',selection,id:m.id,idleMs:m.idleMs,requestMs:m.requestMs});if(!hostReply.ok)throw new Error(hostReply.error);const payload=hostReply.value;
    await chrome.storage.session.set({attachment:payload});
-   const receipt=await chrome.tabs.sendMessage(tab.id,payload,{frameId:0,documentId:f.documentId}); if(!receipt.ok)throw new Error(JSON.stringify(receipt)); return selection;
+   const receipt=await chrome.tabs.sendMessage(tab.id,payload,{frameId,documentId:f.documentId}); if(!receipt.ok)throw new Error(JSON.stringify(receipt)); return selection;
   }
   if(m.action==='detach'){
    const {attachment:a}=await chrome.storage.session.get('attachment');const receipt=await chrome.tabs.sendMessage(a.selection.tabId,{type:'download-detach',jobId:a.jobId,capability:a.capability},{frameId:a.selection.frameId,documentId:a.selection.documentId});
@@ -68,19 +69,24 @@ chrome.runtime.onMessage.addListener((m,s,reply)=>{
    await chrome.runtime.sendMessage({target:'host',action:'confirm',capability:a.capability}); return receipt;
   }
   if(m.action==='drop'){const {attachment:a}=await chrome.storage.session.get('attachment');return chrome.tabs.sendMessage(a.selection.tabId,{type:'fixture-drop'},{frameId:a.selection.frameId,documentId:a.selection.documentId});}
+  if(m.action==='churn128'){
+   const {attachment:a}=await chrome.storage.session.get('attachment');const target={frameId:a.selection.frameId,documentId:a.selection.documentId};let completed=0;
+   for(let i=0;i<128;i++){const capability=crypto.randomUUID()+crypto.randomUUID(),jobId='churn'+i;const attach=await chrome.tabs.sendMessage(a.selection.tabId,{...a,jobId,capability,expiresAt:Date.now()+10000},target);if(!attach.ok)throw new Error('churn attach '+i+JSON.stringify(attach));const detach=await chrome.tabs.sendMessage(a.selection.tabId,{type:'download-detach',jobId,capability},target);if(!detach.ok||!detach.settled||detach.capability!==capability)throw new Error('churn detach '+i);completed++;}
+   const replay=await chrome.tabs.sendMessage(a.selection.tabId,{...a,expiresAt:Date.now()+10000},target);return {completed,replay};
+  }
   return 'wake';
  })().then(v=>reply({ok:true,value:v}),e=>reply({ok:false,error:String(e.stack||e)})); return true;
 });`);
 await bundle('host.js', `
 import {createDownloadTransport} from './src/downloads/transport.ts';
-let transport,capability,attachment,connectedPort;const work=new Map();
-globalThis.__nativeStatus=()=>({metrics:transport.metrics,work:Object.fromEntries([...work].map(([k,v])=>[k,{done:v.done,error:v.error,headers:v.headers,bytes:v.bytes,sum:v.sum}]))});
-chrome.runtime.onConnect.addListener(port=>{connectedPort=port;transport?.acceptPort(port).catch(e=>console.error(e));});
+let transport,capability,attachment,connectedPort,acceptedSender;const work=new Map();
+globalThis.__nativeStatus=()=>({metrics:transport.metrics,acceptedSender,work:Object.fromEntries([...work].map(([k,v])=>[k,{done:v.done,error:v.error,headers:v.headers,bytes:v.bytes,sum:v.sum}]))});
+chrome.runtime.onConnect.addListener(port=>{connectedPort=port;transport?.acceptPort(port).then(accepted=>{if(accepted)acceptedSender={tabId:port.sender.tab.id,frameId:port.sender.frameId,documentId:port.sender.documentId,url:port.sender.url};}).catch(e=>console.error(e));});
 chrome.runtime.onMessage.addListener((m,s,reply)=>{
  if(m.target!=='host')return;
  (async()=>{
   if(m.action==='init'){
-   if(transport)await transport.dispose(); work.clear();
+   if(transport)await transport.dispose(); work.clear();acceptedSender=undefined;
    transport=createDownloadTransport({jobId:m.id,selection:m.selection,idleMs:m.idleMs,requestMs:m.requestMs,validateDocument:async()=>{const r=await chrome.runtime.sendMessage({target:'coordinator',action:'validate',selection:m.selection});return r.ok&&r.value;}});
    capability=crypto.randomUUID()+crypto.randomUUID();attachment=transport.expectAttachment(capability);return attachment;
   }
@@ -113,6 +119,19 @@ try {
   const status = () => call('host', 'status');
   const init = async (id, idleMs = 2000) => { await call('coordinator', 'init', { id, pageUrl: page.url(), sourceUrl: mediaOrigin + '/manifest.m3u8', idleMs, requestMs: 8000 }); await sleep(50); };
   const fetchOne = async (id, suffix, args = {}) => { const url = mediaOrigin + suffix; await call('host', 'grant', { grants: [{ url, ...(args.grantRange ? { range: args.grantRange } : {}) }] }); await call('host', 'fetch', { id, url, ...args }); const result=await until(status, s => s.work[id]?.done, id);report.lastResult=result;return result; };
+  if (fixRound1) {
+    await page.goto(pageOrigin+'/iframe-watch');const frame=await until(async()=>page.frames().find(f=>f.url()===embedOrigin+'/embed-player'),f=>!!f,'cross-origin iframe');
+    const selected=await call('coordinator','init',{id:'iframe-active',pageUrl:page.url(),frameUrl:frame.url(),sourceUrl:mediaOrigin+'/manifest.m3u8',idleMs:15000,requestMs:120000});assert.ok(selected.frameId>0);assert.equal(selected.pageUrl,pageOrigin+'/iframe-watch');
+    const accepted=await until(status,s=>s.acceptedSender?.documentId===selected.documentId,'actual iframe port sender');assert.equal(accepted.acceptedSender.frameId,selected.frameId);assert.equal(accepted.acceptedSender.url,frame.url());
+    const stalledUrl=mediaOrigin+'/body-stall-iframe.jpg';await call('host','grant',{grants:[{url:stalledUrl}]});await call('host','fetch',{id:'iframe',url:stalledUrl});await until(status,s=>s.metrics.receivedBytes===32768&&!s.work.iframe.done,'active iframe bytes');
+    const churn=await call('coordinator','churn128');assert.equal(churn.completed,128);assert.deepEqual(churn.replay,{ok:false,error:'download-attachment-invalid'});const retained=await status();assert.equal(retained.metrics.active,1);assert.equal(retained.work.iframe.done,false);
+    const originalRequests=report.requests.filter(r=>r.url==='/body-stall-iframe.jpg'&&r.page);assert.equal(originalRequests.length,1);assert.equal(originalRequests[0].closed,undefined);assert.equal(originalRequests[0].origin,embedOrigin);
+    const detachAt=Date.now(),detach=await call('coordinator','detach');assert.equal(detach.settled,true);await until(async()=>originalRequests[0],r=>!!r.closed,'retained original physical socket close');const settled=await until(status,s=>s.work.iframe.done&&s.metrics.active===0,'retained original settled');assert.equal(settled.metrics.queuedBytes,0);report.cases.push({id:'nonzero-frame-128-active-capability-retention',selected,acceptedSender:accepted.acceptedSender,churn,retained,detachAt,detach,settled});
+    const oldAttachment=await control.evaluate(async()=> (await chrome.storage.session.get('attachment')).attachment);await frame.goto(embedOrigin+'/embed-replacement');
+    const stale=await control.evaluate(async a=>{try{return {reply:await chrome.tabs.sendMessage(a.selection.tabId,{...a,expiresAt:Date.now()+10000},{frameId:a.selection.frameId,documentId:a.selection.documentId})};}catch(e){return {error:String(e.message||e)};}},oldAttachment);assert.match(stale.error,/Receiving end|Could not establish|No document/i);
+    const current=await control.evaluate(async s=>chrome.webNavigation.getFrame({tabId:s.tabId,frameId:s.frameId}),selected);assert.notEqual(current.documentId,selected.documentId);await call('host','dispose');
+    const replacement=await call('coordinator','init',{id:'iframe-replacement',pageUrl:page.url(),frameUrl:frame.url(),sourceUrl:mediaOrigin+'/manifest.m3u8',idleMs:2000,requestMs:8000});assert.equal(replacement.documentId,current.documentId);const result=await fetchOne('replacement','/iframe-replacement.jpg');assert.equal(result.work.replacement.bytes,900001);assert.equal(result.work.replacement.sum,112493070);report.cases.push({id:'iframe-stale-document-target-and-fresh-binding',oldDocument:selected.documentId,currentDocument:current.documentId,stale,replacement,result});await call('host','dispose');
+  } else {
   await init('native-success');
   const binary = await fetchOne('binary', '/redirect.jpg'); assert.equal(binary.work.binary.bytes, 900001);assert.equal(binary.work.binary.sum,112493070); assert.equal(binary.work.binary.headers.mime, 'image/jpeg'); assert.equal(binary.work.binary.headers.url, mediaOrigin + '/binary-final.jpg?signature=exact%2Fquery');
   const range = await fetchOne('range', '/range.jpg', { range: 'bytes=10-19', grantRange: { start: 10, end: 19 } }); assert.equal(range.work.range.bytes, 10);assert.equal(range.work.range.sum,145); assert.equal(range.work.range.headers.status, 206); assert.equal(range.work.range.headers.range, 'bytes 10-19/900001');
@@ -159,6 +178,7 @@ try {
   await until(async () => report.requests.filter(r => r.url === '/body-stall-navigation.jpg' && r.page), entries => entries.every(r => r.closed), 'navigation socket close');
   // Native coordinator proves old document teardown before accepting any replacement work.
   const attachment = await control.evaluate(() => chrome.storage.session.get('attachment')); await call('host', 'confirm', { capability: attachment.attachment.capability }); const confirmed = await status(); assert.equal(confirmed.metrics.active, 0); report.cases.push({ id: 'navigation', result: navigated, confirmed });
+  }
   report.ok = true;
 } catch (error) { report.ok = false; report.errors.push(String(error.stack || error)); process.exitCode = 1; }
 finally {

@@ -5,8 +5,7 @@ import type { BinaryMessage, BinaryPortMessage, ProducerControl } from '../downl
 import type { DownloadSelection } from '../downloads/model.ts';
 
 /** The sole content hook: a trusted coordinator attaches this document to its offscreen host. */
-export function createDownloadAttachmentHandler(runtimeId: string, options: { fetcher?: typeof fetch; connect?: (name: string) => chrome.runtime.Port; pageUrl?: () => string } = {}) {
-  const attached = new Set<string>();
+export function createDownloadAttachmentHandler(runtimeId: string, options: { fetcher?: typeof fetch; connect?: (name: string) => chrome.runtime.Port } = {}) {
   const sessions = new Map<string, { jobId: string; port: chrome.runtime.Port; active: Map<string, ProducerControl>; close: () => void }>();
   const settled = new Map<string, string>();
   return (message: unknown, sender: chrome.runtime.MessageSender, reply: (value: unknown) => void): boolean | undefined => {
@@ -26,13 +25,14 @@ export function createDownloadAttachmentHandler(runtimeId: string, options: { fe
       return true;
     }
     try {
-      if (!validId(m.jobId) || typeof m.capability !== 'string' || !/^[a-zA-Z0-9_-]{32,128}$/.test(m.capability) || attached.has(m.capability) || sessions.size >= 3 || !Number.isSafeInteger(m.expiresAt) || m.expiresAt <= Date.now() || m.expiresAt > Date.now() + 10_000 || !normalizeUrl(m.selection.pageUrl) || normalizeUrl(m.selection.pageUrl) !== normalizeUrl((options.pageUrl ?? (() => location.href))())) throw new Error('download-attachment-invalid');
+      // pageUrl names the top-level tab, including when this is a cross-origin subframe.
+      // Exact frame/document targeting and the immutable port sender are the binding authorities.
+      if (!validId(m.jobId) || typeof m.capability !== 'string' || !/^[a-zA-Z0-9_-]{32,128}$/.test(m.capability) || sessions.has(m.capability) || settled.has(m.capability) || sessions.size >= 3 || !Number.isSafeInteger(m.expiresAt) || m.expiresAt <= Date.now() || m.expiresAt > Date.now() + 10_000 || !normalizeUrl(m.selection.pageUrl)) throw new Error('download-attachment-invalid');
       const grants = new BinaryGrants(); grants.add([m.selection.sourceUrl, m.selection.videoUrl, m.selection.audioUrl].filter((v): v is string => !!v).map(url => ({ url })));
       const unrestricted = new BinaryGrants(); unrestricted.add([m.selection.sourceUrl, m.selection.videoUrl, m.selection.audioUrl].filter((v): v is string => !!v).map(url => ({ url })));
       const port = (options.connect ?? (name => chrome.runtime.connect({ name })))(BINARY_PORT + JSON.stringify({ jobId: m.jobId, capability: m.capability }));
-      attached.add(m.capability); const active = new Map<string, ProducerControl>(); const used = new Set<string>(); let ready = false, closing = false;
+      const active = new Map<string, ProducerControl>(); const used = new Set<string>(); let ready = false, closing = false;
       const close = () => { closing = true; for (const c of active.values()) c.abort(); };
-      if (attached.size > 128) attached.delete(attached.keys().next().value!);
       sessions.set(m.capability, { jobId: m.jobId, port, active, close });
       const send = (v: BinaryMessage) => { try { port.postMessage(v); } catch { close(); } };
       port.onMessage.addListener((value: unknown) => {

@@ -4,13 +4,13 @@ import { createDownloadAttachmentHandler } from '../src/content/download-fetch.t
 import { createDownloadTransport } from '../src/downloads/transport.ts';
 import { connectPair, selection, attachPage } from './download-transport-fixtures.ts';
 
-test('content rejects untrusted sender, stale page and replayed capabilities before any network request', () => {
-  let connections = 0, fetches = 0; const handler = createDownloadAttachmentHandler('test', { pageUrl: () => selection.pageUrl, fetcher: async () => { fetches++; return new Response('bad'); }, connect: name => { connections++; return connectPair(name).page; } });
+test('content rejects untrusted sender, expired and replayed capabilities before any network request', () => {
+  let connections = 0, fetches = 0; const handler = createDownloadAttachmentHandler('test', { fetcher: async () => { fetches++; return new Response('bad'); }, connect: name => { connections++; return connectPair(name).page; } });
   const payload = { type: 'download-attach', jobId: 'j', capability: 'b'.repeat(48), selection, expiresAt: Date.now() + 5000 };
   const replies: unknown[] = [];
   for (const sender of [{ id: 'other' }, { id: 'test', tab: { id: 7 } }, { id: 'test', url: 'https://page.test/' }]) handler(payload, sender as chrome.runtime.MessageSender, value => replies.push(value));
   assert.equal(connections, 0);
-  handler({ ...payload, selection: { ...selection, pageUrl: 'https://page.test/stale' } }, { id: 'test', url: 'chrome-extension://test/background.js' }, value => replies.push(value));
+  handler({ ...payload, expiresAt: Date.now() - 1 }, { id: 'test', url: 'chrome-extension://test/background.js' }, value => replies.push(value));
   assert.equal(connections, 0);
   handler(payload, { id: 'test', url: 'chrome-extension://test/background.js' }, value => replies.push(value));
   handler(payload, { id: 'test', url: 'chrome-extension://test/background.js' }, value => replies.push(value));
@@ -54,7 +54,7 @@ test('page disconnect quarantines physical slots until a trusted explicit detach
 test('content detach waits for actual body cancellation before acknowledging settlement', async () => {
   let canceled = false, release!: () => void; const cancellation = new Promise<void>(resolve => { release = resolve; });
   let pair!: ReturnType<typeof connectPair>;
-  const handler = createDownloadAttachmentHandler('test', { pageUrl: () => selection.pageUrl, connect: name => { pair = connectPair(name); return pair.page; }, fetcher: async () => new Response(new ReadableStream({ cancel: async () => { await cancellation; canceled = true; } })) });
+  const handler = createDownloadAttachmentHandler('test', { connect: name => { pair = connectPair(name); return pair.page; }, fetcher: async () => new Response(new ReadableStream({ cancel: async () => { await cancellation; canceled = true; } })) });
   const payload = { type: 'download-attach', jobId: 'detach', capability: 'e'.repeat(48), selection, expiresAt: Date.now() + 5000 }; const sender = { id: 'test', url: 'chrome-extension://test/background.js' };
   handler(payload, sender, () => {});
   pair.host.postMessage({ type: 'grants', jobId: 'detach', grants: [] });
@@ -82,7 +82,7 @@ test('host validates range metadata independently of page message claims', async
 test('detach fences late port requests while physical cancellation remains unsettled', async () => {
   let release!: () => void, fetches = 0, pair!: ReturnType<typeof connectPair>;
   const cancellation = new Promise<void>(resolve => { release = resolve; });
-  const handler = createDownloadAttachmentHandler('test', { pageUrl: () => selection.pageUrl, connect: name => { pair = connectPair(name); return pair.page; }, fetcher: async () => { fetches++; return new Response(new ReadableStream({ cancel: () => cancellation })); } });
+  const handler = createDownloadAttachmentHandler('test', { connect: name => { pair = connectPair(name); return pair.page; }, fetcher: async () => { fetches++; return new Response(new ReadableStream({ cancel: () => cancellation })); } });
   const payload = { type: 'download-attach', jobId: 'fence', capability: 'g'.repeat(48), selection, expiresAt: Date.now() + 5000 }; const sender = { id: 'test', url: 'chrome-extension://test/background.js' };
   handler(payload, sender, () => {}); pair.host.postMessage({ type: 'grants', jobId: 'fence', grants: [] });
   const request = { type: 'request', jobId: 'fence', requestId: 'r1', url: selection.sourceUrl, maxBytes: 2097152, idleMs: 100, expiresAt: Date.now() + 1000 };
@@ -90,4 +90,50 @@ test('detach fences late port requests while physical cancellation remains unset
   handler({ type: 'download-detach', jobId: 'fence', capability: payload.capability }, sender, () => {});
   pair.host.postMessage({ ...request, requestId: 'r2' }); await new Promise(resolve => setTimeout(resolve, 10)); release();
   assert.equal(fetches, 1);
+});
+
+test('content accepts a coordinator-targeted nonzero frame while preserving top-level pageUrl', () => {
+  const original = Object.getOwnPropertyDescriptor(globalThis, 'location');
+  Object.defineProperty(globalThis, 'location', { configurable: true, value: { href: 'https://embed.test/player' } });
+  try {
+    let connected = false, receipt: unknown;
+    const handler = createDownloadAttachmentHandler('test', { connect: name => { connected = true; return connectPair(name).page; } });
+    handler({ type: 'download-attach', jobId: 'iframe', capability: 'h'.repeat(48), selection: { ...selection, frameId: 7, pageUrl: 'https://page.test/watch' }, expiresAt: Date.now() + 5000 }, { id: 'test', url: 'chrome-extension://test/background.js' }, value => { receipt = value; });
+    assert.deepEqual(receipt, { ok: true }); assert.equal(connected, true);
+  } finally {
+    if (original) Object.defineProperty(globalThis, 'location', original); else Reflect.deleteProperty(globalThis, 'location');
+  }
+});
+
+for (const phase of ['live', 'settling'] as const) test(`128 settled capabilities cannot replace an original ${phase} physical session`, async () => {
+  let originalPair!: ReturnType<typeof connectPair>, connections = 0, physical = 0, cancellations = 0, release!: () => void;
+  const cancellation = new Promise<void>(resolve => { release = resolve; });
+  const sender = { id: 'test', url: 'chrome-extension://test/background.js' };
+  const capability = 'original_'.padEnd(48, 'x'); let receipt: unknown;
+  const handler = createDownloadAttachmentHandler('test', {
+    connect: name => { const pair = connectPair(name); if (!connections) originalPair = pair; connections++; return pair.page; },
+    fetcher: async () => { physical++; return new Response(new ReadableStream({ cancel: async () => { cancellations++; await cancellation; physical--; } })); },
+  });
+  const payload = { type: 'download-attach', jobId: 'original', capability, selection, expiresAt: Date.now() + 5000 };
+  handler(payload, sender, value => { receipt = value; }); assert.deepEqual(receipt, { ok: true });
+  originalPair.host.postMessage({ type: 'grants', jobId: 'original', grants: [] });
+  originalPair.host.postMessage({ type: 'request', jobId: 'original', requestId: 'r', url: selection.sourceUrl, maxBytes: 2097152, idleMs: 15000, expiresAt: Date.now() + 120000 });
+  await new Promise(resolve => setTimeout(resolve, 10)); assert.equal(physical, 1);
+  let detached: unknown;
+  if (phase === 'settling') handler({ type: 'download-detach', jobId: 'original', capability }, sender, value => { detached = value; });
+  for (let index = 0; index < 128; index++) {
+    const other = `other_${index}`.padEnd(48, 'x'), jobId = `other${index}`;
+    handler({ ...payload, jobId, capability: other, expiresAt: Date.now() + 5000 }, sender, value => { receipt = value; }); assert.deepEqual(receipt, { ok: true });
+    await new Promise<void>(resolve => { handler({ type: 'download-detach', jobId, capability: other }, sender, () => resolve()); });
+  }
+  handler({ ...payload, expiresAt: Date.now() + 5000 }, sender, value => { receipt = value; });
+  const replay = receipt;
+  // Always settle the retained underlying stream, including on the RED replay path.
+  handler({ type: 'download-detach', jobId: 'original', capability }, sender, value => { detached = value; });
+  await new Promise(resolve => setTimeout(resolve, 10));
+  const beforeRelease = { detached, physical, cancellations, connections };
+  originalPair.host.disconnect(); release(); await new Promise(resolve => setTimeout(resolve, 10));
+  assert.deepEqual(replay, { ok: false, error: 'download-attachment-invalid' });
+  assert.equal(beforeRelease.connections, 129); assert.equal(beforeRelease.physical, 1); assert.equal(beforeRelease.cancellations, 1); assert.equal(beforeRelease.detached, undefined);
+  assert.equal(physical, 0); assert.deepEqual(detached, { ok: true, jobId: 'original', capability, settled: true });
 });

@@ -14,7 +14,7 @@ export function connectPair(name: string) {
 }
 export async function attachPage(transport: { expectAttachment: (token: string) => unknown; acceptPort: (port: chrome.runtime.Port) => Promise<boolean> }, fetcher: typeof fetch) {
   const token = 'a'.repeat(48); const payload = transport.expectAttachment(token); let pair!: ReturnType<typeof connectPair>;
-  const handler = createDownloadAttachmentHandler('test', { pageUrl: () => selection.pageUrl, fetcher, connect: name => { pair = connectPair(name); return pair.page; } });
+  const handler = createDownloadAttachmentHandler('test', { fetcher, connect: name => { pair = connectPair(name); return pair.page; } });
   handler(payload, { id: 'test', url: 'chrome-extension://test/worker.js' }, () => {});
   // The job ID is read from the registered capability, keeping fixture requests reusable.
   await transport.acceptPort(pair.host); return pair;
