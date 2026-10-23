@@ -1,0 +1,167 @@
+{
+  "authority": "Supplemental page-context manifest/media reads and installed ffprobe; not REA Evidence",
+  "observedAt": "2026-10-23T19:14:49.085Z",
+  "pageUrl": "https://cinejoy.pk/watch/tv/67178/2/1",
+  "sampleScope": "Initialization plus first media segment only, not a completed episode download",
+  "master": {
+    "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+    "mime": "image/jpeg",
+    "text": "#EXTM3U\n#EXT-X-VERSION:7\n#EXT-X-STREAM-INF:BANDWIDTH=5022000,RESOLUTION=1920x1080,NAME=\"1080p\"\n1080p/playlist.jpg\n#EXT-X-STREAM-INF:BANDWIDTH=2543000,RESOLUTION=1280x720,NAME=\"720p\"\n720p/playlist.jpg\n"
+  },
+  "selectedManifest": {
+    "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+    "mime": "image/jpeg",
+    "mediaSegmentCount": 797,
+    "duration": 3189.5616350000337
+  },
+  "parts": [
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/init.mp4",
+      "mime": "video/mp4",
+      "bytes": 1393,
+      "sha256": "b00df8f94d7ac6e27ce0be61af2c72c0571a053a25d74100704068d3d8651025"
+    },
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist_000.jpg",
+      "mime": "image/jpeg",
+      "bytes": 3274899,
+      "sha256": "eda4f19157f2638ce325e6a80673a5d0ef8688af892c68256a08926161bc9d56"
+    }
+  ],
+  "ffprobe": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "profile": "High",
+        "codec_type": "video",
+        "codec_tag_string": "avc1",
+        "codec_tag": "0x31637661",
+        "mime_codec_string": "avc1.640028",
+        "width": 1920,
+        "height": 1080,
+        "coded_width": 1920,
+        "coded_height": 1080,
+        "has_b_frames": 0,
+        "sample_aspect_ratio": "1:1",
+        "display_aspect_ratio": "16:9",
+        "pix_fmt": "yuv420p",
+        "level": 40,
+        "chroma_location": "left",
+        "field_order": "progressive",
+        "refs": 1,
+        "is_avc": "true",
+        "nal_length_size": "4",
+        "id": "0x1",
+        "r_frame_rate": "24000/1001",
+        "avg_frame_rate": "24000/1001",
+        "time_base": "1/24000",
+        "start_pts": 504,
+        "start_time": "0.021000",
+        "duration_ts": 190190,
+        "duration": "7.924583",
+        "bit_rate": "3135821",
+        "bits_per_raw_sample": "8",
+        "extradata_size": 54,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "VideoHandler",
+          "encoder": "Lavc60.31.102 h264_nvenc"
+        }
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_long_name": "AAC (Advanced Audio Coding)",
+        "profile": "LC",
+        "codec_type": "audio",
+        "codec_tag_string": "mp4a",
+        "codec_tag": "0x6134706d",
+        "mime_codec_string": "mp4a.40.2",
+        "sample_fmt": "fltp",
+        "sample_rate": "48000",
+        "channels": 2,
+        "channel_layout": "stereo",
+        "bits_per_sample": 0,
+        "initial_padding": 0,
+        "id": "0x2",
+        "r_frame_rate": "0/0",
+        "avg_frame_rate": "0/0",
+        "time_base": "1/48000",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 381952,
+        "duration": "7.957333",
+        "bit_rate": "166202",
+        "extradata_size": 5,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "eng",
+          "handler_name": "SoundHandler",
+          "name": "English"
+        }
+      }
+    ],
+    "format": {
+      "filename": ".superpowers/cinejoy-init-and-first-segment.mp4",
+      "nb_streams": 2,
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "format_long_name": "QuickTime / MOV",
+      "start_time": "0.000000",
+      "duration": "7.957333",
+      "size": "3276292",
+      "bit_rate": "3293859",
+      "probe_score": 100,
+      "tags": {
+        "major_brand": "iso5",
+        "minor_version": "512",
+        "compatible_brands": "iso5iso6mp41",
+        "encoder": "Lavf60.16.100"
+      }
+    }
+  }
+}

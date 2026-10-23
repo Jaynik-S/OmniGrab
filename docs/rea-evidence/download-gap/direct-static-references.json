@@ -1,0 +1,475 @@
+{
+  "authority": "direct-file-inspection; not REA Evidence",
+  "version": "10.6.7.2",
+  "target_path": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.7.2_0",
+  "inspected_at_utc": "2026-10-23T19:13:24.597964+00:00",
+  "offset_basis": "zero-based offsets into decoded file after universal newline normalization; ASCII files; see original byte hash",
+  "files": {
+    "manifest.json": {
+      "length_bytes": 6591,
+      "sha256": "576ac44852fdba29f44abf20b4e447141755d91cba34effe6bf0e9fb77be104b"
+    },
+    "service/main.js": {
+      "length_bytes": 555942,
+      "sha256": "d249fe5669a7ab907a5da5716825f8645ee8fd379bc596a74448221d22bafdf2"
+    },
+    "content/panel.js": {
+      "length_bytes": 356725,
+      "sha256": "99cb4b20beaf9ddbe7bab049f52177ebe400cc5207464369f61c8b10b9b03643"
+    },
+    "factory/factory.js": {
+      "length_bytes": 11452,
+      "sha256": "6aa91164b4f7ba505dc883c14e058111a6de70c688f3519e49056f8cf6d2a794"
+    },
+    "factory/factory.html": {
+      "length_bytes": 60,
+      "sha256": "7b2029be479699a3aa800cc909299dff129d14e849e830daa52176a83985cef2"
+    },
+    "download_worker/main.js": {
+      "length_bytes": 172175,
+      "sha256": "d3c3871f1e6623a49e0661f9c5429434afbdae028cb0374ccc61db4ddbd09aff"
+    },
+    "download_worker/libav-6.5.7.1-h264-aac-mp3.wasm.mjs": {
+      "length_bytes": 202009,
+      "sha256": "0ee2a77f1aa1732c3569c5fdcdd860ccb32357727d5bd2f59d0e4215e522bf3f"
+    },
+    "download_worker/libav-6.5.7.1-h264-aac-mp3.wasm.wasm": {
+      "length_bytes": 4857858,
+      "sha256": "85ead7c04975d76338581122d0b596ff7f38a1c1d05fa56bb8bcfd4428ffd47f"
+    }
+  },
+  "references": [
+    {
+      "file": "service/main.js",
+      "name": "Hy",
+      "offset": 539445,
+      "line": 52
+    },
+    {
+      "file": "service/main.js",
+      "name": "ru",
+      "offset": 212215,
+      "line": 24
+    },
+    {
+      "file": "service/main.js",
+      "name": "iu",
+      "offset": 212894,
+      "line": 24
+    },
+    {
+      "file": "service/main.js",
+      "name": "Hn",
+      "offset": 148952,
+      "line": 15
+    },
+    {
+      "file": "service/main.js",
+      "name": "pv",
+      "offset": 148598,
+      "line": 15
+    },
+    {
+      "file": "service/main.js",
+      "name": "Jv",
+      "offset": 211067,
+      "line": 24
+    },
+    {
+      "file": "service/main.js",
+      "name": "Kv",
+      "offset": 210688,
+      "line": 24
+    },
+    {
+      "file": "service/main.js",
+      "name": "tu",
+      "offset": 210907,
+      "line": 24
+    },
+    {
+      "file": "service/main.js",
+      "name": "wr",
+      "offset": 148104,
+      "line": 15
+    },
+    {
+      "file": "service/main.js",
+      "name": "Xt",
+      "offset": 148182,
+      "line": 15
+    },
+    {
+      "file": "service/main.js",
+      "name": "Zm",
+      "offset": 183791,
+      "line": 18
+    },
+    {
+      "file": "service/main.js",
+      "name": "Gm",
+      "offset": 183723,
+      "line": 18
+    },
+    {
+      "file": "service/main.js",
+      "name": "Vv",
+      "offset": 203010,
+      "line": 24
+    },
+    {
+      "file": "service/main.js",
+      "name": "Lm",
+      "offset": 181129,
+      "line": 18
+    },
+    {
+      "file": "service/main.js",
+      "name": "Jn",
+      "offset": 152694,
+      "line": 15
+    },
+    {
+      "file": "service/main.js",
+      "name": "io",
+      "offset": 180881,
+      "line": 18
+    },
+    {
+      "file": "service/main.js",
+      "name": "Af",
+      "offset": 237259,
+      "line": 24
+    },
+    {
+      "file": "content/panel.js",
+      "name": "xg",
+      "offset": 327655,
+      "line": 48
+    },
+    {
+      "file": "content/panel.js",
+      "name": "ti",
+      "offset": 319568,
+      "line": 48
+    },
+    {
+      "file": "content/panel.js",
+      "name": "kg",
+      "offset": 324645,
+      "line": 48
+    },
+    {
+      "file": "content/panel.js",
+      "name": "eu",
+      "offset": 331846,
+      "line": 48
+    },
+    {
+      "file": "content/panel.js",
+      "name": "Kr",
+      "offset": 321534,
+      "line": 48
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "No",
+      "offset": 171467,
+      "line": 21
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "Mo",
+      "offset": 170152,
+      "line": 21
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "Ti",
+      "offset": 168774,
+      "line": 21
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "Di",
+      "offset": 169323,
+      "line": 21
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "Ur",
+      "offset": 98548,
+      "line": 9
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "U",
+      "offset": 41634,
+      "line": 6
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "Q",
+      "offset": 40431,
+      "line": 6
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "fr",
+      "offset": 48416,
+      "line": 6
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "ar",
+      "offset": 37229,
+      "line": 6
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "oe",
+      "offset": 84292,
+      "line": 9
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "Vr",
+      "offset": 91228,
+      "line": 9
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "Rr",
+      "offset": 88140,
+      "line": 9
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "sr",
+      "offset": 37929,
+      "line": 6
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "ie",
+      "offset": 37851,
+      "line": 6
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "Ir",
+      "offset": 79447,
+      "line": 9
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "pn",
+      "offset": 82124,
+      "line": 9
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "Ft",
+      "offset": 81455,
+      "line": 9
+    },
+    {
+      "file": "content/panel.js",
+      "name": "J.doDownload",
+      "offset": 335413,
+      "line": 48
+    },
+    {
+      "file": "content/panel.js",
+      "name": "J.buildArgs",
+      "offset": 337292,
+      "line": 48
+    },
+    {
+      "file": "content/panel.js",
+      "name": "J.quality_selection",
+      "offset": 336074,
+      "line": 48
+    },
+    {
+      "file": "service/main.js",
+      "name": "In queue class",
+      "offset": 505465,
+      "line": 52
+    },
+    {
+      "file": "service/main.js",
+      "name": "download dispatcher",
+      "offset": 547259,
+      "line": 52
+    },
+    {
+      "file": "service/main.js",
+      "name": "worker broadcast channel",
+      "offset": 148065,
+      "line": 15
+    },
+    {
+      "file": "factory/factory.js",
+      "name": "D identity check",
+      "offset": 11195,
+      "line": 1
+    },
+    {
+      "file": "factory/factory.js",
+      "name": "module worker creation",
+      "offset": 11420,
+      "line": 1
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "OPFS writer class L",
+      "offset": 39792,
+      "line": 6
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "progress class q",
+      "offset": 38099,
+      "line": 6
+    },
+    {
+      "file": "download_worker/main.js",
+      "name": "LibAV runtime selector",
+      "offset": 5108,
+      "line": 1
+    }
+  ],
+  "manifest": {
+    "version": "10.6.7.2",
+    "permissions": [
+      "tabs",
+      "offscreen",
+      "downloads",
+      "sidePanel",
+      "webRequest",
+      "webNavigation",
+      "scripting",
+      "declarativeNetRequest",
+      "storage",
+      "notifications",
+      "contextMenus",
+      "unlimitedStorage"
+    ],
+    "optional_permissions": [
+      "browsingData",
+      "downloads.open"
+    ],
+    "content_security_policy": {
+      "extension_pages": "script-src 'self' 'wasm-unsafe-eval'"
+    }
+  },
+  "native_boundary_scan": {
+    "nativeMessaging": [],
+    "connectNative": [],
+    "sendNativeMessage": [
+      {
+        "file": "content/details.js",
+        "occurrences": 1
+      },
+      {
+        "file": "content/global_persistent.js",
+        "occurrences": 1
+      },
+      {
+        "file": "content/history.js",
+        "occurrences": 1
+      },
+      {
+        "file": "content/panel.js",
+        "occurrences": 1
+      },
+      {
+        "file": "content/register_components.js",
+        "occurrences": 1
+      },
+      {
+        "file": "content/smartnaming.js",
+        "occurrences": 1
+      },
+      {
+        "file": "factory/factory.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/activate.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/bilibili.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/canva.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/chaturbate.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/facebook.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/iq.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/javrank.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/kick.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/ok.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/osmosis.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/premium.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/vimeo.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/vk.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/xgplayer_crypto.js",
+        "occurrences": 1
+      },
+      {
+        "file": "injected/youtube.js",
+        "occurrences": 1
+      },
+      {
+        "file": "service/main.js",
+        "occurrences": 1
+      }
+    ],
+    "companion": [
+      {
+        "file": "content/smartnaming.js",
+        "occurrences": 3
+      }
+    ]
+  },
+  "native_boundary_notes": {
+    "sendNativeMessage": "All occurrences were inspected: generic WebExtension-polyfill API arity metadata only, no call site.",
+    "companion": "Three substrings in content/smartnaming.js are bundled syntax-language keyword inventories, not native-companion references."
+  }
+}

@@ -71,3 +71,5 @@ Verified findings, inferences and unknowns are labeled in the research reports. 
 ## Remaining product work
 
 This build can be used to inspect detections after loading `dist`. It is not yet a complete Video DownloadHelper replacement. Downloading still requires a direct-file download action, HLS/DASH rendition selection and segment processing, audio/video assembly into an output container, and progress/cancel/retry/error handling. Those paths need independent end-to-end tests that validate the saved media. Broader real-site and authenticated/frame-context testing is also required. Exact worldwide detection parity is not established; DRM decryption is outside the current scope.
+
+The [Cinejoy download-gap analysis](docs/DOWNLOAD_REPLACEMENT_GAPS.md) records the current original's browser-only processing path, confirmed stream codecs, missing components and proposed design. It is research/design evidence; no download implementation is included yet.

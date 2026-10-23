@@ -6,6 +6,8 @@ This document records the initial static-only pass. Subsequent runtime observati
 
 The 2026-10-23 [Cinejoy investigation](CINEJOY_DETECTION_FIX.md) reinspects installed version 10.6.7.2, explains the HLS-to-MP4 display distinction, and records the separate detector's request-context repair and live verification. The version-specific findings below remain the original static baseline.
 
+The subsequent [download gap analysis](DOWNLOAD_REPLACEMENT_GAPS.md) traces the current package's browser processing/save pipeline and distinguishes the replacement's working detection from its unimplemented downloadable output.
+
 ## Target, evidence, and confidence
 
 Requested extension directory:
