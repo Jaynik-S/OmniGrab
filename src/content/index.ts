@@ -1,6 +1,7 @@
 import { collectResources, observeMedia } from './collector.ts';
 import type { CollectedObservation } from './collector.ts';
 import { createManifestRequestHandler } from './manifest-fetch.ts';
+import { createDownloadAttachmentHandler } from './download-fetch.ts';
 
 const pending: CollectedObservation[] = [];
 const resourcesSeen = new Set<string>();
@@ -47,7 +48,10 @@ if (typeof PerformanceObserver !== 'undefined') {
 }
 
 const manifestRequests = createManifestRequestHandler(chrome.runtime.id);
+const downloadAttachments = createDownloadAttachmentHandler(chrome.runtime.id);
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  const downloadHandled = downloadAttachments(message, sender, sendResponse);
+  if (downloadHandled !== undefined) return downloadHandled;
   const handled = manifestRequests(message, sender, sendResponse);
   if (handled !== undefined) return handled;
   if (!message || message.type !== 'rescan') return;
