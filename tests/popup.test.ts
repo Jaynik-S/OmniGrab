@@ -397,3 +397,56 @@ test('Download again stays blocked for active, uncertain-save and unresolved cle
   options.jobs = [{ ...base, failure: { code: 'download-cleanup-pending', message: 'Close the original source tab.' } }]; refresh();
   assert.equal(target.querySelector<HTMLButtonElement>('.download-start')!.disabled, false, 'cleared terminal ownership is authoritative settlement despite an old diagnostic');
 });
+
+test('acknowledged deduplicated job identity enables safe renewal with a fresh request, including reopen', async () => {
+  const { source, tab, intentStorage, record } = repeatSource();
+  let { target } = render([source]);
+  const requests: any[] = [];
+  const acknowledged = record('other-request', 'processing');
+  const options = { jobs: [] as DownloadJob[], intentStorage, start: async (request: any) => {
+    requests.push(request);
+    if (requests.length === 1) return { ok: true as const, job: acknowledged };
+    const queued = record(request.requestId, 'queued'); options.jobs.push(queued); return { ok: true as const, job: queued };
+  } };
+  const refresh = () => renderSnapshot(target, { tab, revision: 1 }, () => {}, options);
+  const button = () => target.querySelector<HTMLButtonElement>('.download-start')!;
+  refresh(); button().click(); await new Promise(resolve => setTimeout(resolve, 0));
+  const submittedId = requests[0].requestId; assert.notEqual(submittedId, acknowledged.requestId);
+  assert.equal(button().disabled, true, 'acknowledged work without its metadata stays protected');
+  acknowledged.phase = 'complete'; options.jobs = [acknowledged]; refresh();
+  assert.equal(button().disabled, false, 'settlement follows the exact returned job, not its differing request ID');
+  assert.equal(button().textContent, 'Download again'); assert.equal(requests.length, 1);
+  target = render([source]).target; refresh();
+  assert.equal(button().disabled, false, 'the returned identity survives popup recreation');
+  button().click(); await new Promise(resolve => setTimeout(resolve, 0));
+  assert.equal(requests.length, 2);
+  assert.notEqual(requests[1].requestId, submittedId); assert.notEqual(requests[1].requestId, acknowledged.requestId);
+  assert.equal(button().disabled, true, 'the new queued intent remains protected');
+});
+
+test('persisted acknowledgement cannot infer settlement from missing job metadata or unrelated older history', async () => {
+  const { source, tab, intentStorage, record } = repeatSource();
+  let { target } = render([source]);
+  const acknowledged = record('deduplicated-request', 'processing');
+  const older = record('older-request', 'complete');
+  const requests: any[] = [];
+  const options = { jobs: [] as DownloadJob[], intentStorage, start: async (request: any) => {
+    requests.push(request); return { ok: true as const, job: acknowledged };
+  } };
+  const refresh = () => renderSnapshot(target, { tab, revision: 1 }, () => {}, options);
+  const button = () => target.querySelector<HTMLButtonElement>('.download-start')!;
+  refresh(); button().click(); await new Promise(resolve => setTimeout(resolve, 0));
+  target = render([source]).target; options.jobs = [older]; refresh();
+  assert.equal(button().disabled, true, 'older completed history is not proof about the acknowledged job');
+  assert.equal(requests.length, 1, 'no automatic replay on recreation');
+  for (const protectedJob of [
+    acknowledged,
+    { ...acknowledged, phase: 'interrupted' as const, failure: { code: 'download-save-uncertain', message: 'Save outcome unknown.' } },
+    { ...acknowledged, phase: 'complete' as const, tempFile: 'owned.mp4' },
+    { ...acknowledged, phase: 'complete' as const, attachment: { jobId: acknowledged.id, capability: 'a'.repeat(32), tabId: 7, frameId: 0, documentId: 'doc-a' } },
+  ]) {
+    options.jobs = [older, protectedJob]; refresh(); assert.equal(button().disabled, true);
+  }
+  options.jobs = [older, { ...acknowledged, phase: 'complete' }]; refresh();
+  assert.equal(button().disabled, false, 'only the acknowledged safe job releases this intent');
+});

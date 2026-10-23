@@ -1,7 +1,7 @@
 import type { MediaItem, TabState } from '../core/model.ts';
 import type { DownloadJob, DownloadStartRequest } from '../downloads/model.ts';
 import type { JobOutcome } from '../downloads/coordinator.ts';
-import { httpUrl, safeFilename } from '../downloads/validation.ts';
+import { httpUrl, safeFilename, text } from '../downloads/validation.ts';
 
 export interface DownloadViewOptions {
   jobs: DownloadJob[];
@@ -12,7 +12,7 @@ export interface DownloadViewOptions {
   intentStorage?: Pick<Storage, 'getItem' | 'setItem'>;
 }
 interface FormState { filename: string; variantId?: string; }
-interface Intent { key: string; id: string; }
+interface Intent { key: string; id: string; jobId?: string; }
 interface ViewState {
   forms: Map<string, FormState>; intents: Intent[]; pending: Set<string>;
   accepted: Set<string>; errors: Map<string, string>; redraw(): void;
@@ -51,13 +51,16 @@ function getState(target: HTMLElement, options: DownloadViewOptions, redraw: () 
     let intents: Intent[] = [];
     try {
       const stored: unknown = JSON.parse(options.intentStorage?.getItem(intentKey) ?? '[]');
-      if (Array.isArray(stored)) intents = stored.filter((v): v is Intent => v && typeof v.key === 'string' && v.key.length <= 40_000 && typeof v.id === 'string' && /^[a-zA-Z0-9_-]{1,128}$/.test(v.id)).slice(-50);
+      if (Array.isArray(stored)) intents = stored.filter((v): v is Intent => v && typeof v.key === 'string' && v.key.length <= 40_000 && typeof v.id === 'string' && /^[a-zA-Z0-9_-]{1,128}$/.test(v.id) && (v.jobId === undefined || text(v.jobId, 128))).slice(-50);
     } catch { /* Unavailable browser UI storage falls back to the current popup lifetime. */ }
     state = { forms: new Map(), intents, pending: new Set(), accepted: new Set(), errors: new Map(), redraw };
     states.set(target, state);
   }
   state.redraw = redraw;
   return state;
+}
+function persistIntents(state: ViewState, options: DownloadViewOptions): void {
+  try { options.intentStorage?.setItem(intentKey, JSON.stringify(state.intents)); } catch { /* Memory still protects double clicks. */ }
 }
 function requestId(state: ViewState, key: string, options: DownloadViewOptions, renew = false): string {
   if (renew) {
@@ -68,15 +71,15 @@ function requestId(state: ViewState, key: string, options: DownloadViewOptions, 
   if (previous) return previous.id;
   const id = crypto.randomUUID();
   state.intents = [...state.intents, { key, id }].slice(-50);
-  try { options.intentStorage?.setItem(intentKey, JSON.stringify(state.intents)); } catch { /* Memory still protects double clicks. */ }
+  persistIntents(state, options);
   return id;
 }
-async function perform(state: ViewState, key: string, action: () => Promise<JobOutcome>): Promise<void> {
+async function perform(state: ViewState, key: string, action: () => Promise<JobOutcome>, acknowledged?: (job: DownloadJob) => void): Promise<void> {
   if (state.pending.has(key)) return;
   state.pending.add(key); state.errors.delete(key); state.redraw();
   try {
     const outcome = await action();
-    if (outcome.ok) state.accepted.add(key);
+    if (outcome.ok) { state.accepted.add(key); acknowledged?.(outcome.job); }
     else state.errors.set(key, `${outcome.error.code}: ${outcome.error.message}`);
   } catch {
     state.errors.set(key, 'The response was lost. Try the same action again to check its result safely.');
@@ -131,11 +134,11 @@ export function downloadView(target: HTMLElement, options: DownloadViewOptions, 
       function intentStatus() {
         const current = intent();
         const known = state.intents.find(i => i.key === current);
-        const previous = known && options.jobs.find(job => job.requestId === known.id);
+        const previous = known && options.jobs.find(job => known.jobId ? job.id === known.jobId : job.requestId === known.id);
         const videoUrl = variants.find(variant => variant.id === form.variantId)?.url;
         const unsettled = !!previous && !safelySettled(previous) || options.jobs.some(job =>
           job.selection.sourceUrl === item.url && (!videoUrl || job.selection.videoUrl === videoUrl) && !safelySettled(job));
-        return { accepted: state.accepted.has(current) || !!previous, renewable: !!previous && safelySettled(previous) && !unsettled, unsettled };
+        return { accepted: state.accepted.has(current) || !!known?.jobId || !!previous, renewable: !!previous && safelySettled(previous) && !unsettled, unsettled };
       }
       function updateButton() {
         const current = intent();
@@ -151,7 +154,10 @@ export function downloadView(target: HTMLElement, options: DownloadViewOptions, 
         // Renew only on this explicit click after the matching request has safely settled.
         const request: DownloadStartRequest = { requestId: requestId(state, current, options, intentStatus().renewable), tabId: tab.id, epoch: tab.epoch,
           mediaId: item.id, instance: item.instance ?? 0, filename: form.filename, ...(form.variantId ? { variantId: form.variantId } : {}) };
-        void perform(state, current, () => options.start(request));
+        void perform(state, current, () => options.start(request), job => {
+          const accepted = state.intents.find(intent => intent.key === current && intent.id === request.requestId);
+          if (accepted) { accepted.jobId = job.id; persistIntents(state, options); }
+        });
       });
       section.append(button, feedback(document, state, intent()));
       return section;
