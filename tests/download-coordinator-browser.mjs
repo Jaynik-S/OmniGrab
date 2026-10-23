@@ -8,6 +8,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright-core';
 import { fixtures,scratch } from './download-fixtures.ts';
+const fixRound1=process.argv.includes('--fix-round1');
 const output=path.resolve('.cache/download-coordinator',`native-${Date.now()}-${process.pid}`);await mkdir(output,{recursive:true});
 if(!existsSync(path.join(scratch,'mux720','list.m3u8')))fixtures();
 const extension=path.join(output,'extension');await cp(path.resolve('dist'),extension,{recursive:true});
@@ -61,6 +62,31 @@ try{
  const files=()=>host.evaluate(async()=>{const dir=await(await navigator.storage.getDirectory()).getDirectoryHandle('media-downloads-v1');const names=[];for await(const [name]of dir.entries())names.push(name);return names;});
  assert.deepEqual(await files(),[]);
  const versions=new Map();cdp.on('ServiceWorker.workerVersionUpdated',e=>{for(const v of e.versions)versions.set(v.versionId,v);});await cdp.send('ServiceWorker.enable');
+ if(fixRound1) {
+  for(const boundary of ['after-attach','before-attach']) {
+   const fault=await connectTarget(port,worker.url());
+   await fault.evaluate(boundary=>{const send=chrome.runtime.sendMessage.bind(chrome.runtime);globalThis.__fixtureBoundaryReached=false;chrome.runtime.sendMessage=async(...args)=>{const message=args[0];if(message?.target==='download-host'&&message.action===(boundary==='after-attach'?'run':'prepare')){if(boundary==='before-attach')await send(...args);globalThis.__fixtureBoundaryReached=true;return new Promise(()=>{});}return send(...args);};},boundary);
+   const before=report.requests.length;const job=await start('native-prepared-'+boundary);
+   await until(()=>fault.evaluate(()=>globalThis.__fixtureBoundaryReached),Boolean,'prepared boundary reached');fault.close();
+   const prepared=await hostState();assert.equal(prepared.status.jobId,job.id);assert.equal(prepared.status.started,false);assert.equal(prepared.metrics.attempts,0);
+   const version=await until(async()=>[...versions.values()].find(v=>v.scriptURL===worker.url()&&v.runningStatus==='running'),Boolean,'prepared running SW');
+   await cdp.send('ServiceWorker.stopWorker',{versionId:version.versionId});await until(async()=>versions.get(version.versionId),v=>v?.runningStatus==='stopped','prepared actual SW stopped');const stopped={...versions.get(version.versionId)};
+   assert.equal((await hostState()).status.started,false);
+   const recovered=await done(job.id);const interrupted=recovered.jobs.find(j=>j.id===job.id);assert.equal(interrupted.phase,'interrupted',JSON.stringify(recovered));assert.equal(report.requests.slice(before).filter(r=>r.range==='bytes=0-262143').length,0);
+   if(boundary==='after-attach') {
+    assert.equal(interrupted.failure.code,'download-bootstrap-interrupted');assert.equal(interrupted.attachment,undefined);assert.equal((await hostState()).status,undefined);assert.deepEqual(await files(),[]);
+    report.cases.push({id:'actual-sw-stop-after-attach-before-run',prepared,stopped,after:interrupted,mediaRequests:0});
+    const next=await start('native-after-bootstrap-recovery');const nextState=await done(next.id);assert.equal(nextState.jobs.find(j=>j.id===next.id).phase,'complete');
+    const browser=await popup.evaluate(async id=>(await chrome.downloads.search({id}))[0],nextState.jobs.find(j=>j.id===next.id).browserDownloadId);assert.equal(browser.state,'complete');assert.equal(browser.fileSize,268213);execFileSync('ffmpeg',['-v','error','-xerror','-i',browser.filename,'-f','null','-'],{stdio:'pipe'});
+    report.cases.push({id:'settled-bootstrap-permits-one-new-native-save',job:nextState.jobs.find(j=>j.id===next.id),browser,decode:'ffmpeg -xerror exit 0'});
+   } else {
+    assert.equal(interrupted.failure.code,'download-cleanup-pending');assert.ok(interrupted.attachment);assert.equal((await call({type:'download-cancel',jobId:job.id})).ok,false);await page.close();
+    const closed=await until(snapshot,r=>!r.jobs.find(j=>j.id===job.id)?.attachment,'prepared original tab closed');assert.equal((await hostState()).status,undefined);assert.deepEqual(await files(),[]);
+    report.cases.push({id:'actual-sw-stop-after-prepare-before-attach-retains-until-tab-close',prepared,stopped,blocked:interrupted,after:closed.jobs.find(j=>j.id===job.id),mediaRequests:0});
+   }
+   console.log('Prepared crash boundary passed',boundary);
+  }
+ } else {
  slow=true;pageOnly=true;console.log('Starting stop/wake control');const before=report.requests.length;const second=await start('native-stop-wake');
  await until(hostState,s=>s.status?.phase==='processing'&&s.metrics?.receivedBytes>500&&s.metrics.active>0,'worker stream started');
  console.log('Streaming; closing action popup');await popup.evaluate(()=>{setTimeout(()=>window.close(),50);return true;});await sleep(100);popup.close();
@@ -97,6 +123,7 @@ try{
  const saveCancel=await start('native-browser-interrupted');const interrupted=await done(saveCancel.id);const interruptedJob=interrupted.jobs.find(j=>j.id===saveCancel.id);const interruptedItem=await popup.evaluate(async id=>(await chrome.downloads.search({id}))[0],interruptedJob.browserDownloadId);report.browserInterruption={job:interruptedJob,item:interruptedItem};assert.equal(interruptedItem.state,'interrupted');assert.equal(interruptedJob.phase,'interrupted');assert.deepEqual(await files(),[]);report.cases.push({id:'actual-browser-interruption-before-ID-persistence',job:interruptedJob,item:interruptedItem});console.log('Actual Chrome onCreated cancellation reconciled as interrupted');
  slow=true;pageOnly=true;const navigation=await start('native-navigation');await until(hostState,s=>s.status?.jobId===navigation.id&&s.status.phase==='processing'&&s.metrics.active>0,'navigation active page IO');await page.goto(origin+'/replacement');const navState=await done(navigation.id);const navJob=navState.jobs.find(j=>j.id===navigation.id);assert.ok(navJob.attachment);assert.equal(navJob.failure.code,'download-cleanup-pending');assert.equal((await call({type:'download-cancel',jobId:navigation.id})).ok,false);
  await page.close();const cleared=await until(snapshot,r=>!r.jobs.find(j=>j.id===navigation.id)?.attachment,'closed original tab cleanup');assert.deepEqual(await files(),[]);report.cases.push({id:'navigation-quarantine-until-positive-closed-tab-proof',blocked:navJob,after:cleared.jobs.find(j=>j.id===navigation.id)});console.log('Navigation retains unknown physical identity; closed-tab proof releases cleanup');
+ }
  host.close();
  report.ok=true;
 }catch(e){report.ok=false;report.errors.push(String(e.stack||e));process.exitCode=1;}

@@ -62,8 +62,11 @@ function validateState(value: unknown, restoring: boolean): DownloadState {
   if (queued > MAX_QUEUED_DOWNLOADS) throw new Error('Download queue limit exceeded');
   const terminal = jobs.filter(job => isTerminalPhase(job.phase));
   if (restoring && terminal.length > MAX_TERMINAL_DOWNLOADS) throw new Error('Invalid download retention limit');
+  // These records still own recovery authority, regardless of their terminal phase or age.
+  const unresolved = (job: DownloadJob) => !!(job.attachment || job.tempFile || job.failure?.code === 'download-save-uncertain');
+  if (terminal.filter(unresolved).length > MAX_TERMINAL_DOWNLOADS) throw new Error('Download recovery retention limit exceeded');
   const retain = new Set(terminal.map((job, order) => ({ job, order }))
-    .sort((a, b) => b.job.updatedAt - a.job.updatedAt || b.order - a.order)
+    .sort((a, b) => Number(unresolved(b.job)) - Number(unresolved(a.job)) || b.job.updatedAt - a.job.updatedAt || b.order - a.order)
     .slice(0, MAX_TERMINAL_DOWNLOADS).map(entry => entry.job.id));
   const result: DownloadState = { version: 1, jobs: jobs.filter(job => !isTerminalPhase(job.phase) || retain.has(job.id)) };
   if (new TextEncoder().encode(JSON.stringify(result)).byteLength > MAX_METADATA_BYTES) throw new Error('Download metadata size limit exceeded');

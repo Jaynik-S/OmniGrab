@@ -72,7 +72,7 @@ async function command(m:Record<string,unknown>) {
    try {const result=await Promise.race([chrome.runtime.sendMessage({target:'download-coordinator',action:'validate',selection:job.selection}),new Promise<never>((_,reject)=>setTimeout(()=>reject(Error('validation timeout')),5000))]);return result?.ok===true&&result.valid===true;}catch{return false;}
   }});
   let accept!:()=>void;const ready=new Promise<void>(resolve=>{accept=resolve;});
-  session={job,status:{jobId:job.id,phase:'resolving'},transport,controller:new AbortController(),ready,accept,requests:new Map()};return transport.expectAttachment(job.attachment.capability);
+  session={job,status:{jobId:job.id,phase:'resolving',started:false},transport,controller:new AbortController(),ready,accept,requests:new Map()};return transport.expectAttachment(job.attachment.capability);
  }
  if(m.action==='sweep'){
   const retain=new Set(m.retained as string[]);if(session?.job.tempFile)retain.add(session.job.tempFile);
@@ -83,7 +83,7 @@ async function command(m:Record<string,unknown>) {
   if(job.tempFile){try{await (await directory()).removeEntry(job.tempFile);}catch(e){if(!(e instanceof DOMException&&e.name==='NotFoundError'))throw e;}}return;
  }
  const s=session;if(!s||s.job.id!==m.jobId)return;
- if(m.action==='run'){if(!s.work)s.work=run(s);return;}
+ if(m.action==='run'){if(!s.work){s.status.started=true;s.work=run(s);}return;}
  if(m.action==='cancel'){await stop(s);return;}
  if(m.action==='confirm'){s.transport.confirmAttachmentStopped(String(m.capability));return;}
  throw Error('download-host-command-invalid');

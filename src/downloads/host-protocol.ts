@@ -2,6 +2,8 @@ import type { DownloadJob, RemuxProgress } from './model.ts';
 import type { DownloadAttachment } from './transport.ts';
 export interface HostStatus {
  jobId: string; phase: 'resolving' | 'processing' | 'ready-to-save' | 'failed';
+ /** False until run is accepted; recovery interrupts this incomplete bootstrap instead of adopting it. */
+ started: boolean;
  progress?: RemuxProgress; tempFile?: string; objectUrl?: string; error?: string;
 }
 export interface DownloadHost {

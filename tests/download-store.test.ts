@@ -121,3 +121,20 @@ test('validates durable attachment identity and exact unique extension blob save
   const store = new DownloadStore({ load: async () => state(active, duplicate), save: async () => {} });
   assert.equal((await store.read()).jobs.length, 0); assert.ok(store.error);
 });
+test('retention preserves oldest uncertain resource owner when a queued cancellation adds record 51', async () => {
+  const uncertain = job('uncertain', 'interrupted'); uncertain.updatedAt = 2;
+  uncertain.attachment = { jobId: uncertain.id, capability: 'a'.repeat(64), tabId: 7, frameId: 0, documentId: 'doc' };
+  uncertain.tempFile = 'uncertain.mp4'; uncertain.saveIntent = { objectUrl: 'blob:chrome-extension://' + 'a'.repeat(32) + '/uncertain', attemptedAt: 2 };
+  uncertain.failure = { code: 'download-save-uncertain', message: 'Save outcome unknown' };
+  const history = Array.from({ length: 49 }, (_, i) => ({ ...job('old' + i, 'complete'), updatedAt: 3 + i }));
+  const store = new DownloadStore({ load: async () => state(uncertain, ...history, job('queued')), save: async () => {} });
+  const after = await store.dispatch(s => { const q = s.jobs.find(j => j.id === 'queued')!; q.phase = 'canceled'; q.updatedAt = 100; return s; });
+  assert.equal(after.jobs.length, 50); assert.deepEqual(after.jobs.find(j => j.id === 'uncertain'), uncertain);
+  assert.equal(after.jobs.some(j => j.id === 'old0'), false); assert.ok(after.jobs.some(j => j.id === 'queued'));
+});
+test('retention refuses to discard authority when every terminal slot owns unresolved resources', async () => {
+  const protectedJobs = Array.from({ length: 50 }, (_, i) => ({ ...job('resource' + i, 'failed'), tempFile: 'resource' + i + '.mp4' }));
+  const store = new DownloadStore({ load: async () => state(...protectedJobs, job('queued')), save: async () => {} });
+  await assert.rejects(store.dispatch(s => { const q = s.jobs.find(j => j.id === 'queued')!; q.phase = 'failed'; q.tempFile = 'queued.mp4'; return s; }), /retention|recovery/i);
+  assert.equal((await store.read()).jobs.length, 51); assert.equal((await store.read()).jobs.at(-1)!.phase, 'queued');
+});

@@ -22,7 +22,12 @@ export function createDownloadCoordinator(d: CoordinatorDependencies) {
  const error = (code: string, job?: DownloadJob): JobOutcome => ({ok:false,error:{code,message:code==='download-cleanup-pending'?'Close the original source tab to finish download cleanup.':code.replaceAll('-',' ')},...(job ? {job} : {})});
  const readJob = async (id: string) => (await d.store.read()).jobs.find(j=>j.id===id);
  async function patch(id: string, update: (job: DownloadJob) => void) {
-  const state = await d.store.dispatch(s=>{const j=s.jobs.find(j=>j.id===id);if(!j)throw Error('download-job-missing');update(j);j.updatedAt=Math.max(now(),j.createdAt);return s;});return state.jobs.find(j=>j.id===id)!;
+  // All coordinator mutations hold serial(). Do not emit storage changes for a readonly refresh.
+  const current=await readJob(id);if(!current)throw Error('download-job-missing');
+  const next=structuredClone(current);update(next);
+  if(JSON.stringify(next)===JSON.stringify(current))return current;
+  next.updatedAt=Math.max(now(),next.createdAt);
+  const state = await d.store.dispatch(s=>({...s,jobs:s.jobs.map(j=>j.id===id?next:j)}));return state.jobs.find(j=>j.id===id)!;
  }
  async function cleanup(job: DownloadJob): Promise<boolean> {
   await d.host.cancel(job.id);
@@ -74,6 +79,7 @@ export function createDownloadCoordinator(d: CoordinatorDependencies) {
    else {
     const status=statuses.find(s=>s.jobId===active.id);
     if(!status)await finish(active,'interrupted','download-host-lost');
+    else if(!status.started)await finish(active,'interrupted','download-bootstrap-interrupted');
     else if(status.phase==='failed')await finish(active,status.error==='download-worker-lost'?'interrupted':'failed',status.error ?? 'download-processing-failed');
     else if(status.phase==='ready-to-save' && status.objectUrl && status.tempFile) {
      const job=await patch(active.id,j=>{j.phase='ready-to-save';j.tempFile=status.tempFile;j.saveIntent={objectUrl:status.objectUrl!,attemptedAt:now()};if(status.progress)j.progress=status.progress;});

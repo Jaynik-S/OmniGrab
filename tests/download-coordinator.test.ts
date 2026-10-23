@@ -8,15 +8,16 @@ const selection: DownloadSelection = { tabId: 1, epoch: 1, mediaId: 'media', ins
 const request = (n = 1) => ({ requestId: 'request' + n, tabId: 1, epoch: 1, mediaId: 'media' + n, instance: 1 });
 function fixture(initial?: DownloadState, restoreDelay = 0) {
  let durable = initial, fail = false, savingFailure = false, id = 0, valid = true, settled = true, holdCancel = false, failSearch = false;
+ let notify: (() => void) | undefined;
  const saves: string[] = [], starts: string[] = [], downloads: Array<{ id: number; url: string; state: 'in_progress' | 'complete' | 'interrupted' }> = [];
  const hosts = new Map<string, HostStatus>();
- const store = new DownloadStore({ load: async () => {if(restoreDelay)await new Promise(r=>setTimeout(r,restoreDelay));return durable;}, save: async s => { if(fail || savingFailure && s.jobs.some(j=>j.phase==='saving')) throw Error('disk'); durable = structuredClone(s); saves.push(s.jobs.map(j => j.phase).join(',')); } });
+ const store = new DownloadStore({ load: async () => {if(restoreDelay)await new Promise(r=>setTimeout(r,restoreDelay));return durable;}, save: async s => { if(fail || savingFailure && s.jobs.some(j=>j.phase==='saving')) throw Error('disk'); durable = structuredClone(s); saves.push(s.jobs.map(j => j.phase).join(','));notify?.(); } });
  const deps = { store, select: async (r: ReturnType<typeof request>) => ({ ...selection, mediaId: r.mediaId, sourceUrl: selection.sourceUrl + '?id=' + r.mediaId }), validate: async () => valid,
- host: { status: async () => [...hosts.values()], prepare: async (j: DownloadJob) => { assert.ok(durable?.jobs.find(x => x.id === j.id)?.attachment); starts.push(j.id); hosts.set(j.id,{jobId:j.id,phase:'resolving'}); return {type:'download-attach' as const,jobId:j.id,capability:j.attachment!.capability,selection:j.selection,expiresAt:Date.now()+10000}; }, run: async () => {}, cancel: async () => {}, release: async (j: DownloadJob) => {hosts.delete(j.id);}, confirm: async () => {}, sweep: async () => {} },
+ host: { status: async () => [...hosts.values()], prepare: async (j: DownloadJob) => { assert.ok(durable?.jobs.find(x => x.id === j.id)?.attachment); starts.push(j.id); hosts.set(j.id,{jobId:j.id,phase:'resolving',started:true}); return {type:'download-attach' as const,jobId:j.id,capability:j.attachment!.capability,selection:j.selection,expiresAt:Date.now()+10000}; }, run: async () => {}, cancel: async () => {}, release: async (j: DownloadJob) => {hosts.delete(j.id);}, confirm: async () => {}, sweep: async () => {} },
  attach: async () => {}, detach: async () => settled,
  browser: { save: async (j: DownloadJob) => { assert.ok(durable?.jobs.find(x=>x.id===j.id)?.saveIntent); const item={id:++id,url:j.saveIntent!.objectUrl,state:'in_progress' as const};downloads.push(item);return item.id; }, search: async (j: DownloadJob) => {if(failSearch)throw Error('search failed');return downloads.filter(d=> j.browserDownloadId !== undefined ? d.id===j.browserDownloadId : d.url===j.saveIntent?.objectUrl);}, cancel: async (n:number) => { const d=downloads.find(d=>d.id===n);if(d&&!holdCancel)d.state='interrupted'; } }, uuid: () => 'job'+(++id), capability: () => 'a'.repeat(64), now: Date.now };
  const create = () => createDownloadCoordinator(deps); const coordinator = create();
- return { coordinator, create, store, hosts, downloads, starts, saves, fail: () => {fail=true;}, failSaving:()=>{savingFailure=true;}, recover: () => {fail=false;savingFailure=false;}, stale:()=>{valid=false;}, unsettled:()=>{settled=false;},holdCancel:()=>{holdCancel=true;},failSearch:()=>{failSearch=true;}, ready(id:string) { hosts.set(id,{jobId:id,phase:'ready-to-save',tempFile:id+'.mp4',objectUrl:'blob:chrome-extension://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/'+id}); } };
+ return { coordinator, create, store, hosts, downloads, starts, saves, onSave:(callback:()=>void)=>{notify=callback;}, fail: () => {fail=true;}, failSaving:()=>{savingFailure=true;}, recover: () => {fail=false;savingFailure=false;}, stale:()=>{valid=false;}, unsettled:()=>{settled=false;},holdCancel:()=>{holdCancel=true;},failSearch:()=>{failSearch=true;}, ready(id:string) { hosts.set(id,{jobId:id,phase:'ready-to-save',started:true,tempFile:id+'.mp4',objectUrl:'blob:chrome-extension://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/'+id}); } };
 }
 test('durable start is idempotent and admits one active plus two queued', async()=>{
  const f=fixture(); const a=await f.coordinator.start(request()); assert.equal(a.ok,true); await f.coordinator.reconcile();
@@ -80,4 +81,22 @@ test('an unobserved save side effect retains its blob until exact browser settle
  await f.coordinator.reconcile();const uncertain=(await f.store.read()).jobs[0]!;assert.equal(uncertain.phase,'interrupted');assert.ok(uncertain.attachment);assert.ok(uncertain.tempFile);assert.equal(f.hosts.size,1);
  assert.equal((await f.coordinator.cancel(j.id)).ok,false);await f.coordinator.start(request(2));await f.coordinator.reconcile();assert.equal(f.starts.length,1);
  browser.state='complete';f.downloads.push(browser);await f.coordinator.reconcile();assert.equal((await f.store.read()).jobs[0]!.phase,'complete');assert.equal((await f.store.read()).jobs[0]!.attachment,undefined);
+});
+test('identical processing snapshots do not write or trigger storage-notification refresh loops',async()=>{
+ const f=fixture();await f.coordinator.start(request());await f.coordinator.reconcile();const j=(await f.store.read()).jobs[0]!;
+ f.hosts.set(j.id,{jobId:j.id,phase:'processing',started:true,progress:{phase:'processing',inputBytes:123,outputBytes:0}});
+ let notifications=0;f.onSave(()=>{if(++notifications<5)void f.coordinator.snapshot();});const writes=f.saves.length;
+ await f.coordinator.snapshot();for(let i=0;i<6;i++)await new Promise(r=>setImmediate(r));
+ assert.equal(notifications,1);assert.equal(f.saves.length,writes+1);
+ const updatedAt=(await f.store.read()).jobs[0]!.updatedAt;await f.coordinator.snapshot();await f.coordinator.snapshot();assert.equal(f.saves.length,writes+1);assert.equal((await f.store.read()).jobs[0]!.updatedAt,updatedAt);
+});
+test('restart interrupts a prepared but unstarted host and settles before any replacement',async()=>{
+ const f=fixture();await f.coordinator.start(request());await f.coordinator.reconcile();const j=(await f.store.read()).jobs[0]!;
+ f.hosts.set(j.id,{jobId:j.id,phase:'resolving',started:false} as HostStatus);
+ await f.create().reconcile();const recovered=(await f.store.read()).jobs[0]!;assert.equal(recovered.phase,'interrupted');assert.equal(recovered.failure?.code,'download-bootstrap-interrupted');assert.equal(recovered.attachment,undefined);assert.equal(f.hosts.size,0);assert.equal(f.starts.length,1);
+});
+test('restart before attachment keeps prepared authority until the old document is proved settled',async()=>{
+ const f=fixture();await f.coordinator.start(request());await f.coordinator.reconcile();const j=(await f.store.read()).jobs[0]!;
+ f.hosts.set(j.id,{jobId:j.id,phase:'resolving',started:false} as HostStatus);f.unsettled();await f.create().reconcile();const recovered=(await f.store.read()).jobs[0]!;
+ assert.equal(recovered.phase,'interrupted');assert.ok(recovered.attachment);assert.equal(recovered.failure?.code,'download-cleanup-pending');await f.coordinator.start(request(2));await f.coordinator.reconcile();assert.equal(f.starts.length,1);
 });
