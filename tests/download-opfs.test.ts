@@ -22,3 +22,33 @@ test('OPFS writer rejects invalid offsets and zero-progress writes', async () =>
   await assert.rejects(output.write(Uint8Array.of(1), 0), /write/i);
   await output.close();
 });
+
+test('OPFS output preserves safe quota and write reasons without private diagnostics', async () => {
+  for (const operation of ['write', 'flush', 'close'] as const) {
+    for (const name of ['QuotaExceededError', 'UnknownError']) {
+      let closed = 0;
+      const output = new OpfsOutput({
+        write(data) { if (operation === 'write') throw new DOMException('private https://secret.test/?token=secret', name); return data.length; },
+        flush() { if (operation === 'flush') throw new DOMException('private diagnostics', name); },
+        close() { closed++; if (operation === 'close') throw new DOMException('private diagnostics', name); },
+      });
+      const action = operation === 'write' ? () => output.write(Uint8Array.of(1), 0) : () => output[operation]();
+      await assert.rejects(action(), { message: name === 'QuotaExceededError' ? 'download-storage-quota-exceeded' : 'download-storage-write-failed' });
+      if (operation !== 'close') await output.close();
+      assert.equal(closed, 1);
+    }
+  }
+});
+
+test('OPFS creation errors are safe and failed initialization closes its exclusive handle', async () => {
+  const { createOpfsOutput } = await import('../src/downloads/opfs.ts');
+  for (const stage of ['create', 'open', 'truncate'] as const) {
+    let closed = 0;
+    const fail = () => { throw new DOMException('private URL', 'QuotaExceededError'); };
+    const directory = { async getFileHandle() { if (stage === 'create') fail(); return { async createSyncAccessHandle() {
+      if (stage === 'open') fail(); return { truncate: fail, close() { closed++; }, write() { return 0; }, flush() {} };
+    } }; } } as unknown as FileSystemDirectoryHandle;
+    await assert.rejects(createOpfsOutput(directory, 'owned.mp4'), { message: 'download-storage-quota-exceeded' });
+    assert.equal(closed, stage === 'truncate' ? 1 : 0);
+  }
+});

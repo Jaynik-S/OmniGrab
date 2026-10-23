@@ -4,6 +4,7 @@ import { OPFS_NAMESPACE } from './host-protocol.ts';
 import type { HostStatus } from './host-protocol.ts';
 import type { DownloadJob } from './model.ts';
 import { watchWorker } from './worker-watchdog.ts';
+import { checkStorageBudget, safeStorageCode } from './storage.ts';
 interface Session {
  job:DownloadJob;status:HostStatus;transport:ReturnType<typeof createDownloadTransport>;controller:AbortController;
  ready:Promise<void>;accept:()=>void;worker?:Worker;work?:Promise<void>;stopped?:Promise<void>;
@@ -29,7 +30,7 @@ async function workerRun(s:Session,plan:Awaited<ReturnType<typeof resolveDownloa
    monitor.beat();if(data.type==='heartbeat')return;
    if(data.type==='progress'){s.status.progress=data.progress;return;}
    if(data.type==='complete'){if(!Number.isSafeInteger(data.result?.bytes)||data.result.bytes<=0){finish(Error('download-output-invalid'));return;}s.status.progress={phase:'finalizing',inputBytes:s.status.progress?.inputBytes??0,outputBytes:data.result.bytes,duration:data.result.duration};finish();return;}
-   if(data.type==='failed'){finish(Error('download-remux-failed'));return;}
+   if(data.type==='failed'){finish(Error(safeStorageCode(data.error) ?? 'download-remux-failed'));return;}
    if(data.type==='abort-fetch'){s.requests.get(data.id)?.abort();return;}
    if(data.type!=='fetch'||!Number.isSafeInteger(data.id)||s.requests.has(data.id)||s.requests.size>=128){finish(Error('download-worker-protocol-invalid'));return;}
    const controller=new AbortController();s.requests.set(data.id,controller);
@@ -51,13 +52,14 @@ async function run(s:Session) {
   await Promise.race([s.ready,new Promise<never>((_,reject)=>{const timer=setTimeout(()=>reject(Error('download-attachment-timeout')),5000);void s.ready.then(()=>clearTimeout(timer));})]);
   s.controller.signal.throwIfAborted();
   const plan=await resolveDownloadPlan(s.job.selection,(input,init)=>{s.transport.grantManifests([input instanceof Request?input.url:String(input)]);return s.transport.fetch(input,init);},s.controller.signal);
+  await checkStorageBudget(plan.estimatedMediaBytes,()=>navigator.storage.estimate());s.controller.signal.throwIfAborted();
   s.transport.grantResources(plan.resources);s.status.phase='processing';notify();
   await workerRun(s,plan);s.controller.signal.throwIfAborted();
   // Engine fulfillment guarantees flush + exclusive handle close before getFile().
   const file=await (await (await directory()).getFileHandle(s.job.tempFile!)).getFile();
   if(file.size!==s.status.progress?.outputBytes||file.size===0)throw Error('download-output-invalid');
   s.status.objectUrl=URL.createObjectURL(file);s.status.tempFile=s.job.tempFile;s.status.phase='ready-to-save';
- }catch(error){s.status.phase='failed';s.status.error=error instanceof Error&&error.message==='download-worker-lost'?'download-worker-lost':'download-processing-failed';}
+ }catch(error){s.status.phase='failed';s.status.error=(error instanceof Error&&safeStorageCode(error.message))||(error instanceof Error&&error.message==='download-worker-lost'?'download-worker-lost':'download-processing-failed');}
  finally{notify();}
 }
 async function stop(s:Session) {

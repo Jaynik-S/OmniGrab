@@ -2,6 +2,7 @@ import type { DownloadPlan, ResourceFetch } from './model.ts';
 import { remuxToMp4 } from './remux.ts';
 import { createOpfsOutput } from './opfs.ts';
 import { OPFS_NAMESPACE } from './host-protocol.ts';
+import { safeStorageCode, storageIoError } from './storage.ts';
 // A dedicated worker owns the exclusive synchronous OPFS writer; the host owns network IO.
 const scope=self as unknown as {onmessage:((event:MessageEvent)=>void)|null;postMessage(message:unknown,transfer?:Transferable[]):void};
 const lifetime=new AbortController();let counter=0;
@@ -27,9 +28,11 @@ scope.onmessage=({data})=>{
  if(data.type==='cancel'){lifetime.abort(Error('download-canceled'));return;}
  if(data.type!=='run')return;
  void (async()=>{
-  const directory=await (await navigator.storage.getDirectory()).getDirectoryHandle(OPFS_NAMESPACE,{create:true});
+  let directory: FileSystemDirectoryHandle;
+  try { directory=await (await navigator.storage.getDirectory()).getDirectoryHandle(OPFS_NAMESPACE,{create:true}); }
+  catch(error) { throw storageIoError(error); }
   const output=await createOpfsOutput(directory,data.tempFile);
   const result=await remuxToMp4(data.plan as DownloadPlan,{fetcher,output,signal:lifetime.signal,onProgress:progress=>scope.postMessage({type:'progress',progress})});
   scope.postMessage({type:'complete',result});
- })().catch(()=>scope.postMessage({type:'failed',error:'download-remux-failed'}));
+ })().catch(error=>scope.postMessage({type:'failed',error:safeStorageCode(error instanceof Error ? error.message : undefined) ?? 'download-remux-failed'}));
 };

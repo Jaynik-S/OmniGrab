@@ -100,3 +100,11 @@ test('restart before attachment keeps prepared authority until the old document 
  f.hosts.set(j.id,{jobId:j.id,phase:'resolving',started:false} as HostStatus);f.unsettled();await f.create().reconcile();const recovered=(await f.store.read()).jobs[0]!;
  assert.equal(recovered.phase,'interrupted');assert.ok(recovered.attachment);assert.equal(recovered.failure?.code,'download-cleanup-pending');await f.coordinator.start(request(2));await f.coordinator.reconcile();assert.equal(f.starts.length,1);
 });
+
+test('quota failure is durable and actionable after physical cleanup, with no browser save', async () => {
+ const f=fixture();await f.coordinator.start(request());await f.coordinator.reconcile();const j=(await f.store.read()).jobs[0]!;
+ f.hosts.set(j.id,{jobId:j.id,phase:'failed',started:true,error:'download-storage-quota-exceeded'});
+ await f.coordinator.reconcile();const failed=(await f.store.read()).jobs[0]!;
+ assert.equal(failed.phase,'failed');assert.equal(failed.failure?.code,'download-storage-quota-exceeded');assert.match(failed.failure!.message,/Free space and retry/);
+ assert.equal(failed.attachment,undefined);assert.equal(failed.tempFile,undefined);assert.equal(f.downloads.length,0);
+});

@@ -2,6 +2,7 @@ import type { DownloadJob, DownloadSelection, DownloadStartRequest } from './mod
 import type { DownloadHost } from './host-protocol.ts';
 import type { DownloadAttachment } from './transport.ts';
 import { DownloadStore, isTerminalPhase } from './store.ts';
+import { storageFailureMessage } from './storage.ts';
 export type JobOutcome = { ok: true; job: DownloadJob } | { ok: false; error: { code: string; message: string }; job?: DownloadJob };
 export interface BrowserTransfer { id: number; url: string; state: 'in_progress' | 'complete' | 'interrupted'; }
 export interface CoordinatorDependencies {
@@ -43,7 +44,7 @@ export function createDownloadCoordinator(d: CoordinatorDependencies) {
   await patch(job.id,j=>{delete j.tempFile;});return true;
  }
  async function finish(job: DownloadJob, phase: 'complete'|'failed'|'interrupted'|'canceled', code?: string) {
-  job=await patch(job.id,j=>{j.phase=phase;if(code)j.failure={code,message:code.replaceAll('-',' ')};});
+  job=await patch(job.id,j=>{j.phase=phase;if(code)j.failure={code,message:storageFailureMessage(code) ?? code.replaceAll('-',' ')};});
   return await cleanup(job);
  }
  async function browserState(job: DownloadJob): Promise<void> {

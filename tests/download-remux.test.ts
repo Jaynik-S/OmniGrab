@@ -224,3 +224,11 @@ test('flush failure rejects a completed mux and still closes the disk handle', a
   await assert.rejects(remuxToMp4(fixturePlan(), { fetcher: fixtureFetch, output, signal: new AbortController().signal }), /Flush failed/);
   assert.ok(output.closed);
 });
+
+test('output quota failure survives remux cancellation and closes the writer', async () => {
+  const { OpfsOutput } = await import('../src/downloads/opfs.ts');
+  let closed = 0;
+  const output = new OpfsOutput({ write() { throw new DOMException('private media URL', 'QuotaExceededError'); }, flush() {}, close() { closed++; } });
+  await assert.rejects(remuxToMp4(fixturePlan(), { output, fetcher: fixtureFetch, signal: new AbortController().signal }), { message: 'download-storage-quota-exceeded' });
+  assert.equal(closed, 1);
+});

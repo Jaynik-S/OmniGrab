@@ -18,6 +18,8 @@ export interface DownloadPlan {
   /** Requested and final URL aliases share text whose resource URIs are absolute. */
   manifests: Array<{ url: string; text: string }>;
   resources: ResourceGrant[]; duration?: number;
+  /** Transient, approximate fresh aggregate BANDWIDTH * duration / 8, or complete range lengths. */
+  estimatedMediaBytes?: number;
 }
 export type ResourceFetch = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 export interface SeekableOutput {

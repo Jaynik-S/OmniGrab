@@ -37,6 +37,7 @@ export async function resolveDownloadPlan(selection: DownloadSelection, fetcher:
   const source = await load(selection.sourceUrl);
   let videoUrl = source.finalUrl;
   let audioUrl: string | undefined;
+  let bandwidth: number | undefined;
   if (source.playlist.master) {
     const explicit = selection.requestedVariantId !== undefined;
     const video = explicit ? source.playlist.videos.find(v => v.originalUrl === selection.videoUrl || v.url === selection.videoUrl) :
@@ -47,6 +48,7 @@ export async function resolveDownloadPlan(selection: DownloadSelection, fetcher:
     if (video.width !== undefined) plan.selection.width = video.width;
     if (video.height !== undefined) plan.selection.height = video.height;
     videoUrl = video.url;
+    bandwidth = video.bandwidth;
     if (video.audioGroup) {
       const audio = source.playlist.audio.filter(a => a.group === video.audioGroup);
       const defaults = audio.filter(a => a.default);
@@ -60,13 +62,21 @@ export async function resolveDownloadPlan(selection: DownloadSelection, fetcher:
   plan.selection.videoUrl = video.finalUrl;
   delete plan.selection.audioUrl;
   plan.duration = video.playlist.duration;
+  let budgetDuration = plan.duration;
   plan.resources.push(...video.playlist.resources);
   if (audioUrl) {
     const audio = await load(audioUrl);
     if (audio.playlist.master) throw new Error('Unsupported nested audio master');
     plan.selection.audioUrl = audio.finalUrl;
+    budgetDuration = Math.max(budgetDuration ?? 0, audio.playlist.duration ?? 0);
     plan.resources.push(...audio.playlist.resources);
   }
+  // BANDWIDTH is aggregate for the rendition combination, including companion audio.
+  // Never infer media length from manifest text, dimensions, or a subset of range grants.
+  const declared = Math.ceil((bandwidth ?? NaN) * (budgetDuration ?? NaN) / 8);
+  const bytes = plan.resources.length && plan.resources.every(grant => grant.range) ?
+    plan.resources.reduce((total, grant) => total + (grant.range!.end - grant.range!.start + 1), 0) : declared;
+  if (Number.isSafeInteger(bytes) && bytes > 0) plan.estimatedMediaBytes = bytes;
   const grants = new Set<string>();
   plan.resources = plan.resources.filter(grant => {
     const key = JSON.stringify([grant.url, grant.range?.start ?? null, grant.range?.end ?? null]);

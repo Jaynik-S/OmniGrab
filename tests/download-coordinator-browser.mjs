@@ -9,14 +9,24 @@ import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright-core';
 import { fixtures,scratch } from './download-fixtures.ts';
 const fixRound1=process.argv.includes('--fix-round1');
+const storageAudit=process.argv.includes('--storage-audit');
 const output=path.resolve('.cache/download-coordinator',`native-${Date.now()}-${process.pid}`);await mkdir(output,{recursive:true});
 if(!existsSync(path.join(scratch,'mux720','list.m3u8')))fixtures();
 const extension=path.join(output,'extension');await cp(path.resolve('dist'),extension,{recursive:true});
 // Harness-only inspection and actual Worker.terminate fault injection; no production runtime route.
 await writeFile(path.join(extension,'offscreen.js'),(await readFile(path.join(extension,'offscreen.js'),'utf8'))+'\nglobalThis.__fixtureStatus=()=>({status:session?.status,metrics:session?.transport.metrics,requests:session?.requests.size});globalThis.__fixtureTerminate=()=>session?.worker?.terminate();\n');
+if(storageAudit) for(const fault of ['quota','write','directory']) {
+ const prelude=`const proof=new BroadcastChannel('fixture-storage-proof');let writes=0,closed=0;
+ const nativeWrite=FileSystemSyncAccessHandle.prototype.write,nativeClose=FileSystemSyncAccessHandle.prototype.close;
+ FileSystemSyncAccessHandle.prototype.write=function(...args){if(++writes===2)throw new DOMException('private injected write details','${fault==='quota'?'QuotaExceededError':'UnknownError'}');return nativeWrite.apply(this,args);};
+ FileSystemSyncAccessHandle.prototype.close=function(...args){const result=nativeClose.apply(this,args);closed++;proof.postMessage({fault:'${fault}',writes,closed});return result;};
+ ${fault==='directory'?"navigator.storage.getDirectory=async()=>{proof.postMessage({fault:'directory',writes,closed});throw new DOMException('private directory details','UnknownError');};":''}\n`;
+ await writeFile(path.join(extension,'fault-'+fault+'.js'),prelude+await readFile(path.join(extension,'download-worker.js'),'utf8'));
+}
 const report={started:new Date().toISOString(),output,cases:[],requests:[],errors:[]};let context,origin,slow=false,pageOnly=false,broken=false;const sockets=new Set(),timers=new Set();
 const server=createServer((req,res)=>{
  const url=new URL(req.url,'http://fixture.test');const entry={path:url.pathname,range:req.headers.range,start:Date.now(),bytes:0,page:!!req.headers.referer?.startsWith(origin)};report.requests.push(entry);res.on('close',()=>{entry.closed=Date.now();entry.incomplete=!res.writableFinished;});
+ if(url.pathname==='/unknown-watch'){res.writeHead(200,{'content-type':'text/html'});res.end('<!doctype html><title>Owned media-only fixture</title><video src="/mux720/list.m3u8"></video>');return;}
  if(url.pathname==='/replacement'){res.writeHead(200,{'content-type':'text/html'});res.end('<!doctype html><title>Replacement document</title>');return;} if(url.pathname==='/watch'){res.writeHead(200,{'content-type':'text/html'});res.end('<!doctype html><title>Owned coordinator fixture</title><video src="/master.m3u8"></video>');return;}
  if(url.pathname==='/master.m3u8'){res.writeHead(200,{'content-type':'application/vnd.apple.mpegurl'});res.end('#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=1000000,RESOLUTION=1280x720,CODECS="avc1.64001f,mp4a.40.2"\n/'+(broken?'silent720':'mux720')+'/list.m3u8\n');return;}
  if(pageOnly&&url.pathname.endsWith('.m4s')&&!entry.page){entry.status=403;res.writeHead(403,{'content-length':0}).end();return;}
@@ -37,10 +47,11 @@ async function connectTarget(port,url){
 async function until(fn,predicate,label,timeout=30000){const end=Date.now()+timeout;let last;while(Date.now()<end){last=await fn();if(predicate(last))return last;await sleep(50);}throw Error('Timeout '+label+': '+JSON.stringify(last));}
 try{
  const profile=await mkdtemp(path.join(tmpdir(),'owned-download-coordinator-'));report.profile=profile;
- context=await chromium.launchPersistentContext(profile,{executablePath:process.env.CHROMIUM_PATH??'C:/Users/jay03/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe',headless:true,args:[`--disable-extensions-except=${extension}`,`--load-extension=${extension}`,'--remote-debugging-port=0']});
+ await mkdir(path.join(profile,'Default'),{recursive:true});await writeFile(path.join(profile,'Default','Preferences'),JSON.stringify({download:{default_directory:output,prompt_for_download:false,directory_upgrade:true}}));
+ context=await chromium.launchPersistentContext(profile,{executablePath:process.env.CHROMIUM_PATH??'C:/Users/jay03/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe',acceptDownloads:false,headless:true,args:[`--disable-extensions-except=${extension}`,`--load-extension=${extension}`,'--remote-debugging-port=0']});
  const worker=context.serviceWorkers()[0]??await context.waitForEvent('serviceworker');const id=new URL(worker.url()).hostname;report.extensionId=id;report.browser=context.browser()?.version();
  const port=Number((await readFile(path.join(profile,'DevToolsActivePort'),'utf8')).split('\n')[0]);assert.notEqual(port,9222);report.debuggingPort=port;
- const monitor=context.pages()[0]; const cdp=await context.newCDPSession(monitor);await cdp.send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:output});
+ const monitor=context.pages()[0]; const cdp=await context.newCDPSession(monitor);await cdp.send('Browser.setDownloadBehavior',{behavior:'default'});
  const page=await context.newPage();await page.goto(origin+'/watch');
  const bootstrap=await connectTarget(port,worker.url());await bootstrap.evaluate(()=>chrome.action.openPopup());bootstrap.close();let popup=await connectTarget(port,`chrome-extension://${id}/popup/index.html`);
  const tabId=await popup.evaluate(async url=>(await chrome.tabs.query({})).find(t=>t.url===url).id,page.url());
@@ -53,6 +64,7 @@ try{
  const done=async id=>until(snapshot,r=>r.jobs?.find(j=>j.id===id&&['complete','failed','interrupted','canceled'].includes(j.phase)),'terminal job',60000);
  const first=await start('native-complete');const complete=await done(first.id);const completed=complete.jobs.find(j=>j.id===first.id);assert.equal(completed.phase,'complete',JSON.stringify(complete));
  const item=await popup.evaluate(async id=>(await chrome.downloads.search({id}))[0],completed.browserDownloadId);assert.equal(item.state,'complete');assert.equal(item.byExtensionId,id);assert.ok(existsSync(item.filename));
+ assert.equal(path.basename(item.filename),'native-complete.mp4');
  const probe=JSON.parse(execFileSync('ffprobe',['-v','error','-show_streams','-show_format','-of','json',item.filename],{encoding:'utf8'}));assert.deepEqual(probe.streams.map(t=>t.codec_name),['h264','aac']);assert.equal(probe.streams[0].height,720);assert.ok(Math.abs(Number(probe.format.duration)-1.2)<0.1);execFileSync('ffmpeg',['-v','error','-xerror','-i',item.filename,'-f','null','-'],{stdio:'pipe'});
  report.cases.push({id:'actual-chrome-download-complete',job:completed,browser:item,probe:{duration:probe.format.duration,tracks:probe.streams.map(t=>({codec:t.codec_name,height:t.height,channels:t.channels,frames:t.nb_frames}))},decode:'ffmpeg -xerror exit 0'});
  console.log('Actual Chrome save + ffprobe + decode passed',item.filename);
@@ -62,7 +74,40 @@ try{
  const files=()=>host.evaluate(async()=>{const dir=await(await navigator.storage.getDirectory()).getDirectoryHandle('media-downloads-v1');const names=[];for await(const [name]of dir.entries())names.push(name);return names;});
  assert.deepEqual(await files(),[]);
  const versions=new Map();cdp.on('ServiceWorker.workerVersionUpdated',e=>{for(const v of e.versions)versions.set(v.versionId,v);});await cdp.send('ServiceWorker.enable');
- if(fixRound1) {
+ if(storageAudit) {
+  report.storageEstimate=await host.evaluate(()=>navigator.storage.estimate());
+  await host.evaluate(()=>{globalThis.__originalEstimate=navigator.storage.estimate.bind(navigator.storage);globalThis.__nativeWorker=Worker;globalThis.__storageProof=[];globalThis.__proofChannel=new BroadcastChannel('fixture-storage-proof');__proofChannel.onmessage=e=>__storageProof.push(e.data);});
+  for(const mode of ['insufficient','unavailable']) {
+   await host.evaluate(mode=>{navigator.storage.estimate=async()=>{if(mode==='unavailable')throw Error('private estimate details');return {quota:1,usage:0};};},mode);
+   const before=report.requests.length;const job=await start('native-storage-'+mode);const result=await done(job.id);const failed=result.jobs.find(j=>j.id===job.id);
+   assert.equal(failed.phase,'failed',JSON.stringify(failed));assert.equal(failed.failure.code,'download-storage-'+(mode==='unavailable'?'estimate-unavailable':'insufficient'));
+   assert.equal(failed.attachment,undefined);assert.equal(failed.tempFile,undefined);assert.equal(failed.browserDownloadId,undefined);assert.deepEqual(await files(),[]);assert.equal((await hostState()).status,undefined);
+   const mediaRequests=report.requests.slice(before).filter(r=>r.range==='bytes=0-262143').length;assert.equal(mediaRequests,0);
+   report.cases.push({id:'storage-preflight-'+mode,job:failed,mediaRequests,files:await files()});
+  }
+  await host.evaluate(()=>{navigator.storage.estimate=__originalEstimate;});
+  const unknownPage=await context.newPage();await unknownPage.goto(origin+'/unknown-watch');
+  const unknownTab=await popup.evaluate(async url=>(await chrome.tabs.query({})).find(t=>t.url===url).id,unknownPage.url());
+  const unknownSource=await until(()=>call({type:'snapshot',tabId:unknownTab}),r=>Object.values(r.tab?.media??{}).some(m=>m.url===origin+'/mux720/list.m3u8'&&m.status==='confirmed'),'media-only source');
+  const unknownMedia=Object.values(unknownSource.tab.media).find(m=>m.url===origin+'/mux720/list.m3u8'&&m.status==='confirmed');
+  const beforeUnknown=report.requests.length;const unknown=await call({type:'download-start',request:{requestId:'native-storage-unknown-budget',tabId:unknownTab,epoch:unknownSource.tab.epoch,mediaId:unknownMedia.id,instance:unknownMedia.instance,filename:'unknown-budget.mp4'}});assert.equal(unknown.ok,true,JSON.stringify(unknown));
+  const unknownResult=(await done(unknown.job.id)).jobs.find(j=>j.id===unknown.job.id);assert.equal(unknownResult.phase,'failed');assert.equal(unknownResult.failure.code,'download-storage-budget-unknown');assert.equal(unknownResult.attachment,undefined);assert.equal(unknownResult.tempFile,undefined);assert.deepEqual(await files(),[]);
+  const unknownRequests=report.requests.slice(beforeUnknown).filter(r=>r.range==='bytes=0-262143').length;assert.equal(unknownRequests,0);report.cases.push({id:'media-only-unknown-budget',job:unknownResult,mediaRequests:unknownRequests});await unknownPage.close();
+  for(const fault of ['quota','write','directory']) {
+   await host.evaluate(fault=>{globalThis.Worker=class extends __nativeWorker{constructor(_url,options){super(chrome.runtime.getURL('fault-'+fault+'.js'),options);}};},fault);
+   const job=await start('native-storage-'+fault);const result=await done(job.id);const failed=result.jobs.find(j=>j.id===job.id);
+   assert.equal(failed.phase,'failed',JSON.stringify(failed));assert.equal(failed.failure.code,fault==='quota'?'download-storage-quota-exceeded':'download-storage-write-failed');assert.ok(!JSON.stringify(failed.failure).includes('private'));
+   assert.equal(failed.attachment,undefined);assert.equal(failed.tempFile,undefined);assert.equal(failed.browserDownloadId,undefined);assert.deepEqual(await files(),[]);assert.equal((await hostState()).status,undefined);
+   const proof=await until(()=>host.evaluate(()=>__storageProof),list=>list.some(p=>p.fault===fault),'native writer cleanup proof');const receipt=proof.find(p=>p.fault===fault);
+   assert.equal(receipt.closed,fault==='directory'?0:1);assert.equal(receipt.writes,fault==='directory'?0:2);
+   report.cases.push({id:'actual-worker-storage-'+fault,job:failed,proof:receipt,files:await files()});
+  }
+  await host.evaluate(()=>{globalThis.Worker=__nativeWorker;__proofChannel.close();});
+  const next=await start('native-after-storage-recovery');const recovered=await done(next.id);const saved=recovered.jobs.find(j=>j.id===next.id);assert.equal(saved.phase,'complete',JSON.stringify(saved));
+  const browser=await popup.evaluate(async id=>(await chrome.downloads.search({id}))[0],saved.browserDownloadId);assert.equal(browser.state,'complete');assert.equal(path.basename(browser.filename),'native-after-storage-recovery.mp4');execFileSync('ffmpeg',['-v','error','-xerror','-i',browser.filename,'-f','null','-'],{stdio:'pipe'});
+  const all=await popup.evaluate(async()=>chrome.downloads.search({}));assert.equal(all.length,2);assert.deepEqual(await files(),[]);
+  report.cases.push({id:'ordinary-save-after-storage-failures',job:saved,browser,decode:'ffmpeg -xerror exit 0',totalBrowserDownloads:all.length});
+ } else if(fixRound1) {
   for(const boundary of ['after-attach','before-attach']) {
    const fault=await connectTarget(port,worker.url());
    await fault.evaluate(boundary=>{const send=chrome.runtime.sendMessage.bind(chrome.runtime);globalThis.__fixtureBoundaryReached=false;chrome.runtime.sendMessage=async(...args)=>{const message=args[0];if(message?.target==='download-host'&&message.action===(boundary==='after-attach'?'run':'prepare')){if(boundary==='before-attach')await send(...args);globalThis.__fixtureBoundaryReached=true;return new Promise(()=>{});}return send(...args);};},boundary);

@@ -203,3 +203,35 @@ test('URI normalization preserves quoted rendition metadata containing an appare
   assert.ok(normalized.includes('#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="a",NAME="English,URI=label",DEFAULT=YES,URI="https://media.test/audio/list.m3u8?sig=a%2Fb&x=2"'));
   assert.equal(plan.selection.audioUrl, 'https://media.test/audio/list.m3u8?sig=a%2Fb&x=2');
 });
+
+test('plan budgets fresh selected aggregate bandwidth and ignores manifest text length', async () => {
+  const plan = await resolveDownloadPlan(selected(), fetcher({ [source]: master.replace('BANDWIDTH=1000000', 'BANDWIDTH=3000000'),
+    'https://media.test/720/playlist.jpg': media, 'https://media.test/audio/list.m3u8?sig=a%2Fb&x=2': media }), new AbortController().signal);
+  assert.equal(plan.estimatedMediaBytes, 1500000); // 3 Mbit/s * 4 seconds / 8, including declared audio.
+});
+
+test('media-only plan estimates exact complete ranges but never partial or unknown lengths', async () => {
+  const snapshot = fixture(); Object.assign(snapshot.tabs[7].media[source], { variants: [], live: false });
+  const selection = selectDownload(snapshot, { ...request, variantId: undefined });
+  const ranged = '#EXTM3U\n#EXT-X-MAP:URI="media.mp4",BYTERANGE="8@0"\n#EXTINF:4,\n#EXT-X-BYTERANGE:10@8\nmedia.mp4\n#EXT-X-ENDLIST';
+  const resolve = (text: string) => resolveDownloadPlan(selection, fetcher({ [source]: text }), new AbortController().signal);
+  assert.equal((await resolve(ranged)).estimatedMediaBytes, 18);
+  assert.equal((await resolve(ranged.replace(',BYTERANGE="8@0"', ''))).estimatedMediaBytes, undefined);
+  assert.equal((await resolve(media)).estimatedMediaBytes, undefined);
+});
+
+test('range storage budget counts repeated media uses before grant deduplication', async () => {
+  const snapshot = fixture(); Object.assign(snapshot.tabs[7].media[source], { variants: [], live: false });
+  const selection = selectDownload(snapshot, { ...request, variantId: undefined });
+  const text = '#EXTM3U\n#EXTINF:4,\n#EXT-X-BYTERANGE:40000000@0\nmedia.ts\n#EXTINF:4,\n#EXT-X-BYTERANGE:40000000@0\nmedia.ts\n#EXT-X-ENDLIST';
+  const plan = await resolveDownloadPlan(selection, fetcher({ [source]: text }), new AbortController().signal);
+  assert.equal(plan.resources.length, 1); assert.equal(plan.estimatedMediaBytes, 80000000);
+});
+
+test('overflowing complete ranges cannot fall back to a smaller declared bitrate budget', async () => {
+  const ranges = '#EXTM3U\n#EXTINF:4,\n#EXT-X-BYTERANGE:9007199254740991@0\none.ts\n#EXTINF:4,\n#EXT-X-BYTERANGE:9007199254740991@0\ntwo.ts\n#EXT-X-ENDLIST';
+  const text = '#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=1000000,RESOLUTION=1280x720\nhttps://media.test/720/playlist.jpg';
+  const selection = selectDownload(fixture(text), { ...request, variantId: 'hls:0' });
+  const plan = await resolveDownloadPlan(selection, fetcher({ [source]: text, 'https://media.test/720/playlist.jpg': ranges }), new AbortController().signal);
+  assert.equal(plan.estimatedMediaBytes, undefined);
+});
