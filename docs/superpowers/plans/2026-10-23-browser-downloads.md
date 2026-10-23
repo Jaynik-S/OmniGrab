@@ -149,10 +149,10 @@ assert.equal(metrics.afterAbort.queuedBytes, 0);
 
 **Consumes:** reviewed Tasks 1–3 interfaces. **Produces:** `createDownloadCoordinator` with trusted `start`, `cancel`, `retry`, `snapshot`, `reconcile`; offscreen host lifecycle and downloadable finalized file. The background routes popup-only `download-start`, `download-cancel`, `download-retry`, `download-snapshot` messages. Every public result includes an explicit job/error outcome.
 
-- [ ] RED tests for idempotent start, save-before-start, one active/two queued, stale selection, trusted sender checks, host-creation races, real restart reconciliation and final save completion/interruption.
-- [ ] Add approved permissions and bundle only local executable entry points. Idempotently create one offscreen document using Chrome-120-compatible `runtime.getContexts` and `WORKERS`/`BLOBS`. Build allowlist grows to exactly the chosen worker/host/license files; audit the existing parser notice and new package notice/source reference.
-- [ ] The offscreen host owns workers, fetch clients, bounded pending resource requests, OPFS files and object URLs. Worker fetch broker can transfer ReadableStream bodies/ArrayBuffers through native `postMessage`; it must propagate AbortSignal into host/content IO and avoid full-resource accumulation. Offscreen only uses extension runtime APIs; Downloads remains in the service worker.
-- [ ] Resolve selected manifests, grant only resolved resources, run reviewed remux, verify result and close writer, then obtain a file-backed blob URL. The coordinator persists ready metadata and starts Chrome saving:
+- [x] RED tests for idempotent start, save-before-start, one active/two queued, stale selection, trusted sender checks, host-creation races, real restart reconciliation and final save completion/interruption.
+- [x] Add approved permissions and bundle only local executable entry points. Idempotently create one offscreen document using Chrome-120-compatible `runtime.getContexts` and `WORKERS`/`BLOBS`. Build allowlist grows to exactly the chosen worker/host/license files; audit the existing parser notice and new package notice/source reference.
+- [x] The offscreen host owns workers, fetch clients, bounded pending resource requests, OPFS files and object URLs. Worker fetch broker can transfer ReadableStream bodies/ArrayBuffers through native `postMessage`; it must propagate AbortSignal into host/content IO and avoid full-resource accumulation. Offscreen only uses extension runtime APIs; Downloads remains in the service worker.
+- [x] Resolve selected manifests, grant only resolved resources, run reviewed remux, verify result and close writer, then obtain a file-backed blob URL. The coordinator persists ready metadata and starts Chrome saving:
 
 ```ts
 const id = await chrome.downloads.download({
@@ -162,8 +162,8 @@ const id = await chrome.downloads.download({
 // Persist id with phase saving; only its actual complete event permits complete.
 ```
 
-- [ ] Persist attachment identity before delivery and reconcile exact-document physical settlement after host loss. Strictly validated optional attachment/save-intent metadata may extend the authoritative job/store schema. Reconcile Chrome events/search and active host work after wake. A browser-complete event arriving before the ID save is resolved through persisted start/save ordering and follow-up search, not lost. Detect lost worker/host/browser process as interrupted; do not replay a duplicate transfer. Cancel queued/processing/saving appropriately and release resources after consumers finish. Startup removes or records orphan temporary files safely under the download namespace.
-- [ ] Native fixture: actual Chrome download completes; saved file matches expected tracks/duration; popup closure and actual SW stop/wake do not duplicate/restart work; cancellation/error cleanup is real. Run focused tests/typecheck/full unit suite/build, self-review and commit. Keep current detection listeners synchronous.
+- [x] Persist attachment identity before delivery and reconcile exact-document physical settlement after host loss. Strictly validated optional attachment/save-intent metadata may extend the authoritative job/store schema. Reconcile Chrome events/search and active host work after wake. A browser-complete event arriving before the ID save is resolved through persisted start/save ordering and follow-up search, not lost. Detect lost worker/host/browser process as interrupted; do not replay a duplicate transfer. Cancel queued/processing/saving appropriately and release resources after consumers finish. Startup removes or records orphan temporary files safely under the download namespace.
+- [x] Native fixture: actual Chrome download completes; saved file matches expected tracks/duration; popup closure and actual SW stop/wake do not duplicate/restart work; cancellation/error cleanup is real. Run focused tests/typecheck/full unit suite/build, self-review and commit. Keep current detection listeners synchronous.
 
 ## Task 5: Usable popup controls and live job state
 
