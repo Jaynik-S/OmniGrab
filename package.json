@@ -13,7 +13,8 @@
     "check": "npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
-    "fast-xml-parser": "5.11.2"
+    "fast-xml-parser": "5.11.2",
+    "mediabunny": "1.62.1"
   },
   "devDependencies": {
     "@types/chrome": "0.3.5",
