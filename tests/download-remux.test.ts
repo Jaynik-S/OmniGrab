@@ -3,7 +3,7 @@ import test, { before } from 'node:test';
 import { writeFileSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { fixtureFetch, fixturePlan, fixtures, MemoryOutput, scratch } from './download-fixtures.ts';
+import { fixtureFetch, fixturePlan, fixtures, MemoryOutput, mixedFixturePlan, scratch } from './download-fixtures.ts';
 import { remuxToMp4 } from '../src/downloads/remux.ts';
 import { RemuxSourceAdapter } from '../src/downloads/remux-source.ts';
 
@@ -40,6 +40,14 @@ test('selected dimensions and mandatory audio reject before success and close th
     assert.ok(output.closed);
   }
 });
+
+for (const kind of ['video', 'audio', 'ts-video'] as const) {
+  test(`rejects actual ${kind} decoder configuration changes in later HLS fragments`, async () => {
+    const output = new MemoryOutput();
+    await assert.rejects(remuxToMp4(mixedFixturePlan(kind), { fetcher: fixtureFetch, output, signal: new AbortController().signal }), /configuration|dimensions|change/i);
+    assert.ok(output.closed);
+  });
+}
 
 test('already aborted jobs close output without fetching media', async () => {
   const controller = new AbortController(); controller.abort(); const output = new MemoryOutput();
@@ -164,6 +172,28 @@ test('disposing source adapters aborts their pending transport operation', async
   }), new AbortController().signal, () => {});
   const pending = source.fetch(url, { headers: { Range: 'bytes=0-0' } }); source.dispose();
   await assert.rejects(pending, { name: 'AbortError' });
+});
+
+test('range-ignoring objects remain seekable at a nonzero block after 32 MiB cache eviction', async () => {
+  const block = 256 * 1024; const length = 130 * block;
+  const url = 'https://fixture.test/full-object.bin'; const plan = fixturePlan(); plan.resources = [{ url }];
+  let requests = 0; const ranges: string[] = [];
+  const source = new RemuxSourceAdapter(plan, async (_input, init) => {
+    ranges.push(new Headers(init?.headers).get('Range')!);
+    requests++; const bytes = new Uint8Array(length); bytes[block] = 91;
+    return new Response(bytes, { headers: { 'Content-Length': String(length) } });
+  }, new AbortController().signal, () => {});
+  try {
+    const first = await source.fetch(url, { headers: { Range: 'bytes=0-0' } });
+    assert.deepEqual([...new Uint8Array(await first.arrayBuffer())], [0]);
+    const second = await source.fetch(url, { headers: { Range: `bytes=${block}-${block}` } });
+    assert.equal(second.headers.get('Content-Range'), `bytes ${block}-${block}/${length}`);
+    assert.deepEqual([...new Uint8Array(await second.arrayBuffer())], [91]);
+    assert.equal(requests, 2);
+    assert.deepEqual(ranges, ['bytes=0-262143', 'bytes=0-262143']);
+    const cached = await source.fetch(url, { headers: { Range: `bytes=${block}-${block}` } });
+    assert.deepEqual([...new Uint8Array(await cached.arrayBuffer())], [91]); assert.equal(requests, 2);
+  } finally { source.dispose(); }
 });
 
 test('truncated media cannot produce a successful MP4', async () => {

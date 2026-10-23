@@ -18,7 +18,8 @@ export class RemuxSourceAdapter {
   private readonly onBytes: (bytes: number) => void;
   private readonly cache = new Set<Block>();
   private cachedBytes = 0;
-  private readonly inputs: Input[] = [];
+  private readonly inputs = new Set<Input>();
+  private readonly completeObjects = new Set<string>();
   private readonly sources = new Map<string, UrlSource>();
   private readonly refs: SourceRef[] = [];
   private backgroundError: unknown;
@@ -70,7 +71,9 @@ export class RemuxSourceAdapter {
     // Alignment improves reuse. Never widen beyond a MAP/segment's actual grant.
     const blockStart = Math.max(grant.range?.start ?? 0, Math.floor(start / BLOCK) * BLOCK);
     const blockEnd = Math.min(blockStart + BLOCK - 1, grant.range?.end ?? Infinity);
-    headers.set('Range', `bytes=${blockStart}-${blockEnd}`);
+    const requestStart = this.completeObjects.has(url) ? 0 : blockStart;
+    const requestEnd = requestStart === 0 && blockStart !== 0 ? BLOCK - 1 : blockEnd;
+    headers.set('Range', `bytes=${requestStart}-${requestEnd}`);
     const fetcher = this.fetcher; // Native fetch must not receive this adapter as its receiver.
     const requestSignal = AbortSignal.any([this.signal, this.lifetime.signal, ...(init?.signal ? [init.signal] : [])]);
     const response = await fetcher(input, { ...init, headers, signal: requestSignal });
@@ -84,14 +87,15 @@ export class RemuxSourceAdapter {
         const contentRange = /^bytes (\d+)-(\d+)\/(\d+)$/.exec(response.headers.get('Content-Range') ?? '');
         if (!contentRange) throw new Error('Invalid media response range');
         first = Number(contentRange[1]); last = Number(contentRange[2]); total = Number(contentRange[3]);
-        if (![first, last, total].every(Number.isSafeInteger) || first !== blockStart || last < Math.max(first, start) || last > blockEnd || total <= last)
+        if (![first, last, total].every(Number.isSafeInteger) || first !== requestStart || last < Math.max(first, start) || last > requestEnd || total <= last)
           throw new Error('Invalid media response range');
       } else {
         // A transport may provide a complete bounded object when its origin ignores ranges.
         const length = response.headers.get('Content-Length');
         total = Number(length); last = total - 1;
-        if (response.status !== 200 || grant.range || blockStart !== 0 || !length || !/^\d+$/.test(length) ||
+        if (response.status !== 200 || grant.range || requestStart !== 0 || !length || !/^\d+$/.test(length) ||
           !Number.isSafeInteger(total) || total <= 0 || total > MAX_READ) throw new Error('Media response ignored range');
+        this.completeObjects.add(url);
       }
       const expected = last - first + 1;
       const length = response.headers.get('Content-Length');
@@ -126,6 +130,14 @@ export class RemuxSourceAdapter {
         if (block.start <= start && block.end >= start) selected = block;
       }
       if (!selected) throw new Error('Media response does not cover requested range');
+      // A complete >32 MiB object may evict its requested early block while being
+      // split. The block actually returned is the most recently used, not the last split.
+      if (this.cache.delete(selected)) this.cachedBytes -= selected.data.byteLength;
+      while (this.cachedBytes + selected.data.byteLength > CACHE_LIMIT) {
+        const oldest = this.cache.values().next().value!;
+        this.cache.delete(oldest); this.cachedBytes -= oldest.data.byteLength;
+      }
+      this.cache.add(selected); this.cachedBytes += selected.data.byteLength;
       return this.response(selected, start, requestedEnd);
     } catch (error) {
       if (reader) { await reader.cancel().catch(() => {}); reader.releaseLock(); }
@@ -134,10 +146,11 @@ export class RemuxSourceAdapter {
     }
   };
 
-  open(url: string): Input {
+  open(url: string, probeText?: string): Input {
     this.check();
     if (!this.plan.manifests.some(manifest => manifest.url === url)) throw new Error('Selected playlist is missing');
     const source = new CustomPathedSource(url, request => {
+      if (request.isRoot && probeText !== undefined) return new BufferSource(new TextEncoder().encode(probeText));
       const manifest = this.plan.manifests.find(entry => entry.url === request.path);
       if (manifest) return new BufferSource(new TextEncoder().encode(manifest.text));
       if (!this.plan.resources.some(resource => resource.url === request.path)) throw new Error('Media resource is outside the download plan');
@@ -150,8 +163,10 @@ export class RemuxSourceAdapter {
       }
       return child;
     });
-    const input = new Input({ source, formats: HLS_FORMATS }); this.inputs.push(input); return input;
+    const input = new Input({ source, formats: HLS_FORMATS }); this.inputs.add(input); return input;
   }
+
+  release(input: Input): void { input.dispose(); this.inputs.delete(input); }
 
   readonly dispose = (): void => {
     if (this.disposed) return;
@@ -160,6 +175,6 @@ export class RemuxSourceAdapter {
     this.signal.removeEventListener('abort', this.dispose);
     for (const input of this.inputs) input.dispose();
     for (const ref of this.refs) ref.free();
-    this.inputs.length = 0; this.refs.length = 0; this.sources.clear(); this.cache.clear(); this.cachedBytes = 0;
+    this.inputs.clear(); this.refs.length = 0; this.sources.clear(); this.cache.clear(); this.completeObjects.clear(); this.cachedBytes = 0;
   };
 }

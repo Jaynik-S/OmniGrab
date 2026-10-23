@@ -2,19 +2,36 @@
 // Run: node --experimental-strip-types tests/download-engine-browser.mjs
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { resolve, relative, sep } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { build } from 'esbuild';
 import { chromium } from 'playwright-core';
-import { fixtures, fixturePlan, scratch } from './download-fixtures.ts';
+import { fixtures, fixturePlan, mixedFixturePlan, scratch } from './download-fixtures.ts';
 
-fixtures();
+const cacheOnly = process.argv.includes('--cache-only');
+mkdirSync(scratch, { recursive: true });
+if (!cacheOnly) fixtures();
 const bundle = await build({ stdin: { contents: `
   import { remuxToMp4 } from './src/downloads/remux.ts';
   import { createOpfsOutput } from './src/downloads/opfs.ts';
+  import { RemuxSourceAdapter } from './src/downloads/remux-source.ts';
   self.onmessage = async ({ data }) => {
     try {
+      if (data.cacheCase) {
+        let received = 0;
+        const source = new RemuxSourceAdapter(data.plan, fetch, new AbortController().signal, bytes => { received += bytes; });
+        try {
+          const values = []; const ranges = [];
+          for (const offset of [0, 262144, 262144]) {
+            const response = await source.fetch(data.url, { headers: { Range: 'bytes=' + offset + '-' + offset } });
+            ranges.push(response.headers.get('Content-Range'));
+            values.push(...new Uint8Array(await response.arrayBuffer()));
+          }
+          self.postMessage({ values, ranges, received });
+        } finally { source.dispose(); }
+        return;
+      }
       const directory = await navigator.storage.getDirectory();
       const patch = await createOpfsOutput(directory, 'patch.bin');
       await patch.write(Uint8Array.of(1,2,3), 0); await patch.write(Uint8Array.of(9), 1);
@@ -30,7 +47,17 @@ const bundle = await build({ stdin: { contents: `
       const file = await (await directory.getFileHandle(data.name + '.mp4')).getFile();
       const bytes = await file.arrayBuffer();
       self.postMessage({ result, bytes, patched, phases, fetched, written, patches, fileSize: file.size }, [bytes]);
-    } catch(error) { self.postMessage({ error: error.stack || String(error) }); }
+    } catch(error) {
+      let closedSize;
+      if (data.rejectCase) {
+        const directory = await navigator.storage.getDirectory();
+        const file = await directory.getFileHandle(data.name + '.mp4');
+        // Acquiring a second exclusive native handle proves the failed engine closed its handle.
+        const handle = await file.createSyncAccessHandle(); handle.close();
+        closedSize = (await file.getFile()).size;
+      }
+      self.postMessage({ error: error.stack || String(error), closedSize });
+    }
   };
 `, resolveDir: resolve('.'), sourcefile: 'native-engine-worker.ts', loader: 'ts' },
   bundle: true, platform: 'browser', format: 'esm', write: false, target: 'chrome120' });
@@ -41,6 +68,12 @@ const server = createServer((request, response) => {
   const path = new URL(request.url, 'http://localhost').pathname;
   if (path === '/') { response.setHeader('Content-Type', 'text/html'); response.end('<!doctype html><title>Native engine proof</title>'); return; }
   if (path === '/worker.js') { response.setHeader('Content-Type', 'text/javascript'); response.end(bundle.outputFiles[0].contents); return; }
+  if (path === '/cache-object.bin') {
+    const bytes = new Uint8Array(130 * 256 * 1024); bytes[256 * 1024] = 91;
+    requests++; served += bytes.length;
+    response.writeHead(200, { 'Content-Type': 'application/octet-stream', 'Content-Length': bytes.length });
+    response.end(bytes); return;
+  }
   const filename = path === '/captured.mp4' ? sample : resolve(scratch, '.' + path);
   const rel = relative(scratch, filename);
   if (filename !== sample && (rel.startsWith('..' + sep) || rel === '..')) { response.writeHead(403).end(); return; }
@@ -62,8 +95,8 @@ try {
   browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || 'C:/Users/jay03/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe', headless: true });
   console.log('Chromium', browser.version(), 'native dedicated-worker OPFS sync handles');
   const page = await browser.newPage(); await page.goto(origin);
-  const cases = ['mux720', 'ts720', 'video1080'];
-  if (existsSync(sample)) cases.push('captured');
+  const cases = cacheOnly ? [] : ['mux720', 'ts720', 'video1080'];
+  if (!cacheOnly && existsSync(sample)) cases.push('captured');
   const evidence = [];
   for (const name of cases) {
     requests = 0; served = 0;
@@ -102,7 +135,38 @@ try {
         sampleRate: t.sample_rate, frames: t.nb_frames, duration: t.duration })) }, decode: 'ffmpeg -xerror exit 0' });
     console.log(JSON.stringify(evidence.at(-1)));
   }
-  writeFileSync(resolve(scratch, 'native-evidence.json'), JSON.stringify(evidence, null, 2));
+  for (const kind of cacheOnly ? [] : ['video', 'audio', 'ts-video']) {
+    requests = 0; served = 0;
+    const name = 'reject-' + kind;
+    const plan = JSON.parse(JSON.stringify(mixedFixturePlan(kind)).replaceAll('https://fixture.test', origin));
+    const result = await page.evaluate(({ name, plan }) => new Promise((resolve, reject) => {
+      const worker = new Worker('/worker.js', { type: 'module' });
+      worker.onerror = error => { worker.terminate(); reject(new Error(error.message)); };
+      worker.onmessage = ({ data }) => { worker.terminate(); resolve(data); };
+      worker.postMessage({ name, plan, rejectCase: true });
+    }), { name, plan });
+    assert.match(result.error || '', /configuration|dimensions|change/i);
+    assert.equal(result.closedSize, 0, 'configuration changes must reject before mux output and release the native handle');
+    evidence.push({ name, error: result.error.split('\n')[0], closedSize: result.closedSize, requests, served });
+    console.log(JSON.stringify(evidence.at(-1)));
+  }
+  requests = 0; served = 0;
+  const url = origin + '/cache-object.bin';
+  const cachePlan = { selection: { tabId: 1, epoch: 1, mediaId: 'cache', instance: 1, pageUrl: origin,
+    frameId: 0, documentId: 'cache-doc', sourceUrl: origin + '/cache.m3u8', videoUrl: origin + '/cache.m3u8', filename: 'cache.mp4', output: 'mp4' },
+    manifests: [], resources: [{ url }] };
+  const cacheResult = await page.evaluate(({ url, plan }) => new Promise((resolve, reject) => {
+    const worker = new Worker('/worker.js', { type: 'module' });
+    worker.onerror = error => { worker.terminate(); reject(new Error(error.message)); };
+    worker.onmessage = ({ data }) => { worker.terminate(); if(data.error) reject(new Error(data.error)); else resolve(data); };
+    worker.postMessage({ url, plan, cacheCase: true });
+  }), { url, plan: cachePlan });
+  assert.deepEqual(cacheResult.values, [0, 91, 91]);
+  assert.deepEqual(cacheResult.ranges, ['bytes 0-0/34078720', 'bytes 262144-262144/34078720', 'bytes 262144-262144/34078720']);
+  assert.equal(requests, 2); assert.equal(cacheResult.received, 68157440);
+  evidence.push({ name: 'range-ignoring-eviction', ...cacheResult, requests, served });
+  console.log(JSON.stringify(evidence.at(-1)));
+  writeFileSync(resolve(scratch, cacheOnly ? 'native-cache-evidence.json' : 'native-evidence.json'), JSON.stringify(evidence, null, 2));
 } finally {
   if (browser) await browser.close();
   await new Promise(resolve => server.close(resolve));

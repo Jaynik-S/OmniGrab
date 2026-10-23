@@ -2,6 +2,7 @@ import {
   EncodedAudioPacketSource, EncodedPacketSink, EncodedVideoPacketSource, Mp4OutputFormat, Output, StreamTarget,
 } from 'mediabunny';
 import { RemuxSourceAdapter } from './remux-source.ts';
+import { validateSegmentConfigurations } from './remux-validation.ts';
 import type { DownloadPlan, RemuxProgress, RemuxResult, ResourceFetch, SeekableOutput } from './model.ts';
 
 export interface RemuxOptions {
@@ -42,6 +43,7 @@ export async function remuxToMp4(plan: DownloadPlan, options: RemuxOptions): Pro
     if (plan.selection.width !== undefined && width !== plan.selection.width || plan.selection.height !== undefined && height !== plan.selection.height)
       throw new Error('Selected video dimensions do not match the media');
     if (!width || !height || !audioConfig.numberOfChannels || !audioConfig.sampleRate) throw new Error('Invalid video/audio configuration');
+    await validateSegmentConfigurations(plan, sources, video, audio);
     const videoSource = new EncodedVideoPacketSource(videoCodec);
     const audioSource = new EncodedAudioPacketSource(audioCodec);
     muxer = new Output({ format: new Mp4OutputFormat({ fastStart: false }), target: new StreamTarget(new WritableStream({
