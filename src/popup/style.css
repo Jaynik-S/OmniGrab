@@ -1,6 +1,6 @@
 :root { color-scheme: light; font: 13px/1.5 "Segoe UI", "Helvetica Neue", sans-serif; color: #2f3437; background: #f7f6f3; }
 * { box-sizing: border-box; }
-html { min-width: 460px; }
+html { width: 460px; min-width: 460px; }
 body { width: 460px; margin: 0; padding: 20px; }
 header, .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 header { padding-bottom: 16px; border-bottom: 1px solid #eaeaea; }
@@ -32,3 +32,17 @@ li { margin-bottom: 8px; }
 .diagnostics, footer { padding-top: 12px; border-top: 1px solid #eaeaea; }
 footer { margin-top: 20px; }
 #status:empty { display: none; }
+
+.download-controls { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; margin: 12px 0; }
+.download-controls .output, .download-controls .error, .download-unavailable { grid-column: 1 / -1; }
+.download-controls p { margin: 0; }
+.download-controls label { display: grid; gap: 4px; font-size: 11px; color: #61615d; }
+input, select { width: 100%; min-width: 0; font: inherit; font-size: 12px; padding: 7px 8px; border: 1px solid #d8d8d3; border-radius: 4px; color: #2f3437; background: #fff; }
+.download-start { grid-column: 1 / -1; justify-self: start; background: #2f3437; color: #fff; }
+.download-start:hover { background: #444947; }
+.download-jobs { margin: 18px 0; }
+.download-job { padding: 12px 0; border-bottom: 1px solid #eaeaea; }
+.download-job h3 { overflow-wrap: anywhere; }
+.job-phase { font-weight: 600; }
+progress { width: 100%; }
+button:disabled { cursor: default; }

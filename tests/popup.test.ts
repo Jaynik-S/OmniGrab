@@ -2,12 +2,22 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { parseHTML } from 'linkedom';
 import type { MediaItem, TabState } from '../src/core/model.ts';
+import type { DownloadJob } from '../src/downloads/model.ts';
 import { renderSnapshot } from '../src/popup/view.ts';
 
 function item(url: string, more: Partial<MediaItem> = {}): MediaItem {
   return { id: url, url, type: 'hls', status: 'confirmed', methods: ['resource', 'manifest'],
     frameIds: [0], documentIds: ['doc-a'], elementIds: [], firstSeen: 1_000, lastSeen: 2_000,
     variants: [], childUrls: [], segmentUrls: [], ...more };
+}
+
+// Linkedom exposes select.value as a getter only; emulate the native setter in this test DOM.
+function nativeSelect(select: HTMLSelectElement) {
+  const get = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(select), 'value')!.get!;
+  Object.defineProperty(select, 'value', { get() { return get.call(this); }, set(value: string) {
+    for (const option of [...this.options] as HTMLOptionElement[]) option.selected = option.value === value;
+  } });
+  return select;
 }
 
 function render(items: MediaItem[], title = "Marvel's The Punisher S2:E1 - Cinejoy") {
@@ -134,4 +144,161 @@ test('formats long durations and excludes audio rendition heights from video qua
   assert.ok(primary, 'confirmed remote media needs a primary section');
   assert.match(primary.textContent!, /1:00:00/);
   assert.equal(primary.querySelector('.qualities')!.textContent, 'Qualities: 720p');
+});
+
+// Download controls must bind user edits to the exact detector source, never to a blob.
+test('offers real quality/filename controls and sends the selected source identity', async () => {
+  const source = item('https://cdn.test/master.m3u8', { protected: false, instance: 4, variants: [
+    { id: 'v720', kind: 'video', height: 720, url: 'https://cdn.test/720.m3u8' },
+    { id: 'v1080', kind: 'video', height: 1080, url: 'https://cdn.test/1080.m3u8' },
+  ] });
+  const { document, target } = render([source]);
+  let started: any;
+  const tab: TabState = { id: 7, epoch: 2, url: 'https://page.test/watch', title: 'A: safe/title',
+    documents: { 0: 'doc-a' }, media: { [source.id]: source }, updatedAt: 2, dropped: 0, errors: [] };
+  renderSnapshot(target, { tab, revision: 4 }, () => {}, { jobs: [], start: async request => { started = request; return { ok: false, error: { code: 'fixture', message: 'Fixture rejected' } }; } });
+  const quality = target.querySelector<HTMLSelectElement>('select')!;
+  assert.ok(quality, 'a real quality selector is required');
+  assert.deepEqual([...quality.options].map(o => o.textContent), ['1080p', '720p']);
+  assert.equal(target.querySelector<HTMLInputElement>('input')!.value, 'A_ safe_title.mp4');
+  nativeSelect(quality).value = 'v720';
+  quality.dispatchEvent(new document.defaultView!.Event('change'));
+  const filename = target.querySelector<HTMLInputElement>('input')!;
+  filename.value = 'My episode.mp4';
+  filename.dispatchEvent(new document.defaultView!.Event('input'));
+  target.querySelector<HTMLButtonElement>('.download-start')!.click();
+  await new Promise(resolve => setTimeout(resolve, 0));
+  assert.equal(started.variantId, quality.value);
+  assert.equal(started.mediaId, source.id);
+  assert.equal(started.tabId, 7);
+  assert.equal(started.epoch, 2);
+  assert.equal(started.instance, 4);
+  assert.equal(started.filename, 'My episode.mp4');
+  assert.match(target.textContent!, /Output: MP4/);
+  assert.match(target.textContent!, /Fixture rejected/);
+});
+
+test('disables protected, unknown-clearance, live and unsupported downloads with an explanation', () => {
+  for (const more of [{ protected: true }, {}, { protected: false, live: true }, { protected: false, type: 'dash' as const }, { protected: false, status: 'unresolved' as const }, { protected: false, type: 'blob' as const, url: 'blob:https://page.test/id' }]) {
+    const source = item('https://cdn.test/master.m3u8', more);
+    const { target } = render([source]);
+    const tab: TabState = { id: 7, epoch: 1, url: 'https://page.test/', documents: { 0: 'doc-a' }, media: { [source.id]: source }, updatedAt: 1, dropped: 0, errors: [] };
+    renderSnapshot(target, { tab, revision: 1 }, () => {}, { jobs: [], start: async () => { throw Error('must not start'); } });
+    assert.ok(target.querySelector('.download-unavailable')?.textContent, JSON.stringify(more));
+    assert.equal(target.querySelector('.download-start'), null);
+  }
+});
+
+test('preserves edits across refresh and reuses a request ID after a lost response', async () => {
+  const source = item('https://cdn.test/master.m3u8', { protected: false, variants: [
+    { id: 'v720', kind: 'video', height: 720, url: 'https://cdn.test/720.m3u8' },
+    { id: 'v1080', kind: 'video', height: 1080, url: 'https://cdn.test/1080.m3u8' },
+  ] });
+  const { document, target } = render([source]);
+  const tab: TabState = { id: 7, epoch: 1, url: 'https://page.test/', documents: { 0: 'doc-a' }, media: { [source.id]: source }, updatedAt: 1, dropped: 0, errors: [] };
+  const requests: any[] = [];
+  let release!: () => void;
+  const options = { jobs: [], start: async (request: any) => { requests.push(request); await new Promise<void>(resolve => { release = resolve; }); throw Error('Response lost'); } };
+  const refresh = () => renderSnapshot(target, { tab, revision: 1 }, () => {}, options);
+  refresh();
+  let filename = target.querySelector<HTMLInputElement>('input')!;
+  assert.ok(filename, 'editable filename is required');
+  filename.value = 'Keep this edit.mp4'; filename.dispatchEvent(new document.defaultView!.Event('input'));
+  const quality = target.querySelector<HTMLSelectElement>('select')!;
+  nativeSelect(quality).value = 'v720'; quality.dispatchEvent(new document.defaultView!.Event('change'));
+  refresh();
+  assert.equal(target.querySelector<HTMLInputElement>('input')!.value, 'Keep this edit.mp4');
+  assert.equal(target.querySelector<HTMLSelectElement>('select')!.value, 'v720');
+  const click = () => target.querySelector<HTMLButtonElement>('.download-start')!.click();
+  click(); click(); refresh(); click(); assert.equal(requests.length, 1);
+  release(); await new Promise(resolve => setTimeout(resolve, 0));
+  click(); assert.equal(requests.length, 2); assert.equal(requests[0].requestId, requests[1].requestId);
+  release(); await new Promise(resolve => setTimeout(resolve, 0));
+  filename = target.querySelector<HTMLInputElement>('input')!;
+  filename.value = 'A new intent.mp4'; filename.dispatchEvent(new document.defaultView!.Event('input'));
+  click(); assert.notEqual(requests[2].requestId, requests[0].requestId);
+  release(); await new Promise(resolve => setTimeout(resolve, 0));
+});
+
+
+function job(phase: DownloadJob['phase'] = 'processing'): DownloadJob {
+  return { version: 1, id: 'job-a', requestId: 'request-a', phase, createdAt: 1, updatedAt: 2,
+    selection: { tabId: 7, epoch: 1, mediaId: 'old-source', instance: 0, pageUrl: 'https://page.test/previous',
+      frameId: 0, documentId: 'old-doc', sourceUrl: 'https://cdn.test/old.m3u8', videoUrl: 'https://cdn.test/720.m3u8',
+      filename: '<script>episode</script>.mp4', output: 'mp4', height: 720 },
+    progress: { phase: 'processing', inputBytes: 512, outputBytes: 768, seconds: 1, duration: 12 } };
+}
+
+test('keeps all jobs separate from a navigated source and renders honest phases and media bytes', () => {
+  const source = item('https://cdn.test/new.m3u8', { protected: false, bytes: 216 });
+  const { document, target } = render([source]);
+  const tab: TabState = { id: 7, epoch: 2, url: 'https://page.test/new', documents: { 0: 'new-doc' }, media: { [source.id]: source }, updatedAt: 1, dropped: 0, errors: [] };
+  for (const [phase, label] of Object.entries({ queued: 'Queued', resolving: 'Resolving HLS', processing: 'Processing media', 'ready-to-save': 'Preparing browser save', saving: 'Saving in Chrome', complete: 'Saved by Chrome', failed: 'Failed', canceled: 'Canceled', interrupted: 'Interrupted' })) {
+    const record = job(phase as DownloadJob['phase']);
+    renderSnapshot(target, { tab, revision: 1 }, () => {}, { jobs: [record], start: async () => { throw Error('unused'); } });
+    const history = target.querySelector('.download-jobs'); assert.ok(history);
+    assert.match(history.textContent!, /Earlier \/ other source/);
+    assert.match(history.textContent!, /512 bytes.*768 bytes.*Total size unknown/);
+    assert.doesNotMatch(history.textContent!, /216 bytes/);
+    assert.equal(history.querySelector('.job-phase')?.textContent, label);
+    assert.equal(document.querySelector('script'), null);
+    assert.equal(target.querySelector('.media .download-job'), null);
+  }
+  const finalizing = job(); finalizing.progress.phase = 'finalizing';
+  renderSnapshot(target, { tab, revision: 2 }, () => {}, { jobs: [finalizing], start: async () => { throw Error('unused'); } });
+  assert.equal(target.querySelector('.job-phase')?.textContent, 'Finalizing MP4');
+});
+
+test('wires cancel/retry and keeps structured recovery errors visible without unsafe retry', async () => {
+  const { target } = render([]);
+  let canceled: string | undefined; let retried: any;
+  const options = { jobs: [job()], start: async () => { throw Error('unused'); },
+    cancel: async (id: string) => { canceled = id; return { ok: false as const, error: { code: 'download-cleanup-pending', message: 'Close the original source tab to finish download cleanup.' } }; },
+    retry: async (id: string, requestId: string) => { retried = { id, requestId }; throw Error('lost'); } };
+  const refresh = () => renderSnapshot(target, { revision: 2 }, () => {}, options);
+  refresh(); target.querySelector<HTMLButtonElement>('.download-cancel')!.click();
+  await new Promise(resolve => setTimeout(resolve, 0)); assert.equal(canceled, 'job-a');
+  assert.match(target.textContent!, /download-cleanup-pending: Close the original source tab/);
+  options.jobs = [job('failed')]; refresh(); target.querySelector<HTMLButtonElement>('.download-retry')!.click();
+  await new Promise(resolve => setTimeout(resolve, 0)); assert.equal(retried.id, 'job-a');
+  const requestId = retried.requestId;
+  target.querySelector<HTMLButtonElement>('.download-retry')!.click();
+  await new Promise(resolve => setTimeout(resolve, 0)); assert.equal(retried.requestId, requestId);
+  const uncertain = job('interrupted'); uncertain.failure = { code: 'download-save-uncertain', message: 'The browser save cannot yet be confirmed.' };
+  options.jobs = [uncertain]; refresh(); assert.equal(target.querySelector<HTMLButtonElement>('.download-retry')?.disabled, true);
+  assert.match(target.textContent!, /The browser save cannot yet be confirmed/);
+});
+
+test('retains the same intent ID when the popup is recreated after a lost response', async () => {
+  const memory = new Map<string, string>();
+  const intentStorage = { getItem: (key: string) => memory.get(key) ?? null, setItem: (key: string, value: string) => { memory.set(key, value); } };
+  const requests: any[] = [];
+  const source = item('https://cdn.test/master.m3u8', { protected: false });
+  const tab: TabState = { id: 7, epoch: 1, url: 'https://page.test/', title: 'Episode', documents: { 0: 'doc-a' }, media: { [source.id]: source }, updatedAt: 1, dropped: 0, errors: [] };
+  for (let reopening = 0; reopening < 2; reopening++) {
+    const { target } = render([source]);
+    renderSnapshot(target, { tab, revision: 1 }, () => {}, { jobs: [], intentStorage, start: async request => { requests.push(request); throw Error('response lost'); } });
+    target.querySelector<HTMLButtonElement>('.download-start')!.click();
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
+  assert.equal(requests.length, 2);
+  assert.equal(requests[0].requestId, requests[1].requestId);
+});
+
+test('keeps an explicitly selected quality unavailable instead of silently switching on a detection update', () => {
+  const source = item('https://cdn.test/master.m3u8', { protected: false, variants: [
+    { id: 'v1080', kind: 'video', height: 1080, url: 'https://cdn.test/1080.m3u8' },
+    { id: 'v720', kind: 'video', height: 720, url: 'https://cdn.test/720.m3u8' },
+  ] });
+  const { document, target } = render([source]);
+  const tab: TabState = { id: 7, epoch: 1, url: 'https://page.test/', documents: { 0: 'doc-a' }, media: { [source.id]: source }, updatedAt: 1, dropped: 0, errors: [] };
+  const options = { jobs: [], start: async () => { throw Error('unused'); } };
+  renderSnapshot(target, { tab, revision: 1 }, () => {}, options);
+  const quality = nativeSelect(target.querySelector<HTMLSelectElement>('select')!);
+  quality.value = 'v720'; quality.dispatchEvent(new document.defaultView!.Event('change'));
+  source.variants = source.variants.filter(variant => variant.height !== 720);
+  renderSnapshot(target, { tab, revision: 2 }, () => {}, options);
+  assert.equal(target.querySelector<HTMLSelectElement>('select')!.value, 'v720');
+  assert.equal(target.querySelector<HTMLButtonElement>('.download-start')!.disabled, true);
+  assert.match(target.textContent!, /Selected quality is no longer confirmed/);
 });

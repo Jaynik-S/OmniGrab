@@ -1,4 +1,6 @@
 import type { MediaItem, TabState, Variant } from '../core/model.ts';
+import { downloadView } from './download-view.ts';
+import type { DownloadViewOptions } from './download-view.ts';
 export interface SnapshotResponse { tab?: TabState; revision: number; error?: string; }
 
 function node(document: Document, tag: string, text?: string, className?: string): HTMLElement {
@@ -37,8 +39,9 @@ function variantText(variant: Variant): string {
     variant.url ?? variant.representationId ?? variant.id].filter(Boolean).join(' · ');
 }
 
-function renderItem(document: Document, item: MediaItem, title: string | undefined, copy: (url: string) => void): HTMLElement {
+function renderItem(document: Document, item: MediaItem, title: string | undefined, copy: (url: string) => void, controls?: HTMLElement): HTMLElement {
   const article = node(document, 'article', undefined, 'media');
+  article.dataset.sourceKey = item.id;
   const heading = node(document, 'div', undefined, 'row');
   const protocol = item.type === 'hls' || item.type === 'dash' ? item.type.toUpperCase() : item.type === 'blob' ? 'Local blob' : item.type;
   heading.append(node(document, 'h3', item.title || title || 'Media source'), node(document, 'span', `${protocol} · ${item.status}`, 'status'));
@@ -51,6 +54,7 @@ function renderItem(document: Document, item: MediaItem, title: string | undefin
   if (qualities.length) article.append(node(document, 'p', `Qualities: ${qualities.map(height => `${height}p`).join(' · ')}`, 'qualities'));
   if (item.reason) article.append(node(document, 'p', item.reason, 'error'));
 
+  if (controls) article.append(controls);
   const source = node(document, 'details', undefined, 'source-details');
   source.append(node(document, 'summary', 'Source details'), node(document, 'p', item.url, 'url'));
   if (item.mime) source.append(node(document, 'p', `Response MIME: ${item.mime}`, 'muted'));
@@ -75,9 +79,15 @@ function renderItem(document: Document, item: MediaItem, title: string | undefin
   return article;
 }
 
-export function renderSnapshot(target: HTMLElement, response: SnapshotResponse, copy: (url: string) => void): void {
+export function renderSnapshot(target: HTMLElement, response: SnapshotResponse, copy: (url: string) => void, downloads?: DownloadViewOptions): void {
   const document = target.ownerDocument;
   const tab = response.tab;
+  const focus = document.activeElement as HTMLInputElement | null;
+  const control = focus?.dataset?.control;
+  const selection = focus?.tagName === 'INPUT' ? [focus.selectionStart, focus.selectionEnd, focus.selectionDirection] as const : undefined;
+  const scrollTop = document.documentElement.scrollTop;
+  const opened = [...target.querySelectorAll<HTMLElement>('details[open]')].map(detail => detail.dataset.detailsKey).filter(Boolean);
+  const view = downloads ? downloadView(target, downloads, () => renderSnapshot(target, response, copy, downloads)) : undefined;
   target.replaceChildren();
   if (response.error) target.append(node(document, 'p', response.error, 'error'));
   const context = node(document, 'section', undefined, 'context');
@@ -97,7 +107,7 @@ export function renderSnapshot(target: HTMLElement, response: SnapshotResponse, 
     const section = node(document, 'section', undefined, 'primary-media');
     section.setAttribute('aria-label', 'Confirmed remote media');
     section.append(node(document, 'h2', 'Confirmed media'));
-    for (const item of primary) section.append(renderItem(document, item, tab?.title, copy));
+    for (const item of primary) section.append(renderItem(document, item, tab?.title, copy, tab && view?.source(item, tab)));
     target.append(section);
   }
   if (secondary.length) {
@@ -105,13 +115,26 @@ export function renderSnapshot(target: HTMLElement, response: SnapshotResponse, 
     evidence.append(node(document, 'summary', `Local and unconfirmed evidence (${secondary.length})`));
     // A failed manifest is the main outcome until a remote source is confirmed.
     if (!primary.length && secondary.some(item => (item.type === 'hls' || item.type === 'dash') && item.status === 'unresolved')) evidence.setAttribute('open', '');
-    for (const item of secondary) evidence.append(renderItem(document, item, tab?.title, copy));
+    for (const item of secondary) evidence.append(renderItem(document, item, tab?.title, copy, tab && view?.source(item, tab)));
     target.append(evidence);
   }
+  if (view) target.append(view.jobs(tab));
   const diagnostics = node(document, 'details', undefined, 'diagnostics');
   diagnostics.append(node(document, 'summary', 'Diagnostics'));
   diagnostics.append(node(document, 'p', `${items.length} sources · ${tab?.dropped ?? 0} observations/items dropped by retention limits`));
   for (const error of tab?.errors ?? []) diagnostics.append(node(document, 'p', error, 'error'));
   if (!tab?.errors.length) diagnostics.append(node(document, 'p', 'No recorded errors. Browser permissions, closed shadow roots and unexposed media buffers may limit discovery.', 'muted'));
   target.append(diagnostics);
+  for (const [index, detail] of [...target.querySelectorAll('details')].entries()) {
+    detail.dataset.detailsKey = `${detail.closest<HTMLElement>('.media')?.dataset.sourceKey ?? ''}:${detail.className || detail.querySelector('summary')?.textContent || index}`;
+    if (opened.includes(detail.dataset.detailsKey)) detail.open = true;
+  }
+  if (control) {
+    const replacement = [...target.querySelectorAll<HTMLElement>('[data-control]')].find(value => value.dataset.control === control);
+    replacement?.focus({ preventScroll: true });
+    if (selection && replacement?.tagName === 'INPUT' && selection[0] !== null) {
+      (replacement as HTMLInputElement).setSelectionRange(selection[0], selection[1], selection[2] ?? undefined);
+    }
+  }
+  document.documentElement.scrollTop = scrollTop;
 }
