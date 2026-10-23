@@ -163,6 +163,7 @@ const id = await chrome.downloads.download({
 ```
 
 - [x] Persist attachment identity before delivery and reconcile exact-document physical settlement after host loss. Strictly validated optional attachment/save-intent metadata may extend the authoritative job/store schema. Reconcile Chrome events/search and active host work after wake. A browser-complete event arriving before the ID save is resolved through persisted start/save ordering and follow-up search, not lost. Detect lost worker/host/browser process as interrupted; do not replay a duplicate transfer. Cancel queued/processing/saving appropriately and release resources after consumers finish. Startup removes or records orphan temporary files safely under the download namespace.
+- [ ] Acceptance audit follow-up: check browser storage estimates before media processing, derive a conservative temporary/output budget from trustworthy available metadata, and preserve safe structured quota/write failures through worker/host/coordinator. Prove insufficient-estimate and native write-error cleanup, distinguish quota estimates from physical disk guarantees.
 - [x] Native fixture: actual Chrome download completes; saved file matches expected tracks/duration; popup closure and actual SW stop/wake do not duplicate/restart work; cancellation/error cleanup is real. Run focused tests/typecheck/full unit suite/build, self-review and commit. Keep current detection listeners synchronous.
 
 ## Task 5: Usable popup controls and live job state
@@ -171,7 +172,7 @@ const id = await chrome.downloads.download({
 
 **Consumes:** `DownloadJob` and reviewed background messages. **Produces:** per-source filename/output/quality/Download controls and live progress/cancel/retry/save outcomes with safe text rendering.
 
-- [ ] RED tests require a real two-quality selector and user action data:
+- [x] RED tests require a real two-quality selector and user action data:
 
 ```ts
 assert.deepEqual([...quality.options].map(o => o.textContent), ['1080p', '720p']);
@@ -181,10 +182,10 @@ assert.equal(started.variantId, quality.value);
 assert.equal(started.mediaId, item.id);
 ```
 
-- [ ] Show HLS source and MP4 output separately, preserve page-title fallback, and create safe editable filename defaults. Disable unsupported/protected/unconfirmed sources with a reason; no download action on a blob URL. Preserve all source details/copy controls as secondary evidence.
-- [ ] Preserve form edits/quality selection while storage updates arrive. Use stable request IDs to prevent double clicks starting duplicate jobs. Render queued/processing/finalizing/saving/complete/canceled/interrupted/failed honestly; unknown total size remains unknown. Progress bytes refer to media/output, not manifest bytes.
-- [ ] Wire cancel/retry and errors, subscribe to the separate job-storage updates, and keep active-tab context correct. A download for an older source remains visible as its own job even after detection navigation, rather than attaching it to an unrelated row.
-- [ ] Native actual action popup: select 720p, click Download, close/reopen popup, observe current job, cancel/retry and validate resulting saved file. Inspect screenshots/readability at existing width. Run focused tests/typecheck/full unit suite/build, self-review and commit.
+- [x] Show HLS source and MP4 output separately, preserve page-title fallback, and create safe editable filename defaults. Disable unsupported/protected/unconfirmed sources with a reason; no download action on a blob URL. Preserve all source details/copy controls as secondary evidence.
+- [x] Preserve form edits/quality selection while storage updates arrive. Use stable request IDs to prevent double clicks starting duplicate jobs. After authoritative safe terminal settlement, a new explicit Download with unchanged filename/quality forms a fresh intent; bind successful deduplicated acknowledgements to their exact returned job identity while preserving submitted IDs during uncertainty. Render queued/processing/finalizing/saving/complete/canceled/interrupted/failed honestly; unknown total size remains unknown. Progress bytes refer to media/output, not manifest bytes.
+- [x] Wire cancel/retry and errors, subscribe to the separate job-storage updates, and keep active-tab context correct. A download for an older source remains visible as its own job even after detection navigation, rather than attaching it to an unrelated row.
+- [x] Native actual action popup: select 720p, click Download, close/reopen popup, observe current job, cancel/retry and validate resulting saved file. Inspect screenshots/readability at existing width. Run focused tests/typecheck/full unit suite/build, self-review and commit.
 
 ## Task 6: Full Cinejoy output, failure controls and final review
 
