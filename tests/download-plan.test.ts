@@ -190,3 +190,16 @@ test('absolute-URI normalization remains inside the manifest byte budget', async
   assert.ok(new TextEncoder().encode(padded).length < 2 * 1024 * 1024);
   await assert.rejects(resolveDownloadPlan(selection, fetcher({ [source]: padded }), new AbortController().signal), /unsupported|limit/i);
 });
+
+test('URI normalization preserves quoted rendition metadata containing an apparent URI attribute', async () => {
+  const text = master.replace('NAME="English"', 'NAME="English,URI=label"');
+  const selection = selectDownload(fixture(text), request);
+  const plan = await resolveDownloadPlan(selection, fetcher({ [source]: text,
+    'https://media.test/720/playlist.jpg': media,
+    'https://media.test/audio/list.m3u8?sig=a%2Fb&x=2': media,
+  }), new AbortController().signal);
+  const normalized = plan.manifests.find(manifest => manifest.url === source)!.text;
+  assert.doesNotThrow(() => parseHls(normalized, source));
+  assert.ok(normalized.includes('#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="a",NAME="English,URI=label",DEFAULT=YES,URI="https://media.test/audio/list.m3u8?sig=a%2Fb&x=2"'));
+  assert.equal(plan.selection.audioUrl, 'https://media.test/audio/list.m3u8?sig=a%2Fb&x=2');
+});

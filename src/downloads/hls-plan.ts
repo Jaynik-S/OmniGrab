@@ -80,7 +80,9 @@ export function parseDownloadHls(text: string, requestedUrl: string, finalUrl: s
       const attrs = attributes(value);
       if (attrs.URI) {
         const url = resolveHttp(attrs.URI, finalUrl); totalReferences += url.length;
-        normalizedLine = `${tag}:${value.replace(/(^|,)\s*URI=(?:"[^"\r\n]*"|[^,\s"]+)/, (_match, comma: string) => `${comma}URI="${url}"`)}`;
+        // Consume whole quoted values so attribute-like text inside metadata stays literal.
+        normalizedLine = `${tag}:${value.replace(/([A-Z0-9-]+)=(?:"[^"\r\n]*"|[^,\s"]+)(,|$)/g,
+          (attribute, name: string, comma: string) => name === 'URI' ? `URI="${url}"${comma}` : attribute)}`;
       }
       if (tag !== '#EXT-X-MAP') result.master = true;
       if (tag === '#EXT-X-MEDIA' && attrs.TYPE === 'AUDIO') {
