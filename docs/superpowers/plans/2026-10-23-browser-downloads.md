@@ -95,19 +95,19 @@ assert.throws(() => selectDownload(snapshot, { ...request, instance: 999 }), /st
 
 ## Task 2: Licensed packet remux engine and seekable disk output
 
-**Files:** modify package/lock; create `src/downloads/remux.ts`, `opfs.ts`; tests `tests/download-remux.test.ts`, `download-opfs.test.ts`; isolated native engine harness if browser APIs require it. Add local dependency notices/source reference; no original binaries.
+**Files:** modify package/lock; create `src/downloads/remux.ts`, `opfs.ts`, focused `remux-source.ts`, `remux-validation.ts`; tests `tests/download-remux.test.ts`, `download-opfs.test.ts`; isolated native engine harness if browser APIs require it. Add local dependency notices/source reference; no original binaries.
 
 **Consumes:** Task 1 `DownloadPlan`, `ResourceFetch`, `SeekableOutput`, progress/result types. **Produces:** `remuxToMp4(plan, { fetcher, output, signal, onProgress }): Promise<RemuxResult>` and a browser OPFS writer implementing the offset-aware output contract.
 
-- [ ] Install the exact approved public dependency and inspect its shipped declarations/license:
+- [x] Install the exact approved public dependency and inspect its shipped declarations/license:
 
 ```powershell
 npm.cmd install --save-exact mediabunny@1.62.1
 ```
 
-- [ ] Generate original deterministic short H.264/AAC fixtures with installed FFmpeg in ignored scratch. Include multiplexed HLS fMP4, MPEG-TS, selected 720/1080 quality and separate audio. A first regression must fail because no remux function exists or no valid output is produced.
-- [ ] Implement selected-playlist `Input`/`HLS_FORMATS` and explicit `EncodedPacketSink` → encoded video/audio source copying. Validate actual codec/config and selected dimensions. Preserve decode order and bounded A/V interleaving, await writes and do not use conversion modes that silently discard/re-encode tracks. Pass a custom `fetchFn` and 32 MiB cache bound; retain MIME-disguised media by validated format bytes.
-- [ ] Use `Mp4OutputFormat({ fastStart: false })` plus offset-aware `StreamTarget`. Prove short writes and backward patches with a real seekable sink:
+- [x] Generate original deterministic short H.264/AAC fixtures with installed FFmpeg in ignored scratch. Include multiplexed HLS fMP4, MPEG-TS, selected 720/1080 quality and separate audio. A first regression must fail because no remux function exists or no valid output is produced.
+- [x] Implement selected-playlist `Input`/`HLS_FORMATS` and explicit `EncodedPacketSink` → encoded video/audio source copying. Validate actual codec/config and selected dimensions. Preserve decode order and bounded A/V interleaving, await writes and do not use conversion modes that silently discard/re-encode tracks. Pass a custom `fetchFn` and hard global 32 MiB cache bound; retain MIME-disguised media by validated format bytes. Shipped library positive cache targets are soft: disable its persistent caches and use one grant-clipped, bounded block/range cache in the engine adapter; verify actual request/byte amplification.
+- [x] Use `Mp4OutputFormat({ fastStart: false })` plus offset-aware `StreamTarget`. Prove short writes and backward patches with a real seekable sink:
 
 ```ts
 await writer.write(Uint8Array.of(1, 2, 3), 0);
@@ -117,9 +117,9 @@ await writer.close();
 assert.deepEqual(await readOutput(), Uint8Array.of(1, 9, 3));
 ```
 
-- [ ] Test abort, truncated source, wrong selected dimensions, missing audio, invalid ranges and output failure. All handles/input/output resources close on both success and failure; flush/close precedes final File access. Count progress bytes from actual input/output, not manifest length.
-- [ ] Process the ignored captured `.superpowers/cinejoy-init-and-first-segment.mp4` through the engine as supplemental compatibility evidence. It is an approximately eight-second sample, not the final episode; generate committed tests independently.
-- [ ] Validate actual produced output with installed ffprobe and a decoder pass. Prove native OPFS in Chromium, not only a Node-memory writer. Run focused tests/typecheck/full unit suite once, self-review and commit. Report license/version/integrity and actual engine interfaces.
+- [x] Test abort, truncated source, wrong selected dimensions, missing audio, invalid ranges and output failure. All handles/input/output resources close on both success and failure; flush/close precedes final File access. Count progress bytes from actual input/output, not manifest length.
+- [x] Process the ignored captured `.superpowers/cinejoy-init-and-first-segment.mp4` through the engine as supplemental compatibility evidence. It is an approximately eight-second sample, not the final episode; generate committed tests independently.
+- [x] Validate actual produced output with installed ffprobe and a decoder pass. Prove native OPFS in Chromium, not only a Node-memory writer. Run focused tests/typecheck/full unit suite once, self-review and commit. Report license/version/integrity and actual engine interfaces.
 
 ## Task 3: Bounded binary transport and page-context fallback
 
