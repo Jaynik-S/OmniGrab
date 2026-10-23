@@ -6,6 +6,7 @@ import { execFileSync } from 'node:child_process';
 import { fixtureFetch, fixturePlan, fixtures, MemoryOutput, mixedFixturePlan, scratch } from './download-fixtures.ts';
 import { remuxToMp4 } from '../src/downloads/remux.ts';
 import { RemuxSourceAdapter } from '../src/downloads/remux-source.ts';
+import type { RemuxProgress } from '../src/downloads/model.ts';
 
 before(fixtures);
 for (const [name, external] of [['mux720', false], ['ts720', false], ['video1080', true]] as const) {
@@ -53,6 +54,49 @@ test('already aborted jobs close output without fetching media', async () => {
   const controller = new AbortController(); controller.abort(); const output = new MemoryOutput();
   await assert.rejects(remuxToMp4(fixturePlan(), { fetcher: async () => { throw new Error('Must not fetch'); }, output, signal: controller.signal }), { name: 'AbortError' });
   assert.ok(output.closed);
+});
+
+test('reports actual input bytes while later-segment preflight is pending and abort closes the unwritten output', { timeout: 10_000 }, async () => {
+  const controller = new AbortController(); const output = new MemoryOutput();
+  const progress: RemuxProgress[] = [];
+  let received = 0; let beforeLaterSegment = 0; let transportAborted = false;
+  let reachedGate!: () => void;
+  const gate = new Promise<void>(resolve => { reachedGate = resolve; });
+  const pending = remuxToMp4(fixturePlan('ts720'), { output, signal: controller.signal,
+    onProgress: value => progress.push(value),
+    fetcher: async (input, init) => {
+      const response = await fixtureFetch(input, init);
+      if (!String(input).endsWith('/part1.ts')) {
+        received += Number(response.headers.get('Content-Length')); return response;
+      }
+      beforeLaterSegment = received;
+      const bytes = new Uint8Array(await response.arrayBuffer());
+      let sent = false;
+      return new Response(new ReadableStream<Uint8Array>({
+        start(stream) {
+          init!.signal!.addEventListener('abort', () => {
+            transportAborted = true; stream.error(init!.signal!.reason);
+          }, { once: true });
+        },
+        pull(stream) {
+          if (!sent) { sent = true; received += 64; stream.enqueue(bytes.subarray(0, 64)); }
+          else { reachedGate(); return new Promise(() => {}); }
+        },
+      }, { highWaterMark: 0 }), { status: response.status, headers: response.headers });
+    } });
+  const rejected = assert.rejects(pending, { name: 'AbortError' });
+  try {
+    await gate;
+    assert.ok(progress.at(-1), 'input progress must arrive before later-segment validation finishes');
+    assert.equal(progress.at(-1)!.inputBytes, received, 'report bytes actually consumed, including the incomplete response');
+    assert.ok(progress.at(-1)!.inputBytes > beforeLaterSegment);
+    assert.equal(progress.at(-1)!.phase, 'processing');
+    assert.equal(progress.at(-1)!.outputBytes, 0);
+    assert.equal(progress.at(-1)!.seconds, 0);
+    assert.equal(output.bytes.length, 0); assert.equal(output.closed, false);
+  } finally { controller.abort(); await rejected; }
+  assert.equal(transportAborted, true); assert.equal(output.closed, true);
+  assert.equal(output.flushed, false); assert.equal(output.bytes.length, 0);
 });
 
 test('abort during an awaited disk write stops processing and closes output', async () => {

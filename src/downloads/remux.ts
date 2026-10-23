@@ -20,7 +20,7 @@ export async function remuxToMp4(plan: DownloadPlan, options: RemuxOptions): Pro
   let inputBytes = 0;
   let outputBytes = 0;
   let seconds = 0;
-  const sources = new RemuxSourceAdapter(plan, fetcher, signal, bytes => { inputBytes += bytes; });
+  const sources = new RemuxSourceAdapter(plan, fetcher, signal, bytes => { inputBytes += bytes; progress('processing'); });
   const progress = (phase: RemuxProgress['phase']) => onProgress?.({ phase, inputBytes, outputBytes, seconds, duration: plan.duration });
   const check = () => sources.check();
   try {

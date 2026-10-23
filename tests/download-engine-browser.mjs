@@ -1,5 +1,6 @@
 // Isolated native engine proof. No extension state or real Chrome download claim.
 // Run: node --experimental-strip-types tests/download-engine-browser.mjs
+// Focused held-preflight progress + cancellation: add --progress-only (generated media only).
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
@@ -10,6 +11,7 @@ import { chromium } from 'playwright-core';
 import { fixtures, fixturePlan, mixedFixturePlan, scratch } from './download-fixtures.ts';
 
 const cacheOnly = process.argv.includes('--cache-only');
+const progressOnly = process.argv.includes('--progress-only');
 mkdirSync(scratch, { recursive: true });
 if (!cacheOnly) fixtures();
 const bundle = await build({ stdin: { contents: `
@@ -38,6 +40,24 @@ const bundle = await build({ stdin: { contents: `
       await patch.flush(); await patch.close();
       const patched = [...new Uint8Array(await (await (await directory.getFileHandle('patch.bin')).getFile()).arrayBuffer())];
       const output = await createOpfsOutput(directory, data.name + '.mp4');
+      if (data.progressCase) {
+        const controller = new AbortController();
+        self.onmessage = () => controller.abort();
+        try {
+          await remuxToMp4(data.plan, { output, fetcher: fetch, signal: controller.signal,
+            onProgress: progress => self.postMessage({ type: 'progress', progress }) });
+          throw new Error('Pending preflight unexpectedly completed');
+        } catch (error) {
+          if (error.name !== 'AbortError') throw error;
+          const file = await directory.getFileHandle(data.name + '.mp4');
+          const handle = await file.createSyncAccessHandle(); handle.close();
+          const closedSize = (await file.getFile()).size;
+          await directory.removeEntry(data.name + '.mp4');
+          const remaining = []; for await (const name of directory.keys()) remaining.push(name);
+          self.postMessage({ type: 'aborted', closedSize, removed: !remaining.includes(data.name + '.mp4') });
+        }
+        return;
+      }
       const phases = []; let fetched = 0; let written = 0; let patches = 0; let highWater = 0;
       const write = output.write.bind(output);
       output.write = async (bytes, position) => { if(position < highWater) patches++; await write(bytes, position); written += bytes.length; highWater = Math.max(highWater, position + bytes.length); };
@@ -64,6 +84,8 @@ const bundle = await build({ stdin: { contents: `
 
 const sample = resolve('.superpowers/cinejoy-init-and-first-segment.mp4');
 let requests = 0; let served = 0;
+let progressRun = false; let progressGate;
+let heldResponse; let preflightServed = 0;
 const server = createServer((request, response) => {
   const path = new URL(request.url, 'http://localhost').pathname;
   if (path === '/') { response.setHeader('Content-Type', 'text/html'); response.end('<!doctype html><title>Native engine proof</title>'); return; }
@@ -86,6 +108,10 @@ const server = createServer((request, response) => {
   requests++; served += end - start + 1;
   response.writeHead(match ? 206 : 200, { 'Content-Type': 'image/jpeg', 'Accept-Ranges': 'bytes',
     'Content-Length': end - start + 1, ...(match ? { 'Content-Range': `bytes ${start}-${end}/${bytes.length}` } : {}) });
+  if (progressRun && path === '/ts720/part1.ts') {
+    preflightServed = served - (end - start + 1) + 64;
+    heldResponse = response; response.write(bytes.subarray(start, start + 64)); progressGate(); return;
+  }
   response.end(bytes.subarray(start, end + 1));
 });
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
@@ -95,9 +121,46 @@ try {
   browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || 'C:/Users/jay03/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe', headless: true });
   console.log('Chromium', browser.version(), 'native dedicated-worker OPFS sync handles');
   const page = await browser.newPage(); await page.goto(origin);
-  const cases = cacheOnly ? [] : ['mux720', 'ts720', 'video1080'];
-  if (!cacheOnly && existsSync(sample)) cases.push('captured');
+  const cases = cacheOnly || progressOnly ? [] : ['mux720', 'ts720', 'video1080'];
+  if (!cacheOnly && !progressOnly && existsSync(sample)) cases.push('captured');
   const evidence = [];
+  if (progressOnly) {
+    progressRun = true;
+    const gate = new Promise(resolve => { progressGate = resolve; });
+    const plan = JSON.parse(JSON.stringify(fixturePlan('ts720')).replaceAll('https://fixture.test', origin));
+    await page.evaluate(plan => {
+      const worker = new Worker('/worker.js', { type: 'module' });
+      const state = { worker, progress: [] }; globalThis.progressControl = state;
+      state.result = new Promise((resolve, reject) => {
+        worker.onerror = error => reject(new Error(error.message));
+        worker.onmessage = ({ data }) => {
+          if (data.type === 'progress') state.progress.push(data.progress);
+          else if (data.error) reject(new Error(data.error));
+          else resolve(data);
+        };
+      });
+      worker.postMessage({ name: 'preflight-progress', plan, progressCase: true });
+    }, plan);
+    let snapshot; let cleanup;
+    try {
+      await gate;
+      await page.waitForFunction(bytes => globalThis.progressControl.progress.at(-1)?.inputBytes === bytes,
+        preflightServed, { timeout: 5000 });
+      snapshot = await page.evaluate(() => globalThis.progressControl.progress.at(-1));
+      assert.equal(snapshot.phase, 'processing'); assert.equal(snapshot.outputBytes, 0); assert.equal(snapshot.seconds, 0);
+      assert.ok(snapshot.inputBytes > 64, 'progress must include previous media plus the held later segment');
+    } finally {
+      cleanup = await page.evaluate(async () => {
+        const state = globalThis.progressControl; state.worker.postMessage({ abort: true });
+        try { return await state.result; } finally { state.worker.terminate(); }
+      });
+      heldResponse?.destroy();
+    }
+    assert.equal(cleanup.type, 'aborted'); assert.equal(cleanup.closedSize, 0); assert.equal(cleanup.removed, true);
+    evidence.push({ name: 'pending-preflight-input-progress', snapshot, preflightServed, cleanup,
+      requests, native: 'dedicated-worker fetch + OPFS sync handle reacquired and temporary file removed' });
+    console.log(JSON.stringify(evidence.at(-1)));
+  }
   for (const name of cases) {
     requests = 0; served = 0;
     let plan;
@@ -135,7 +198,7 @@ try {
         sampleRate: t.sample_rate, frames: t.nb_frames, duration: t.duration })) }, decode: 'ffmpeg -xerror exit 0' });
     console.log(JSON.stringify(evidence.at(-1)));
   }
-  for (const kind of cacheOnly ? [] : ['video', 'audio', 'ts-video']) {
+  for (const kind of cacheOnly || progressOnly ? [] : ['video', 'audio', 'ts-video']) {
     requests = 0; served = 0;
     const name = 'reject-' + kind;
     const plan = JSON.parse(JSON.stringify(mixedFixturePlan(kind)).replaceAll('https://fixture.test', origin));
@@ -150,6 +213,7 @@ try {
     evidence.push({ name, error: result.error.split('\n')[0], closedSize: result.closedSize, requests, served });
     console.log(JSON.stringify(evidence.at(-1)));
   }
+  if (!progressOnly) {
   requests = 0; served = 0;
   const url = origin + '/cache-object.bin';
   const cachePlan = { selection: { tabId: 1, epoch: 1, mediaId: 'cache', instance: 1, pageUrl: origin,
@@ -166,7 +230,8 @@ try {
   assert.equal(requests, 2); assert.equal(cacheResult.received, 68157440);
   evidence.push({ name: 'range-ignoring-eviction', ...cacheResult, requests, served });
   console.log(JSON.stringify(evidence.at(-1)));
-  writeFileSync(resolve(scratch, cacheOnly ? 'native-cache-evidence.json' : 'native-evidence.json'), JSON.stringify(evidence, null, 2));
+  }
+  writeFileSync(resolve(scratch, progressOnly ? 'native-progress-evidence.json' : cacheOnly ? 'native-cache-evidence.json' : 'native-evidence.json'), JSON.stringify(evidence, null, 2));
 } finally {
   if (browser) await browser.close();
   await new Promise(resolve => server.close(resolve));

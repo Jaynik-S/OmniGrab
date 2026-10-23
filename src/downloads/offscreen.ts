@@ -5,14 +5,16 @@ import type { HostStatus } from './host-protocol.ts';
 import type { DownloadJob } from './model.ts';
 import { watchWorker } from './worker-watchdog.ts';
 import { checkStorageBudget, safeStorageCode } from './storage.ts';
+import { createChangeNotifier } from './change-notifier.ts';
 interface Session {
  job:DownloadJob;status:HostStatus;transport:ReturnType<typeof createDownloadTransport>;controller:AbortController;
  ready:Promise<void>;accept:()=>void;worker?:Worker;work?:Promise<void>;stopped?:Promise<void>;
  requests:Map<number,AbortController>;
+ changed:ReturnType<typeof createChangeNotifier>;
 }
 let session:Session|undefined;
 const directory=async()=> (await navigator.storage.getDirectory()).getDirectoryHandle(OPFS_NAMESPACE,{create:true});
-const notify=()=>{void chrome.runtime.sendMessage({target:'download-coordinator',action:'changed'}).catch(()=>{});};
+const notify=()=>chrome.runtime.sendMessage({target:'download-coordinator',action:'changed'});
 chrome.runtime.onConnect.addListener(port=>{
  const s=session;if(!s){port.disconnect();return;}
  void s.transport.acceptPort(port).then(accepted=>{if(accepted)s.accept();else port.disconnect();},()=>{port.disconnect();s.controller.abort();});
@@ -28,7 +30,7 @@ async function workerRun(s:Session,plan:Awaited<ReturnType<typeof resolveDownloa
   worker.onerror=()=>finish(Error('download-worker-lost'));
   worker.onmessage=({data})=>{
    monitor.beat();if(data.type==='heartbeat')return;
-   if(data.type==='progress'){s.status.progress=data.progress;return;}
+   if(data.type==='progress'){const phaseChanged=s.status.progress?.phase!==data.progress.phase;s.status.progress=data.progress;s.changed.notify(phaseChanged);return;}
    if(data.type==='complete'){if(!Number.isSafeInteger(data.result?.bytes)||data.result.bytes<=0){finish(Error('download-output-invalid'));return;}s.status.progress={phase:'finalizing',inputBytes:s.status.progress?.inputBytes??0,outputBytes:data.result.bytes,duration:data.result.duration};finish();return;}
    if(data.type==='failed'){finish(Error(safeStorageCode(data.error) ?? 'download-remux-failed'));return;}
    if(data.type==='abort-fetch'){s.requests.get(data.id)?.abort();return;}
@@ -53,14 +55,14 @@ async function run(s:Session) {
   s.controller.signal.throwIfAborted();
   const plan=await resolveDownloadPlan(s.job.selection,(input,init)=>{s.transport.grantManifests([input instanceof Request?input.url:String(input)]);return s.transport.fetch(input,init);},s.controller.signal);
   await checkStorageBudget(plan.estimatedMediaBytes,()=>navigator.storage.estimate());s.controller.signal.throwIfAborted();
-  s.transport.grantResources(plan.resources);s.status.phase='processing';notify();
+  s.transport.grantResources(plan.resources);s.status.phase='processing';s.changed.notify(true);
   await workerRun(s,plan);s.controller.signal.throwIfAborted();
   // Engine fulfillment guarantees flush + exclusive handle close before getFile().
   const file=await (await (await directory()).getFileHandle(s.job.tempFile!)).getFile();
   if(file.size!==s.status.progress?.outputBytes||file.size===0)throw Error('download-output-invalid');
   s.status.objectUrl=URL.createObjectURL(file);s.status.tempFile=s.job.tempFile;s.status.phase='ready-to-save';
  }catch(error){s.status.phase='failed';s.status.error=(error instanceof Error&&safeStorageCode(error.message))||(error instanceof Error&&error.message==='download-worker-lost'?'download-worker-lost':'download-processing-failed');}
- finally{notify();}
+ finally{s.changed.notify(true);}
 }
 async function stop(s:Session) {
  if(s.stopped)return s.stopped;
@@ -74,14 +76,14 @@ async function command(m:Record<string,unknown>) {
    try {const result=await Promise.race([chrome.runtime.sendMessage({target:'download-coordinator',action:'validate',selection:job.selection}),new Promise<never>((_,reject)=>setTimeout(()=>reject(Error('validation timeout')),5000))]);return result?.ok===true&&result.valid===true;}catch{return false;}
   }});
   let accept!:()=>void;const ready=new Promise<void>(resolve=>{accept=resolve;});
-  session={job,status:{jobId:job.id,phase:'resolving',started:false},transport,controller:new AbortController(),ready,accept,requests:new Map()};return transport.expectAttachment(job.attachment.capability);
+  session={job,status:{jobId:job.id,phase:'resolving',started:false},transport,controller:new AbortController(),ready,accept,requests:new Map(),changed:createChangeNotifier(notify)};return transport.expectAttachment(job.attachment.capability);
  }
  if(m.action==='sweep'){
   const retain=new Set(m.retained as string[]);if(session?.job.tempFile)retain.add(session.job.tempFile);
   const dir=await directory();for await(const [name] of (dir as unknown as {entries():AsyncIterableIterator<[string,FileSystemHandle]>}).entries())if(/^[a-zA-Z0-9_-]+\.mp4$/.test(name)&&!retain.has(name))await dir.removeEntry(name);return;
  }
  if(m.action==='release'){
-  const job=m.job as DownloadJob;if(session?.job.id===job.id){await stop(session);await session.transport.dispose();if(session.status.objectUrl)URL.revokeObjectURL(session.status.objectUrl);session=undefined;}
+  const job=m.job as DownloadJob;if(session?.job.id===job.id){await stop(session);session.changed.dispose();await session.transport.dispose();if(session.status.objectUrl)URL.revokeObjectURL(session.status.objectUrl);session=undefined;}
   if(job.tempFile){try{await (await directory()).removeEntry(job.tempFile);}catch(e){if(!(e instanceof DOMException&&e.name==='NotFoundError'))throw e;}}return;
  }
  const s=session;if(!s||s.job.id!==m.jobId)return;
