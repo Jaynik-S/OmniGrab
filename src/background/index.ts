@@ -1,7 +1,8 @@
 import type { Observation, ProbeJob, Snapshot } from '../core/model.ts';
-import { bindDocument, ingest, navigate, removeTab } from '../core/reducer.ts';
+import { bindDocument, ingest, navigate, removeTab, retryManifests } from '../core/reducer.ts';
 import { DetectionStore } from './store.ts';
 import { ManifestProbe } from './manifest-probe.ts';
+import { createPageManifestFetcher } from './page-manifest.ts';
 import { RequestTracker } from './network.ts';
 import { DocumentLifecycle } from './lifecycle.ts';
 import type { LifecycleToken } from './lifecycle.ts';
@@ -12,7 +13,7 @@ const store = new DetectionStore({
   load: async () => (await chrome.storage.session.get(KEY))[KEY] as Snapshot | undefined,
   save: async snapshot => { await chrome.storage.session.set({ [KEY]: snapshot }); },
 });
-const probes = new ManifestProbe(store);
+const probes = new ManifestProbe(store, undefined, { contextFetcher: createPageManifestFetcher(store) });
 const requests = new RequestTracker();
 const lifecycle = new DocumentLifecycle();
 const requestTokens = new Map<string, LifecycleToken>();
@@ -145,6 +146,8 @@ async function message(raw: unknown, sender: chrome.runtime.MessageSender) {
   const tabId = Number(m.tabId);
   if (m.type === 'snapshot') { const state = await store.read(); return { tab: state.tabs[tabId], revision: state.revision, error: store.error }; }
   if (m.type === 'rescan') {
+    await store.dispatch(s => retryManifests(s, tabId));
+    void probes.recover().catch(report);
     await chrome.tabs.sendMessage(tabId, { type: 'rescan' });
     return { ok: true };
   }

@@ -62,6 +62,8 @@ export interface MediaItem {
   id: string;
   /** Creation/document-membership revision; fences jobs across same-URL frame replacements. */
   instance?: number;
+  /** Bounded automatic retry budget; explicit user rescans can start a new attempt. */
+  probeAttempts?: number;
   url: string;
   type: MediaKind;
   status: DetectionStatus;
@@ -85,13 +87,14 @@ export interface MediaItem {
   segmentPatterns?: SegmentPattern[];
   protected?: boolean;
   live?: boolean;
-  /** Only observed HLS children, including grouped in-flight jobs; never all renditions. */
+  /** Observed HLS children plus at most one preferred rendition for metadata enrichment. */
   childManifests?: ChildManifest[];
 }
 
 export interface ChildManifest {
   url: string;
   instance?: number;
+  probeAttempts?: number;
   status: 'observed' | 'probing' | 'confirmed' | 'unresolved';
   frameIds: number[];
   reason?: string;
@@ -123,5 +126,9 @@ export interface ProbeJob {
   url: string;
   kind: 'hls' | 'dash';
   instance?: number;
+  /** Owning master distinguishes shared rendition work in separate source groups. */
+  ownerId?: string;
+  /** Ephemeral shared transport deadline; derived at run time, never a durable job field. */
+  expiresAt?: number;
   attempts?: number;
 }

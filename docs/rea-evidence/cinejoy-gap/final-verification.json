@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-23",
+  "authority": "Analyst verification index; linked native/REA receipts retain separate authorities",
+  "sourceBaseRevision": "0d78cd815e1a64690e442b703ac473c1082430cb",
+  "sourceState": "Uncommitted detection repair over the named base at test time; artifact hashes identify the tested build",
+  "buildFiles": {
+    "manifest.json": "f251c7f0e66a883d451d2aaa7dfc24fe9178969acb367943e7b4e7126538f410",
+    "background.js": "537864b34bd1cc120752faa22019d9c81b54a75688c1737a84cb872e37ae40df",
+    "content.js": "03d3f81fe719e90d3dfc8e62b37d2a0591592758d04c0c2ac1bf0ebef4a5c53b",
+    "popup/index.js": "7ecfc4f3b55c560ad927e348acc0c80d815381cee5c3e749c2f9929bf5efa48c",
+    "popup/index.html": "0b4b915030a6524adfd88f5d46a3008c0c3e30b438f11ce8806888ff7ea124fd",
+    "popup/style.css": "68fec731fb53a9c2506ad231791652fbb73ed8f8d828b0b115b3bb042a34c299"
+  },
+  "gates": {
+    "check": {
+      "command": "npm.cmd run check",
+      "exitCode": 0,
+      "testsPassed": 158,
+      "testsFailed": 0,
+      "typecheck": true,
+      "sixFileAndLicenseAudit": true
+    },
+    "collector": {
+      "command": "node tests/content-browser.mjs",
+      "exitCode": 0,
+      "passed": 3
+    },
+    "context": {
+      "receipt": "native-context/run-2026-10-23T08-45-17-418Z-11396/results.json",
+      "exitCode": 0,
+      "passed": 3,
+      "ownedBrowserClosed": true
+    },
+    "neighbors": {
+      "receipt": "final-neighbors-popup-contract/results.json",
+      "exitCode": 0,
+      "passed": 7,
+      "originalPassed": 7,
+      "lifecycle": "pass",
+      "livePopupAfterResponseMs": 254.525634765625,
+      "abortedFrame": "blocked",
+      "browserEndpointClosed": true
+    },
+    "realPage": {
+      "receipt": "final-standalone-state.json",
+      "popup": "final-standalone-popup.json",
+      "restart": "final-standalone-restart.json",
+      "rea": "final-standalone-rea.json",
+      "onlyOurExtension": true,
+      "hlsConfirmed": 1,
+      "duration": 3189.5616350000337,
+      "qualities": [
+        1080,
+        720
+      ],
+      "standaloneFragments": 0,
+      "browserEndpointClosed": true
+    }
+  },
+  "limitations": [
+    "Detection only; no downloadable MP4 is produced",
+    "Finite site/fixture coverage does not establish Video DownloadHelper parity",
+    "REA event completeness is explicitly incomplete; native supplement is a separate authority",
+    "Native aborted-frame setup remains blocked; not counted as passed"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "authority": "Supplemental Playwright/CDP normal page fetch versus extension-worker fetch; not REA Evidence",
+  "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+  "worker": {
+    "status": 404,
+    "body": "not found/removed"
+  },
+  "page": {
+    "credentials": "same-origin",
+    "status": 200,
+    "body": "#EXTM3U\n#EXT-X-VERSION:7\n#EXT-X-STREAM-INF:BANDWIDTH=5022000,RESOLUTION=1920x1080,NAME=\"1080p\"\n1080p/playlist.jpg\n#EXT-X-STREAM-INF:BANDWIDTH=2543000,RESOLUTION=1280x720,NAME=\"720p\"\n720p/playlist.jpg\n"
+  },
+  "pageWithCredentialsInclude": {
+    "result": "Failed to fetch"
+  },
+  "child": {
+    "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+    "status": 200,
+    "bytes": 28301,
+    "sha256": "8cfa888cfe807f892606aa254fa00a07ffad844dfd431d5d9b7f702e0f990eca",
+    "segments": 797,
+    "duration": 3189.5616350000337,
+    "endList": true,
+    "keyDeclaration": false
+  },
+  "limitations": [
+    "Request-context comparison does not isolate an individual required header.",
+    "No media segments or key bytes were retrieved by these probes.",
+    "Page CORS and extension-worker requests have different origins; no DNR/header rewriting used by ours."
+  ]
+}

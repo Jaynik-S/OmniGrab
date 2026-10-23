@@ -1,0 +1,30 @@
+{
+  "authority": "Supplemental real worker stop/wake in ours-only temporary Chromium",
+  "stopped": true,
+  "sentinelCleared": true,
+  "before": [
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+      "firstSeen": 1792745140957,
+      "duration": 3189.5616350000337,
+      "status": "confirmed",
+      "qualities": [
+        1080,
+        720
+      ]
+    }
+  ],
+  "after": [
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+      "firstSeen": 1792745140957,
+      "duration": 3189.5616350000337,
+      "status": "confirmed",
+      "qualities": [
+        1080,
+        720
+      ]
+    }
+  ],
+  "matched": true
+}

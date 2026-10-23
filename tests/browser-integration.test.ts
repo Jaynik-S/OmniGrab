@@ -59,10 +59,30 @@ async function background() {
     network.onResponseStarted.fire({ requestId, tabId, frameId, documentId, url: 'https://cdn.test/movie.mp4', statusCode: 200,
       responseHeaders: [{ name: 'Content-Type', value: 'video/mp4' }] });
   }
-  return { navigation, network, frames, onRemoved, commit, observe, request, respond, snapshot,
+  return { navigation, network, frames, onRemoved, commit, observe, request, respond, snapshot, message,
     setGetFrame: (next: typeof getFrame) => { getFrame = next; },
     setSave: (next: typeof save) => { save = next; } };
 }
+
+test('an explicit popup rescan retries failed manifest work instead of repeating only DOM inventory', async t => {
+  let available = false;
+  let calls = 0;
+  t.mock.method(globalThis, 'fetch', async () => {
+    calls++;
+    return available ? new Response('#EXTM3U\n#EXTINF:3189.56,\nvideo.jpg\n#EXT-X-ENDLIST\n') : new Response('', { status: 404 });
+  });
+  const bg = await background(); bg.commit();
+  const url = 'https://cdn.test/retry.m3u8';
+  await bg.observe(url);
+  for (let i = 0; i < 20 && (await bg.snapshot())?.media[url]?.status !== 'unresolved'; i++) await settle();
+  assert.equal((await bg.snapshot())?.media[url]?.status, 'unresolved');
+  available = true;
+  await bg.message({ type: 'rescan', tabId: 1 }, { url: 'chrome-extension://fixture/popup.html' });
+  for (let i = 0; i < 20 && (await bg.snapshot())?.media[url]?.status !== 'confirmed'; i++) await settle();
+  assert.equal((await bg.snapshot())?.media[url]?.status, 'confirmed');
+  assert.equal((await bg.snapshot())?.media[url]?.duration, 3189.56);
+  assert.equal(calls, 2);
+});
 
 test('top navigation rejects old descendant requests started before its commit', async () => {
   const bg = await background();

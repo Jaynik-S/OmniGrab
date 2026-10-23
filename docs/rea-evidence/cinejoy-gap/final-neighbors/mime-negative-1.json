@@ -1,0 +1,225 @@
+{
+  "id": "mime-negative",
+  "trial": 1,
+  "category": "misleading .mp4 with HTML MIME",
+  "url": "http://127.0.0.1:9293/mime-negative",
+  "expected": [],
+  "tabId": 1648142345,
+  "startedAt": "2026-10-23T08:47:35.281Z",
+  "actions": "Navigate only",
+  "errors": [],
+  "responses": [],
+  "changes": [
+    {
+      "wallMs": 1792745255351.0186,
+      "ours": {
+        "browserWallMs": 1792745255316,
+        "revision": 137,
+        "tabId": 1648142345,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792745255343,
+        "tabId": 1648142345,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792745255502.0598,
+      "ours": {
+        "browserWallMs": 1792745255503,
+        "revision": 140,
+        "tabId": 1648142345,
+        "tabUrl": "http://127.0.0.1:9293/mime-negative",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:9294/misleading.mp4",
+            "type": "direct",
+            "status": "observed",
+            "firstSeen": 1792745255421,
+            "lastSeen": 1792745255421,
+            "methods": [
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "BD7D293200634BC7ECEEDDC0CBD2277A"
+            ],
+            "elementIds": [],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792745255503,
+        "tabId": 1648142345,
+        "items": []
+      }
+    },
+    {
+      "wallMs": 1792745255717.7305,
+      "ours": {
+        "browserWallMs": 1792745255718,
+        "revision": 141,
+        "tabId": 1648142345,
+        "tabUrl": "http://127.0.0.1:9293/mime-negative",
+        "epoch": 2,
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:9294/misleading.mp4",
+            "type": "direct",
+            "status": "observed",
+            "firstSeen": 1792745255421,
+            "lastSeen": 1792745255522,
+            "methods": [
+              "resource",
+              "dom"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "BD7D293200634BC7ECEEDDC0CBD2277A"
+            ],
+            "elementIds": [
+              "0:media-1"
+            ],
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": []
+          }
+        ]
+      },
+      "original": {
+        "browserWallMs": 1792745255718,
+        "tabId": 1648142345,
+        "items": []
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792745255280.6836,
+  "documentStatus": 200,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792745262321,
+      "revision": 141,
+      "tabId": 1648142345,
+      "tabUrl": "http://127.0.0.1:9293/mime-negative",
+      "epoch": 2,
+      "errors": [],
+      "items": [
+        {
+          "url": "http://127.0.0.1:9294/misleading.mp4",
+          "type": "direct",
+          "status": "observed",
+          "firstSeen": 1792745255421,
+          "lastSeen": 1792745255522,
+          "methods": [
+            "resource",
+            "dom"
+          ],
+          "frameIds": [
+            0
+          ],
+          "documentIds": [
+            "BD7D293200634BC7ECEEDDC0CBD2277A"
+          ],
+          "elementIds": [
+            "0:media-1"
+          ],
+          "variants": [],
+          "childUrls": [],
+          "segmentUrls": []
+        }
+      ]
+    },
+    "original": {
+      "browserWallMs": 1792745262321,
+      "tabId": 1648142345,
+      "items": []
+    }
+  },
+  "dom": [
+    {
+      "frameUrl": "http://127.0.0.1:9293/mime-negative",
+      "media": [
+        {
+          "currentSrc": "http://127.0.0.1:9294/misleading.mp4",
+          "src": "http://127.0.0.1:9294/misleading.mp4",
+          "readyState": 0,
+          "width": 0,
+          "height": 0,
+          "paused": true,
+          "errorCode": 4
+        }
+      ]
+    }
+  ],
+  "popup": {
+    "openedWallMs": 1792745262002.8916,
+    "observedWallMs": 1792745262448.108,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nNegative MIME evidence\n\nhttp://127.0.0.1:9293/mime-negative\n\nRevision 141 · Tab 1648142345 · Generation 2\n\nNo confirmed remote source yet. Inspect the evidence below or rescan after playback starts.\n\nLocal and unconfirmed evidence (1)\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 1,
+    "context": "Negative MIME evidence\n\nhttp://127.0.0.1:9293/mime-negative\n\nRevision 141 · Tab 1648142345 · Generation 2",
+    "status": "",
+    "viewport": {
+      "width": 460,
+      "height": 402,
+      "devicePixelRatio": 1,
+      "bodyWidth": 460
+    },
+    "expectedContextVisible": true,
+    "artifact": "mime-negative-1-popup.png",
+    "kind": "Actual chrome.action popup"
+  },
+  "polling": {
+    "samples": 34,
+    "requestedMs": 200,
+    "minIntervalMs": 199.872802734375,
+    "maxIntervalMs": 349.994873046875,
+    "deliberatePauses": []
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": null,
+    "firstConfirmedAfterNavigationMs": null,
+    "originalFirstAfterNavigationMs": null,
+    "firstExpectedResponseAfterNavigationMs": null,
+    "candidateAfterExpectedResponseMs": null,
+    "confirmedAfterExpectedResponseMs": null,
+    "originalAfterExpectedResponseMs": null,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 1,
+      "confirmedGroups": 0,
+      "blobContexts": 0,
+      "expectedMatched": 0,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    },
+    "original": {
+      "groups": 0,
+      "confirmedGroups": 0,
+      "blobContexts": 0,
+      "expectedMatched": 0,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "pass",
+  "originalStatus": "pass",
+  "endedAt": "2026-10-23T08:47:42.494Z"
+}

@@ -1,0 +1,2781 @@
+{
+  "startedAt": "2026-10-23T08:36:52.495Z",
+  "authority": "Native Chromium with only the local unpacked extension; independent HTTP server receipts and read-only extension storage observations. Not REA Evidence.",
+  "playbackClaim": false,
+  "fixtureScope": "Original local structural HLS manifests with an image/jpeg MIME type and image-suffixed renditions. No media bytes, protection keys, third-party requests, or proprietary source.",
+  "timingDefinition": "performance.timeOrigin + performance.now() in this Node process for server headers/body/response-close events and harness actions. Deadline measurement starts when the server receives the matching primary GET, with a 500 ms native scheduling allowance.",
+  "clockMapping": {
+    "hostWallMs": 1792744612495,
+    "hostMonotonicMs": 534.4882,
+    "hostTimeOriginMs": 1792744611960.152
+  },
+  "cases": [
+    {
+      "id": "context",
+      "startedAtMs": 1792744613132.3816,
+      "status": "pass",
+      "states": [
+        {
+          "observedAtMs": 1792744613345.0996,
+          "label": "one enriched confirmed HLS source",
+          "state": {
+            "observedBrowserWallMs": 1792744613328,
+            "revision": 4,
+            "tabId": 1993988670,
+            "epoch": 1,
+            "tabUrl": "http://127.0.0.1:7335/context",
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/context/master.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "54690D8337471D96BCD47F220B3E580C"
+                ],
+                "firstSeen": 1792744613309,
+                "lastSeen": 1792744613309,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              }
+            ]
+          }
+        },
+        {
+          "observedAtMs": 1792744613849.4736,
+          "label": "one enriched confirmed HLS source",
+          "state": {
+            "observedBrowserWallMs": 1792744613835,
+            "revision": 6,
+            "tabId": 1993988670,
+            "epoch": 1,
+            "tabUrl": "http://127.0.0.1:7335/context",
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/context/master.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "54690D8337471D96BCD47F220B3E580C"
+                ],
+                "firstSeen": 1792744613309,
+                "lastSeen": 1792744613718,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              }
+            ]
+          }
+        },
+        {
+          "observedAtMs": 1792744614095.1533,
+          "label": "one enriched confirmed HLS source",
+          "state": {
+            "observedBrowserWallMs": 1792744614093,
+            "revision": 8,
+            "tabId": 1993988670,
+            "epoch": 1,
+            "tabUrl": "http://127.0.0.1:7335/context",
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/context/master.m3u8",
+                "type": "hls",
+                "status": "confirmed",
+                "methods": [
+                  "network",
+                  "resource",
+                  "manifest"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "54690D8337471D96BCD47F220B3E580C"
+                ],
+                "firstSeen": 1792744613309,
+                "lastSeen": 1792744613718,
+                "probeAttempts": 1,
+                "variants": [
+                  {
+                    "bandwidth": 3500000,
+                    "codecs": "avc1.640028,mp4a.40.2",
+                    "height": 1080,
+                    "id": "hls:0",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:7336/context/1080.jpg",
+                    "width": 1920
+                  },
+                  {
+                    "bandwidth": 1800000,
+                    "codecs": "avc1.64001f,mp4a.40.2",
+                    "height": 720,
+                    "id": "hls:1",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:7336/context/720.jpg",
+                    "width": 1280
+                  }
+                ],
+                "childUrls": [
+                  "http://127.0.0.1:7336/context/1080.jpg",
+                  "http://127.0.0.1:7336/context/720.jpg"
+                ],
+                "childManifests": [
+                  {
+                    "frameIds": [
+                      0
+                    ],
+                    "instance": 7,
+                    "probeAttempts": 1,
+                    "status": "probing",
+                    "url": "http://127.0.0.1:7336/context/1080.jpg"
+                  }
+                ],
+                "segmentUrls": []
+              }
+            ]
+          }
+        },
+        {
+          "observedAtMs": 1792744614212.443,
+          "label": "one enriched confirmed HLS source",
+          "state": {
+            "observedBrowserWallMs": 1792744614207,
+            "revision": 10,
+            "tabId": 1993988670,
+            "epoch": 1,
+            "tabUrl": "http://127.0.0.1:7335/context",
+            "errors": [
+              "child-response:network-mime:image/jpeg:http://127.0.0.1:7336/context/1080.jpg"
+            ],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/context/master.m3u8",
+                "type": "hls",
+                "status": "confirmed",
+                "methods": [
+                  "network",
+                  "resource",
+                  "manifest"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "54690D8337471D96BCD47F220B3E580C"
+                ],
+                "firstSeen": 1792744613309,
+                "lastSeen": 1792744614095,
+                "probeAttempts": 1,
+                "duration": 3189.56,
+                "variants": [
+                  {
+                    "bandwidth": 3500000,
+                    "codecs": "avc1.640028,mp4a.40.2",
+                    "height": 1080,
+                    "id": "hls:0",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:7336/context/1080.jpg",
+                    "width": 1920
+                  },
+                  {
+                    "bandwidth": 1800000,
+                    "codecs": "avc1.64001f,mp4a.40.2",
+                    "height": 720,
+                    "id": "hls:1",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:7336/context/720.jpg",
+                    "width": 1280
+                  }
+                ],
+                "childUrls": [
+                  "http://127.0.0.1:7336/context/1080.jpg",
+                  "http://127.0.0.1:7336/context/720.jpg"
+                ],
+                "childManifests": [
+                  {
+                    "frameIds": [
+                      0
+                    ],
+                    "instance": 7,
+                    "probeAttempts": 1,
+                    "status": "confirmed",
+                    "url": "http://127.0.0.1:7336/context/1080.jpg"
+                  }
+                ],
+                "segmentUrls": [
+                  "http://127.0.0.1:7336/context/video-001.ts"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "tabId": 1993988670,
+      "pageUrl": "http://127.0.0.1:7335/context",
+      "observations": [
+        {
+          "url": "http://127.0.0.1:7336/context/master.m3u8",
+          "status": 200
+        }
+      ],
+      "popup": {
+        "text": "DETECTION LAB\n\nMedia evidence\nRescan\nActive tab\n\nhttp://127.0.0.1:7335/context\n\nRevision 10 · Tab 1993988670 · Generation 1\n\nConfirmed media\nMedia source\nHLS · confirmed\n\nSource protocol: HLS\n\n53:10 · VOD\n\nQualities: 1080p · 720p\n\nSource details\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+        "primary": [
+          "Media source\nHLS · confirmed\n\nSource protocol: HLS\n\n53:10 · VOD\n\nQualities: 1080p · 720p\n\nSource details"
+        ],
+        "evidenceOpen": null,
+        "status": "",
+        "rescanDisabled": false
+      },
+      "popupScreenshot": "context-confirmed.png",
+      "assessment": {
+        "worker404": 2,
+        "pageContextRequests": 2,
+        "noUnusedRendition": true,
+        "noSegmentsOrKeys": true
+      },
+      "final": {
+        "observedBrowserWallMs": 1792744614207,
+        "revision": 10,
+        "tabId": 1993988670,
+        "epoch": 1,
+        "tabUrl": "http://127.0.0.1:7335/context",
+        "errors": [
+          "child-response:network-mime:image/jpeg:http://127.0.0.1:7336/context/1080.jpg"
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:7336/context/master.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "methods": [
+              "network",
+              "resource",
+              "manifest"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "54690D8337471D96BCD47F220B3E580C"
+            ],
+            "firstSeen": 1792744613309,
+            "lastSeen": 1792744614095,
+            "probeAttempts": 1,
+            "duration": 3189.56,
+            "variants": [
+              {
+                "bandwidth": 3500000,
+                "codecs": "avc1.640028,mp4a.40.2",
+                "height": 1080,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "http://127.0.0.1:7336/context/1080.jpg",
+                "width": 1920
+              },
+              {
+                "bandwidth": 1800000,
+                "codecs": "avc1.64001f,mp4a.40.2",
+                "height": 720,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "http://127.0.0.1:7336/context/720.jpg",
+                "width": 1280
+              }
+            ],
+            "childUrls": [
+              "http://127.0.0.1:7336/context/1080.jpg",
+              "http://127.0.0.1:7336/context/720.jpg"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 7,
+                "probeAttempts": 1,
+                "status": "confirmed",
+                "url": "http://127.0.0.1:7336/context/1080.jpg"
+              }
+            ],
+            "segmentUrls": [
+              "http://127.0.0.1:7336/context/video-001.ts"
+            ]
+          }
+        ]
+      },
+      "endedAtMs": 1792744615005.234,
+      "serverRequests": [
+        {
+          "sequence": 1,
+          "scenario": "context",
+          "method": "POST",
+          "pathname": "/context/master.m3u8",
+          "url": "http://127.0.0.1:7336/context/master.m3u8",
+          "startedAtMs": 1792744613304.1619,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-observation",
+          "status": 200,
+          "headersSentAtMs": 1792744613305.2566,
+          "finishedAtMs": 1792744613307.208,
+          "closedAtMs": 1792744613307.8054,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 2,
+          "scenario": "context",
+          "method": "GET",
+          "pathname": "/context/master.m3u8",
+          "url": "http://127.0.0.1:7336/context/master.m3u8",
+          "startedAtMs": 1792744613330.4885,
+          "origin": null,
+          "referer": null,
+          "fetchSite": "none",
+          "classification": "GET-without-page-referer",
+          "status": 404,
+          "headersSentAtMs": 1792744613330.82,
+          "finishedAtMs": 1792744613331.1345,
+          "closedAtMs": 1792744613331.285,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 3,
+          "scenario": "context",
+          "method": "GET",
+          "pathname": "/context/master.m3u8",
+          "url": "http://127.0.0.1:7336/context/master.m3u8",
+          "startedAtMs": 1792744613688.1296,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-context-GET",
+          "status": 200,
+          "headersSentAtMs": 1792744613690.6216,
+          "finishedAtMs": 1792744613691.0823,
+          "closedAtMs": 1792744613691.1213,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 4,
+          "scenario": "context",
+          "method": "GET",
+          "pathname": "/context/1080.jpg",
+          "url": "http://127.0.0.1:7336/context/1080.jpg",
+          "startedAtMs": 1792744613933.31,
+          "origin": null,
+          "referer": null,
+          "fetchSite": "none",
+          "classification": "GET-without-page-referer",
+          "status": 404,
+          "headersSentAtMs": 1792744613933.633,
+          "finishedAtMs": 1792744613934.3938,
+          "closedAtMs": 1792744613934.441,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 5,
+          "scenario": "context",
+          "method": "GET",
+          "pathname": "/context/1080.jpg",
+          "url": "http://127.0.0.1:7336/context/1080.jpg",
+          "startedAtMs": 1792744614083.362,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-context-GET",
+          "status": 200,
+          "headersSentAtMs": 1792744614083.768,
+          "finishedAtMs": 1792744614084.0496,
+          "closedAtMs": 1792744614084.1345,
+          "closedBeforeFinish": false
+        }
+      ]
+    },
+    {
+      "id": "recovery",
+      "startedAtMs": 1792744615006.0178,
+      "status": "pass",
+      "states": [
+        {
+          "observedAtMs": 1792744615163.324,
+          "label": "initial both-context 404 failure",
+          "state": {
+            "observedBrowserWallMs": 1792744615162,
+            "revision": 17,
+            "tabId": 1993988672,
+            "epoch": 2,
+            "tabUrl": "http://127.0.0.1:7335/recovery",
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "1DCA9EE7979F7ACED1E5BD903A2916ED"
+                ],
+                "firstSeen": 1792744615144,
+                "lastSeen": 1792744615144,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              }
+            ]
+          }
+        },
+        {
+          "observedAtMs": 1792744615273.6848,
+          "label": "initial both-context 404 failure",
+          "state": {
+            "observedBrowserWallMs": 1792744615272,
+            "revision": 19,
+            "tabId": 1993988672,
+            "epoch": 2,
+            "tabUrl": "http://127.0.0.1:7335/recovery",
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "network-http:404",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "1DCA9EE7979F7ACED1E5BD903A2916ED"
+                ],
+                "firstSeen": 1792744615144,
+                "lastSeen": 1792744615179,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              }
+            ]
+          }
+        },
+        {
+          "observedAtMs": 1792744615622.7017,
+          "label": "one enriched confirmed HLS source",
+          "state": {
+            "observedBrowserWallMs": 1792744615612,
+            "revision": 21,
+            "tabId": 1993988672,
+            "epoch": 2,
+            "tabUrl": "http://127.0.0.1:7335/recovery",
+            "errors": [
+              "manifest-retry:network-http:404:http://127.0.0.1:7336/recovery/master.m3u8"
+            ],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "1DCA9EE7979F7ACED1E5BD903A2916ED"
+                ],
+                "firstSeen": 1792744615144,
+                "lastSeen": 1792744615179,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              }
+            ]
+          }
+        },
+        {
+          "observedAtMs": 1792744615735.152,
+          "label": "one enriched confirmed HLS source",
+          "state": {
+            "observedBrowserWallMs": 1792744615733,
+            "revision": 27,
+            "tabId": 1993988672,
+            "epoch": 2,
+            "tabUrl": "http://127.0.0.1:7335/recovery",
+            "errors": [
+              "manifest-retry:network-http:404:http://127.0.0.1:7336/recovery/master.m3u8",
+              "child-response:network-mime:image/jpeg:http://127.0.0.1:7336/recovery/1080.jpg"
+            ],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+                "type": "hls",
+                "status": "confirmed",
+                "methods": [
+                  "network",
+                  "resource",
+                  "manifest"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "1DCA9EE7979F7ACED1E5BD903A2916ED"
+                ],
+                "firstSeen": 1792744615144,
+                "lastSeen": 1792744615700,
+                "probeAttempts": 1,
+                "duration": 3189.56,
+                "variants": [
+                  {
+                    "bandwidth": 3500000,
+                    "codecs": "avc1.640028,mp4a.40.2",
+                    "height": 1080,
+                    "id": "hls:0",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:7336/recovery/1080.jpg",
+                    "width": 1920
+                  },
+                  {
+                    "bandwidth": 1800000,
+                    "codecs": "avc1.64001f,mp4a.40.2",
+                    "height": 720,
+                    "id": "hls:1",
+                    "kind": "video",
+                    "url": "http://127.0.0.1:7336/recovery/720.jpg",
+                    "width": 1280
+                  }
+                ],
+                "childUrls": [
+                  "http://127.0.0.1:7336/recovery/1080.jpg",
+                  "http://127.0.0.1:7336/recovery/720.jpg"
+                ],
+                "childManifests": [
+                  {
+                    "frameIds": [
+                      0
+                    ],
+                    "instance": 23,
+                    "probeAttempts": 1,
+                    "status": "confirmed",
+                    "url": "http://127.0.0.1:7336/recovery/1080.jpg"
+                  }
+                ],
+                "segmentUrls": [
+                  "http://127.0.0.1:7336/recovery/video-001.ts"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "tabId": 1993988672,
+      "pageUrl": "http://127.0.0.1:7335/recovery",
+      "observations": [
+        {
+          "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+          "status": 200
+        }
+      ],
+      "initialFailure": {
+        "observedBrowserWallMs": 1792744615272,
+        "revision": 19,
+        "tabId": 1993988672,
+        "epoch": 2,
+        "tabUrl": "http://127.0.0.1:7335/recovery",
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "network-http:404",
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "1DCA9EE7979F7ACED1E5BD903A2916ED"
+            ],
+            "firstSeen": 1792744615144,
+            "lastSeen": 1792744615179,
+            "probeAttempts": 1,
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": []
+          }
+        ]
+      },
+      "initialPopup": {
+        "text": "DETECTION LAB\n\nMedia evidence\nRescan\nActive tab\n\nhttp://127.0.0.1:7335/recovery\n\nRevision 19 · Tab 1993988672 · Generation 2\n\nNo confirmed remote source yet. Inspect the evidence below or rescan after playback starts.\n\nLocal and unconfirmed evidence (1)\nMedia source\nHLS · unresolved\n\nSource protocol: HLS\n\nnetwork-http:404\n\nSource details\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+        "primary": [],
+        "evidenceOpen": true,
+        "status": "",
+        "rescanDisabled": false
+      },
+      "initialPopupScreenshot": "recovery-before-rescan.png",
+      "serverAvailableAtMs": 1792744615596.153,
+      "rescanClickedAtMs": 1792744615596.1685,
+      "popup": {
+        "text": "DETECTION LAB\n\nMedia evidence\nRescan\n\nRescan requested. New observations appear as they arrive.\n\nActive tab\n\nhttp://127.0.0.1:7335/recovery\n\nRevision 27 · Tab 1993988672 · Generation 2\n\nConfirmed media\nMedia source\nHLS · confirmed\n\nSource protocol: HLS\n\n53:10 · VOD\n\nQualities: 1080p · 720p\n\nSource details\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+        "primary": [
+          "Media source\nHLS · confirmed\n\nSource protocol: HLS\n\n53:10 · VOD\n\nQualities: 1080p · 720p\n\nSource details"
+        ],
+        "evidenceOpen": null,
+        "status": "Rescan requested. New observations appear as they arrive.",
+        "rescanDisabled": false
+      },
+      "popupScreenshot": "recovery-confirmed.png",
+      "assessment": {
+        "worker404": 3,
+        "pageContextRequests": 3,
+        "noUnusedRendition": true,
+        "noSegmentsOrKeys": true
+      },
+      "final": {
+        "observedBrowserWallMs": 1792744615733,
+        "revision": 27,
+        "tabId": 1993988672,
+        "epoch": 2,
+        "tabUrl": "http://127.0.0.1:7335/recovery",
+        "errors": [
+          "manifest-retry:network-http:404:http://127.0.0.1:7336/recovery/master.m3u8",
+          "child-response:network-mime:image/jpeg:http://127.0.0.1:7336/recovery/1080.jpg"
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+            "type": "hls",
+            "status": "confirmed",
+            "methods": [
+              "network",
+              "resource",
+              "manifest"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "1DCA9EE7979F7ACED1E5BD903A2916ED"
+            ],
+            "firstSeen": 1792744615144,
+            "lastSeen": 1792744615700,
+            "probeAttempts": 1,
+            "duration": 3189.56,
+            "variants": [
+              {
+                "bandwidth": 3500000,
+                "codecs": "avc1.640028,mp4a.40.2",
+                "height": 1080,
+                "id": "hls:0",
+                "kind": "video",
+                "url": "http://127.0.0.1:7336/recovery/1080.jpg",
+                "width": 1920
+              },
+              {
+                "bandwidth": 1800000,
+                "codecs": "avc1.64001f,mp4a.40.2",
+                "height": 720,
+                "id": "hls:1",
+                "kind": "video",
+                "url": "http://127.0.0.1:7336/recovery/720.jpg",
+                "width": 1280
+              }
+            ],
+            "childUrls": [
+              "http://127.0.0.1:7336/recovery/1080.jpg",
+              "http://127.0.0.1:7336/recovery/720.jpg"
+            ],
+            "childManifests": [
+              {
+                "frameIds": [
+                  0
+                ],
+                "instance": 23,
+                "probeAttempts": 1,
+                "status": "confirmed",
+                "url": "http://127.0.0.1:7336/recovery/1080.jpg"
+              }
+            ],
+            "segmentUrls": [
+              "http://127.0.0.1:7336/recovery/video-001.ts"
+            ]
+          }
+        ]
+      },
+      "endedAtMs": 1792744616181.1638,
+      "serverRequests": [
+        {
+          "sequence": 6,
+          "scenario": "recovery",
+          "method": "POST",
+          "pathname": "/recovery/master.m3u8",
+          "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+          "startedAtMs": 1792744615140.812,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-observation",
+          "status": 200,
+          "headersSentAtMs": 1792744615141.5781,
+          "finishedAtMs": 1792744615144.005,
+          "closedAtMs": 1792744615144.1633,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 7,
+          "scenario": "recovery",
+          "method": "GET",
+          "pathname": "/recovery/master.m3u8",
+          "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+          "startedAtMs": 1792744615151.4954,
+          "origin": null,
+          "referer": null,
+          "fetchSite": "none",
+          "classification": "GET-without-page-referer",
+          "status": 404,
+          "headersSentAtMs": 1792744615151.808,
+          "finishedAtMs": 1792744615152.3167,
+          "closedAtMs": 1792744615152.3535,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 8,
+          "scenario": "recovery",
+          "method": "GET",
+          "pathname": "/recovery/master.m3u8",
+          "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+          "startedAtMs": 1792744615168.2288,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-context-GET",
+          "status": 404,
+          "headersSentAtMs": 1792744615168.5244,
+          "finishedAtMs": 1792744615169.2312,
+          "closedAtMs": 1792744615169.2788,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 9,
+          "scenario": "recovery",
+          "method": "GET",
+          "pathname": "/recovery/master.m3u8",
+          "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+          "startedAtMs": 1792744615616.5337,
+          "origin": null,
+          "referer": null,
+          "fetchSite": "none",
+          "classification": "GET-without-page-referer",
+          "status": 404,
+          "headersSentAtMs": 1792744615617.381,
+          "finishedAtMs": 1792744615618.1392,
+          "closedAtMs": 1792744615618.1875,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 10,
+          "scenario": "recovery",
+          "method": "GET",
+          "pathname": "/recovery/master.m3u8",
+          "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+          "startedAtMs": 1792744615628.6216,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-context-GET",
+          "status": 200,
+          "headersSentAtMs": 1792744615629.0605,
+          "finishedAtMs": 1792744615629.75,
+          "closedAtMs": 1792744615629.9502,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 11,
+          "scenario": "recovery",
+          "method": "GET",
+          "pathname": "/recovery/1080.jpg",
+          "url": "http://127.0.0.1:7336/recovery/1080.jpg",
+          "startedAtMs": 1792744615644.8508,
+          "origin": null,
+          "referer": null,
+          "fetchSite": "none",
+          "classification": "GET-without-page-referer",
+          "status": 404,
+          "headersSentAtMs": 1792744615645.3113,
+          "finishedAtMs": 1792744615645.9277,
+          "closedAtMs": 1792744615646.0166,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 12,
+          "scenario": "recovery",
+          "method": "GET",
+          "pathname": "/recovery/1080.jpg",
+          "url": "http://127.0.0.1:7336/recovery/1080.jpg",
+          "startedAtMs": 1792744615652.6133,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-context-GET",
+          "status": 200,
+          "headersSentAtMs": 1792744615653.7222,
+          "finishedAtMs": 1792744615654.143,
+          "closedAtMs": 1792744615654.1729,
+          "closedBeforeFinish": false
+        }
+      ]
+    },
+    {
+      "id": "deadline",
+      "startedAtMs": 1792744616181.5264,
+      "status": "pass",
+      "states": [
+        {
+          "observedAtMs": 1792744616367.2156,
+          "state": {
+            "observedBrowserWallMs": 1792744616360,
+            "revision": 38,
+            "tabId": 1993988674,
+            "epoch": 2,
+            "tabUrl": "http://127.0.0.1:7335/deadline",
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616339,
+                "lastSeen": 1792744616339,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+                "type": "hls",
+                "status": "observed",
+                "methods": [
+                  "network"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744616344,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+                "type": "hls",
+                "status": "observed",
+                "methods": [
+                  "network"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744616344,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+                "type": "hls",
+                "status": "observed",
+                "methods": [
+                  "network"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744616344,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+                "type": "hls",
+                "status": "observed",
+                "methods": [
+                  "network"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744616344,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              }
+            ]
+          }
+        },
+        {
+          "observedAtMs": 1792744616493.686,
+          "state": {
+            "observedBrowserWallMs": 1792744616487,
+            "revision": 46,
+            "tabId": 1993988674,
+            "epoch": 2,
+            "tabUrl": "http://127.0.0.1:7335/deadline",
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616339,
+                "lastSeen": 1792744616385,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744616385,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744616385,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744616385,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+                "type": "hls",
+                "status": "observed",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744616385,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              }
+            ]
+          }
+        },
+        {
+          "observedAtMs": 1792744620562.7385,
+          "state": {
+            "observedBrowserWallMs": 1792744620558,
+            "revision": 50,
+            "tabId": 1993988674,
+            "epoch": 2,
+            "tabUrl": "http://127.0.0.1:7335/deadline",
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616339,
+                "lastSeen": 1792744620483,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620501,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620503,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620506,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+                "type": "hls",
+                "status": "observed",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744616385,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              }
+            ]
+          }
+        },
+        {
+          "observedAtMs": 1792744621414.5974,
+          "state": {
+            "observedBrowserWallMs": 1792744621411,
+            "revision": 55,
+            "tabId": 1993988674,
+            "epoch": 2,
+            "tabUrl": "http://127.0.0.1:7335/deadline",
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616339,
+                "lastSeen": 1792744620483,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620501,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620503,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620506,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744616385,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              }
+            ]
+          }
+        },
+        {
+          "observedAtMs": 1792744625644.132,
+          "state": {
+            "observedBrowserWallMs": 1792744625641,
+            "revision": 56,
+            "tabId": 1993988674,
+            "epoch": 2,
+            "tabUrl": "http://127.0.0.1:7335/deadline",
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616339,
+                "lastSeen": 1792744620483,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620501,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620503,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620506,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+                "type": "hls",
+                "status": "probing",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744625535,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              }
+            ]
+          }
+        },
+        {
+          "observedAtMs": 1792744626544.2634,
+          "state": {
+            "observedBrowserWallMs": 1792744626542,
+            "revision": 57,
+            "tabId": 1993988674,
+            "epoch": 2,
+            "tabUrl": "http://127.0.0.1:7335/deadline",
+            "errors": [],
+            "items": [
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616339,
+                "lastSeen": 1792744620483,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620501,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620503,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744620506,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              },
+              {
+                "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+                "type": "hls",
+                "status": "unresolved",
+                "reason": "manifest-timeout",
+                "methods": [
+                  "network",
+                  "resource"
+                ],
+                "frameIds": [
+                  0
+                ],
+                "documentIds": [
+                  "40F647616835ED2F02FF316296AE68BC"
+                ],
+                "firstSeen": 1792744616344,
+                "lastSeen": 1792744625535,
+                "probeAttempts": 1,
+                "variants": [],
+                "childUrls": [],
+                "segmentUrls": []
+              }
+            ]
+          }
+        }
+      ],
+      "tabId": 1993988674,
+      "pageUrl": "http://127.0.0.1:7335/deadline",
+      "observations": [
+        {
+          "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+          "status": 200
+        }
+      ],
+      "deadlines": [
+        {
+          "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+          "primaryStartedAtMs": 1792744616359.7886,
+          "fallbackStartedAtMs": 1792744620477.3965,
+          "headersSentAtMs": 1792744620478.531,
+          "plannedBodyEndAtMs": 1792744623478.5762,
+          "closedAtMs": 1792744621372.6453,
+          "closedBeforeFinish": true,
+          "elapsedFromPrimaryStartMs": 5012.856689453125
+        },
+        {
+          "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+          "primaryStartedAtMs": 1792744616383.5742,
+          "fallbackStartedAtMs": 1792744620493.2368,
+          "headersSentAtMs": 1792744620493.4673,
+          "plannedBodyEndAtMs": 1792744623493.471,
+          "closedAtMs": 1792744621383.9724,
+          "closedBeforeFinish": true,
+          "elapsedFromPrimaryStartMs": 5000.398193359375
+        },
+        {
+          "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+          "primaryStartedAtMs": 1792744616384.4492,
+          "fallbackStartedAtMs": 1792744620496.6526,
+          "headersSentAtMs": 1792744620498.044,
+          "plannedBodyEndAtMs": 1792744623498.0515,
+          "closedAtMs": 1792744621385.0664,
+          "closedBeforeFinish": true,
+          "elapsedFromPrimaryStartMs": 5000.6171875
+        },
+        {
+          "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+          "primaryStartedAtMs": 1792744616388.4092,
+          "fallbackStartedAtMs": 1792744620501.5447,
+          "headersSentAtMs": 1792744620501.7139,
+          "plannedBodyEndAtMs": 1792744623501.7163,
+          "closedAtMs": 1792744621384.857,
+          "closedBeforeFinish": true,
+          "elapsedFromPrimaryStartMs": 4996.44775390625
+        },
+        {
+          "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+          "primaryStartedAtMs": 1792744621411.8723,
+          "fallbackStartedAtMs": 1792744625531.9177,
+          "headersSentAtMs": 1792744625532.1196,
+          "plannedBodyEndAtMs": 1792744628532.123,
+          "closedAtMs": 1792744626415.091,
+          "closedBeforeFinish": true,
+          "elapsedFromPrimaryStartMs": 5003.21875
+        }
+      ],
+      "assessment": {
+        "candidates": 5,
+        "physicalFallbacks": 5,
+        "maximumActivePageFallbacks": 4,
+        "allPhysicallyCanceledWithinSharedDeadline": true,
+        "noLateConfirmation": true
+      },
+      "final": {
+        "observedBrowserWallMs": 1792744628859,
+        "revision": 57,
+        "tabId": 1993988674,
+        "epoch": 2,
+        "tabUrl": "http://127.0.0.1:7335/deadline",
+        "errors": [],
+        "items": [
+          {
+            "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "manifest-timeout",
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "40F647616835ED2F02FF316296AE68BC"
+            ],
+            "firstSeen": 1792744616339,
+            "lastSeen": 1792744620483,
+            "probeAttempts": 1,
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": []
+          },
+          {
+            "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "manifest-timeout",
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "40F647616835ED2F02FF316296AE68BC"
+            ],
+            "firstSeen": 1792744616344,
+            "lastSeen": 1792744620501,
+            "probeAttempts": 1,
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": []
+          },
+          {
+            "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "manifest-timeout",
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "40F647616835ED2F02FF316296AE68BC"
+            ],
+            "firstSeen": 1792744616344,
+            "lastSeen": 1792744620503,
+            "probeAttempts": 1,
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": []
+          },
+          {
+            "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "manifest-timeout",
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "40F647616835ED2F02FF316296AE68BC"
+            ],
+            "firstSeen": 1792744616344,
+            "lastSeen": 1792744620506,
+            "probeAttempts": 1,
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": []
+          },
+          {
+            "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+            "type": "hls",
+            "status": "unresolved",
+            "reason": "manifest-timeout",
+            "methods": [
+              "network",
+              "resource"
+            ],
+            "frameIds": [
+              0
+            ],
+            "documentIds": [
+              "40F647616835ED2F02FF316296AE68BC"
+            ],
+            "firstSeen": 1792744616344,
+            "lastSeen": 1792744625535,
+            "probeAttempts": 1,
+            "variants": [],
+            "childUrls": [],
+            "segmentUrls": []
+          }
+        ]
+      },
+      "endedAtMs": 1792744628889.226,
+      "serverRequests": [
+        {
+          "sequence": 13,
+          "scenario": "deadline",
+          "method": "POST",
+          "pathname": "/deadline/candidate-0.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+          "startedAtMs": 1792744616332.042,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-observation",
+          "status": 200,
+          "headersSentAtMs": 1792744616332.388,
+          "finishedAtMs": 1792744616332.6663,
+          "closedAtMs": 1792744616332.7139,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 14,
+          "scenario": "deadline",
+          "method": "POST",
+          "pathname": "/deadline/candidate-1.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+          "startedAtMs": 1792744616334.3413,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-observation",
+          "status": 200,
+          "headersSentAtMs": 1792744616334.4705,
+          "finishedAtMs": 1792744616334.7405,
+          "closedAtMs": 1792744616334.7632,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 15,
+          "scenario": "deadline",
+          "method": "POST",
+          "pathname": "/deadline/candidate-2.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+          "startedAtMs": 1792744616335.538,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-observation",
+          "status": 200,
+          "headersSentAtMs": 1792744616335.6743,
+          "finishedAtMs": 1792744616335.8025,
+          "closedAtMs": 1792744616335.8208,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 16,
+          "scenario": "deadline",
+          "method": "POST",
+          "pathname": "/deadline/candidate-3.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+          "startedAtMs": 1792744616335.898,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-observation",
+          "status": 200,
+          "headersSentAtMs": 1792744616335.9563,
+          "finishedAtMs": 1792744616336.5437,
+          "closedAtMs": 1792744616336.5615,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 17,
+          "scenario": "deadline",
+          "method": "POST",
+          "pathname": "/deadline/candidate-4.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+          "startedAtMs": 1792744616336.9802,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-observation",
+          "status": 200,
+          "headersSentAtMs": 1792744616338.1277,
+          "finishedAtMs": 1792744616339.4294,
+          "closedAtMs": 1792744616339.5347,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 18,
+          "scenario": "deadline",
+          "method": "GET",
+          "pathname": "/deadline/candidate-0.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+          "startedAtMs": 1792744616359.7886,
+          "origin": null,
+          "referer": null,
+          "fetchSite": "none",
+          "classification": "GET-without-page-referer",
+          "primaryDelayMs": 4100,
+          "status": 404,
+          "headersSentAtMs": 1792744620465.1333,
+          "finishedAtMs": 1792744620465.9958,
+          "closedAtMs": 1792744620466.4192,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 19,
+          "scenario": "deadline",
+          "method": "GET",
+          "pathname": "/deadline/candidate-1.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+          "startedAtMs": 1792744616383.5742,
+          "origin": null,
+          "referer": null,
+          "fetchSite": "none",
+          "classification": "GET-without-page-referer",
+          "primaryDelayMs": 4100,
+          "status": 404,
+          "headersSentAtMs": 1792744620484.5896,
+          "finishedAtMs": 1792744620485.1287,
+          "closedAtMs": 1792744620485.2952,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 20,
+          "scenario": "deadline",
+          "method": "GET",
+          "pathname": "/deadline/candidate-2.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+          "startedAtMs": 1792744616384.4492,
+          "origin": null,
+          "referer": null,
+          "fetchSite": "none",
+          "classification": "GET-without-page-referer",
+          "primaryDelayMs": 4100,
+          "status": 404,
+          "headersSentAtMs": 1792744620485.5483,
+          "finishedAtMs": 1792744620486.0542,
+          "closedAtMs": 1792744620486.32,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 21,
+          "scenario": "deadline",
+          "method": "GET",
+          "pathname": "/deadline/candidate-3.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+          "startedAtMs": 1792744616388.4092,
+          "origin": null,
+          "referer": null,
+          "fetchSite": "none",
+          "classification": "GET-without-page-referer",
+          "primaryDelayMs": 4100,
+          "status": 404,
+          "headersSentAtMs": 1792744620489.168,
+          "finishedAtMs": 1792744620489.6006,
+          "closedAtMs": 1792744620489.651,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 22,
+          "scenario": "deadline",
+          "method": "GET",
+          "pathname": "/deadline/candidate-0.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+          "startedAtMs": 1792744620477.3965,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-context-GET",
+          "status": 200,
+          "headersSentAtMs": 1792744620478.531,
+          "bodyEndPlannedAtMs": 1792744623478.5762,
+          "requestAbortedAtMs": 1792744621371.9688,
+          "closedAtMs": 1792744621372.6453,
+          "closedBeforeFinish": true
+        },
+        {
+          "sequence": 23,
+          "scenario": "deadline",
+          "method": "GET",
+          "pathname": "/deadline/candidate-1.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+          "startedAtMs": 1792744620493.2368,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-context-GET",
+          "status": 200,
+          "headersSentAtMs": 1792744620493.4673,
+          "bodyEndPlannedAtMs": 1792744623493.471,
+          "requestAbortedAtMs": 1792744621383.9307,
+          "closedAtMs": 1792744621383.9724,
+          "closedBeforeFinish": true
+        },
+        {
+          "sequence": 24,
+          "scenario": "deadline",
+          "method": "GET",
+          "pathname": "/deadline/candidate-2.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+          "startedAtMs": 1792744620496.6526,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-context-GET",
+          "status": 200,
+          "headersSentAtMs": 1792744620498.044,
+          "bodyEndPlannedAtMs": 1792744623498.0515,
+          "requestAbortedAtMs": 1792744621385.0503,
+          "closedAtMs": 1792744621385.0664,
+          "closedBeforeFinish": true
+        },
+        {
+          "sequence": 25,
+          "scenario": "deadline",
+          "method": "GET",
+          "pathname": "/deadline/candidate-3.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+          "startedAtMs": 1792744620501.5447,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-context-GET",
+          "status": 200,
+          "headersSentAtMs": 1792744620501.7139,
+          "bodyEndPlannedAtMs": 1792744623501.7163,
+          "requestAbortedAtMs": 1792744621384.8296,
+          "closedAtMs": 1792744621384.857,
+          "closedBeforeFinish": true
+        },
+        {
+          "sequence": 26,
+          "scenario": "deadline",
+          "method": "GET",
+          "pathname": "/deadline/candidate-4.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+          "startedAtMs": 1792744621411.8723,
+          "origin": null,
+          "referer": null,
+          "fetchSite": "none",
+          "classification": "GET-without-page-referer",
+          "primaryDelayMs": 4100,
+          "status": 404,
+          "headersSentAtMs": 1792744625517.5276,
+          "finishedAtMs": 1792744625518.2703,
+          "closedAtMs": 1792744625518.2996,
+          "closedBeforeFinish": false
+        },
+        {
+          "sequence": 27,
+          "scenario": "deadline",
+          "method": "GET",
+          "pathname": "/deadline/candidate-4.m3u8",
+          "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+          "startedAtMs": 1792744625531.9177,
+          "origin": "http://127.0.0.1:7335",
+          "referer": "http://127.0.0.1:7335/",
+          "fetchSite": "same-site",
+          "classification": "page-context-GET",
+          "status": 200,
+          "headersSentAtMs": 1792744625532.1196,
+          "bodyEndPlannedAtMs": 1792744628532.123,
+          "requestAbortedAtMs": 1792744626415.0073,
+          "closedAtMs": 1792744626415.091,
+          "closedBeforeFinish": true
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "sequence": 1,
+      "scenario": "context",
+      "method": "POST",
+      "pathname": "/context/master.m3u8",
+      "url": "http://127.0.0.1:7336/context/master.m3u8",
+      "startedAtMs": 1792744613304.1619,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-observation",
+      "status": 200,
+      "headersSentAtMs": 1792744613305.2566,
+      "finishedAtMs": 1792744613307.208,
+      "closedAtMs": 1792744613307.8054,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 2,
+      "scenario": "context",
+      "method": "GET",
+      "pathname": "/context/master.m3u8",
+      "url": "http://127.0.0.1:7336/context/master.m3u8",
+      "startedAtMs": 1792744613330.4885,
+      "origin": null,
+      "referer": null,
+      "fetchSite": "none",
+      "classification": "GET-without-page-referer",
+      "status": 404,
+      "headersSentAtMs": 1792744613330.82,
+      "finishedAtMs": 1792744613331.1345,
+      "closedAtMs": 1792744613331.285,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 3,
+      "scenario": "context",
+      "method": "GET",
+      "pathname": "/context/master.m3u8",
+      "url": "http://127.0.0.1:7336/context/master.m3u8",
+      "startedAtMs": 1792744613688.1296,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-context-GET",
+      "status": 200,
+      "headersSentAtMs": 1792744613690.6216,
+      "finishedAtMs": 1792744613691.0823,
+      "closedAtMs": 1792744613691.1213,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 4,
+      "scenario": "context",
+      "method": "GET",
+      "pathname": "/context/1080.jpg",
+      "url": "http://127.0.0.1:7336/context/1080.jpg",
+      "startedAtMs": 1792744613933.31,
+      "origin": null,
+      "referer": null,
+      "fetchSite": "none",
+      "classification": "GET-without-page-referer",
+      "status": 404,
+      "headersSentAtMs": 1792744613933.633,
+      "finishedAtMs": 1792744613934.3938,
+      "closedAtMs": 1792744613934.441,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 5,
+      "scenario": "context",
+      "method": "GET",
+      "pathname": "/context/1080.jpg",
+      "url": "http://127.0.0.1:7336/context/1080.jpg",
+      "startedAtMs": 1792744614083.362,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-context-GET",
+      "status": 200,
+      "headersSentAtMs": 1792744614083.768,
+      "finishedAtMs": 1792744614084.0496,
+      "closedAtMs": 1792744614084.1345,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 6,
+      "scenario": "recovery",
+      "method": "POST",
+      "pathname": "/recovery/master.m3u8",
+      "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+      "startedAtMs": 1792744615140.812,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-observation",
+      "status": 200,
+      "headersSentAtMs": 1792744615141.5781,
+      "finishedAtMs": 1792744615144.005,
+      "closedAtMs": 1792744615144.1633,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 7,
+      "scenario": "recovery",
+      "method": "GET",
+      "pathname": "/recovery/master.m3u8",
+      "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+      "startedAtMs": 1792744615151.4954,
+      "origin": null,
+      "referer": null,
+      "fetchSite": "none",
+      "classification": "GET-without-page-referer",
+      "status": 404,
+      "headersSentAtMs": 1792744615151.808,
+      "finishedAtMs": 1792744615152.3167,
+      "closedAtMs": 1792744615152.3535,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 8,
+      "scenario": "recovery",
+      "method": "GET",
+      "pathname": "/recovery/master.m3u8",
+      "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+      "startedAtMs": 1792744615168.2288,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-context-GET",
+      "status": 404,
+      "headersSentAtMs": 1792744615168.5244,
+      "finishedAtMs": 1792744615169.2312,
+      "closedAtMs": 1792744615169.2788,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 9,
+      "scenario": "recovery",
+      "method": "GET",
+      "pathname": "/recovery/master.m3u8",
+      "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+      "startedAtMs": 1792744615616.5337,
+      "origin": null,
+      "referer": null,
+      "fetchSite": "none",
+      "classification": "GET-without-page-referer",
+      "status": 404,
+      "headersSentAtMs": 1792744615617.381,
+      "finishedAtMs": 1792744615618.1392,
+      "closedAtMs": 1792744615618.1875,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 10,
+      "scenario": "recovery",
+      "method": "GET",
+      "pathname": "/recovery/master.m3u8",
+      "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+      "startedAtMs": 1792744615628.6216,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-context-GET",
+      "status": 200,
+      "headersSentAtMs": 1792744615629.0605,
+      "finishedAtMs": 1792744615629.75,
+      "closedAtMs": 1792744615629.9502,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 11,
+      "scenario": "recovery",
+      "method": "GET",
+      "pathname": "/recovery/1080.jpg",
+      "url": "http://127.0.0.1:7336/recovery/1080.jpg",
+      "startedAtMs": 1792744615644.8508,
+      "origin": null,
+      "referer": null,
+      "fetchSite": "none",
+      "classification": "GET-without-page-referer",
+      "status": 404,
+      "headersSentAtMs": 1792744615645.3113,
+      "finishedAtMs": 1792744615645.9277,
+      "closedAtMs": 1792744615646.0166,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 12,
+      "scenario": "recovery",
+      "method": "GET",
+      "pathname": "/recovery/1080.jpg",
+      "url": "http://127.0.0.1:7336/recovery/1080.jpg",
+      "startedAtMs": 1792744615652.6133,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-context-GET",
+      "status": 200,
+      "headersSentAtMs": 1792744615653.7222,
+      "finishedAtMs": 1792744615654.143,
+      "closedAtMs": 1792744615654.1729,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 13,
+      "scenario": "deadline",
+      "method": "POST",
+      "pathname": "/deadline/candidate-0.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+      "startedAtMs": 1792744616332.042,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-observation",
+      "status": 200,
+      "headersSentAtMs": 1792744616332.388,
+      "finishedAtMs": 1792744616332.6663,
+      "closedAtMs": 1792744616332.7139,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 14,
+      "scenario": "deadline",
+      "method": "POST",
+      "pathname": "/deadline/candidate-1.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+      "startedAtMs": 1792744616334.3413,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-observation",
+      "status": 200,
+      "headersSentAtMs": 1792744616334.4705,
+      "finishedAtMs": 1792744616334.7405,
+      "closedAtMs": 1792744616334.7632,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 15,
+      "scenario": "deadline",
+      "method": "POST",
+      "pathname": "/deadline/candidate-2.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+      "startedAtMs": 1792744616335.538,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-observation",
+      "status": 200,
+      "headersSentAtMs": 1792744616335.6743,
+      "finishedAtMs": 1792744616335.8025,
+      "closedAtMs": 1792744616335.8208,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 16,
+      "scenario": "deadline",
+      "method": "POST",
+      "pathname": "/deadline/candidate-3.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+      "startedAtMs": 1792744616335.898,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-observation",
+      "status": 200,
+      "headersSentAtMs": 1792744616335.9563,
+      "finishedAtMs": 1792744616336.5437,
+      "closedAtMs": 1792744616336.5615,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 17,
+      "scenario": "deadline",
+      "method": "POST",
+      "pathname": "/deadline/candidate-4.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+      "startedAtMs": 1792744616336.9802,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-observation",
+      "status": 200,
+      "headersSentAtMs": 1792744616338.1277,
+      "finishedAtMs": 1792744616339.4294,
+      "closedAtMs": 1792744616339.5347,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 18,
+      "scenario": "deadline",
+      "method": "GET",
+      "pathname": "/deadline/candidate-0.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+      "startedAtMs": 1792744616359.7886,
+      "origin": null,
+      "referer": null,
+      "fetchSite": "none",
+      "classification": "GET-without-page-referer",
+      "primaryDelayMs": 4100,
+      "status": 404,
+      "headersSentAtMs": 1792744620465.1333,
+      "finishedAtMs": 1792744620465.9958,
+      "closedAtMs": 1792744620466.4192,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 19,
+      "scenario": "deadline",
+      "method": "GET",
+      "pathname": "/deadline/candidate-1.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+      "startedAtMs": 1792744616383.5742,
+      "origin": null,
+      "referer": null,
+      "fetchSite": "none",
+      "classification": "GET-without-page-referer",
+      "primaryDelayMs": 4100,
+      "status": 404,
+      "headersSentAtMs": 1792744620484.5896,
+      "finishedAtMs": 1792744620485.1287,
+      "closedAtMs": 1792744620485.2952,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 20,
+      "scenario": "deadline",
+      "method": "GET",
+      "pathname": "/deadline/candidate-2.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+      "startedAtMs": 1792744616384.4492,
+      "origin": null,
+      "referer": null,
+      "fetchSite": "none",
+      "classification": "GET-without-page-referer",
+      "primaryDelayMs": 4100,
+      "status": 404,
+      "headersSentAtMs": 1792744620485.5483,
+      "finishedAtMs": 1792744620486.0542,
+      "closedAtMs": 1792744620486.32,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 21,
+      "scenario": "deadline",
+      "method": "GET",
+      "pathname": "/deadline/candidate-3.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+      "startedAtMs": 1792744616388.4092,
+      "origin": null,
+      "referer": null,
+      "fetchSite": "none",
+      "classification": "GET-without-page-referer",
+      "primaryDelayMs": 4100,
+      "status": 404,
+      "headersSentAtMs": 1792744620489.168,
+      "finishedAtMs": 1792744620489.6006,
+      "closedAtMs": 1792744620489.651,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 22,
+      "scenario": "deadline",
+      "method": "GET",
+      "pathname": "/deadline/candidate-0.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+      "startedAtMs": 1792744620477.3965,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-context-GET",
+      "status": 200,
+      "headersSentAtMs": 1792744620478.531,
+      "bodyEndPlannedAtMs": 1792744623478.5762,
+      "requestAbortedAtMs": 1792744621371.9688,
+      "closedAtMs": 1792744621372.6453,
+      "closedBeforeFinish": true
+    },
+    {
+      "sequence": 23,
+      "scenario": "deadline",
+      "method": "GET",
+      "pathname": "/deadline/candidate-1.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+      "startedAtMs": 1792744620493.2368,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-context-GET",
+      "status": 200,
+      "headersSentAtMs": 1792744620493.4673,
+      "bodyEndPlannedAtMs": 1792744623493.471,
+      "requestAbortedAtMs": 1792744621383.9307,
+      "closedAtMs": 1792744621383.9724,
+      "closedBeforeFinish": true
+    },
+    {
+      "sequence": 24,
+      "scenario": "deadline",
+      "method": "GET",
+      "pathname": "/deadline/candidate-2.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+      "startedAtMs": 1792744620496.6526,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-context-GET",
+      "status": 200,
+      "headersSentAtMs": 1792744620498.044,
+      "bodyEndPlannedAtMs": 1792744623498.0515,
+      "requestAbortedAtMs": 1792744621385.0503,
+      "closedAtMs": 1792744621385.0664,
+      "closedBeforeFinish": true
+    },
+    {
+      "sequence": 25,
+      "scenario": "deadline",
+      "method": "GET",
+      "pathname": "/deadline/candidate-3.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+      "startedAtMs": 1792744620501.5447,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-context-GET",
+      "status": 200,
+      "headersSentAtMs": 1792744620501.7139,
+      "bodyEndPlannedAtMs": 1792744623501.7163,
+      "requestAbortedAtMs": 1792744621384.8296,
+      "closedAtMs": 1792744621384.857,
+      "closedBeforeFinish": true
+    },
+    {
+      "sequence": 26,
+      "scenario": "deadline",
+      "method": "GET",
+      "pathname": "/deadline/candidate-4.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+      "startedAtMs": 1792744621411.8723,
+      "origin": null,
+      "referer": null,
+      "fetchSite": "none",
+      "classification": "GET-without-page-referer",
+      "primaryDelayMs": 4100,
+      "status": 404,
+      "headersSentAtMs": 1792744625517.5276,
+      "finishedAtMs": 1792744625518.2703,
+      "closedAtMs": 1792744625518.2996,
+      "closedBeforeFinish": false
+    },
+    {
+      "sequence": 27,
+      "scenario": "deadline",
+      "method": "GET",
+      "pathname": "/deadline/candidate-4.m3u8",
+      "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+      "startedAtMs": 1792744625531.9177,
+      "origin": "http://127.0.0.1:7335",
+      "referer": "http://127.0.0.1:7335/",
+      "fetchSite": "same-site",
+      "classification": "page-context-GET",
+      "status": 200,
+      "headersSentAtMs": 1792744625532.1196,
+      "bodyEndPlannedAtMs": 1792744628532.123,
+      "requestAbortedAtMs": 1792744626415.0073,
+      "closedAtMs": 1792744626415.091,
+      "closedBeforeFinish": true
+    }
+  ],
+  "browserRequests": [
+    {
+      "atMs": 1792744613301.3853,
+      "method": "POST",
+      "url": "http://127.0.0.1:7336/context/master.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744613331.841,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/context/master.m3u8",
+      "serviceWorker": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+    },
+    {
+      "atMs": 1792744613687.1816,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/context/master.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744613934.6948,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/context/1080.jpg",
+      "serviceWorker": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+    },
+    {
+      "atMs": 1792744614082.485,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/context/1080.jpg",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744615144.792,
+      "method": "POST",
+      "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744615154.277,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+      "serviceWorker": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+    },
+    {
+      "atMs": 1792744615170.8533,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744615621.8767,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+      "serviceWorker": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+    },
+    {
+      "atMs": 1792744615627.9275,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/recovery/master.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744615647.1736,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/recovery/1080.jpg",
+      "serviceWorker": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+    },
+    {
+      "atMs": 1792744615651.9465,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/recovery/1080.jpg",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744616334.9436,
+      "method": "POST",
+      "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744616335.038,
+      "method": "POST",
+      "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744616335.0667,
+      "method": "POST",
+      "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744616335.0898,
+      "method": "POST",
+      "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744616335.1108,
+      "method": "POST",
+      "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744616361.1963,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+      "serviceWorker": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+    },
+    {
+      "atMs": 1792744616386.1296,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+      "serviceWorker": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+    },
+    {
+      "atMs": 1792744616388.7566,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+      "serviceWorker": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+    },
+    {
+      "atMs": 1792744616388.804,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+      "serviceWorker": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+    },
+    {
+      "atMs": 1792744620476.3667,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/deadline/candidate-0.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744620499.422,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/deadline/candidate-1.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744620499.4795,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/deadline/candidate-2.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744620501.915,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/deadline/candidate-3.m3u8",
+      "serviceWorker": null
+    },
+    {
+      "atMs": 1792744621412.5403,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+      "serviceWorker": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js"
+    },
+    {
+      "atMs": 1792744625529.7153,
+      "method": "GET",
+      "url": "http://127.0.0.1:7336/deadline/candidate-4.m3u8",
+      "serviceWorker": null
+    }
+  ],
+  "workerMessages": [],
+  "errors": [],
+  "fixtures": {
+    "pageOrigin": "http://127.0.0.1:7335",
+    "mediaOrigin": "http://127.0.0.1:7336",
+    "mime": "image/jpeg",
+    "cors": "Access-Control-Allow-Origin: *; no credential allowance",
+    "primaryGetDelayMs": 4100,
+    "pageBodyStallMs": 3000,
+    "sharedProbeDeadlineMs": 5000,
+    "nativeDeadlineAllowanceMs": 500
+  },
+  "profile": {
+    "directory": "C:\\Users\\jay03\\AppData\\Local\\Temp\\cinejoy-context-native-zxWdcZ",
+    "kind": "New temporary owned profile. Existing user profiles and debugging port 9222 are untouched."
+  },
+  "build": {
+    "gitRevision": "0d78cd815e1a64690e442b703ac473c1082430cb",
+    "files": {
+      "manifest.json": "f251c7f0e66a883d451d2aaa7dfc24fe9178969acb367943e7b4e7126538f410",
+      "background.js": "af560bc0d35c1c7bffbe1a7d02128ae2c8a5c85076eb64d70c86255803a2c1c7",
+      "content.js": "27f03fd73ee12a4518778f98c2fc94bda9de94a39d5434f86a64d8837c6581ce",
+      "popup/index.js": "7ecfc4f3b55c560ad927e348acc0c80d815381cee5c3e749c2f9929bf5efa48c",
+      "popup/index.html": "0b4b915030a6524adfd88f5d46a3008c0c3e30b438f11ce8806888ff7ea124fd",
+      "popup/style.css": "68fec731fb53a9c2506ad231791652fbb73ed8f8d828b0b115b3bb042a34c299"
+    }
+  },
+  "browser": "153.0.8010.12",
+  "debuggingPort": 7337,
+  "extension": {
+    "id": "ealkgjbgomnenhfiaoknbgcmegjldcam",
+    "manifest": {
+      "manifest_version": 3,
+      "name": "Media Detection Lab",
+      "version": "0.1.0",
+      "description": "Local media detection diagnostics for direct sources, HLS and DASH.",
+      "minimum_chrome_version": "120",
+      "permissions": [
+        "webRequest",
+        "webNavigation",
+        "storage"
+      ],
+      "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "background": {
+        "service_worker": "background.js",
+        "type": "module"
+      },
+      "action": {
+        "default_title": "Media Detection Lab",
+        "default_popup": "popup/index.html"
+      },
+      "content_scripts": [
+        {
+          "matches": [
+            "http://*/*",
+            "https://*/*"
+          ],
+          "js": [
+            "content.js"
+          ],
+          "all_frames": true,
+          "match_origin_as_fallback": true,
+          "run_at": "document_start",
+          "world": "ISOLATED"
+        }
+      ],
+      "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+      }
+    }
+  },
+  "metrics": {
+    "activePageGets": 0,
+    "maximumActivePageGets": 4,
+    "byScenario": {
+      "context": {
+        "active": 0,
+        "maximum": 1
+      },
+      "recovery": {
+        "active": 0,
+        "maximum": 1
+      },
+      "deadline": {
+        "active": 0,
+        "maximum": 4
+      }
+    }
+  },
+  "passed": true,
+  "ownedBrowserClosed": true,
+  "endedAt": "2026-10-23T08:37:09.182Z"
+}

@@ -191,7 +191,7 @@ async function openPopup(worker, extensionId, expectedUrl, artifact, waitForRows
   try {
     let value;
     for (let attempt = 0; attempt < 30; attempt++) {
-      const response = await send('Runtime.evaluate', { expression: `({text:document.body?.innerText,rows:document.querySelectorAll('article.media').length,context:document.querySelector('#results .context')?.innerText,status:document.querySelector('#status')?.innerText,viewport:{width:innerWidth,height:innerHeight,devicePixelRatio,bodyWidth:document.body?.getBoundingClientRect().width}})`, returnByValue: true });
+      const response = await send('Runtime.evaluate', { expression: `({text:document.body?.innerText,rows:document.querySelectorAll('article.media').length,primarySources:[...document.querySelectorAll('.primary-media article.media')].map(row=>({url:row.querySelector('.source-details .url')?.textContent,visible:row.checkVisibility()})),context:document.querySelector('#results .context')?.innerText,status:document.querySelector('#status')?.innerText,viewport:{width:innerWidth,height:innerHeight,devicePixelRatio,bodyWidth:document.body?.getBoundingClientRect().width}})`, returnByValue: true });
       value = response.result.value;
       if (value?.context && value.rows >= waitForRows) break;
       await wait(100);
@@ -477,8 +477,8 @@ try {
       life.livePopup = await openPopup(ours, ourId, `${fixture.pageOrigin}/popup-delayed`, 'lifecycle-live-popup.png', 1, tabId);
       life.livePopup.expectedMediaResponseWallMs = popupMediaResponse ?? null;
       life.livePopup.renderedAfterResponseMs = popupMediaResponse ? life.livePopup.observedWallMs - popupMediaResponse : null;
-      life.livePopup.expectedSourceVisible = life.livePopup.text.includes(`${fixture.mediaOrigin}/media/popup.mp4`);
-      life.livePopup.renderedWithinTwoSeconds = life.livePopup.rows === 1 && life.livePopup.expectedSourceVisible && life.livePopup.renderedAfterResponseMs >= 0 && life.livePopup.renderedAfterResponseMs <= 2000;
+      life.livePopup.expectedPrimaryRowVisible = life.livePopup.primarySources.some(source => source.url === `${fixture.mediaOrigin}/media/popup.mp4` && source.visible);
+      life.livePopup.renderedWithinTwoSeconds = life.livePopup.rows === 1 && life.livePopup.expectedPrimaryRowVisible && life.livePopup.renderedAfterResponseMs >= 0 && life.livePopup.renderedAfterResponseMs <= 2000;
       life.status = life.stopped && life.recovered && life.navigationCleared && life.frameNavigationCleared && life.abortedFrame.status !== 'fail' && life.concurrentTabsIsolated && life.staleCompletionRejected && life.livePopup.renderedWithinTwoSeconds ? 'pass' : 'fail';
       await cdp.detach();
     } catch (error) { life.errors.push(cleanError(error)); }

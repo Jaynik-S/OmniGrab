@@ -6,6 +6,7 @@ import { boundedManifestValues, MAX_CHILD_MANIFESTS, MAX_REFERENCE_CHARS, persis
 
 export const MAX_ITEMS = 200;
 export const MAX_DOCUMENTS = 100;
+export const MAX_PROBE_ATTEMPTS = 3;
 const unique = <T>(a: T[], b: T[], limit = 100) => [...new Set([...a, ...b])].slice(0, limit);
 const mergeLive = (a: boolean | undefined, b: boolean | undefined): boolean | undefined => a === true || b === true ? true : a ?? b;
 function dropped(tab: TabState, count: number, reason: string): void {
@@ -134,6 +135,25 @@ export function removeTab(s: Snapshot, tabId: number): Snapshot {
   const tabs = { ...s.tabs }; delete tabs[tabId];
   return { ...s, revision: s.revision + 1, tabs };
 }
+/** Explicit user action retries failures once; repeated inventories and worker wakes do not. */
+export function retryManifests(s: Snapshot, tabId: number): Snapshot {
+  const previous = s.tabs[tabId];
+  if (!previous) return s;
+  const tab = structuredClone(previous);
+  let changed = false;
+  const retry = (work: MediaItem | ChildManifest) => {
+    if (work.status !== 'unresolved') return;
+    if (work.reason) tab.errors = unique(tab.errors, [`manifest-retry:${work.reason}:${work.url}`.slice(0, 1000)]);
+    Object.assign(work, { status: 'observed', instance: s.revision + 1, probeAttempts: 0, reason: undefined });
+    changed = true;
+  };
+  for (const item of Object.values(tab.media)) {
+    if (item.type !== 'hls' && item.type !== 'dash') continue;
+    retry(item);
+    for (const child of item.childManifests ?? []) retry(child);
+  }
+  return changed ? replace(s, tab) : s;
+}
 export function ingest(s: Snapshot, o: Observation): { state: Snapshot; probe?: ProbeJob } {
   const old = s.tabs[o.tabId];
   if (!old || o.epoch !== undefined && o.epoch !== old.epoch || o.documentId && old.documents[o.frameId] && o.documentId !== old.documents[o.frameId]) return { state: s };
@@ -175,9 +195,13 @@ export function ingest(s: Snapshot, o: Observation): { state: Snapshot; probe?: 
   const strongerType = !owner && classification && classification.kind !== item.type && !item.methods.includes('manifest') &&
     (classification.probe || o.method === 'network') && (o.method === 'network' || !hadNetworkEvidence);
   if (strongerType) { item.type = classification.kind; item.status = classification.status; item.reason = classification.reason; }
+  const freshSuccess = o.method === 'network' && o.statusCode !== undefined && o.statusCode >= 200 && o.statusCode < 300;
+  const retry = !owner && classification?.probe && freshSuccess && item.status === 'unresolved' && (item.probeAttempts ?? 0) < MAX_PROBE_ATTEMPTS;
+  if (retry) Object.assign(item, { status: 'observed', instance: s.revision + 1, reason: undefined });
   if (rejection && owner) {
     tab.errors = unique(tab.errors, [`child-response:${rejection}:${url}`.slice(0, 1000)]);
-  } else if (rejection && item.status !== 'unsupported') {
+  } else if (rejection && item.status !== 'unsupported' &&
+      !(classification?.probe && !rejection.startsWith('network-http:'))) {
     item.status = 'unresolved'; item.reason = rejection.slice(0, 1000);
   } else if (!owner && classification?.status === 'confirmed' && item.status !== 'unsupported' &&
       (item.type === 'direct') && (o.method === 'network' || !item.reason?.startsWith('network-'))) {
@@ -193,11 +217,13 @@ export function ingest(s: Snapshot, o: Observation): { state: Snapshot; probe?: 
   }
   tab.media[item.id] = item; tab.updatedAt = now;
   if (o.frameId === 0 && o.title && persistedText(o.title)) tab.title = o.title;
-  let probe: ProbeJob | undefined = !owner && classification?.probe && (!existing || strongerType) ? { tabId: o.tabId, epoch: tab.epoch, itemId: url, url,
+  let probe: ProbeJob | undefined = !owner && classification?.probe && (!existing || strongerType || retry) ? { tabId: o.tabId, epoch: tab.epoch, itemId: url, url,
     kind: classification.kind as 'hls' | 'dash', instance: item.instance } : undefined;
   if (owner && item.type === 'hls' && item.childUrls.includes(url) && !rejection?.startsWith('network-http:')) {
     const child = rememberChild(tab, item, { url, instance: s.revision + 1, status: 'observed', frameIds: [o.frameId] });
-    if (child && (child.status === 'observed' || child.status === 'probing')) probe = { tabId: tab.id, epoch: tab.epoch, itemId: url, url, kind: 'hls', instance: child.instance };
+    if (child?.status === 'unresolved' && freshSuccess && (child.probeAttempts ?? 0) < MAX_PROBE_ATTEMPTS)
+      Object.assign(child, { status: 'observed', instance: s.revision + 1, reason: undefined });
+    if (child && (child.status === 'observed' || child.status === 'probing')) probe = { tabId: tab.id, epoch: tab.epoch, itemId: url, url, kind: 'hls', instance: child.instance, ownerId: item.id };
   }
   return { state: replace(s, tab), probe };
 }
@@ -207,9 +233,10 @@ export function resolveProbeJob(s: Snapshot, job: ProbeJob): { tab: TabState; it
   const tab = s.tabs[job.tabId];
   if (!tab || tab.epoch !== job.epoch) return;
   const item = tab?.media[job.itemId];
-  if (item?.url === job.url && item.type === job.kind && item.instance === job.instance) return { tab, item };
+  if (!job.ownerId && item?.url === job.url && item.type === job.kind && item.instance === job.instance) return { tab, item };
   if (job.kind !== 'hls' || job.itemId !== job.url) return;
   for (const owner of Object.values(tab.media)) {
+    if (job.ownerId && owner.id !== job.ownerId) continue;
     const child = owner.childManifests?.find(work => work.url === job.url && work.instance === job.instance);
     if (owner.type === 'hls' && child) return { tab, item: owner, child };
   }
@@ -244,6 +271,7 @@ export function applyManifest(s: Snapshot, job: ProbeJob, info: ManifestInfo): S
       mergeProvenance(tab, item, other);
       if (item.type === 'hls' && item.childUrls.includes(other.url)) {
         rememberChild(tab, item, { url: other.url, instance: other.instance, frameIds: other.frameIds,
+          probeAttempts: other.probeAttempts, reason: other.reason,
           status: other.type !== 'hls' ? 'observed' : other.status === 'unsupported' ? 'confirmed' : other.status });
         for (const child of other.childManifests ?? []) rememberChild(tab, item, child);
       }
@@ -255,6 +283,16 @@ export function applyManifest(s: Snapshot, job: ProbeJob, info: ManifestInfo): S
       delete tab.media[other.id]; grouped = true;
     }
   } while (grouped);
+  // A master alone has no EXTINF duration. Inspect one representative media playlist,
+  // including misleading image-suffixed URIs, without downloading segments or every quality.
+  if (!target.child && info.type === 'hls' && info.duration === undefined) {
+    const preferred = info.variants.filter(variant => variant.url && variant.kind !== 'subtitles')
+      .sort((a, b) => Number(b.kind === 'video') - Number(a.kind === 'video') ||
+        (b.height ?? 0) - (a.height ?? 0) || (b.bandwidth ?? 0) - (a.bandwidth ?? 0))[0];
+    if (preferred?.url && item.childUrls.includes(preferred.url)) rememberChild(tab, item, {
+      url: preferred.url, instance: s.revision + 1, status: 'observed', frameIds: [...item.frameIds],
+    });
+  }
   item.status = item.protected ? 'unsupported' : 'confirmed';
   item.reason = item.protected ? 'protected-manifest' : info.truncated ? `variant-limit:${info.truncated}` : undefined;
   if (info.truncated) {
@@ -276,7 +314,8 @@ export function probeStarted(s: Snapshot, job: ProbeJob): Snapshot {
   const target = resolveProbeJob(s, job); if (!target) return s;
   const tab = structuredClone(target.tab);
   const item = tab.media[target.item.id];
-  if (target.child) item.childManifests!.find(child => child.url === job.url)!.status = 'probing';
-  else item.status = 'probing';
+  const work = target.child ? item.childManifests!.find(child => child.url === job.url)! : item;
+  work.status = 'probing';
+  work.probeAttempts = Math.min(MAX_PROBE_ATTEMPTS, (work.probeAttempts ?? 0) + 1);
   return replace(s, tab);
 }

@@ -147,6 +147,14 @@ The browser's recorded ephemeral endpoint, port 9013, refused connections after 
 
 ## Scope limits
 
+### Cinejoy repair follow-up, 2026-10-23
+
+The later [Cinejoy incident report](CINEJOY_DETECTION_FIX.md) closes the reported detection failure on episode `/2/1` with fresh original-version 10.6.7.2 evidence and an independent final **ours-only** real-page run. It does not reinterpret the earlier inconclusive `/2/2` playback attempts. The final repaired build has 158 passing automated tests, 3/3 native collector checks and 3/3 native page-context/recovery/deadline controls. Exact hashes and the actual 53:10, 1080p/720p popup are linked from that report.
+
+The same final artifact additionally passed **7/7 neighbor trials for each extension**: MP4, WebM, HLS, DASH, multiple sources, no-video and misleading MIME, one trial each. [Final results](rea-evidence/cinejoy-gap/final-neighbors-popup-contract/results.json) retain exact build hashes, independent observations and actual action popups. Worker recovery, top/frame navigation, concurrent tabs, stale completion rejection and the live popup check passed. The new primary row appeared 174 ms after its response in the first run; use the final receipt for the repeated run's actual timing. The optional aborted-frame scenario remains **blocked**, since the required native `requestfailed` event was not established; it is not counted as passed.
+
+The [first neighbor run](rea-evidence/cinejoy-gap/final-neighbors/results.json) passed all seven detection cases but reported lifecycle failure because its old assertion searched visible body text for a raw media URL. URLs are now intentionally inside collapsed Source details. The harness now matches the primary row's exact source URL in its DOM and requires that row to be visible. The corrected rerun exited 0. The first browser closed, but its Node cleanup lingered and only that identified harness process was stopped; its receipt remains separate. No runtime source change or rebuild occurred between runs.
+
 This is detection-only verification. Manifest recognition does not establish downloadable output, muxing, DRM support or protected-content access. The original exposes top-tab attribution in session state; its precise per-source frame/document IDs are unavailable in these observations. Our controlled cross-origin case records actual frame/document provenance.
 
 No worker restart result is inferred from extension reload or browser restart: the harness observes an actual CDP `ServiceWorker.stopWorker` stopped event with the extension still loaded, then wakes the worker through a normal extension snapshot message. Storage polling is paused during this operation because debugger attachment can keep a worker alive.

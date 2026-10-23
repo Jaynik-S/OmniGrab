@@ -21,13 +21,14 @@ export function classify(o: Observation): Classification | undefined {
   const mime = o.mime?.split(';')[0].trim().toLowerCase();
   const path = new URL(url).pathname;
   if (fragment.test(path) || mime === 'video/mp2t') return;
-  // Explicit contradictory response metadata overrides a suggestive filename.
-  if (mime && nonMedia.test(mime)) return;
   if (hls.has(mime ?? '')) return { kind: 'hls', status: 'observed', probe: true };
   if (mime === 'application/dash+xml') return { kind: 'dash', status: 'observed', probe: true };
+  if (/\.m3u8$/i.test(path)) return { kind: 'hls', status: 'observed', probe: true };
+  if (/\.mpd$/i.test(path)) return { kind: 'dash', status: 'observed', probe: true };
+  // Direct files still need credible response/media evidence; manifest candidates above
+  // remain unconfirmed until their bounded parser accepts the actual response body.
+  if (mime && nonMedia.test(mime)) return;
   const mediaMime = mime?.startsWith('video/') || mime?.startsWith('audio/') || mime === 'application/ogg';
-  if (!mediaMime && /\.m3u8$/i.test(path)) return { kind: 'hls', status: 'observed', probe: true };
-  if (!mediaMime && /\.mpd$/i.test(path)) return { kind: 'dash', status: 'observed', probe: true };
   const suffix = /\.(?:mp4|webm|mkv|mov|m4v|ogv|ogg|mp3|m4a|aac|wav|flac)$/i.test(path);
   if (!mediaMime && !suffix && o.method !== 'dom') return;
   if (mime && !mediaMime && !['application/octet-stream', 'binary/octet-stream'].includes(mime)) return;

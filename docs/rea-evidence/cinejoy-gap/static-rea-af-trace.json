@@ -1,0 +1,341 @@
+{
+  "evidence_id": "ev_8c56a50a729a2b19f58015ec31e6b32ff7d80349b059a7a45f2a5fb97ef741be",
+  "subject": null,
+  "provider": {
+    "id": "rea-javascript-application-workflows",
+    "name": "REA JavaScript application workflows",
+    "version": "1"
+  },
+  "predicate_type": "rea.javascript-semantic-trace",
+  "operation": "trace_javascript_semantics",
+  "parameters": {
+    "application_evidence_id": "ev_3321d11aa7c696714196afc554542847018e548d1a9b611757b13bd1b513ba09",
+    "query": {
+      "seed": {
+        "kind": "semantic-node",
+        "node_id": "jsrg_node_9eecfd90174ee985940c34bb1526be9446b94beefacced4f15a6fac217fa49ec"
+      },
+      "direction": "callers",
+      "include_ambiguous_dynamic_edges": false,
+      "expected": null
+    }
+  },
+  "confidence": "inferred",
+  "authority": "analyst-inference",
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+    "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+    "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+    "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+    "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+    "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+    "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+    "Relevant dynamic, unsupported, incomplete, or ambiguous semantics remain unknown.",
+    "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+    "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+    "Semantic graph reachability is a static inference and does not prove runtime execution.",
+    "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+    "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation."
+  ],
+  "relationship_coverage": null,
+  "evidence_links": [
+    "ev_3321d11aa7c696714196afc554542847018e548d1a9b611757b13bd1b513ba09"
+  ],
+  "authority_note": "Focused projection of actual REA CLI Evidence; complete trace retained in temporary file. This JSON is not itself an unmodified canonical Evidence record.",
+  "full_evidence_file": {
+    "path": "C:\\Users\\jay03\\AppData\\Local\\Temp\\vdh-rea-20261015\\current-static-semantic-af.json",
+    "bytes": 25202,
+    "sha256": "accf19131bc1e3c36507bf58f61f6118836e7867853e038f2b5072f879a6b14f"
+  },
+  "normalized_result": {
+    "query_id": "jsrq_3bd0a129b8fbb2adc8af3926aa2a2e86e2c8475cd5e4535c1a8f04c472e2bcfc",
+    "source_graph_id": "jsrg_9d6afea84a9ecdb3581c89dd8552a40fdbb3c95017b98bfff70c203da24c8dc1",
+    "seed": {
+      "kind": "semantic-node",
+      "node_id": "jsrg_node_9eecfd90174ee985940c34bb1526be9446b94beefacced4f15a6fac217fa49ec"
+    },
+    "direction": "callers",
+    "status": "found",
+    "seed_node_ids": [
+      "jsrg_node_9eecfd90174ee985940c34bb1526be9446b94beefacced4f15a6fac217fa49ec"
+    ],
+    "expected_match_node_ids": [],
+    "summary": {
+      "total_seed_matches": 1,
+      "traversed_nodes": 2,
+      "traversed_relations": 1,
+      "traversed_functions": 2,
+      "traversed_modules": 1,
+      "relevant_unknowns": 6
+    },
+    "coverage": {
+      "status": "partial"
+    },
+    "limitations": [
+      "Boundary extraction covers unshadowed JSON/global coercions plus parse and validation method candidates.",
+      "Child-process extraction covers asynchronous node:child_process creation, literal argv/env/stdio options, exit/error listeners, and kill signals.",
+      "Configuration extraction covers process.env, process.argv, node:fs reads, and direct logical defaults.",
+      "Event extraction covers EventEmitter-style literal registrations, removals, and dispatch candidates; dynamic names remain unknown.",
+      "Function fingerprints are static candidates; equal digests can remain ambiguous and do not prove behavioral equivalence.",
+      "Local data flow does not claim control-flow-sensitive reaching definitions or arbitrary dynamic property resolution.",
+      "Promise ownership covers explicit unshadowed Promise construction, static factories, aggregation, chaining, and await syntax only.",
+      "Relevant dynamic, unsupported, incomplete, or ambiguous semantics remain unknown.",
+      "Request extraction covers fetch, WebSocket, node:http/node:https construction, direct option fields, and exact local response consumers.",
+      "Resource extraction covers built-in filesystem/network acquisition and exact local close/destroy/end handles.",
+      "Semantic graph reachability is a static inference and does not prove runtime execution.",
+      "The semantic graph contains static syntax observations and conservative relationship candidates; it does not claim runtime execution.",
+      "Timer extraction covers global or node:timers scheduling and exact local-handle cancellation."
+    ],
+    "source_evidence_id": "ev_3321d11aa7c696714196afc554542847018e548d1a9b611757b13bd1b513ba09",
+    "evidence_links": [
+      "ev_3321d11aa7c696714196afc554542847018e548d1a9b611757b13bd1b513ba09"
+    ]
+  },
+  "nodes": [
+    {
+      "node_id": "jsrg_node_45157ea02404728fd8b379ebb62afb1b511381e4e945ccb932fc8ea69c254617",
+      "kind": "call-site",
+      "label": "call",
+      "identity": {
+        "artifact_sha256": "d249fe5669a7ab907a5da5716825f8645ee8fd379bc596a74448221d22bafdf2",
+        "module_path": "service/main.js",
+        "source_range": {
+          "start": {
+            "line": 24,
+            "column": 47798
+          },
+          "end": {
+            "line": 24,
+            "column": 47805
+          }
+        },
+        "role_key": "call:call:call:238669:238676"
+      }
+    },
+    {
+      "node_id": "jsrg_node_9eecfd90174ee985940c34bb1526be9446b94beefacced4f15a6fac217fa49ec",
+      "kind": "function",
+      "label": "Af",
+      "identity": {
+        "artifact_sha256": "d249fe5669a7ab907a5da5716825f8645ee8fd379bc596a74448221d22bafdf2",
+        "module_path": "service/main.js",
+        "source_range": {
+          "start": {
+            "line": 24,
+            "column": 46388
+          },
+          "end": {
+            "line": 24,
+            "column": 46796
+          }
+        },
+        "role_key": "callable:callable:function:237259:237667"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "source_node_id": "jsrg_node_45157ea02404728fd8b379ebb62afb1b511381e4e945ccb932fc8ea69c254617",
+      "target_node_id": "jsrg_node_9eecfd90174ee985940c34bb1526be9446b94beefacced4f15a6fac217fa49ec",
+      "relation": "calls",
+      "resolution": "resolved",
+      "properties": {},
+      "evidence": {
+        "context_id": "jsrg_evidence_cd339af62c894b869dbdd49796ec262db321d967065c0ae5e73fa19413661717",
+        "location": {
+          "available": true,
+          "value": {
+            "kind": "source-range",
+            "source": "service/main.js",
+            "start": {
+              "line": 24,
+              "column": 47798
+            },
+            "end": {
+              "line": 24,
+              "column": 47805
+            }
+          }
+        }
+      },
+      "relation_id": "jsrg_relation_eb75a19f8e6ad925a8ea5980b5e193e432177059670ddd0484cc564cce3924bc"
+    }
+  ],
+  "unknowns": [
+    {
+      "node_id": "jsrg_node_9eecfd90174ee985940c34bb1526be9446b94beefacced4f15a6fac217fa49ec",
+      "family": "call-flow",
+      "relation_kinds": [
+        "calls"
+      ],
+      "reason": "dynamic-call",
+      "detail": "Unsupported MemberExpression call target.",
+      "candidate_node_ids": [],
+      "evidence": {
+        "context_id": "jsrg_evidence_e1b0b6f7f65da3acbb8f2e4b77cbe3146e530671b5238dba7a427ae90bfc861f",
+        "location": {
+          "available": true,
+          "value": {
+            "kind": "source-range",
+            "source": "service/main.js",
+            "start": {
+              "line": 24,
+              "column": 46511
+            },
+            "end": {
+              "line": 24,
+              "column": 46530
+            }
+          }
+        }
+      },
+      "unknown_id": "jsrg_unknown_025b41b88c7a64d8ead5d75de56f5ad4cf8a95fde91025b8edeb4a9ded1490bc"
+    },
+    {
+      "node_id": "jsrg_node_9eecfd90174ee985940c34bb1526be9446b94beefacced4f15a6fac217fa49ec",
+      "family": "call-flow",
+      "relation_kinds": [
+        "calls"
+      ],
+      "reason": "dynamic-call",
+      "detail": "Unsupported MemberExpression call target.",
+      "candidate_node_ids": [],
+      "evidence": {
+        "context_id": "jsrg_evidence_e1b0b6f7f65da3acbb8f2e4b77cbe3146e530671b5238dba7a427ae90bfc861f",
+        "location": {
+          "available": true,
+          "value": {
+            "kind": "source-range",
+            "source": "service/main.js",
+            "start": {
+              "line": 24,
+              "column": 46562
+            },
+            "end": {
+              "line": 24,
+              "column": 46568
+            }
+          }
+        }
+      },
+      "unknown_id": "jsrg_unknown_0b47107ede5707afee7c128b60fe7cdd51a1b50ac6e09d7bf865bfa1cc80d726"
+    },
+    {
+      "node_id": "jsrg_node_9eecfd90174ee985940c34bb1526be9446b94beefacced4f15a6fac217fa49ec",
+      "family": "call-flow",
+      "relation_kinds": [
+        "calls"
+      ],
+      "reason": "dynamic-call",
+      "detail": "Unsupported MemberExpression call target.",
+      "candidate_node_ids": [],
+      "evidence": {
+        "context_id": "jsrg_evidence_e1b0b6f7f65da3acbb8f2e4b77cbe3146e530671b5238dba7a427ae90bfc861f",
+        "location": {
+          "available": true,
+          "value": {
+            "kind": "source-range",
+            "source": "service/main.js",
+            "start": {
+              "line": 24,
+              "column": 46680
+            },
+            "end": {
+              "line": 24,
+              "column": 46692
+            }
+          }
+        }
+      },
+      "unknown_id": "jsrg_unknown_199cd70d6c8f0dd5e190881f943148d6598fa92365186d06156fadf277871793"
+    },
+    {
+      "node_id": "jsrg_node_9eecfd90174ee985940c34bb1526be9446b94beefacced4f15a6fac217fa49ec",
+      "family": "call-flow",
+      "relation_kinds": [
+        "calls"
+      ],
+      "reason": "dynamic-call",
+      "detail": "Unsupported MemberExpression call target.",
+      "candidate_node_ids": [],
+      "evidence": {
+        "context_id": "jsrg_evidence_e1b0b6f7f65da3acbb8f2e4b77cbe3146e530671b5238dba7a427ae90bfc861f",
+        "location": {
+          "available": true,
+          "value": {
+            "kind": "source-range",
+            "source": "service/main.js",
+            "start": {
+              "line": 24,
+              "column": 46582
+            },
+            "end": {
+              "line": 24,
+              "column": 46588
+            }
+          }
+        }
+      },
+      "unknown_id": "jsrg_unknown_5a45f7942003fdb6822516cc2f84070c61b9ff88e7f96a0074064748dcf8c26f"
+    },
+    {
+      "node_id": "jsrg_node_9eecfd90174ee985940c34bb1526be9446b94beefacced4f15a6fac217fa49ec",
+      "family": "call-flow",
+      "relation_kinds": [
+        "calls"
+      ],
+      "reason": "dynamic-call",
+      "detail": "Unsupported MemberExpression call target.",
+      "candidate_node_ids": [],
+      "evidence": {
+        "context_id": "jsrg_evidence_e1b0b6f7f65da3acbb8f2e4b77cbe3146e530671b5238dba7a427ae90bfc861f",
+        "location": {
+          "available": true,
+          "value": {
+            "kind": "source-range",
+            "source": "service/main.js",
+            "start": {
+              "line": 24,
+              "column": 46592
+            },
+            "end": {
+              "line": 24,
+              "column": 46608
+            }
+          }
+        }
+      },
+      "unknown_id": "jsrg_unknown_829d72146ae78384c1bbb870d9331991065ea8a84d41cc5c6e2d85ca058569c9"
+    },
+    {
+      "node_id": "jsrg_node_9eecfd90174ee985940c34bb1526be9446b94beefacced4f15a6fac217fa49ec",
+      "family": "call-flow",
+      "relation_kinds": [
+        "calls"
+      ],
+      "reason": "dynamic-call",
+      "detail": "Unresolved call target fetch.",
+      "candidate_node_ids": [],
+      "evidence": {
+        "context_id": "jsrg_evidence_e1b0b6f7f65da3acbb8f2e4b77cbe3146e530671b5238dba7a427ae90bfc861f",
+        "location": {
+          "available": true,
+          "value": {
+            "kind": "source-range",
+            "source": "service/main.js",
+            "start": {
+              "line": 24,
+              "column": 46485
+            },
+            "end": {
+              "line": 24,
+              "column": 46490
+            }
+          }
+        }
+      },
+      "unknown_id": "jsrg_unknown_ce7ad2c7d0572de521ae4b52821d14bf16d55e7668295e89e9cfbce8c876175c"
+    }
+  ]
+}

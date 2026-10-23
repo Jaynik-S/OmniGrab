@@ -1,5 +1,6 @@
 import { collectResources, observeMedia } from './collector.ts';
 import type { CollectedObservation } from './collector.ts';
+import { createManifestRequestHandler } from './manifest-fetch.ts';
 
 const pending: CollectedObservation[] = [];
 const resourcesSeen = new Set<string>();
@@ -45,7 +46,10 @@ if (typeof PerformanceObserver !== 'undefined') {
   } catch { /* Resource Timing observation is optional in unsupported frames. */ }
 }
 
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+const manifestRequests = createManifestRequestHandler(chrome.runtime.id);
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  const handled = manifestRequests(message, sender, sendResponse);
+  if (handled !== undefined) return handled;
   if (!message || message.type !== 'rescan') return;
   media.rescan();
   resourcesSeen.clear();

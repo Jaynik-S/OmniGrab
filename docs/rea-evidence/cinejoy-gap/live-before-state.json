@@ -1,0 +1,192 @@
+{
+  "url": "https://cinejoy.pk/watch/tv/67178/2/1",
+  "tabId": 1952394920,
+  "ours": {
+    "revision": 15,
+    "tab": {
+      "documentId": "865691079EF54B51BA2B20C7877AD839",
+      "documents": {
+        "0": "865691079EF54B51BA2B20C7877AD839"
+      },
+      "dropped": 0,
+      "epoch": 1,
+      "errors": [],
+      "id": 1952394920,
+      "media": {
+        "blob:https://cinejoy.pk/0a2f76c1-180e-4f76-91ef-ea949a904fb1": {
+          "childUrls": [],
+          "documentIds": [
+            "865691079EF54B51BA2B20C7877AD839"
+          ],
+          "duration": 3189.5616350000337,
+          "elementIds": [
+            "0:media-1"
+          ],
+          "firstSeen": 1792743117933,
+          "frameIds": [
+            0
+          ],
+          "height": 1080,
+          "id": "blob:https://cinejoy.pk/0a2f76c1-180e-4f76-91ef-ea949a904fb1",
+          "instance": 9,
+          "lastSeen": 1792743127076,
+          "methods": [
+            "dom"
+          ],
+          "reason": "local-blob-without-remote-link",
+          "segmentUrls": [],
+          "status": "unresolved",
+          "title": "Marvel's The Punisher S2:E1 - Cinejoy",
+          "type": "blob",
+          "url": "blob:https://cinejoy.pk/0a2f76c1-180e-4f76-91ef-ea949a904fb1",
+          "variants": [],
+          "width": 1920
+        },
+        "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8": {
+          "childUrls": [],
+          "documentIds": [
+            "865691079EF54B51BA2B20C7877AD839"
+          ],
+          "elementIds": [],
+          "firstSeen": 1792743117933,
+          "frameIds": [
+            0
+          ],
+          "id": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+          "instance": 10,
+          "lastSeen": 1792743117933,
+          "methods": [
+            "resource"
+          ],
+          "reason": "manifest-http:404",
+          "segmentUrls": [],
+          "status": "unresolved",
+          "type": "hls",
+          "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+          "variants": []
+        }
+      },
+      "title": "Marvel's The Punisher S2:E1 - Cinejoy",
+      "updatedAt": 1792743127076,
+      "url": "https://cinejoy.pk/watch/tv/67178/2/1"
+    }
+  },
+  "original": {
+    "tabUrl": "https://cinejoy.pk/watch/tv/67178/2/1",
+    "items": [
+      {
+        "type": "m3u8_playlist",
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+        "title": null,
+        "filename": null,
+        "duration": 3189.5616350000337,
+        "protected": false,
+        "variants": [
+          {
+            "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+            "width": 1920,
+            "height": 1080,
+            "bandwidth": 5022000
+          },
+          {
+            "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/720p/playlist.jpg",
+            "width": 1280,
+            "height": 720,
+            "bandwidth": 2543000
+          }
+        ]
+      }
+    ]
+  },
+  "dom": {
+    "title": "Marvel's The Punisher S2:E1 - Cinejoy",
+    "videos": [
+      {
+        "src": "blob:https://cinejoy.pk/0a2f76c1-180e-4f76-91ef-ea949a904fb1",
+        "duration": 3189.5616350000337,
+        "width": 1920,
+        "height": 1080,
+        "paused": false
+      }
+    ],
+    "resources": [
+      {
+        "url": "https://image.tmdb.org/t/p/original/9czVEnJemvP6gcJlMEjUeuISL1c.jpg",
+        "initiatorType": "css"
+      }
+    ]
+  },
+  "events": [
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+      "status": 200,
+      "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js",
+      "referer": "https://cinejoy.pk/",
+      "origin": "https://cinejoy.pk",
+      "method": "GET",
+      "at": 1792743117811
+    },
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+      "status": 200,
+      "source": "page",
+      "referer": "https://cinejoy.pk/",
+      "origin": "https://cinejoy.pk",
+      "method": "GET",
+      "at": 1792743117837
+    },
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/720p/playlist.jpg",
+      "status": 200,
+      "source": "page",
+      "referer": "https://cinejoy.pk/",
+      "origin": "https://cinejoy.pk",
+      "method": "GET",
+      "at": 1792743117889
+    },
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+      "status": 200,
+      "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js",
+      "referer": "https://cinejoy.pk/",
+      "origin": "https://cinejoy.pk",
+      "method": "GET",
+      "at": 1792743117917
+    },
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/720p/playlist.jpg",
+      "status": 200,
+      "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js",
+      "referer": "https://cinejoy.pk/",
+      "origin": "https://cinejoy.pk",
+      "method": "GET",
+      "at": 1792743117921
+    },
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+      "status": 200,
+      "source": "page",
+      "referer": "https://cinejoy.pk/",
+      "origin": "https://cinejoy.pk",
+      "method": "GET",
+      "at": 1792743118139
+    },
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+      "status": 404,
+      "source": "chrome-extension://ealkgjbgomnenhfiaoknbgcmegjldcam/background.js",
+      "method": "GET",
+      "at": 1792743118208
+    },
+    {
+      "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+      "status": 200,
+      "source": "chrome-extension://lmjnegcaeklhafolokijcfjliaokphfk/service/main.js",
+      "referer": "",
+      "origin": "https://cinejoy.pk",
+      "method": "GET",
+      "at": 1792743118570
+    }
+  ],
+  "authority": "Supplemental Playwright/CDP extension state and selected request metadata; not REA Evidence"
+}

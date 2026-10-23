@@ -4,6 +4,8 @@ Investigation date: 2026-10-15 (America/Toronto). Analysis only; no extension wa
 
 This document records the initial static-only pass. Subsequent runtime observations and their separate confidence limits are in [REA_DETECTION_ANALYSIS.md](REA_DETECTION_ANALYSIS.md) and [ORIGINAL_BASELINES.md](ORIGINAL_BASELINES.md).
 
+The 2026-10-23 [Cinejoy investigation](CINEJOY_DETECTION_FIX.md) reinspects installed version 10.6.7.2, explains the HLS-to-MP4 display distinction, and records the separate detector's request-context repair and live verification. The version-specific findings below remain the original static baseline.
+
 ## Target, evidence, and confidence
 
 Requested extension directory:

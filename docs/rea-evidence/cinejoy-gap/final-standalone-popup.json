@@ -1,0 +1,9 @@
+{
+  "authority": "Actual chrome.action popup via supplemental CDP; not an extension tab",
+  "text": "DETECTION LAB\n\nMedia evidence\nRescan\nMarvel's The Punisher S2:E1 - Cinejoy\n\nhttps://cinejoy.pk/watch/tv/67178/2/1\n\nRevision 51 · Tab 401945180 · Generation 1\n\nConfirmed media\nMarvel's The Punisher S2:E1 - Cinejoy\nHLS · confirmed\n\nSource protocol: HLS\n\n53:10 · VOD\n\nQualities: 1080p · 720p\n\nSource details\nLocal and unconfirmed evidence (1)\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+  "primary": "Confirmed media\nMarvel's The Punisher S2:E1 - Cinejoy\nHLS · confirmed\n\nSource protocol: HLS\n\n53:10 · VOD\n\nQualities: 1080p · 720p\n\nSource details",
+  "primaryRows": 1,
+  "secondaryRows": 1,
+  "secondaryOpen": false,
+  "width": 460
+}

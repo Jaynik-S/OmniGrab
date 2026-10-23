@@ -9,6 +9,9 @@ h2, h3 { margin: 0; font-size: 14px; font-weight: 650; overflow-wrap: anywhere; 
 p { margin: 8px 0; }
 .eyebrow { margin: 0 0 5px; color: #61615d; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
 .context { margin: 18px 0; }
+.primary-media > h2 { margin-bottom: 12px; }
+.qualities { font-weight: 600; }
+.secondary-evidence { margin-bottom: 12px; }
 .media { padding: 16px; margin-bottom: 12px; border: 1px solid #eaeaea; border-radius: 8px; background: #fff; }
 .row { align-items: flex-start; }
 .status { flex-shrink: 0; padding: 2px 6px; border-radius: 4px; background: #edf3ec; color: #346538; font-size: 11px; }

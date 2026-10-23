@@ -1,0 +1,247 @@
+{
+  "authority": "Analyst projection of REA controlled scenario; not a full Evidence record",
+  "evidence_id": "ev_6696a8cf9c9191ff182a93a5feb311e8a0c450162776a9b90a454771bbfb2618",
+  "parameters": {
+    "browser": {
+      "mode": "connect",
+      "cdp_endpoint": "http://127.0.0.1:12947",
+      "target_id": "AC2C07CFAE75F6D65E74BBAB894ED4DD"
+    },
+    "start_url": {
+      "url": "https://cinejoy.pk/watch/tv/67178/2/1",
+      "query": []
+    },
+    "environment": {
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "device_scale_factor": 1
+      },
+      "locale": "en-US",
+      "timezone": "UTC",
+      "color_scheme": "light",
+      "reduced_motion": "reduce",
+      "service_workers": "block"
+    },
+    "actions": [
+      {
+        "step_id": "wait-complete-detection",
+        "action": "wait_for_timeout",
+        "duration_ms": 7000
+      }
+    ],
+    "storage": {
+      "cookies": [],
+      "local_storage": [],
+      "session_storage": []
+    },
+    "secrets": [],
+    "capture": {
+      "after_each_step": [],
+      "at_end": [
+        "url"
+      ],
+      "events": [
+        "network",
+        "page-errors",
+        "frames"
+      ],
+      "network": {
+        "request_body": false,
+        "response_body": false,
+        "header_values": false
+      }
+    },
+    "scenario_sha256": "ad5a0aded42f77cf4d0d99c662e70837120cc26a82708868d7df0f12870f7966"
+  },
+  "browser": {
+    "mode": "connect",
+    "process_ownership": "external",
+    "cleanup": "disconnected-external",
+    "product": "Chromium",
+    "version": "153.0.8010.12"
+  },
+  "completeness": {
+    "status": "incomplete",
+    "equality_eligible": false,
+    "missing_sections": [
+      "events"
+    ],
+    "truncated_sections": []
+  },
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "Event sequence records provider receipt order; simultaneous browser causality is not inferred.",
+    "Network content is retained only when selected; Playwright response-body bytes are API results and are not guaranteed to match wire bytes.",
+    "Request bytes are limited to what Playwright exposes; not_exposed does not establish body absence or multipart file coverage.",
+    "Network content reads settle within 5 seconds each and the observer does not request bodies from unfinished responses.",
+    "Playwright scenario events do not expose request initiator stacks; receipt order does not prove causality.",
+    "Storage values are hashed only after declared-secret redaction.",
+    "Shared-context network capture excludes requests without a known root or descendant Page frame.",
+    "Some network requests had not completed when capture ended; later activity is unknown.",
+    "CDP attachment cannot recover pre-attach events or guarantee launch-time context options.",
+    "Browser host platform and architecture were not observed."
+  ],
+  "network": {
+    "retained": 693,
+    "dropped": 0
+  },
+  "manifestEvents": [
+    {
+      "sequence": 345,
+      "kind": "request",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": null,
+      "failure": null,
+      "transaction_id": "request-116"
+    },
+    {
+      "sequence": 660,
+      "kind": "response",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": 200,
+      "failure": null,
+      "transaction_id": "request-116"
+    },
+    {
+      "sequence": 661,
+      "kind": "request",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/720p/playlist.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": null,
+      "failure": null,
+      "transaction_id": "request-272"
+    },
+    {
+      "sequence": 662,
+      "kind": "request-finished",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": null,
+      "failure": null,
+      "transaction_id": "request-116"
+    },
+    {
+      "sequence": 665,
+      "kind": "response",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/720p/playlist.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": 200,
+      "failure": null,
+      "transaction_id": "request-272"
+    },
+    {
+      "sequence": 667,
+      "kind": "request-finished",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/720p/playlist.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": null,
+      "failure": null,
+      "transaction_id": "request-272"
+    },
+    {
+      "sequence": 672,
+      "kind": "request",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": null,
+      "failure": null,
+      "transaction_id": "request-275"
+    },
+    {
+      "sequence": 673,
+      "kind": "response",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": 200,
+      "failure": null,
+      "transaction_id": "request-275"
+    },
+    {
+      "sequence": 674,
+      "kind": "request-finished",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": null,
+      "failure": null,
+      "transaction_id": "request-275"
+    },
+    {
+      "sequence": 676,
+      "kind": "request",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": null,
+      "failure": null,
+      "transaction_id": "request-276"
+    },
+    {
+      "sequence": 677,
+      "kind": "response",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": 200,
+      "failure": null,
+      "transaction_id": "request-276"
+    },
+    {
+      "sequence": 679,
+      "kind": "request-finished",
+      "url": {
+        "url": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+        "origin": "https://nebula.bright67.online",
+        "query_parameter_names": [],
+        "redacted": false
+      },
+      "status": null,
+      "failure": null,
+      "transaction_id": "request-276"
+    }
+  ]
+}

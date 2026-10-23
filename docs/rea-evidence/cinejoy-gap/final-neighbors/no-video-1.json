@@ -1,0 +1,112 @@
+{
+  "id": "no-video",
+  "trial": 1,
+  "category": "no video negative",
+  "url": "http://127.0.0.1:9293/no-video",
+  "expected": [],
+  "tabId": 1648142343,
+  "startedAt": "2026-10-23T08:47:27.795Z",
+  "actions": "Navigate only",
+  "errors": [],
+  "responses": [],
+  "changes": [
+    {
+      "wallMs": 1792745247817.7827,
+      "ours": {
+        "browserWallMs": 1792745247814,
+        "revision": 132,
+        "tabId": 1648142343,
+        "tabUrl": "about:blank",
+        "epoch": 1,
+        "errors": [],
+        "items": []
+      },
+      "original": {
+        "browserWallMs": 1792745247814,
+        "tabId": 1648142343,
+        "items": []
+      }
+    }
+  ],
+  "navigationCallWallMs": 1792745247795.199,
+  "final": {
+    "ours": {
+      "browserWallMs": 1792745254869,
+      "revision": 134,
+      "tabId": 1648142343,
+      "tabUrl": "http://127.0.0.1:9293/no-video",
+      "epoch": 2,
+      "errors": [],
+      "items": []
+    },
+    "original": {
+      "browserWallMs": 1792745254868,
+      "tabId": 1648142343,
+      "items": []
+    }
+  },
+  "documentStatus": 200,
+  "dom": [
+    {
+      "frameUrl": "http://127.0.0.1:9293/no-video",
+      "media": []
+    }
+  ],
+  "popup": {
+    "openedWallMs": 1792745254549.8855,
+    "observedWallMs": 1792745254976.9746,
+    "text": "DETECTION LAB\n\nMedia evidence\nRescan\nActive tab\n\nhttp://127.0.0.1:9293/no-video\n\nRevision 134 · Tab 1648142343 · Generation 2\n\nNo media observed. Rescan after a player appears or starts loading.\n\nDiagnostics\nDiscovery only. Downloading and media decryption are outside this build.",
+    "rows": 0,
+    "context": "Active tab\n\nhttp://127.0.0.1:9293/no-video\n\nRevision 134 · Tab 1648142343 · Generation 2",
+    "status": "",
+    "viewport": {
+      "width": 460,
+      "height": 359,
+      "devicePixelRatio": 1,
+      "bodyWidth": 460
+    },
+    "expectedContextVisible": true,
+    "artifact": "no-video-1-popup.png",
+    "kind": "Actual chrome.action popup"
+  },
+  "polling": {
+    "samples": 35,
+    "requestedMs": 200,
+    "minIntervalMs": 199.3271484375,
+    "maxIntervalMs": 225.54833984375,
+    "deliberatePauses": []
+  },
+  "timing": {
+    "firstCandidateAfterNavigationMs": null,
+    "firstConfirmedAfterNavigationMs": null,
+    "originalFirstAfterNavigationMs": null,
+    "firstExpectedResponseAfterNavigationMs": null,
+    "candidateAfterExpectedResponseMs": null,
+    "confirmedAfterExpectedResponseMs": null,
+    "originalAfterExpectedResponseMs": null,
+    "automaticRenderedRowLatencyMs": null
+  },
+  "assessment": {
+    "ours": {
+      "groups": 0,
+      "confirmedGroups": 0,
+      "blobContexts": 0,
+      "expectedMatched": 0,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    },
+    "original": {
+      "groups": 0,
+      "confirmedGroups": 0,
+      "blobContexts": 0,
+      "expectedMatched": 0,
+      "missed": [],
+      "unexpectedConfirmed": [],
+      "duplicatePrimaryUrls": 0
+    }
+  },
+  "status": "pass",
+  "originalStatus": "pass",
+  "endedAt": "2026-10-23T08:47:35.045Z"
+}

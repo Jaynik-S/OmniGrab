@@ -1,0 +1,182 @@
+{
+  "evidence_id": "ev_3b2db3e89917a445894a7c65ff0a57872c62be5cdddf3e5f7ec9673aecc288a4",
+  "subject": null,
+  "provider": {
+    "id": "rea-javascript-application-workflows",
+    "name": "REA JavaScript application workflows",
+    "version": "1"
+  },
+  "predicate_type": "rea.application-feature-trace",
+  "operation": "trace_application_feature",
+  "parameters": {
+    "application_evidence_id": "ev_3321d11aa7c696714196afc554542847018e548d1a9b611757b13bd1b513ba09",
+    "native_evidence_ids": [],
+    "seed": {
+      "kind": "module",
+      "value": "service/main.js",
+      "match": "exact",
+      "case_sensitive": false
+    },
+    "direction": "outgoing"
+  },
+  "confidence": "inferred",
+  "authority": "analyst-inference",
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "A trace reports graph relationships, not proof that code executed or that a feature is reachable in every state.",
+    "Native handoffs never open a binary or invoke a provider automatically; snapshot reuse remains provider/profile/target exact.",
+    "Static, native, passive-runtime, inferred, and unknown facts retain their original authority in the returned graph.",
+    "The source application graph is incomplete; unmatched seeds and frontiers remain unknown."
+  ],
+  "relationship_coverage": null,
+  "evidence_links": [
+    "ev_3321d11aa7c696714196afc554542847018e548d1a9b611757b13bd1b513ba09"
+  ],
+  "authority_note": "Focused projection of actual REA CLI Evidence; complete trace retained in temporary file. This JSON is not itself an unmodified canonical Evidence record.",
+  "full_evidence_file": {
+    "path": "C:\\Users\\jay03\\AppData\\Local\\Temp\\vdh-rea-20261015\\current-static-trace-service.json",
+    "bytes": 105394,
+    "sha256": "603db550c4f0732632dafd539b7ca1cb7ddd58e826aecaa27dd4254f11aa5c93"
+  },
+  "normalized_result": {
+    "trace_id": "jatr_a53e4372053e0a8c61415eddc4cc3a7a22b94395481ea6a906407a478639dbf4",
+    "source_evidence_id": "ev_3321d11aa7c696714196afc554542847018e548d1a9b611757b13bd1b513ba09",
+    "source_graph_id": "jag_0531aba376622cc845a0b76b6f08272e0adc9780e2cec4047f59235118424d12",
+    "seed": {
+      "kind": "module",
+      "value": "service/main.js",
+      "match": "exact",
+      "case_sensitive": false
+    },
+    "direction": "outgoing",
+    "seed_matches": [
+      {
+        "node_id": "jag_node_1d69ac0a32f33632b19c3935bbe1910917ebb62c8f54aec6dc35560b241292d5",
+        "kind": "javascript-module",
+        "basis": "label",
+        "field": "observations[0].label"
+      },
+      {
+        "node_id": "jag_node_341bfcea15ce3f939e8c852b55d75b6138ce62c8e5b3b573fcf77206e4d4bf49",
+        "kind": "javascript-asset",
+        "basis": "label",
+        "field": "observations[2].label"
+      }
+    ],
+    "summary": {
+      "matched_seeds": 2,
+      "traced_nodes": 13,
+      "traced_edges": 13,
+      "terminal_paths": 10,
+      "native_handoffs": 0,
+      "observed_facts": 7,
+      "inferred_facts": 22,
+      "unknown_facts": 0,
+      "unavailable_facts": 0
+    },
+    "coverage": {
+      "status": "partial",
+      "source_graph_status": "partial",
+      "total_seed_matches": 2
+    },
+    "evidence_links": [
+      "ev_3321d11aa7c696714196afc554542847018e548d1a9b611757b13bd1b513ba09"
+    ],
+    "reachable_nodes": [
+      {
+        "node_id": "jag_node_1d69ac0a32f33632b19c3935bbe1910917ebb62c8f54aec6dc35560b241292d5",
+        "kind": "javascript-module",
+        "labels": [
+          "service/main.js"
+        ]
+      },
+      {
+        "node_id": "jag_node_2953cf3d136ea43406fa142125ffc8d2e1bc8652741405181819932c76359ac3",
+        "kind": "endpoint",
+        "labels": [
+          "notification_limit"
+        ]
+      },
+      {
+        "node_id": "jag_node_341bfcea15ce3f939e8c852b55d75b6138ce62c8e5b3b573fcf77206e4d4bf49",
+        "kind": "javascript-asset",
+        "labels": [
+          "frame-id validation candidate",
+          "frame-id validation candidate",
+          "service/main.js"
+        ]
+      },
+      {
+        "node_id": "jag_node_474803a5427eff1a922eee24d70e0a251ad31986228400a42cd4eea0e2ee2df2",
+        "kind": "endpoint",
+        "labels": [
+          "network endpoint candidate"
+        ]
+      },
+      {
+        "node_id": "jag_node_588ea5d8374dc0f969b1432c093df5b7eb0cbbe26472ba2360bb5115d12b7704",
+        "kind": "worker",
+        "labels": [
+          null
+        ]
+      },
+      {
+        "node_id": "jag_node_635369988c414da300af3d1bb77ddd30c6483ae78022a6c8a78fbe831cfd0622",
+        "kind": "endpoint",
+        "labels": [
+          "content-length"
+        ]
+      },
+      {
+        "node_id": "jag_node_6f283b4343d0f4a875cacb94234786c878b58f054129b77801fff49cfcbacd54",
+        "kind": "endpoint",
+        "labels": [
+          "route endpoint"
+        ]
+      },
+      {
+        "node_id": "jag_node_751e3a74faf61f3dd5938f7037abcdc4644aa87efadf1a1589652d066b69733a",
+        "kind": "endpoint",
+        "labels": [
+          "content-type",
+          "content-type"
+        ]
+      },
+      {
+        "node_id": "jag_node_805ec6b3c1334a6640ba7f18a5c6257715a59e6e9003809c5926515acabbee11",
+        "kind": "endpoint",
+        "labels": [
+          "content-range"
+        ]
+      },
+      {
+        "node_id": "jag_node_b91b6140b39d2d8a05d50f67ec93dcc527dd1cb3483793925c08828fcce447b5",
+        "kind": "endpoint",
+        "labels": [
+          "content-disposition"
+        ]
+      },
+      {
+        "node_id": "jag_node_cb82565dab8260c2f4b529739b0903909ad44e924449d37eb8531f20318bde32",
+        "kind": "endpoint",
+        "labels": [
+          "accept-ranges"
+        ]
+      },
+      {
+        "node_id": "jag_node_e7933124c878014724c2adc094d5b3d6e4cc9e5c69fd2c3702bb85bd85d0db58",
+        "kind": "endpoint",
+        "labels": [
+          "notification_tos"
+        ]
+      },
+      {
+        "node_id": "jag_node_f93813a91ea340d7fc4756ddbfe5abf359a00d93ec3cd939ce4af7cd39332106",
+        "kind": "endpoint",
+        "labels": [
+          "route endpoint"
+        ]
+      }
+    ]
+  }
+}

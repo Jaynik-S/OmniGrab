@@ -1,0 +1,349 @@
+{
+  "authority": "direct-file-inspection; not REA Evidence",
+  "target_path": "C:\\Users\\jay03\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\lmjnegcaeklhafolokijcfjliaokphfk\\10.6.7.2_0",
+  "version": "10.6.7.2",
+  "inspected_at_utc": "2026-10-23T08:14:23.204655+00:00",
+  "files": {
+    "manifest.json": {
+      "length_bytes": 6591,
+      "sha256": "576ac44852fdba29f44abf20b4e447141755d91cba34effe6bf0e9fb77be104b",
+      "ascii": true
+    },
+    "service/main.js": {
+      "length_bytes": 555942,
+      "sha256": "d249fe5669a7ab907a5da5716825f8645ee8fd379bc596a74448221d22bafdf2",
+      "ascii": true
+    },
+    "content/panel.js": {
+      "length_bytes": 356725,
+      "sha256": "99cb4b20beaf9ddbe7bab049f52177ebe400cc5207464369f61c8b10b9b03643",
+      "ascii": true
+    },
+    "content/register_components.js": {
+      "length_bytes": 354473,
+      "sha256": "b31006d4c025c77259b96c9581c19edfae00ea09f4c25366be0f908da7891988",
+      "ascii": true
+    },
+    "content/global_persistent.js": {
+      "length_bytes": 281579,
+      "sha256": "c2522ae0df72826d9fc78af0c30ad450c3f8eb8e6e295f50436cb93da19920cd",
+      "ascii": true
+    }
+  },
+  "references": [
+    {
+      "file": "service/main.js",
+      "name": "If",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 243646,
+      "offset_characters": 243646
+    },
+    {
+      "file": "service/main.js",
+      "name": "NS",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 242218,
+      "offset_characters": 242218
+    },
+    {
+      "file": "service/main.js",
+      "name": "Eu",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 238094,
+      "offset_characters": 238094
+    },
+    {
+      "file": "service/main.js",
+      "name": "Ef",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 238202,
+      "offset_characters": 238202
+    },
+    {
+      "file": "service/main.js",
+      "name": "Af",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 237259,
+      "offset_characters": 237259
+    },
+    {
+      "file": "service/main.js",
+      "name": "wt",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 185440,
+      "offset_characters": 185440
+    },
+    {
+      "file": "service/main.js",
+      "name": "ao",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 185484,
+      "offset_characters": 185484
+    },
+    {
+      "file": "service/main.js",
+      "name": "St",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 185996,
+      "offset_characters": 185996
+    },
+    {
+      "file": "service/main.js",
+      "name": "Wm",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 186187,
+      "offset_characters": 186187
+    },
+    {
+      "file": "service/main.js",
+      "name": "Km",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 186288,
+      "offset_characters": 186288
+    },
+    {
+      "file": "service/main.js",
+      "name": "Zs",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 186408,
+      "offset_characters": 186408
+    },
+    {
+      "file": "service/main.js",
+      "name": "Lm",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 181129,
+      "offset_characters": 181129
+    },
+    {
+      "file": "service/main.js",
+      "name": "Jn",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 152694,
+      "offset_characters": 152694
+    },
+    {
+      "file": "service/main.js",
+      "name": "yv",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 151955,
+      "offset_characters": 151955
+    },
+    {
+      "file": "service/main.js",
+      "name": "io",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 180881,
+      "offset_characters": 180881
+    },
+    {
+      "file": "service/main.js",
+      "name": "ro",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 180406,
+      "offset_characters": 180406
+    },
+    {
+      "file": "service/main.js",
+      "name": "no",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 183197,
+      "offset_characters": 183197
+    },
+    {
+      "file": "service/main.js",
+      "name": "rm",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 537763,
+      "offset_characters": 537763
+    },
+    {
+      "file": "service/main.js",
+      "name": "Vx",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 536684,
+      "offset_characters": 536684
+    },
+    {
+      "file": "service/main.js",
+      "name": "Vy",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 536078,
+      "offset_characters": 536078
+    },
+    {
+      "file": "service/main.js",
+      "name": "jn",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 535473,
+      "offset_characters": 535473
+    },
+    {
+      "file": "service/main.js",
+      "name": "Of",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 244328,
+      "offset_characters": 244328
+    },
+    {
+      "file": "service/main.js",
+      "name": "Hv",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 206027,
+      "offset_characters": 206027
+    },
+    {
+      "file": "service/main.js",
+      "name": "it",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 149904,
+      "offset_characters": 149904
+    },
+    {
+      "file": "service/main.js",
+      "name": "ip",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 196195,
+      "offset_characters": 196195
+    },
+    {
+      "file": "content/panel.js",
+      "name": "Id",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 271249,
+      "offset_characters": 271249
+    },
+    {
+      "file": "content/panel.js",
+      "name": "Gt",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 276103,
+      "offset_characters": 276103
+    },
+    {
+      "file": "content/panel.js",
+      "name": "xg",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 327655,
+      "offset_characters": 327655
+    },
+    {
+      "file": "content/panel.js",
+      "name": "ti",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 319568,
+      "offset_characters": 319568
+    },
+    {
+      "file": "content/panel.js",
+      "name": "Kr",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 321534,
+      "offset_characters": 321534
+    },
+    {
+      "file": "content/panel.js",
+      "name": "eu",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 331846,
+      "offset_characters": 331846
+    },
+    {
+      "file": "content/panel.js",
+      "name": "lc",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 284594,
+      "offset_characters": 284594
+    },
+    {
+      "file": "content/panel.js",
+      "name": "Ki",
+      "reference_kind": "function-declaration-start",
+      "offset_utf8_bytes": 284318,
+      "offset_characters": 284318
+    },
+    {
+      "file": "service/main.js",
+      "name": "Bm",
+      "reference_kind": "exact-token-start",
+      "offset_utf8_bytes": 183284,
+      "offset_characters": 183284
+    },
+    {
+      "file": "service/main.js",
+      "name": "Hm",
+      "reference_kind": "exact-token-start",
+      "offset_utf8_bytes": 183345,
+      "offset_characters": 183345
+    },
+    {
+      "file": "service/main.js",
+      "name": "default preferred output muxer",
+      "reference_kind": "exact-token-start",
+      "offset_utf8_bytes": 500477,
+      "offset_characters": 500477
+    },
+    {
+      "file": "content/panel.js",
+      "name": "media tags",
+      "reference_kind": "exact-token-start",
+      "offset_utf8_bytes": 323433,
+      "offset_characters": 323433
+    },
+    {
+      "file": "content/panel.js",
+      "name": "discovered row",
+      "reference_kind": "exact-token-start",
+      "offset_utf8_bytes": 332269,
+      "offset_characters": 332269
+    },
+    {
+      "file": "content/panel.js",
+      "name": "buildArgs",
+      "reference_kind": "exact-token-start",
+      "offset_utf8_bytes": 337292,
+      "offset_characters": 337292
+    },
+    {
+      "file": "content/panel.js",
+      "name": "media metadata",
+      "reference_kind": "exact-token-start",
+      "offset_utf8_bytes": 342528,
+      "offset_characters": 342528
+    }
+  ],
+  "manifest": {
+    "manifest_version": 3,
+    "background": {
+      "service_worker": "service/main.js",
+      "type": "module"
+    },
+    "permissions": [
+      "tabs",
+      "offscreen",
+      "downloads",
+      "sidePanel",
+      "webRequest",
+      "webNavigation",
+      "scripting",
+      "declarativeNetRequest",
+      "storage",
+      "notifications",
+      "contextMenus",
+      "unlimitedStorage"
+    ],
+    "host_permissions": [
+      "<all_urls>"
+    ],
+    "optional_permissions": [
+      "browsingData",
+      "downloads.open"
+    ],
+    "declared_cinejoy_script_matches": []
+  },
+  "limitations": [
+    "Static code inspection does not observe execution or establish the cause of an HTTP404.",
+    "Header values and website credentials are not recorded in this artifact.",
+    "Names and offsets are package-version-specific."
+  ]
+}

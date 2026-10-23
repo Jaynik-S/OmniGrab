@@ -31,13 +31,13 @@ function validMedia(value: unknown, key: string): boolean {
   if (!record(value) || value.id !== key || value.url !== key || !text(value.url)) return false;
   if (!['direct', 'hls', 'dash', 'blob', 'unknown'].includes(String(value.type)) ||
       !['observed', 'probing', 'confirmed', 'unresolved', 'unsupported'].includes(String(value.status))) return false;
-  if (!finite(value.firstSeen) || !finite(value.lastSeen) || !optional(value.instance, natural)) return false;
+  if (!finite(value.firstSeen) || !finite(value.lastSeen) || !optional(value.instance, natural) || !optional(value.probeAttempts, natural)) return false;
   if (!list(value.methods, 100, method => ['network', 'dom', 'resource', 'manifest', 'adapter'].includes(String(method))) ||
       !list(value.frameIds, 100, natural) || !list(value.documentIds, 100, text) || !list(value.elementIds, 100, text) ||
       !list(value.variants, 20, validVariant) || !list(value.childUrls, 10_000, text) || !list(value.segmentUrls, 10_000, text)) return false;
   if (!optional(value.segmentPatterns, patterns => Array.isArray(patterns) && list(Array.from(patterns), MAX_SEGMENT_PATTERNS, validSegmentPattern))) return false;
   if (!optional(value.childManifests, children => list(children, MAX_CHILD_MANIFESTS, child => record(child) && text(child.url) &&
-      optional(child.instance, natural) && ['observed', 'probing', 'confirmed', 'unresolved'].includes(String(child.status)) &&
+      optional(child.instance, natural) && optional(child.probeAttempts, natural) && ['observed', 'probing', 'confirmed', 'unresolved'].includes(String(child.status)) &&
       list(child.frameIds, 100, natural) && optional(child.reason, text)))) return false;
   for (const name of ['mime', 'title', 'poster', 'reason']) if (!optional(value[name], text)) return false;
   for (const name of ['bytes', 'width', 'height', 'duration']) if (!optional(value[name], finite)) return false;
