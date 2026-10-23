@@ -37,7 +37,7 @@ Add a browser-only download subsystem around the existing detector. A service co
 
 [Browser architecture research](rea-evidence/download-gap/browser-design-options.md) compares three practical engines: Mediabunny, a custom public LibAV/WASM build, and an optional native FFmpeg helper. **Mediabunny 1.62.1** is the proposed clear-HLS/remux candidate for this source; no original code or WASM is reused. Its runtime suitability remains to be proven. The proposed system includes `downloads`, `offscreen`, and `unlimitedStorage`; it needs no native installation or WASM CSP relaxation on this path.
 
-The full reviewable [design](superpowers/specs/2026-10-23-browser-downloads-design.md) defines the new files, interfaces, lifecycle, fetch/packet bounds, product controls, and final-file gates. Approval is pending because this is a new subsystem and changes extension permissions. Research documents are not an implemented or passing download feature.
+The full reviewable [design](superpowers/specs/2026-10-23-browser-downloads-design.md) defines the new files, interfaces, lifecycle, fetch/packet bounds, product controls, and final-file gates. The user approved it on 2026-10-23. Implementation is in progress; research documents are not an implemented or passing download feature.
 
 ## Important distinctions and unresolved evidence
 

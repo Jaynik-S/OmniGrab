@@ -1,6 +1,6 @@
 # Proposed browser download subsystem
 
-Date: 2026-10-23. **Status: proposed, awaiting architectural approval. No production download code or new dependency is installed.**
+Date: 2026-10-23. **Status: approved by the user on 2026-10-23; implementation in progress.** The user approved the browser-only design, new permissions, licensed media engine and full saved-file acceptance requirement.
 
 ## Outcome and scope
 
