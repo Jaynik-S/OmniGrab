@@ -16,6 +16,7 @@
 - Pin public `mediabunny` **1.62.1**, MPL-2.0, with package integrity and notices. Bundle executable code locally. No original extension source, library binary, site rule or private protocol is copied.
 - Add `downloads`, `offscreen`, and `unlimitedStorage` to the current three API permissions. No native helper, `scripting`, DNR, cookie API, DRM workflow or WASM CSP change is part of this proposal.
 - Chrome 120 minimum; one processing job, two queued jobs, 50 recent terminal records. Metadata is separate from detection snapshots and media bytes never enter Chrome storage.
+- Persisted phases are `queued`, `resolving`, `processing`, `ready-to-save`, `saving`, `complete`, `failed`, `canceled`, `interrupted`. `finalizing` is progress within processing, not a separate job phase.
 - Four active resource fetches globally; one unacknowledged chunk per request; 256 KiB raw chunks; 8 MiB aggregate queued binary budget; 32 MiB input cache; 2 MiB manifests; 64 MiB bounded media reads with ranges for larger objects; at most three attempts for retryable failure.
 - No success on missing audio, wrong quality, truncated source, muxer completion alone or a blob URL. Chrome saving must complete and the final saved media must pass independent validation.
 - All media samples, full downloaded files and temporary browser profiles stay outside Git and `dist`.
@@ -33,6 +34,7 @@ interface DownloadSelection {
   tabId: number; epoch: number; mediaId: string; instance: number;
   pageUrl: string; frameId: number; documentId: string;
   sourceUrl: string; videoUrl: string; audioUrl?: string;
+  requestedVariantId?: string;
   width?: number; height?: number; filename: string; output: 'mp4';
 }
 interface ByteRange { start: number; end: number; }
@@ -60,13 +62,17 @@ interface RemuxResult {
 
 `DownloadJob` is a versioned persisted metadata record containing ID/request ID/selection, phase/timestamps, progress, optional temporary file/browser download ID and structured failure. Its exact declaration belongs to Task 1. The coordinator and popup consume it rather than inventing separate versions.
 
+Byte-range ends are inclusive. Fresh master validation excludes I-frame-only selections and resolves a declared default external audio rendition; ambiguous audio is rejected rather than guessed. Manifest request/final aliases use normalized absolute resource URIs resolved from the final response URL, preserving exact queries and all range/map/protection/discontinuity tags.
+
+`requestedVariantId` is copied only from an explicit request; undefined means automatic highest-normal-video selection after fresh-master validation. A resolved `DownloadPlan.selection` contains actual final rendition URLs/dimensions; the coordinator keeps the initial persisted `job.selection` immutable for stable duplicate identity and passes the resolved plan to the host/engine. `sourceUrl` preserves original source identity. The engine reads selected `videoUrl`/`audioUrl`, never the master.
+
 ## Task 1: Validated selection, HLS plan and durable job metadata
 
 **Files:** create `src/downloads/model.ts`, `validation.ts`, `plan.ts`, `hls-plan.ts`, `store.ts`; tests `tests/download-plan.test.ts`, `download-store.test.ts`.
 
 **Consumes:** existing `Snapshot`, `MediaItem`, variants, document bindings and exact URL/parser helpers. **Produces:** shared interfaces above; `selectDownload(snapshot, request): DownloadSelection`; `resolveDownloadPlan(selection, fetcher, signal): Promise<DownloadPlan>`; a serialized `DownloadStore` with read/dispatch and injected storage adapter.
 
-- [ ] Write selection tests before implementation, including a genuine two-quality source and a stale instance/document rejection:
+- [x] Write selection tests before implementation, including a genuine two-quality source and a stale instance/document rejection:
 
 ```ts
 const selected = selectDownload(snapshot, {
@@ -81,11 +87,11 @@ assert.equal(selected.filename, 'Episode_ one.mp4');
 assert.throws(() => selectDownload(snapshot, { ...request, instance: 999 }), /stale/i);
 ```
 
-- [ ] Run `node --experimental-strip-types --test tests/download-plan.test.ts`; retain the expected missing-feature/failing-assertion evidence.
-- [ ] Implement strict trusted-input shape/size checks, safe leaf filename generation, current tab/epoch/instance/frame/document binding, confirmed clear HLS eligibility, actual video rendition selection, declared associated audio and exact signed URLs. Reject an invalid supplied rendition rather than falling back silently.
-- [ ] Revalidate a fresh master when needed to distinguish normal video renditions from I-frame-only entries and resolve declared default audio; fetch only the selected video/audio media manifests, never every rendition. Parse maps, literal segments, byte ranges and discontinuity metadata needed for grants. Reject keys/protected or unsupported download constructs explicitly. Reuse supported helpers without changing detection behavior. Store actual fetched final URLs and manifest aliases so redirects resolve correctly.
-- [ ] Write and run store RED/GREEN tests: save-before-ack, immutable reads, restore shape/version validation, failed writes do not corrupt committed state, terminal retention, queue cap and duplicate request/source selection identities. Keep metadata bounded and private URL values out of diagnostic output.
-- [ ] Run focused tests, `npm.cmd run typecheck`, then the full unit suite once. Self-review and commit only Task 1 files. Report public signatures for downstream use plus RED/GREEN evidence.
+- [x] Run `node --experimental-strip-types --test tests/download-plan.test.ts`; retain the expected missing-feature/failing-assertion evidence.
+- [x] Implement strict trusted-input shape/size checks, safe leaf filename generation, current tab/epoch/instance/frame/document binding, confirmed clear HLS eligibility, actual video rendition selection, declared associated audio and exact signed URLs. Reject an invalid supplied rendition rather than falling back silently.
+- [x] Revalidate a fresh master when needed to distinguish normal video renditions from I-frame-only entries and resolve declared default audio; fetch only the selected video/audio media manifests, never every rendition. Parse maps, literal segments, byte ranges and discontinuity metadata needed for grants. Reject keys/protected or unsupported download constructs explicitly. Reuse supported helpers without changing detection behavior. Store actual fetched final URLs and manifest aliases so redirects resolve correctly.
+- [x] Write and run store RED/GREEN tests: save-before-ack, immutable reads, restore shape/version validation, failed writes do not corrupt committed state, terminal retention, queue cap and duplicate request/source selection identities. Keep metadata bounded and private URL values out of diagnostic output.
+- [x] Run focused tests, `npm.cmd run typecheck`, then the full unit suite once. Self-review and commit only Task 1 files. Report public signatures for downstream use plus RED/GREEN evidence.
 
 ## Task 2: Licensed packet remux engine and seekable disk output
 
