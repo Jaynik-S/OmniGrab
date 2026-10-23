@@ -127,9 +127,9 @@ assert.deepEqual(await readOutput(), Uint8Array.of(1, 9, 3));
 
 **Consumes:** selection/plan grants and `ResourceFetch`. **Produces:** context-aware fetch client with fetch-compatible streaming responses, explicit grant updates, abort/dispose and metrics; trusted content receiver/port protocol for the offscreen host.
 
-- [ ] Write RED tests for worker404/page200 binary success, chunks larger than one message, MIME-disguised fragments, truthful response/final URL, exact range/status, failed fallback, stale-document rejection, duplicate/out-of-order chunks and abort.
-- [ ] Define and test JSON-safe `request`, `headers`, `chunk`, `ack`, `end`, `error`, `abort` messages with job/request IDs, monotonically increasing sequence/offset and bounded base64 data. Content validates same-extension trusted sender and accepts only the job's initial selected manifests then explicitly granted resources.
-- [ ] Preserve limits with a delayed consumer:
+- [x] Write RED tests for worker404/page200 binary success, chunks larger than one message, MIME-disguised fragments, truthful response/final URL, exact range/status, failed fallback, stale-document rejection, duplicate/out-of-order chunks and abort.
+- [x] Define and test JSON-safe `request`, `headers`, `chunk`, `ack`, `end`, `error`, `abort` messages with job/request IDs, monotonically increasing sequence/offset and bounded base64 data. Content validates same-extension trusted sender and accepts only the job's initial selected manifests then explicitly granted resources.
+- [x] Preserve limits with a delayed consumer:
 
 ```ts
 assert.ok(metrics.maximumActive <= 4);
@@ -139,9 +139,9 @@ assert.equal(metrics.afterAbort.active, 0);
 assert.equal(metrics.afterAbort.queuedBytes, 0);
 ```
 
-- [ ] Connect originating content ports directly to the offscreen host using runtime connections, with a coordinator-validated one-time capability and exact document binding. The service worker requests attachment through `tabs.sendMessage`; it must not relay every binary byte or be the sole owner of a long transfer. Preserve transfer through a real service-worker stop/wake. Revalidate source/document when establishing or re-establishing a port.
-- [ ] Return a `ReadableStream`-backed response. ACK follows downstream acceptance; validate base64 length before decode; track aggregate physical resources and release only after actual cancellation/settlement. Use finite idle/request deadlines and at most three retryable attempts. Resume/retry only where exact range semantics prove correctness.
-- [ ] Native controls must cover real page CORS, withheld headers/body, physical socket cancellation, bounded concurrency, range mismatch, port disconnect and navigation. Keep the existing 2 MiB text handler unchanged. Run focused tests/typecheck/full unit suite once, self-review and commit. Report event/schema names and attachment API.
+- [x] Connect originating content ports directly to the offscreen host using runtime connections, with a coordinator-validated one-time capability and exact document binding. The service worker requests attachment through `tabs.sendMessage`; it must not relay every binary byte or be the sole owner of a long transfer. Preserve transfer through a real service-worker stop/wake. Revalidate source/document when establishing or re-establishing a port.
+- [x] Return a `ReadableStream`-backed response. ACK follows downstream acceptance; validate base64 length before decode; track aggregate physical resources and release only after actual cancellation/settlement. Use finite idle/request deadlines and at most three retryable attempts. Resume/retry only where exact range semantics prove correctness.
+- [x] Native controls must cover real page CORS, withheld headers/body, physical socket cancellation, bounded concurrency, range mismatch, port disconnect and navigation. Require exact-document detach/settled receipt or proven old-document teardown before reusing disconnected physical slots; protect live/settling capabilities independently of bounded settled replay history. Keep the existing 2 MiB text handler unchanged. Run focused tests/typecheck/full unit suite once, self-review and commit. Report event/schema names and attachment API.
 
 ## Task 4: Offscreen host, worker and durable Chrome save coordinator
 
@@ -162,7 +162,7 @@ const id = await chrome.downloads.download({
 // Persist id with phase saving; only its actual complete event permits complete.
 ```
 
-- [ ] Reconcile Chrome events/search and active host work after wake. A browser-complete event arriving before the ID save is resolved through persisted start/save ordering and follow-up search, not lost. Detect lost worker/host/browser process as interrupted; do not replay a duplicate transfer. Cancel queued/processing/saving appropriately and release resources after consumers finish. Startup removes or records orphan temporary files safely under the download namespace.
+- [ ] Persist attachment identity before delivery and reconcile exact-document physical settlement after host loss. Strictly validated optional attachment/save-intent metadata may extend the authoritative job/store schema. Reconcile Chrome events/search and active host work after wake. A browser-complete event arriving before the ID save is resolved through persisted start/save ordering and follow-up search, not lost. Detect lost worker/host/browser process as interrupted; do not replay a duplicate transfer. Cancel queued/processing/saving appropriately and release resources after consumers finish. Startup removes or records orphan temporary files safely under the download namespace.
 - [ ] Native fixture: actual Chrome download completes; saved file matches expected tracks/duration; popup closure and actual SW stop/wake do not duplicate/restart work; cancellation/error cleanup is real. Run focused tests/typecheck/full unit suite/build, self-review and commit. Keep current detection listeners synchronous.
 
 ## Task 5: Usable popup controls and live job state
