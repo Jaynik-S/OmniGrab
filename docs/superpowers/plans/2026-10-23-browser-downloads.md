@@ -42,7 +42,7 @@ interface ResourceGrant { url: string; range?: ByteRange; }
 interface DownloadPlan {
   selection: DownloadSelection;
   manifests: Array<{ url: string; text: string }>;
-  resources: ResourceGrant[]; duration?: number;
+  resources: ResourceGrant[]; duration?: number; estimatedMediaBytes?: number;
 }
 type ResourceFetch = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 interface SeekableOutput {
@@ -163,7 +163,7 @@ const id = await chrome.downloads.download({
 ```
 
 - [x] Persist attachment identity before delivery and reconcile exact-document physical settlement after host loss. Strictly validated optional attachment/save-intent metadata may extend the authoritative job/store schema. Reconcile Chrome events/search and active host work after wake. A browser-complete event arriving before the ID save is resolved through persisted start/save ordering and follow-up search, not lost. Detect lost worker/host/browser process as interrupted; do not replay a duplicate transfer. Cancel queued/processing/saving appropriately and release resources after consumers finish. Startup removes or records orphan temporary files safely under the download namespace.
-- [ ] Acceptance audit follow-up: check browser storage estimates before media processing, derive a conservative temporary/output budget from trustworthy available metadata, and preserve safe structured quota/write failures through worker/host/coordinator. Prove insufficient-estimate and native write-error cleanup, distinguish quota estimates from physical disk guarantees.
+- [x] Acceptance audit follow-up: check browser storage estimates before media processing, derive estimatedMediaBytes from fresh selected aggregate bitrate and duration or all exact ranges (including repeated use), require ceil(2.5*bytes)+16MiB against valid quota/usage and fail explicitly for unknown budgets/capacity, and preserve safe structured quota/write failures through worker/host/coordinator. Prove insufficient-estimate and native write-error cleanup, distinguish quota estimates from physical disk guarantees.
 - [x] Native fixture: actual Chrome download completes; saved file matches expected tracks/duration; popup closure and actual SW stop/wake do not duplicate/restart work; cancellation/error cleanup is real. Run focused tests/typecheck/full unit suite/build, self-review and commit. Keep current detection listeners synchronous.
 
 ## Task 5: Usable popup controls and live job state
