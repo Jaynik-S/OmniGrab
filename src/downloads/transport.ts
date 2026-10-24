@@ -26,6 +26,7 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
   let pending: DownloadAttachment | undefined, attachmentCapability: string | undefined;
   const quarantinedReleases: Array<() => void> = [];
   const manifestUrls = new Set(initial.map(g => g.url));
+  const provenPageOrigins = new Set<string>();
   let readyResolve: (() => void) | undefined;
   const changeQueued = (delta: number) => {
     metrics.queuedBytes += delta; metrics.maximumQueuedBytes = Math.max(metrics.maximumQueuedBytes, metrics.queuedBytes);
@@ -52,14 +53,14 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
     grants.add(granted); unrestricted.add(granted.filter(g => !g.range)); allGrants.push(...granted);
     if (port) port.postMessage({ type: 'grants', jobId: options.jobId, grants: granted });
   }
-  function attempt(url: string, range: ByteRange | undefined, maxBytes: number, page: boolean, signal: AbortSignal, expiresAt: number): { response: Promise<Response>; done: Promise<void>; uncertain: () => boolean } {
+  function attempt(url: string, range: ByteRange | undefined, maxBytes: number, page: boolean, signal: AbortSignal, expiresAt: number): { response: Promise<Response>; done: Promise<void>; uncertain: () => boolean; successful: () => boolean } {
     const request: BinaryRequest = { type: 'request', jobId: options.jobId, requestId: `r${++counter}`, url, ...(range ? { range } : {}), maxBytes, idleMs, expiresAt };
     metrics.attempts++;
     let resolveResponse!: (response: Response) => void, rejectResponse!: (error: unknown) => void, resolveDone!: () => void;
     const response = new Promise<Response>((resolve, reject) => { resolveResponse = resolve; rejectResponse = reject; });
     const done = new Promise<void>(resolve => { resolveDone = resolve; });
     let body: ReadableStreamDefaultController<Uint8Array> | undefined, producer: ProducerControl | undefined;
-    let sequence = 0, offset = 0, headersSeen = false, finished = false, disconnected = false;
+    let sequence = 0, offset = 0, headersSeen = false, finished = false, disconnected = false, failed = false, completed = false;
     let held: { bytes: Uint8Array; message: Extract<BinaryMessage, { type: 'chunk' }>; weight: number } | undefined;
     let demand = false, settleTimer: ReturnType<typeof setTimeout> | undefined;
     const reservation = page ? 1024 * 1024 : 0; if (reservation) changeQueued(reservation);
@@ -73,7 +74,7 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
       if (finished) return; finished = true; discard(); if (reservation) changeQueued(-reservation);
       clearTimeout(settleTimer); signal.removeEventListener('abort', abort); transactions.delete(request.requestId); resolveDone();
     };
-    const errorBody = (error: unknown) => { rejectResponse(error); try { body?.error(error); } catch { /* Consumer canceled. */ } };
+    const errorBody = (error: unknown) => { failed = true; rejectResponse(error); try { body?.error(error); } catch { /* Consumer canceled. */ } };
     const abort = () => { errorBody(signal.reason ?? new Error('download-aborted')); discard(); send({ type: 'abort', jobId: request.jobId, requestId: request.requestId }); };
     const consume = () => {
       if (!held || !demand || signal.aborted) return;
@@ -98,7 +99,7 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
             if (headersSeen || m.status !== 200 && m.status !== 206 || !Array.isArray(m.headers) || m.headers.length > 16 || JSON.stringify(m.headers).length > 32_768 || typeof m.redirected !== 'boolean') throw new Error('download-headers-invalid');
             const finalUrl = safeUrl(m.url); const headers = new Headers(m.headers);
             validateResponse(new Response(null, { status: m.status, headers }), request, !unrestricted.permits(url)); headersSeen = true;
-            const stream = new ReadableStream<Uint8Array>({ start(c) { body = c; }, pull() { demand = true; consume(); }, cancel() { send({ type: 'abort', jobId: request.jobId, requestId: request.requestId }); discard(); } }, { highWaterMark: 0 });
+            const stream = new ReadableStream<Uint8Array>({ start(c) { body = c; }, pull() { demand = true; consume(); }, cancel() { failed = true; send({ type: 'abort', jobId: request.jobId, requestId: request.requestId }); discard(); } }, { highWaterMark: 0 });
             const result = new Response(stream, { status: m.status, headers });
             Object.defineProperties(result, { url: { value: finalUrl }, redirected: { value: m.redirected } }); resolveResponse(result);
           } else if (m.type === 'chunk') {
@@ -108,7 +109,7 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
             const weight = bytes.length + m.data.length * 2; held = { bytes, message: m, weight }; changeQueued(weight); consume();
           } else if (m.type === 'end') {
             if (!headersSeen || held || m.sequence !== sequence || m.offset !== offset) throw new Error('download-end-invalid');
-            body!.close(); cleanup();
+            body!.close(); completed = !failed && !signal.aborted; cleanup();
           } else if (m.type === 'error') {
             if (typeof m.error !== 'string' || m.error.length > 1000) throw new Error('download-error-invalid');
             errorBody(new Error(m.error)); cleanup();
@@ -126,7 +127,7 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
       void producer.settled.then(() => { if (!finished) cleanup(); });
     }
     if (signal.aborted) abort();
-    return { response, done, uncertain: () => disconnected };
+    return { response, done, uncertain: () => disconnected, successful: () => completed };
   }
   const fetchResource: ResourceFetch = async (input, init) => {
     const url = safeUrl(input instanceof Request ? input.url : String(input));
@@ -141,7 +142,8 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
     let operationDone!: () => void; const tracked = new Promise<void>(resolve => { operationDone = resolve; }); operations.add(tracked);
     let retained = false, lastDone: Promise<void> | undefined;
     try {
-      await checkDocument(); let page = false;
+      await checkDocument(); const origin = new URL(url).origin;
+      let page = provenPageOrigins.has(origin) && !!port && ready, preferredPage = page;
       for (let number = 0; number < 3; number++) {
         combined.throwIfAborted();
         if (page) {
@@ -151,7 +153,11 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
         const attemptResult = attempt(url, range, manifestUrls.has(url) ? 2 * 1024 * 1024 : MAX_BODY_BYTES, page, combined, expiresAt); lastDone = attemptResult.done;
         try {
           const result = await attemptResult.response;
-          retained = true; void attemptResult.done.then(() => { if (!attemptResult.uncertain()) release(); else quarantinedReleases.push(release); operationDone(); operations.delete(tracked); });
+          retained = true; void attemptResult.done.then(() => {
+            // Headers and error cleanup cannot prove that the page fetched a complete resource.
+            if (page && attemptResult.successful() && !lifetime.signal.aborted) provenPageOrigins.add(origin);
+            if (!attemptResult.uncertain()) release(); else quarantinedReleases.push(release); operationDone(); operations.delete(tracked);
+          });
           return result;
         } catch (error) {
           await attemptResult.done;
@@ -159,7 +165,13 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
           combined.throwIfAborted();
           const text = String(error instanceof Error ? error.message : error);
           const idleTimeout = text === 'download-timeout';
-          if (!page && port && ready && (idleTimeout || /download-http:(?:401|403|404|410|5\d\d)/.test(text) || /fetch|network|Failed/i.test(text))) { page = true; continue; }
+          const routeFailure = idleTimeout || /download-http:(?:401|403|404|410|5\d\d)/.test(text) || /fetch|network|Failed/i.test(text);
+          if (preferredPage && routeFailure) {
+            provenPageOrigins.delete(origin); preferredPage = false;
+            await checkDocument(); if (number === 2) throw error;
+            page = false; continue;
+          }
+          if (!page && port && ready && routeFailure) { page = true; continue; }
           if (!idleTimeout && !/download-http:(?:408|429|5\d\d)|fetch|network|Failed/i.test(text) || number === 2) throw error;
         }
       }
@@ -196,7 +208,7 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
       await readiness; return true;
     },
     async abort() { lifetime.abort(new Error('download-aborted')); await Promise.all([...operations]); },
-    async dispose() { lifetime.abort(new Error('download-disposed')); await Promise.all([...operations]); port?.disconnect(); pending = undefined; },
+    async dispose() { lifetime.abort(new Error('download-disposed')); provenPageOrigins.clear(); await Promise.all([...operations]); port?.disconnect(); pending = undefined; },
     /** Trusted coordinator only: call after exact-document detach receipt or proved document teardown. */
     confirmAttachmentStopped(capability: string) {
       if (!attachmentCapability || attachmentCapability !== capability) throw new Error('download-attachment-invalid');

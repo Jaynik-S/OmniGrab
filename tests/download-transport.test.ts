@@ -5,6 +5,121 @@ import { createDownloadTransport } from '../src/downloads/transport.ts';
 import { decodeChunk } from '../src/downloads/binary-protocol.ts';
 import { connectPair, selection, attachPage } from './download-transport-fixtures.ts';
 
+test('reuses a successfully completed page origin for the next granted resource', async () => {
+  let primaryCalls = 0, pageCalls = 0;
+  const transport = createDownloadTransport({ jobId: 'proven-page', selection, runtimeId: 'test', validateDocument: async () => true,
+    fetcher: async () => { primaryCalls++; return new Response(null, { status: 404 }); } });
+  await attachPage(transport, async () => { pageCalls++; return new Response(new Uint8Array([4, 5, 6])); });
+  transport.grantResources([{ url: 'https://cdn.test/a' }, { url: 'https://cdn.test/b' }]);
+  try {
+    for (const url of ['https://cdn.test/a', 'https://cdn.test/b']) assert.deepEqual([...new Uint8Array(await (await transport.fetch(url)).arrayBuffer())], [4, 5, 6]);
+    assert.equal(primaryCalls, 1); assert.equal(pageCalls, 2); assert.equal(transport.metrics.attempts, 3);
+    assert.equal(transport.metrics.active, 0); assert.equal(transport.metrics.queuedBytes, 0);
+  } finally { await transport.dispose(); }
+});
+
+test('page headers alone do not establish an origin hint', async () => {
+  let primaryCalls = 0;
+  const transport = createDownloadTransport({ jobId: 'headers-not-proof', selection, runtimeId: 'test', validateDocument: async () => true,
+    fetcher: async () => { primaryCalls++; return new Response(null, { status: 404 }); } });
+  await attachPage(transport, async () => new Response(new Uint8Array([4, 5, 6])));
+  transport.grantResources([{ url: 'https://cdn.test/a' }, { url: 'https://cdn.test/b' }]);
+  try {
+    const first = await transport.fetch('https://cdn.test/a');
+    assert.deepEqual([...new Uint8Array(await (await transport.fetch('https://cdn.test/b')).arrayBuffer())], [4, 5, 6]);
+    assert.equal(primaryCalls, 2, 'the unconsumed first body has not proved the page route');
+    assert.deepEqual([...new Uint8Array(await first.arrayBuffer())], [4, 5, 6]);
+  } finally { await transport.dispose(); }
+});
+
+test('proven page origins stay isolated to their origin and transport job', async () => {
+  const transports: ReturnType<typeof createDownloadTransport>[] = [];
+  try {
+    for (const jobId of ['origin-first', 'origin-new-job']) {
+      const direct: string[] = [];
+      const transport = createDownloadTransport({ jobId, selection, runtimeId: 'test', validateDocument: async () => true,
+        fetcher: async input => { direct.push(String(input)); return new Response(null, { status: 404 }); } });
+      transports.push(transport);
+      await attachPage(transport, async () => new Response(new Uint8Array([9])));
+      transport.grantResources([{ url: 'https://cdn.test/a' }, { url: 'https://other.test/b' }]);
+      for (const url of ['https://cdn.test/a', 'https://other.test/b']) assert.deepEqual([...new Uint8Array(await (await transport.fetch(url)).arrayBuffer())], [9]);
+      assert.deepEqual(direct, ['https://cdn.test/a', 'https://other.test/b']);
+    }
+  } finally { for (const transport of transports) await transport.dispose(); }
+});
+
+test('a proven page origin still requires the exact resource grant and current document', async () => {
+  let current = true, primaryCalls = 0, pageCalls = 0;
+  const transport = createDownloadTransport({ jobId: 'hint-authorization', selection, runtimeId: 'test', validateDocument: async () => current,
+    fetcher: async () => { primaryCalls++; return new Response(null, { status: 404 }); } });
+  await attachPage(transport, async () => { pageCalls++; return new Response(new Uint8Array([4])); });
+  try {
+    assert.deepEqual([...new Uint8Array(await (await transport.fetch(selection.sourceUrl)).arrayBuffer())], [4]);
+    await assert.rejects(transport.fetch('https://cdn.test/ungranted'), /grant/);
+    current = false; await assert.rejects(transport.fetch(selection.videoUrl!), /stale-document/);
+    assert.equal(primaryCalls, 1); assert.equal(pageCalls, 1); assert.equal(transport.metrics.attempts, 2);
+  } finally { await transport.dispose(); }
+});
+
+test('a failed page body is terminal and its error cleanup does not establish a hint', async () => {
+  const order: string[] = [];
+  const transport = createDownloadTransport({ jobId: 'failed-page-body', selection, runtimeId: 'test', validateDocument: async () => true,
+    fetcher: async input => { order.push(`primary:${input}`); return new Response(null, { status: 404 }); } });
+  await attachPage(transport, async input => { order.push(`page:${input}`); return new Response(new Uint8Array([4]), { headers: { 'content-length': String(String(input).endsWith('/a') ? 2 : 1) } }); });
+  transport.grantResources([{ url: 'https://cdn.test/a' }, { url: 'https://cdn.test/b' }]);
+  try {
+    await assert.rejects(transport.fetch('https://cdn.test/a').then(r => r.arrayBuffer()), /body-truncated/);
+    assert.deepEqual(order, ['primary:https://cdn.test/a', 'page:https://cdn.test/a']);
+    assert.deepEqual([...new Uint8Array(await (await transport.fetch('https://cdn.test/b')).arrayBuffer())], [4]);
+    assert.deepEqual(order, ['primary:https://cdn.test/a', 'page:https://cdn.test/a', 'primary:https://cdn.test/b', 'page:https://cdn.test/b']);
+    assert.equal(transport.metrics.active, 0); assert.equal(transport.metrics.queuedBytes, 0);
+  } finally { await transport.dispose(); }
+});
+
+for (const failure of [401, 403, 404, 410, 503, 'network'] as const) test(`a preferred page pre-header ${failure} failure clears its hint before primary recovery`, async () => {
+  const order: string[] = [];
+  const transport = createDownloadTransport({ jobId: 'hint-recovery', selection, runtimeId: 'test', validateDocument: async () => true,
+    fetcher: async input => { order.push(`primary:${input}`); return String(input).endsWith('/a') ? new Response(null, { status: 404 }) : new Response(new Uint8Array([7])); } });
+  await attachPage(transport, async input => {
+    order.push(`page:${input}`);
+    if (String(input).endsWith('/a')) return new Response(new Uint8Array([7]));
+    if (failure === 'network') throw new TypeError('Failed to fetch');
+    return new Response(null, { status: failure });
+  });
+  transport.grantResources(['a', 'b', 'c'].map(name => ({ url: `https://cdn.test/${name}` })));
+  try {
+    for (const name of ['a', 'b', 'c']) assert.deepEqual([...new Uint8Array(await (await transport.fetch(`https://cdn.test/${name}`)).arrayBuffer())], [7]);
+    assert.deepEqual(order, ['primary:https://cdn.test/a', 'page:https://cdn.test/a', 'page:https://cdn.test/b', 'primary:https://cdn.test/b', 'primary:https://cdn.test/c']);
+    assert.equal(transport.metrics.attempts, 5);
+  } finally { await transport.dispose(); }
+});
+
+for (const status of [408, 429]) test(`preferred-page HTTP ${status} retries stay on the page route`, async () => {
+  const order: string[] = []; let bCalls = 0;
+  const transport = createDownloadTransport({ jobId: 'hint-throttle', selection, runtimeId: 'test', validateDocument: async () => true,
+    fetcher: async input => { order.push(`primary:${input}`); return new Response(null, { status: 404 }); } });
+  await attachPage(transport, async input => { order.push(`page:${input}`); return String(input).endsWith('/b') && ++bCalls === 1 ? new Response(null, { status }) : new Response(new Uint8Array([7])); });
+  transport.grantResources(['a', 'b', 'c'].map(name => ({ url: `https://cdn.test/${name}` })));
+  try {
+    for (const name of ['a', 'b', 'c']) assert.deepEqual([...new Uint8Array(await (await transport.fetch(`https://cdn.test/${name}`)).arrayBuffer())], [7]);
+    assert.deepEqual(order, ['primary:https://cdn.test/a', 'page:https://cdn.test/a', 'page:https://cdn.test/b', 'page:https://cdn.test/b', 'page:https://cdn.test/c']);
+  } finally { await transport.dispose(); }
+});
+
+test('preferred-page invalidation and fallback share the existing three-attempt budget', async () => {
+  const order: string[] = [];
+  const transport = createDownloadTransport({ jobId: 'hint-budget', selection, runtimeId: 'test', validateDocument: async () => true,
+    fetcher: async input => { order.push(`primary:${input}`); return new Response(null, { status: 404 }); } });
+  await attachPage(transport, async input => { order.push(`page:${input}`); return String(input).endsWith('/a') ? new Response(new Uint8Array([7])) : new Response(null, { status: 503 }); });
+  transport.grantResources(['a', 'b'].map(name => ({ url: `https://cdn.test/${name}` })));
+  try {
+    await (await transport.fetch('https://cdn.test/a')).arrayBuffer();
+    await assert.rejects(transport.fetch('https://cdn.test/b'), /503/);
+    assert.deepEqual(order, ['primary:https://cdn.test/a', 'page:https://cdn.test/a', 'page:https://cdn.test/b', 'primary:https://cdn.test/b', 'page:https://cdn.test/b']);
+    assert.equal(transport.metrics.attempts, 5); assert.equal(transport.metrics.active, 0); assert.equal(transport.metrics.queuedBytes, 0);
+  } finally { await transport.dispose(); }
+});
+
 test('preserves binary MIME, final URL, status and bounded downstream backpressure across page fallback', async () => {
   const bytes = Uint8Array.from({ length: 900_001 }, (_, i) => i % 251);
   const transport = createDownloadTransport({ jobId: 'j1', selection, runtimeId: 'test', fetcher: async () => new Response(null, { status: 404 }), validateDocument: async () => true });

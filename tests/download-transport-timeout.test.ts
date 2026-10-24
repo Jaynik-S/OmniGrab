@@ -25,6 +25,72 @@ function physical() {
   return { state, stall, succeed };
 }
 
+test('a preferred page idle timeout waits for physical settlement before clearing its hint and recovering directly', async () => {
+  const page = physical(), gate = deferred(), order: string[] = [];
+  const transport = createDownloadTransport({ jobId: 'hint-idle-recover', selection, runtimeId: 'test', idleMs: 25, requestMs: 2000, validateDocument: async () => true,
+    fetcher: async input => { order.push(`primary:${input}`); assert.equal(page.state.active, 0); return String(input).endsWith('/a') ? new Response(null, { status: 404 }) : response(); } });
+  await attachPage(transport, (input, init) => { order.push(`page:${input}`); return String(input).endsWith('/a') ? page.succeed(input, init) : page.stall(gate.promise)(input, init); });
+  transport.grantResources(['a', 'b', 'c'].map(name => ({ url: `https://cdn.test/${name}` })));
+  let pending: Promise<ArrayBuffer> | undefined;
+  try {
+    assert.deepEqual(new Uint8Array(await (await transport.fetch('https://cdn.test/a')).arrayBuffer()), bytes);
+    pending = transport.fetch('https://cdn.test/b').then(r => r.arrayBuffer());
+    await until(() => page.state.aborted === 1); await sleep(15);
+    assert.deepEqual(order, ['primary:https://cdn.test/a', 'page:https://cdn.test/a', 'page:https://cdn.test/b']);
+    assert.equal(transport.metrics.active, 1); assert.equal(page.state.active, 1);
+    gate.resolve(); assert.deepEqual(new Uint8Array(await pending), bytes);
+    assert.deepEqual(new Uint8Array(await (await transport.fetch('https://cdn.test/c')).arrayBuffer()), bytes);
+    assert.deepEqual(order, ['primary:https://cdn.test/a', 'page:https://cdn.test/a', 'page:https://cdn.test/b', 'primary:https://cdn.test/b', 'primary:https://cdn.test/c']);
+    assert.equal(transport.metrics.attempts, 5); assert.equal(page.state.maximum, 1);
+    assert.equal(transport.metrics.active, 0); assert.equal(transport.metrics.queuedBytes, 0);
+  } finally { gate.resolve(); await pending?.catch(() => {}); await transport.dispose(); }
+});
+
+for (const stop of ['caller', 'overall', 'stale', 'disconnect'] as const) test(`preferred-page idle recovery stops on ${stop} while abort settlement is pending`, async () => {
+  let current = true; const page = physical(), gate = deferred(), caller = new AbortController(), order: string[] = [];
+  const transport = createDownloadTransport({ jobId: 'hint-idle-stop', selection, runtimeId: 'test', idleMs: 20, requestMs: stop === 'overall' ? 120 : 2000, validateDocument: async () => current,
+    fetcher: async input => { order.push(`primary:${input}`); return new Response(null, { status: 404 }); } });
+  const pair = await attachPage(transport, (input, init) => { order.push(`page:${input}`); return String(input).endsWith('/a') ? page.succeed(input, init) : page.stall(gate.promise)(input, init); });
+  transport.grantResources(['a', 'b'].map(name => ({ url: `https://cdn.test/${name}` })));
+  let pending: Promise<Response> | undefined;
+  try {
+    assert.deepEqual(new Uint8Array(await (await transport.fetch('https://cdn.test/a')).arrayBuffer()), bytes);
+    pending = transport.fetch('https://cdn.test/b', { signal: caller.signal });
+    const rejected = assert.rejects(pending, stop === 'stale' ? /stale-document/ : stop === 'disconnect' ? /disconnected/ : stop === 'caller' ? /caller-stop/ : /TimeoutError/);
+    await until(() => page.state.aborted === 1);
+    if (stop === 'caller') caller.abort(new Error('caller-stop'));
+    else if (stop === 'stale') current = false;
+    else if (stop === 'disconnect') pair.page.disconnect();
+    else await sleep(140);
+    assert.equal(transport.metrics.active, 1); assert.equal(page.state.active, 1);
+    assert.deepEqual(order, ['primary:https://cdn.test/a', 'page:https://cdn.test/a', 'page:https://cdn.test/b']);
+    if (stop === 'disconnect') {
+      await rejected; assert.equal(transport.metrics.quarantined, 1);
+      gate.resolve(); await until(() => page.state.active === 0);
+      assert.equal(transport.metrics.active, 1, 'uncertain lease remains quarantined after physical IO settles');
+      transport.confirmAttachmentStopped('a'.repeat(48));
+    } else { gate.resolve(); await rejected; }
+    assert.equal(transport.metrics.attempts, 3); assert.equal(transport.metrics.active, 0); assert.equal(transport.metrics.queuedBytes, 0);
+  } finally { gate.resolve(); await pending?.catch(() => {}); await transport.dispose(); }
+});
+
+test('a preferred page body timeout stays terminal without another physical attempt', async () => {
+  const order: string[] = []; let canceled = 0;
+  const transport = createDownloadTransport({ jobId: 'hint-body-timeout', selection, runtimeId: 'test', idleMs: 25, requestMs: 2000, validateDocument: async () => true,
+    fetcher: async input => { order.push(`primary:${input}`); return new Response(null, { status: 404 }); } });
+  await attachPage(transport, async input => {
+    order.push(`page:${input}`);
+    return String(input).endsWith('/a') ? response() : new Response(new ReadableStream({ start(c) { c.enqueue(new Uint8Array([1, 2, 3])); }, cancel() { canceled++; } }), { headers: { 'content-length': '6' } });
+  });
+  transport.grantResources(['a', 'b'].map(name => ({ url: `https://cdn.test/${name}` })));
+  try {
+    await (await transport.fetch('https://cdn.test/a')).arrayBuffer();
+    await assert.rejects(transport.fetch('https://cdn.test/b').then(r => r.arrayBuffer()), /download-timeout/);
+    assert.deepEqual(order, ['primary:https://cdn.test/a', 'page:https://cdn.test/a', 'page:https://cdn.test/b']);
+    assert.equal(canceled, 1); assert.equal(transport.metrics.attempts, 3);
+  } finally { await transport.dispose(); }
+});
+
 test('a settled primary pre-header idle timeout falls back to the current page and returns exact bytes', async () => {
   const primary = physical(), page = physical(), gate = deferred();
   const transport = createDownloadTransport({ jobId: 'idle-page', selection, runtimeId: 'test', idleMs: 25, requestMs: 2000, validateDocument: async () => true, fetcher: primary.stall(gate.promise) });
@@ -136,7 +202,7 @@ test('concurrent primary idle recoveries retain four global leases through page 
   try {
     const results = await Promise.all(Array.from({ length: 8 }, async () => new Uint8Array(await (await transport.fetch(selection.sourceUrl)).arrayBuffer())));
     for (const result of results) assert.deepEqual(result, bytes);
-    assert.equal(transport.metrics.attempts, 16); assert.ok(io.state.maximum <= 4); assert.ok(transport.metrics.maximumActive <= 4);
+    assert.equal(transport.metrics.attempts, 12); assert.equal(io.state.starts, 12); assert.ok(io.state.maximum <= 4); assert.ok(transport.metrics.maximumActive <= 4);
     assert.ok(transport.metrics.maximumQueuedBytes <= 8 * 1024 * 1024); assert.equal(transport.metrics.maximumUnacknowledgedPerRequest, 1); assert.equal(transport.metrics.active, 0); assert.equal(transport.metrics.queuedBytes, 0);
   } finally { await transport.dispose(); }
 });
