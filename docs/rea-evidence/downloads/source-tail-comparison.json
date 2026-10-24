@@ -1,0 +1,106 @@
+{
+  "started": "2026-10-24T05:25:02.209Z",
+  "scope": "Fresh ordinary page-CORS init + final two fragments; compare final AAC packet payload hashes/timestamps, not an entire new source download or human listening",
+  "objects": [
+    {
+      "urlSha256": "580345281e7625a03d2a2e6f99d983f9026816b2062b9b70aff0ba04b0e88264",
+      "status": 200,
+      "bytes": 28301,
+      "sha256": "8cfa888cfe807f892606aa254fa00a07ffad844dfd431d5d9b7f702e0f990eca"
+    },
+    {
+      "urlSha256": "7ae4acf565dffe1bda48ab90f9e94bf74bd14f6bf2001135b9e1f9a0b3030e60",
+      "status": 200,
+      "bytes": 1393,
+      "sha256": "b00df8f94d7ac6e27ce0be61af2c72c0571a053a25d74100704068d3d8651025"
+    },
+    {
+      "urlSha256": "c6eeda9bf12a617ced12fd2f8ecf8bfcebe6a0395d48ba46839ceed8e04c1af8",
+      "status": 200,
+      "bytes": 168204,
+      "sha256": "da6223d8219e744a3b9b85b6e638e3b414c4101825b64478e17af418a9bc83a0"
+    },
+    {
+      "urlSha256": "3f05581c30a4fb73613eb503f3b4c917dc84d6e1a4032b6e7c3d0459e798e938",
+      "status": 200,
+      "bytes": 128666,
+      "sha256": "631c1795cb6bcae8b6dd5c2e3d9e3fe5204529f06f07401d5546ae67c53b7080"
+    }
+  ],
+  "commands": [
+    {
+      "program": "ffprobe",
+      "args": [
+        "-v",
+        "error",
+        "-select_streams",
+        "a:0",
+        "-show_packets",
+        "-show_data_hash",
+        "sha256",
+        "-show_entries",
+        "packet=pts_time,duration_time,size,data_hash",
+        "-of",
+        "json",
+        "C:\\Users\\jay03\\Jaynik\\Projects\\Chrome_Extensions\\VideoDownloader\\.superpowers\\download-acceptance\\final-reviewed\\live-1792802566845-25512\\source-tail\\source-tail.mp4"
+      ],
+      "exitCode": 0,
+      "stderr": ""
+    },
+    {
+      "program": "ffprobe",
+      "args": [
+        "-v",
+        "error",
+        "-read_intervals",
+        "3175%",
+        "-select_streams",
+        "a:0",
+        "-show_packets",
+        "-show_data_hash",
+        "sha256",
+        "-show_entries",
+        "packet=pts_time,duration_time,size,data_hash",
+        "-of",
+        "json",
+        "C:\\Users\\jay03\\Jaynik\\Projects\\Chrome_Extensions\\VideoDownloader\\.superpowers\\download-acceptance\\final-reviewed\\cinejoy-1080p.mp4"
+      ],
+      "exitCode": 0,
+      "stderr": ""
+    }
+  ],
+  "errors": [],
+  "comparison": {
+    "matchedPackets": 384,
+    "sourceFirst": {
+      "pts_time": "3181.760000",
+      "duration_time": "0.021333",
+      "size": "264",
+      "data_hash": "SHA256:4ee95e9cdf8fc9407a0699ea3e58a00e2edf221f76a298a810970f5d2b8f4bc4"
+    },
+    "sourceLast": {
+      "pts_time": "3189.930667",
+      "duration_time": "0.010667",
+      "size": "74",
+      "data_hash": "SHA256:11eb57fb3aa2e3fb251f6b31a586d71e996717016bd7cef477f074228dfcf781"
+    },
+    "savedFirst": {
+      "pts_time": "3181.760000",
+      "duration_time": "0.021333",
+      "size": "264",
+      "data_hash": "SHA256:4ee95e9cdf8fc9407a0699ea3e58a00e2edf221f76a298a810970f5d2b8f4bc4"
+    },
+    "savedLast": {
+      "pts_time": "3189.930667",
+      "duration_time": "0.010667",
+      "size": "74",
+      "data_hash": "SHA256:11eb57fb3aa2e3fb251f6b31a586d71e996717016bd7cef477f074228dfcf781"
+    },
+    "timestampOffsetMin": 0,
+    "timestampOffsetMax": 0,
+    "payloadHashSequenceSha256": "7474a4454405b068eaea5b8b05a0399cfdd097f45def6c46ccbaf7b95a07a3a4"
+  },
+  "ok": true,
+  "ownedBrowserClosed": true,
+  "ended": "2026-10-24T05:25:03.787Z"
+}

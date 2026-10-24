@@ -1,0 +1,352 @@
+{
+  "scope": "Independent replacement live acceptance metadata; not original-extension proof",
+  "started": "2026-10-24T00:05:39.123Z",
+  "ended": "2026-10-24T00:06:08.094Z",
+  "jobId": "5100e5d7-960b-4393-a075-726421359527",
+  "action": {
+    "variantId": "hls:1",
+    "filename": "cinejoy-720p.mp4",
+    "via": "actual action popup DOM Download click"
+  },
+  "actionAt": "2026-10-24T00:05:58.150Z",
+  "selectionControl": {
+    "at": "2026-10-24T00:06:01.266Z",
+    "scope": "Actual 720p selection and range IO, then deliberate popup Cancel; not a full720p saved-file run",
+    "selectedRequests": 19,
+    "unsolicited1080Requests": 0
+  },
+  "observerExit": {
+    "code": 0,
+    "signal": null
+  },
+  "processingWorkersAfterCleanup": [],
+  "artifactBefore": {
+    "background.js": "b27cc51c0d2e6d1b12cfa9a143c4275639e02720f12e3cba5d10010db78fa6c3",
+    "content.js": "423efb15bbb8beb9c6ef3137fa5a85f2ddad6d9de8aa70bb79b03587f828976e",
+    "download-worker.js": "a94f98ff6c18d7d0f87e435ba9441709db5cb5382e6025543cf901d96a7a19a6",
+    "licenses/mediabunny-MPL-2.0.txt": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "manifest.json": "f579364ace1b5ecb1c93aa4c3a3eb9d6428ba68e7fb0ab30fefca1019c7f7861",
+    "offscreen.html": "4e25520116719af287d57fab809319f3288f71c566a12dff7abf4c74f3226520",
+    "offscreen.js": "baed4366fe91603b44543a1b141c0eca731e27fd7ddb1af8881c70524283cf17",
+    "popup/index.html": "d17aa0054b177a3c08079d651c43ca312e9e69df004cf8dec43a29e4944a1bd7",
+    "popup/index.js": "e2d138ee1683550f954c3c85d49989bfc757d07b857c76d9e31e7f0ef41c4706",
+    "popup/style.css": "3ae581871327de5a86c4ef4e5041f4ec71117ae0d15d430f17bb0c627936a8ed",
+    "THIRD_PARTY_NOTICES.md": "f65ebb3d2528054abd60267b7e6f7251f4940be3cde043902f3b5190cf42b74d"
+  },
+  "artifactAfter": {
+    "background.js": "b27cc51c0d2e6d1b12cfa9a143c4275639e02720f12e3cba5d10010db78fa6c3",
+    "content.js": "423efb15bbb8beb9c6ef3137fa5a85f2ddad6d9de8aa70bb79b03587f828976e",
+    "download-worker.js": "a94f98ff6c18d7d0f87e435ba9441709db5cb5382e6025543cf901d96a7a19a6",
+    "licenses/mediabunny-MPL-2.0.txt": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "manifest.json": "f579364ace1b5ecb1c93aa4c3a3eb9d6428ba68e7fb0ab30fefca1019c7f7861",
+    "offscreen.html": "4e25520116719af287d57fab809319f3288f71c566a12dff7abf4c74f3226520",
+    "offscreen.js": "baed4366fe91603b44543a1b141c0eca731e27fd7ddb1af8881c70524283cf17",
+    "popup/index.html": "d17aa0054b177a3c08079d651c43ca312e9e69df004cf8dec43a29e4944a1bd7",
+    "popup/index.js": "e2d138ee1683550f954c3c85d49989bfc757d07b857c76d9e31e7f0ef41c4706",
+    "popup/style.css": "3ae581871327de5a86c4ef4e5041f4ec71117ae0d15d430f17bb0c627936a8ed",
+    "THIRD_PARTY_NOTICES.md": "f65ebb3d2528054abd60267b7e6f7251f4940be3cde043902f3b5190cf42b74d"
+  },
+  "artifactUnchanged": true,
+  "source": {
+    "pageUrl": "https://cinejoy.pk/watch/tv/67178/2/1",
+    "masterUrl": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+    "masterSha256": "9f0b366d530bbdb4bbd8dd21293d1cf99c59348258a65d9c1d3eecf81681aac0",
+    "selectedUrl": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/720p/playlist.jpg",
+    "selectedSha256": "8cfa888cfe807f892606aa254fa00a07ffad844dfd431d5d9b7f702e0f990eca",
+    "expectedSegments": 797,
+    "expectedInitializationObjects": 1
+  },
+  "transfer": {
+    "scope": "Page and offscreen CDP requests; media response body lengths exclude manifests and failed requests.",
+    "observedMediaObjects": 8,
+    "observedSegments": 7,
+    "fullyCoveredSegments": 0,
+    "knownObjectTotalBytes": 8813693,
+    "successfulMediaBodyBytes": 3147119,
+    "partialBytesOverKnownObjectSizes": 0.35707154764750715,
+    "fullSourceAmplification": null,
+    "completeCoverage": false,
+    "maximumObservedActive": 2,
+    "objects": [
+      {
+        "urlSha256": "1c0889f93c4a1871e8243f25727982162edb2d60925459e16779ba83a2dfa41b",
+        "requests": 2,
+        "successfulRequests": 2,
+        "bodyBytes": 524288,
+        "encodedBytes": 525060,
+        "ranges": [
+          {
+            "start": 0,
+            "end": 262143
+          },
+          {
+            "start": 262144,
+            "end": 524287
+          }
+        ],
+        "errors": [],
+        "total": 1746180,
+        "coveredBytes": 524288,
+        "coverage": [
+          {
+            "start": 0,
+            "end": 524287
+          }
+        ],
+        "fullCoverage": false
+      },
+      {
+        "urlSha256": "3c2c64580f88491f0f1eb8c3e7ce382f64a648af5706b824c46559a444d15ff4",
+        "requests": 1,
+        "successfulRequests": 1,
+        "bodyBytes": 1391,
+        "encodedBytes": 1488,
+        "ranges": [
+          {
+            "start": 0,
+            "end": 1390
+          }
+        ],
+        "errors": [],
+        "total": 1391,
+        "coveredBytes": 1391,
+        "coverage": [
+          {
+            "start": 0,
+            "end": 1390
+          }
+        ],
+        "fullCoverage": true
+      },
+      {
+        "urlSha256": "b4d7633c182bd295bb3c038523ebb3c39bceae05b0b6c0e7e05c161bfb80045d",
+        "requests": 2,
+        "successfulRequests": 2,
+        "bodyBytes": 524288,
+        "encodedBytes": 525116,
+        "ranges": [
+          {
+            "start": 0,
+            "end": 262143
+          },
+          {
+            "start": 262144,
+            "end": 524287
+          }
+        ],
+        "errors": [],
+        "total": 1302659,
+        "coveredBytes": 524288,
+        "coverage": [
+          {
+            "start": 0,
+            "end": 524287
+          }
+        ],
+        "fullCoverage": false
+      },
+      {
+        "urlSha256": "16b9ebf9bdd8129f46ee8bb07daa47e4351330595e32728c273a9f2955c8f478",
+        "requests": 2,
+        "successfulRequests": 2,
+        "bodyBytes": 524288,
+        "encodedBytes": 525031,
+        "ranges": [
+          {
+            "start": 0,
+            "end": 262143
+          },
+          {
+            "start": 262144,
+            "end": 524287
+          }
+        ],
+        "errors": [],
+        "total": 1099602,
+        "coveredBytes": 524288,
+        "coverage": [
+          {
+            "start": 0,
+            "end": 524287
+          }
+        ],
+        "fullCoverage": false
+      },
+      {
+        "urlSha256": "cc71926ba978069de33c05003bc6a4d02c5b37b3118296f074d359376162344d",
+        "requests": 2,
+        "successfulRequests": 2,
+        "bodyBytes": 524288,
+        "encodedBytes": 525054,
+        "ranges": [
+          {
+            "start": 0,
+            "end": 262143
+          },
+          {
+            "start": 262144,
+            "end": 524287
+          }
+        ],
+        "errors": [],
+        "total": 1513222,
+        "coveredBytes": 524288,
+        "coverage": [
+          {
+            "start": 0,
+            "end": 524287
+          }
+        ],
+        "fullCoverage": false
+      },
+      {
+        "urlSha256": "4d4894e1c812c415cd6b415254af6e4578a35621a3109b294190127a28fdce62",
+        "requests": 4,
+        "successfulRequests": 2,
+        "bodyBytes": 524288,
+        "encodedBytes": 525121,
+        "ranges": [
+          {
+            "start": 0,
+            "end": 262143
+          },
+          {
+            "start": 262144,
+            "end": 524287
+          }
+        ],
+        "errors": [
+          {
+            "scope": "offscreen",
+            "status": 404,
+            "error": "net::ERR_ABORTED",
+            "finished": true
+          },
+          {
+            "scope": "offscreen",
+            "status": 404,
+            "error": "net::ERR_ABORTED",
+            "finished": true
+          }
+        ],
+        "total": 1680046,
+        "coveredBytes": 524288,
+        "coverage": [
+          {
+            "start": 0,
+            "end": 524287
+          }
+        ],
+        "fullCoverage": false
+      },
+      {
+        "urlSha256": "0af4a4bc596b53123fe42d8a6717215fecff42ac23b39ce4c8b17538443a458a",
+        "requests": 4,
+        "successfulRequests": 2,
+        "bodyBytes": 524288,
+        "encodedBytes": 525056,
+        "ranges": [
+          {
+            "start": 0,
+            "end": 262143
+          },
+          {
+            "start": 262144,
+            "end": 524287
+          }
+        ],
+        "errors": [
+          {
+            "scope": "offscreen",
+            "status": 404,
+            "error": "net::ERR_ABORTED",
+            "finished": true
+          },
+          {
+            "scope": "offscreen",
+            "status": 404,
+            "error": "net::ERR_ABORTED",
+            "finished": true
+          }
+        ],
+        "total": 1470593,
+        "coveredBytes": 524288,
+        "coverage": [
+          {
+            "start": 0,
+            "end": 524287
+          }
+        ],
+        "fullCoverage": false
+      },
+      {
+        "urlSha256": "b990e083339993e7003fd4d60d376d3f653fa511e42f01378dcc79d47982053d",
+        "requests": 2,
+        "successfulRequests": 0,
+        "bodyBytes": 0,
+        "encodedBytes": 0,
+        "ranges": [],
+        "errors": [
+          {
+            "scope": "offscreen",
+            "status": 404,
+            "error": "net::ERR_ABORTED",
+            "finished": true
+          },
+          {
+            "scope": "page",
+            "error": "net::ERR_ABORTED",
+            "finished": true
+          }
+        ],
+        "coveredBytes": 0,
+        "coverage": [],
+        "fullCoverage": false
+      }
+    ]
+  },
+  "progress": {
+    "samples": 3,
+    "firstNonzeroAt": "2026-10-24T00:06:01.266Z",
+    "lastZeroAt": null,
+    "zeroSeconds": null,
+    "final": {
+      "duration": 3189.5616350000337,
+      "inputBytes": 2622831,
+      "outputBytes": 0,
+      "phase": "processing",
+      "seconds": 0
+    }
+  },
+  "resources": {
+    "scope": "Sampled worker V8 heap/backing store and whole-browser OS process metrics; working-set sums include shared pages, private bytes are process-private committed memory. Baseline is this owned browser with the paused source page before Download, if present.",
+    "workerUsed": null,
+    "workerBacking": null,
+    "processWorkingSetSum": {
+      "baselineSamples": 2,
+      "baseline": 1746194432,
+      "active": null,
+      "maximumDelta": null
+    },
+    "processPrivateBytesSum": {
+      "baselineSamples": 2,
+      "baseline": 1158545408,
+      "active": null,
+      "maximumDelta": null
+    }
+  },
+  "save": null,
+  "phase": "canceled",
+  "cleanup": {
+    "entries": [
+      {
+        "name": "media-downloads-v1",
+        "files": []
+      }
+    ],
+    "hasAttachment": false,
+    "hasTempFile": false
+  },
+  "ownedBrowserClosed": true,
+  "errors": []
+}

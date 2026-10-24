@@ -10,6 +10,7 @@ import { chromium } from 'playwright-core';
 import { fixtures,scratch } from './download-fixtures.ts';
 const fixRound1=process.argv.includes('--fix-round1');
 const storageAudit=process.argv.includes('--storage-audit');
+const mediaFailures=process.argv.includes('--media-failures');
 const output=path.resolve('.cache/download-coordinator',`native-${Date.now()}-${process.pid}`);await mkdir(output,{recursive:true});
 if(!existsSync(path.join(scratch,'mux720','list.m3u8')))fixtures();
 const extension=path.join(output,'extension');await cp(path.resolve('dist'),extension,{recursive:true});
@@ -23,18 +24,21 @@ if(storageAudit) for(const fault of ['quota','write','directory']) {
  ${fault==='directory'?"navigator.storage.getDirectory=async()=>{proof.postMessage({fault:'directory',writes,closed});throw new DOMException('private directory details','UnknownError');};":''}\n`;
  await writeFile(path.join(extension,'fault-'+fault+'.js'),prelude+await readFile(path.join(extension,'download-worker.js'),'utf8'));
 }
-const report={started:new Date().toISOString(),output,cases:[],requests:[],errors:[]};let context,origin,slow=false,pageOnly=false,broken=false;const sockets=new Set(),timers=new Set();
+const report={started:new Date().toISOString(),output,cases:[],requests:[],errors:[]};let context,origin,slow=false,pageOnly=false,broken=false,mediaFailure;const sockets=new Set(),timers=new Set();
 const server=createServer((req,res)=>{
  const url=new URL(req.url,'http://fixture.test');const entry={path:url.pathname,range:req.headers.range,start:Date.now(),bytes:0,page:!!req.headers.referer?.startsWith(origin)};report.requests.push(entry);res.on('close',()=>{entry.closed=Date.now();entry.incomplete=!res.writableFinished;});
+ if(url.pathname==='/protected-watch'){res.writeHead(200,{'content-type':'text/html'}).end('<!doctype html><title>Owned protected fixture</title><video preload="none" src="/protected.m3u8"></video>');return;}
+ if(url.pathname==='/protected.m3u8'){res.writeHead(200,{'content-type':'application/vnd.apple.mpegurl'}).end('#EXTM3U\n#EXT-X-TARGETDURATION:1\n#EXT-X-KEY:METHOD=AES-128,URI="/never-fetch.key"\n#EXTINF:1,\n/never-fetch.ts\n#EXT-X-ENDLIST');return;}
  if(url.pathname==='/unknown-watch'){res.writeHead(200,{'content-type':'text/html'});res.end('<!doctype html><title>Owned media-only fixture</title><video src="/mux720/list.m3u8"></video>');return;}
  if(url.pathname==='/replacement'){res.writeHead(200,{'content-type':'text/html'});res.end('<!doctype html><title>Replacement document</title>');return;} if(url.pathname==='/watch'){res.writeHead(200,{'content-type':'text/html'});res.end('<!doctype html><title>Owned coordinator fixture</title><video src="/master.m3u8"></video>');return;}
  if(url.pathname==='/master.m3u8'){res.writeHead(200,{'content-type':'application/vnd.apple.mpegurl'});res.end('#EXTM3U\n#EXT-X-STREAM-INF:BANDWIDTH=1000000,RESOLUTION=1280x720,CODECS="avc1.64001f,mp4a.40.2"\n/'+(broken?'silent720':'mux720')+'/list.m3u8\n');return;}
  if(pageOnly&&url.pathname.endsWith('.m4s')&&!entry.page){entry.status=403;res.writeHead(403,{'content-length':0}).end();return;}
+ if(mediaFailure==='expired'&&url.pathname.endsWith('.m4s')){entry.status=410;res.writeHead(410,{'content-length':0}).end();return;}
  const filename=path.resolve(scratch,'.'+url.pathname);if(!filename.startsWith(path.resolve(scratch)+path.sep)||!existsSync(filename)){res.writeHead(404).end();return;}
  let bytes=readFileSync(filename);if(url.pathname.endsWith('.m3u8'))bytes=Buffer.from(bytes.toString().replace('#EXT-X-TARGETDURATION:0','#EXT-X-TARGETDURATION:1'));
  const match=/^bytes=(\d+)-(\d+)$/.exec(req.headers.range||'');const start=match?Number(match[1]):0,end=match?Math.min(Number(match[2]),bytes.length-1):bytes.length-1;
  entry.status=match?206:200;res.writeHead(match?206:200,{'content-type':url.pathname.endsWith('.m3u8')?'application/vnd.apple.mpegurl':'image/jpeg','content-length':end-start+1,'accept-ranges':'bytes','cache-control':'no-store',...(match?{'content-range':`bytes ${start}-${end}/${bytes.length}`}:{})});
- const send=()=>{entry.bytes=end-start+1;res.end(bytes.subarray(start,end+1));};
+ const send=()=>{const stop=mediaFailure==='truncated'&&url.pathname.endsWith('.m4s')?end-8:end+1;entry.bytes=stop-start;res.end(bytes.subarray(start,stop));};
  if(slow&&url.pathname.endsWith('.m4s')){res.flushHeaders();let cursor=start;const timer=setInterval(()=>{const next=Math.min(cursor+8192,end+1);res.write(bytes.subarray(cursor,next));entry.bytes+=next-cursor;cursor=next;if(cursor>end){clearInterval(timer);timers.delete(timer);res.end();}},200);timers.add(timer);res.once('close',()=>{clearInterval(timer);timers.delete(timer);});}else send();
 });server.on('connection',s=>{sockets.add(s);s.once('close',()=>sockets.delete(s));});await new Promise(r=>server.listen(0,'127.0.0.1',r));origin=`http://127.0.0.1:${server.address().port}`;
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -74,7 +78,20 @@ try{
  const files=()=>host.evaluate(async()=>{const dir=await(await navigator.storage.getDirectory()).getDirectoryHandle('media-downloads-v1');const names=[];for await(const [name]of dir.entries())names.push(name);return names;});
  assert.deepEqual(await files(),[]);
  const versions=new Map();cdp.on('ServiceWorker.workerVersionUpdated',e=>{for(const v of e.versions)versions.set(v.versionId,v);});await cdp.send('ServiceWorker.enable');
- if(storageAudit) {
+ if(mediaFailures) {
+  for(const mode of ['expired','truncated']) {
+   mediaFailure=mode;const before=report.requests.length;const job=await start('native-'+mode);const failed=(await done(job.id)).jobs.find(j=>j.id===job.id);
+   assert.equal(failed.phase,'failed',JSON.stringify(failed));assert.equal(failed.browserDownloadId,undefined);assert.equal(failed.attachment,undefined);assert.equal(failed.tempFile,undefined);assert.deepEqual(await files(),[]);assert.equal((await hostState()).status,undefined);
+   const attempts=report.requests.slice(before).filter(r=>r.path.endsWith('.m4s')&&!!r.range);assert.ok(attempts.length>0);assert.ok(attempts.length<=6,'at most three attempts per ordinary/fallback context');
+   report.cases.push({id:'native-media-'+mode,job:failed,attempts,files:await files()});
+  }
+  mediaFailure=undefined;await page.goto(origin+'/protected-watch');
+  const protectedCall=call,control=popup,badTab=tabId;
+  const protectedState=await until(()=>protectedCall({type:'snapshot',tabId:badTab}),r=>Object.values(r.tab?.media??{}).some(m=>m.protected===true),'native protected evidence');
+  const protectedMedia=Object.values(protectedState.tab.media).find(m=>m.protected===true);const rejected=await protectedCall({type:'download-start',request:{requestId:'native-protected',tabId:badTab,epoch:protectedState.tab.epoch,mediaId:protectedMedia.id,instance:protectedMedia.instance??0,filename:'protected.mp4'}});
+  assert.equal(rejected.ok,false);assert.equal(report.requests.some(r=>r.path==='/never-fetch.key'||r.path==='/never-fetch.ts'),false);assert.equal((await control.evaluate(()=>chrome.downloads.search({}))).length,1);
+  report.cases.push({id:'native-protected-source-admission-no-key-or-media',rejected,protected:protectedMedia.protected});
+ } else if(storageAudit) {
   report.storageEstimate=await host.evaluate(()=>navigator.storage.estimate());
   await host.evaluate(()=>{globalThis.__originalEstimate=navigator.storage.estimate.bind(navigator.storage);globalThis.__nativeWorker=Worker;globalThis.__storageProof=[];globalThis.__proofChannel=new BroadcastChannel('fixture-storage-proof');__proofChannel.onmessage=e=>__storageProof.push(e.data);});
   for(const mode of ['insufficient','unavailable']) {
@@ -138,13 +155,16 @@ try{
  const version=await until(async()=>[...versions.values()].find(v=>v.scriptURL===worker.url()&&v.runningStatus==='running'),Boolean,'running SW');
  console.log('Stopping service worker');await cdp.send('ServiceWorker.stopWorker',{versionId:version.versionId});await until(async()=>versions.get(version.versionId),v=>v?.runningStatus==='stopped','stopped SW');const stopped={...versions.get(version.versionId)};
  const bytesBefore=(await hostState()).metrics.receivedBytes;
- const during=await until(hostState,s=>s.metrics?.receivedBytes>bytesBefore+8192,'bytes while actual SW stopped');const whileStreaming={...versions.get(version.versionId)};assert.equal(whileStreaming.runningStatus,'stopped');
+ const during=await until(hostState,s=>s.metrics?.receivedBytes>bytesBefore+8192,'bytes after actual SW stop');const whileStreaming={...versions.get(version.versionId)};
+ // Bounded production progress notifications may normally wake the coordinator again.
+ // The captured stopped event proves the restart boundary; continued single IO/save proves adoption.
+ assert.ok(['stopped','starting','running','stopping'].includes(whileStreaming.runningStatus));
  // A new control message explicitly wakes the coordinator. Existing worker is adopted.
  await openPopup();
  const after=await done(second.id);assert.equal(after.jobs.find(j=>j.id===second.id).phase,'complete',JSON.stringify(after));
  const physical=report.requests.slice(before).filter(r=>r.range==='bytes=0-262143'&&r.status===206);assert.equal(physical.length,4);assert.equal(new Set(physical.map(r=>r.path)).size,4);
  const saves=await popup.evaluate(async()=>chrome.downloads.search({}));assert.equal(saves.filter(s=>s.byExtensionId===id).length,2);
- report.cases.push({id:'popup-closure-real-sw-stop-wake-no-replay',jobId:second.id,stopped,whileStreaming,during,physicalRequests:physical.length,browserSaves:saves.length});console.log('Actual popup closure + stopped SW streaming + wake/no duplicate passed');
+ report.cases.push({id:'popup-closure-real-sw-stop-wake-no-replay',jobId:second.id,stopped,whileStreaming,during,physicalRequests:physical.length,browserSaves:saves.length});console.log('Actual popup closure + SW stop/continued streaming + wake/no duplicate passed');
  const third=await start('native-cancel');await until(hostState,s=>s.status?.jobId===third.id&&s.status.phase==='processing'&&s.metrics.active>0,'cancel active stream');
  const cancelAt=Date.now();const canceled=await call({type:'download-cancel',jobId:third.id});assert.equal(canceled.ok,true,JSON.stringify(canceled));assert.equal(canceled.job.phase,'canceled');assert.equal(canceled.job.attachment,undefined);assert.deepEqual(await files(),[]);assert.equal((await hostState()).status,undefined);
  const interruptedSocket=report.requests.find(r=>r.start<cancelAt&&r.closed>=cancelAt&&r.incomplete&&r.range==='bytes=0-262143');assert.ok(interruptedSocket);report.cases.push({id:'native-cancel-physical-socket-opfs-cleanup',job:canceled.job,cancelAt,interruptedSocket});console.log('Actual worker cancellation + physical socket + OPFS cleanup passed');

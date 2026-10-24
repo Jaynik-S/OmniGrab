@@ -1,0 +1,982 @@
+{
+    "scope":  "Original independent replacement controls; fixture/fault copies or isolated source bundles, not full live-production acceptance. No media bytes or job capabilities.",
+    "sourceCommit":  "a2a4facab1a100ead8f9b1c1d83948f8c602db1c",
+    "controls":  [
+                     {
+                         "name":  "original-byte-range-discontinuity",
+                         "rawReceipt":  ".cache/download-acceptance-engine/native-1792799546134-20336/evidence.json",
+                         "rawSha256":  "ef99e17e8acd0c03b715e73707e1c3385f7f2af4d032dba81a77731d7f2abef1",
+                         "ok":  true,
+                         "errors":  [
+
+                                    ],
+                         "started":  "2026-10-23T23:52:26.136Z",
+                         "ended":  "2026-10-23T23:52:27.778Z",
+                         "browser":  "153.0.8010.12",
+                         "sourceHashes":  {
+                                              "src/downloads/remux.ts":  "9814b434685acf9b1254a8879df9d76f7b1caa15e4b321d60b46e1aee8066648",
+                                              "src/downloads/remux-source.ts":  "0a2d69fccf1bc1537f810dc5209547fd1c7ce98bcee789f50a0124a5b2ae5dd8",
+                                              "src/downloads/remux-validation.ts":  "f7fcb429e639ea2317fb66b1b3839c31d8efe51c33cd9f5deab5b713ee69d25e",
+                                              "src/downloads/opfs.ts":  "941b963a35bd57c925bb9a8e415d7ae237331a648c0b1597ec48a426c234bee2"
+                                          },
+                         "workerSha256":  "91ce901d768965347f2766057a20b933bc55974a210140ceff34a3699c4efbbc",
+                         "cases":  [
+                                       {
+                                           "id":  "byte-range",
+                                           "probe":  {
+                                                         "duration":  "1.221979",
+                                                         "tracks":  [
+                                                                        {
+                                                                            "codec":  "h264",
+                                                                            "width":  1280,
+                                                                            "height":  720,
+                                                                            "packets":  "12"
+                                                                        },
+                                                                        {
+                                                                            "codec":  "aac",
+                                                                            "channels":  1,
+                                                                            "sampleRate":  "48000",
+                                                                            "packets":  "58"
+                                                                        }
+                                                                    ]
+                                                     },
+                                           "decodeExitCode":  0,
+                                           "sha256":  "f5d38cc751242934a73f5766ddfcdf211ecc0a6c3d3f5421232484ea6cc98e12",
+                                           "result":  {
+                                                          "done":  true,
+                                                          "result":  {
+                                                                         "bytes":  268213,
+                                                                         "duration":  1.2219726562500002,
+                                                                         "video":  {
+                                                                                       "codec":  "avc",
+                                                                                       "width":  1280,
+                                                                                       "height":  720
+                                                                                   },
+                                                                         "audio":  {
+                                                                                       "codec":  "aac",
+                                                                                       "channels":  1,
+                                                                                       "sampleRate":  48000
+                                                                                   }
+                                                                     },
+                                                          "patches":  1,
+                                                          "fileSize":  268213,
+                                                          "cleanup":  true
+                                                      }
+                                       },
+                                       {
+                                           "id":  "discontinuity",
+                                           "probe":  {
+                                                         "duration":  "1.387309",
+                                                         "tracks":  [
+                                                                        {
+                                                                            "codec":  "h264",
+                                                                            "width":  1280,
+                                                                            "height":  720,
+                                                                            "packets":  "12"
+                                                                        },
+                                                                        {
+                                                                            "codec":  "aac",
+                                                                            "channels":  1,
+                                                                            "sampleRate":  "48000",
+                                                                            "packets":  "58"
+                                                                        }
+                                                                    ]
+                                                     },
+                                           "decodeExitCode":  0,
+                                           "sha256":  "3f820711332f39566d42cf9df4556dcbe365475e417806cbda592788444302b1",
+                                           "result":  {
+                                                          "done":  true,
+                                                          "result":  {
+                                                                         "bytes":  268257,
+                                                                         "duration":  1.3873046875000001,
+                                                                         "video":  {
+                                                                                       "codec":  "avc",
+                                                                                       "width":  1280,
+                                                                                       "height":  720
+                                                                                   },
+                                                                         "audio":  {
+                                                                                       "codec":  "aac",
+                                                                                       "channels":  1,
+                                                                                       "sampleRate":  48000
+                                                                                   }
+                                                                     },
+                                                          "patches":  1,
+                                                          "fileSize":  268257,
+                                                          "cleanup":  true
+                                                      }
+                                       }
+                                   ]
+                     },
+                     {
+                         "name":  "original-long-packet",
+                         "rawReceipt":  ".cache/download-acceptance-engine/native-1792799751090-11308/evidence.json",
+                         "rawSha256":  "7534ec30c44b1e51fd0a401adedf4294f7dbafc481583a3c25e11800baea0d67",
+                         "ok":  true,
+                         "errors":  [
+
+                                    ],
+                         "started":  "2026-10-23T23:55:51.092Z",
+                         "ended":  "2026-10-23T23:56:42.044Z",
+                         "browser":  "153.0.8010.12",
+                         "sourceHashes":  {
+                                              "src/downloads/remux.ts":  "9814b434685acf9b1254a8879df9d76f7b1caa15e4b321d60b46e1aee8066648",
+                                              "src/downloads/remux-source.ts":  "0a2d69fccf1bc1537f810dc5209547fd1c7ce98bcee789f50a0124a5b2ae5dd8",
+                                              "src/downloads/remux-validation.ts":  "f7fcb429e639ea2317fb66b1b3839c31d8efe51c33cd9f5deab5b713ee69d25e",
+                                              "src/downloads/opfs.ts":  "941b963a35bd57c925bb9a8e415d7ae237331a648c0b1597ec48a426c234bee2"
+                                          },
+                         "workerSha256":  "91ce901d768965347f2766057a20b933bc55974a210140ceff34a3699c4efbbc",
+                         "cases":  [
+                                       {
+                                           "id":  "long",
+                                           "probe":  {
+                                                         "duration":  "3190.021333",
+                                                         "tracks":  [
+                                                                        {
+                                                                            "codec":  "h264",
+                                                                            "width":  640,
+                                                                            "height":  360,
+                                                                            "packets":  "6380"
+                                                                        },
+                                                                        {
+                                                                            "codec":  "aac",
+                                                                            "channels":  2,
+                                                                            "sampleRate":  "48000",
+                                                                            "packets":  "149533"
+                                                                        }
+                                                                    ]
+                                                     },
+                                           "decodeExitCode":  0,
+                                           "sha256":  "af552dfd1599522e9bbedc135ab51ef863c11cfedc27bdf694fba6fa71407cca",
+                                           "result":  {
+                                                          "done":  true,
+                                                          "result":  {
+                                                                         "bytes":  14474986,
+                                                                         "duration":  3190.0213333333336,
+                                                                         "video":  {
+                                                                                       "codec":  "avc",
+                                                                                       "width":  640,
+                                                                                       "height":  360
+                                                                                   },
+                                                                         "audio":  {
+                                                                                       "codec":  "aac",
+                                                                                       "channels":  2,
+                                                                                       "sampleRate":  48000
+                                                                                   }
+                                                                     },
+                                                          "patches":  1,
+                                                          "fileSize":  14474986,
+                                                          "cleanup":  true
+                                                      }
+                                       }
+                                   ]
+                     },
+                     {
+                         "name":  "actual-over2GiB-transport",
+                         "rawReceipt":  ".cache/download-transport/native-1792799869295-26364/evidence.json",
+                         "rawSha256":  "0fc6947faf43a2858b07f4ee72f2a1b4ed9bbfa657aaf581fd735871e3b9f1b5",
+                         "ok":  true,
+                         "errors":  [
+
+                                    ],
+                         "started":  "2026-10-23T23:57:49.313Z",
+                         "browser":  "153.0.8010.12",
+                         "sourceHashes":  {
+                                              "src/downloads/transport.ts":  "35e325e59ae54fd81654f9e1688163ec148dfbef2e806e98831e43c76413d389",
+                                              "src/content/download-fetch.ts":  "f5ae6b53323593fb1b3c2d9be9decaedba40d414baab317a5df9a1fb55518afa",
+                                              "src/downloads/opfs.ts":  "941b963a35bd57c925bb9a8e415d7ae237331a648c0b1597ec48a426c234bee2"
+                                          },
+                         "cases":  [
+                                       {
+                                           "id":  "actual-over2GiB-transport-contiguous-OPFS-write-seek-patch-cleanup",
+                                           "scope":  "Actual 2147549185 binary bytes, not a sparse file or large media remux",
+                                           "proof":  {
+                                                         "done":  true,
+                                                         "type":  "complete",
+                                                         "bytes":  2147549185,
+                                                         "checked":  2147549185,
+                                                         "chunks":  10018,
+                                                         "fileSize":  2147549185,
+                                                         "slices":  [
+                                                                        {
+                                                                            "start":  0,
+                                                                            "bytes":  [
+                                                                                          90,
+                                                                                          90,
+                                                                                          90,
+                                                                                          90
+                                                                                      ]
+                                                                        },
+                                                                        {
+                                                                            "start":  2147483646,
+                                                                            "bytes":  [
+                                                                                          90,
+                                                                                          1,
+                                                                                          2,
+                                                                                          3,
+                                                                                          4,
+                                                                                          90
+                                                                                      ]
+                                                                        },
+                                                                        {
+                                                                            "start":  2147549181,
+                                                                            "bytes":  [
+                                                                                          90,
+                                                                                          90,
+                                                                                          90,
+                                                                                          90
+                                                                                      ]
+                                                                        }
+                                                                    ],
+                                                         "removed":  true
+                                                     },
+                                           "metrics":  {
+                                                           "active":  0,
+                                                           "maximumActive":  1,
+                                                           "queuedBytes":  0,
+                                                           "maximumQueuedBytes":  2009776,
+                                                           "maximumUnacknowledgedPerRequest":  1,
+                                                           "attempts":  130,
+                                                           "receivedBytes":  2147549185,
+                                                           "quarantined":  0
+                                                       }
+                                       }
+                                   ]
+                     },
+                     {
+                         "name":  "native-coordinator",
+                         "rawReceipt":  ".cache/download-coordinator/native-1792799794846-4292/evidence.json",
+                         "rawSha256":  "2093349421ffd84797c10a6340e4db9b96be73d49cdf1f003ca54df4e5329e69",
+                         "ok":  true,
+                         "errors":  [
+
+                                    ],
+                         "started":  "2026-10-23T23:56:34.922Z",
+                         "browser":  "153.0.8010.12",
+                         "cases":  [
+                                       {
+                                           "id":  "actual-chrome-download-complete",
+                                           "phase":  "complete",
+                                           "probe":  {
+                                                         "duration":  "1.221979",
+                                                         "tracks":  [
+                                                                        {
+                                                                            "codec":  "h264",
+                                                                            "height":  720,
+                                                                            "frames":  "12"
+                                                                        },
+                                                                        {
+                                                                            "codec":  "aac",
+                                                                            "channels":  1,
+                                                                            "frames":  "58"
+                                                                        }
+                                                                    ]
+                                                     },
+                                           "decode":  "ffmpeg -xerror exit 0",
+                                           "browser":  {
+                                                           "state":  "complete",
+                                                           "bytes":  268213,
+                                                           "filename":  "native-complete.mp4"
+                                                       }
+                                       },
+                                       {
+                                           "id":  "popup-closure-real-sw-stop-wake-no-replay",
+                                           "stoppedStatus":  "stopped",
+                                           "whileStreamingStatus":  "stopped",
+                                           "physicalRequests":  4,
+                                           "browserSaves":  2
+                                       },
+                                       {
+                                           "id":  "native-cancel-physical-socket-opfs-cleanup",
+                                           "phase":  "canceled",
+                                           "failure":  "download-canceled"
+                                       },
+                                       {
+                                           "id":  "missing-audio-real-worker-error-cleanup",
+                                           "phase":  "failed",
+                                           "failure":  "download-processing-failed"
+                                       },
+                                       {
+                                           "id":  "silent-dedicated-worker-termination",
+                                           "phase":  "interrupted",
+                                           "failure":  "download-worker-lost"
+                                       },
+                                       {
+                                           "id":  "offscreen-loss-no-restart-cleanup",
+                                           "phase":  "interrupted",
+                                           "failure":  "download-host-lost"
+                                       },
+                                       {
+                                           "id":  "real-ID-save-failure-plus-host-loss-plus-SW-restart-no-duplicate"
+                                       },
+                                       {
+                                           "id":  "transient-empty-search-retains-native-blob-until-exact-settlement"
+                                       },
+                                       {
+                                           "id":  "actual-browser-interruption-before-ID-persistence",
+                                           "phase":  "interrupted",
+                                           "failure":  "download-browser-interrupted"
+                                       },
+                                       {
+                                           "id":  "navigation-quarantine-until-positive-closed-tab-proof"
+                                       }
+                                   ]
+                     },
+                     {
+                         "name":  "storage",
+                         "rawReceipt":  ".cache/download-coordinator/native-1792799792824-1620/evidence.json",
+                         "rawSha256":  "2f42a9eccf99cc4154e15be825f61a1a5120894ce1eef4a697ca8e72a9fe4d22",
+                         "ok":  true,
+                         "errors":  [
+
+                                    ],
+                         "started":  "2026-10-23T23:56:33.011Z",
+                         "browser":  "153.0.8010.12",
+                         "cases":  [
+                                       {
+                                           "id":  "actual-chrome-download-complete",
+                                           "phase":  "complete",
+                                           "probe":  {
+                                                         "duration":  "1.221979",
+                                                         "tracks":  [
+                                                                        {
+                                                                            "codec":  "h264",
+                                                                            "height":  720,
+                                                                            "frames":  "12"
+                                                                        },
+                                                                        {
+                                                                            "codec":  "aac",
+                                                                            "channels":  1,
+                                                                            "frames":  "58"
+                                                                        }
+                                                                    ]
+                                                     },
+                                           "decode":  "ffmpeg -xerror exit 0",
+                                           "browser":  {
+                                                           "state":  "complete",
+                                                           "bytes":  268213,
+                                                           "filename":  "native-complete.mp4"
+                                                       }
+                                       },
+                                       {
+                                           "id":  "storage-preflight-insufficient",
+                                           "phase":  "failed",
+                                           "failure":  "download-storage-insufficient",
+                                           "files":  [
+
+                                                     ]
+                                       },
+                                       {
+                                           "id":  "storage-preflight-unavailable",
+                                           "phase":  "failed",
+                                           "failure":  "download-storage-estimate-unavailable",
+                                           "files":  [
+
+                                                     ]
+                                       },
+                                       {
+                                           "id":  "media-only-unknown-budget",
+                                           "phase":  "failed",
+                                           "failure":  "download-storage-budget-unknown"
+                                       },
+                                       {
+                                           "id":  "actual-worker-storage-quota",
+                                           "phase":  "failed",
+                                           "failure":  "download-storage-quota-exceeded",
+                                           "files":  [
+
+                                                     ],
+                                           "proof":  {
+                                                         "fault":  "quota",
+                                                         "writes":  2,
+                                                         "closed":  1
+                                                     }
+                                       },
+                                       {
+                                           "id":  "actual-worker-storage-write",
+                                           "phase":  "failed",
+                                           "failure":  "download-storage-write-failed",
+                                           "files":  [
+
+                                                     ],
+                                           "proof":  {
+                                                         "fault":  "write",
+                                                         "writes":  2,
+                                                         "closed":  1
+                                                     }
+                                       },
+                                       {
+                                           "id":  "actual-worker-storage-directory",
+                                           "phase":  "failed",
+                                           "failure":  "download-storage-write-failed",
+                                           "files":  [
+
+                                                     ],
+                                           "proof":  {
+                                                         "fault":  "directory",
+                                                         "writes":  0,
+                                                         "closed":  0
+                                                     }
+                                       },
+                                       {
+                                           "id":  "ordinary-save-after-storage-failures",
+                                           "phase":  "complete",
+                                           "decode":  "ffmpeg -xerror exit 0",
+                                           "browser":  {
+                                                           "state":  "complete",
+                                                           "bytes":  268213,
+                                                           "filename":  "native-after-storage-recovery.mp4"
+                                                       }
+                                       }
+                                   ]
+                     },
+                     {
+                         "name":  "popup-repeat",
+                         "rawReceipt":  ".cache/download-popup/native-1792799869245-11572/evidence.json",
+                         "rawSha256":  "4eb4cd95bc4725976bbdc81c65a9d64fcca45d812250129d34cc025069c5222d",
+                         "ok":  true,
+                         "errors":  [
+
+                                    ],
+                         "started":  "2026-10-23T23:57:49.248Z",
+                         "cases":  [
+                                       {
+                                           "id":  "real-two-quality-action-popup"
+                                       },
+                                       {
+                                           "id":  "720p-user-action-dedup-and-storage-focus-caret",
+                                           "phase":  "processing"
+                                       },
+                                       {
+                                           "id":  "close-reopen-current-job"
+                                       },
+                                       {
+                                           "id":  "UI-cancel-retry-independent-saved-file-validation",
+                                           "probe":  {
+                                                         "duration":  "1.221979",
+                                                         "tracks":  [
+                                                                        {
+                                                                            "height":  720
+                                                                        },
+                                                                        {
+                                                                            "channels":  1
+                                                                        }
+                                                                    ]
+                                                     },
+                                           "decode":  "ffmpeg -xerror exit 0",
+                                           "browser":  {
+                                                           "state":  "complete",
+                                                           "bytes":  268213,
+                                                           "filename":  "Popup 720 fixture.mp4"
+                                                       }
+                                       },
+                                       {
+                                           "id":  "explicit-same-selection-new-intent",
+                                           "phase":  "complete",
+                                           "probe":  {
+                                                         "duration":  "1.221979"
+                                                     },
+                                           "decode":  "ffmpeg -xerror exit 0",
+                                           "browser":  {
+                                                           "state":  "complete",
+                                                           "bytes":  268213,
+                                                           "filename":  "Popup 720 fixture (1).mp4"
+                                                       }
+                                       },
+                                       {
+                                           "id":  "reopen-explicit-same-selection-new-intent",
+                                           "phase":  "complete",
+                                           "probe":  {
+                                                         "duration":  "1.221979"
+                                                     },
+                                           "decode":  "ffmpeg -xerror exit 0",
+                                           "browser":  {
+                                                           "state":  "complete",
+                                                           "bytes":  268213,
+                                                           "filename":  "Popup 720 fixture (2).mp4"
+                                                       }
+                                       }
+                                   ]
+                     },
+                     {
+                         "name":  "mux-cancel",
+                         "rawReceipt":  ".cache/download-acceptance-engine/native-1792799980159-24688/evidence.json",
+                         "rawSha256":  "9e43497c9fe86ae19a1d5f6f99c48da1841385a782b5b46f1ec838ecd525f4b6",
+                         "ok":  true,
+                         "errors":  [
+
+                                    ],
+                         "started":  "2026-10-23T23:59:40.160Z",
+                         "ended":  "2026-10-23T23:59:42.264Z",
+                         "browser":  "153.0.8010.12",
+                         "sourceHashes":  {
+                                              "src/downloads/remux.ts":  "9814b434685acf9b1254a8879df9d76f7b1caa15e4b321d60b46e1aee8066648",
+                                              "src/downloads/remux-source.ts":  "0a2d69fccf1bc1537f810dc5209547fd1c7ce98bcee789f50a0124a5b2ae5dd8",
+                                              "src/downloads/remux-validation.ts":  "f7fcb429e639ea2317fb66b1b3839c31d8efe51c33cd9f5deab5b713ee69d25e",
+                                              "src/downloads/opfs.ts":  "941b963a35bd57c925bb9a8e415d7ae237331a648c0b1597ec48a426c234bee2"
+                                          },
+                         "workerSha256":  "bce43d485920bfddb0cd63799498ff4374d70e0b964248d9f61b1a93fcebd781",
+                         "cases":  [
+                                       {
+                                           "id":  "mux-cancel",
+                                           "scope":  "Native engine cancellation during awaited mux output, not an end-to-end popup save claim",
+                                           "result":  {
+                                                          "done":  true,
+                                                          "aborted":  true,
+                                                          "errorName":  "AbortError",
+                                                          "closedSize":  4249,
+                                                          "removed":  true,
+                                                          "muxReady":  {
+                                                                           "position":  44,
+                                                                           "length":  4205,
+                                                                           "alreadyWritten":  44
+                                                                       }
+                                                      }
+                                       }
+                                   ]
+                     },
+                     {
+                         "name":  "transport",
+                         "rawReceipt":  ".cache/download-transport/native-1792800024521-15380/evidence.json",
+                         "rawSha256":  "48fc1c39a780b5a989d83f9dfec6f12fdb00ad67b7e2b52e0d317ebd3b5d0098",
+                         "ok":  true,
+                         "errors":  [
+
+                                    ],
+                         "started":  "2026-10-24T00:00:24.538Z",
+                         "browser":  "153.0.8010.12",
+                         "cases":  [
+                                       {
+                                           "id":  "binary-range-redirect",
+                                           "result":  {
+                                                          "metrics":  {
+                                                                          "active":  0,
+                                                                          "maximumActive":  1,
+                                                                          "queuedBytes":  0,
+                                                                          "maximumQueuedBytes":  2009776,
+                                                                          "maximumUnacknowledgedPerRequest":  1,
+                                                                          "attempts":  4,
+                                                                          "receivedBytes":  900011,
+                                                                          "quarantined":  0
+                                                                      },
+                                                          "acceptedSender":  {
+                                                                                 "tabId":  544567584,
+                                                                                 "frameId":  0,
+                                                                                 "documentId":  "1F20F7263352187B033F31A195097265",
+                                                                                 "url":  "http://127.0.0.1:10742/watch"
+                                                                             },
+                                                          "work":  {
+                                                                       "binary":  {
+                                                                                      "done":  true,
+                                                                                      "headers":  {
+                                                                                                      "status":  200,
+                                                                                                      "url":  "http://127.0.0.1:10743/binary-final.jpg?signature=exact%2Fquery",
+                                                                                                      "mime":  "image/jpeg",
+                                                                                                      "range":  null,
+                                                                                                      "encoding":  null,
+                                                                                                      "length":  "900001"
+                                                                                                  },
+                                                                                      "bytes":  900001,
+                                                                                      "sum":  112493070
+                                                                                  },
+                                                                       "range":  {
+                                                                                     "done":  true,
+                                                                                     "headers":  {
+                                                                                                     "status":  206,
+                                                                                                     "url":  "http://127.0.0.1:10743/range.jpg",
+                                                                                                     "mime":  "image/jpeg",
+                                                                                                     "range":  "bytes 10-19/900001",
+                                                                                                     "encoding":  null,
+                                                                                                     "length":  "10"
+                                                                                                 },
+                                                                                     "bytes":  10,
+                                                                                     "sum":  145
+                                                                                 }
+                                                                   }
+                                                      }
+                                       },
+                                       {
+                                           "id":  "browser-decoded-gzip-manifest",
+                                           "result":  {
+                                                          "metrics":  {
+                                                                          "active":  0,
+                                                                          "maximumActive":  1,
+                                                                          "queuedBytes":  0,
+                                                                          "maximumQueuedBytes":  1048662,
+                                                                          "maximumUnacknowledgedPerRequest":  1,
+                                                                          "attempts":  2,
+                                                                          "receivedBytes":  22,
+                                                                          "quarantined":  0
+                                                                      },
+                                                          "acceptedSender":  {
+                                                                                 "tabId":  544567584,
+                                                                                 "frameId":  0,
+                                                                                 "documentId":  "1F20F7263352187B033F31A195097265",
+                                                                                 "url":  "http://127.0.0.1:10742/watch"
+                                                                             },
+                                                          "work":  {
+                                                                       "gzip":  {
+                                                                                    "done":  true,
+                                                                                    "headers":  {
+                                                                                                    "status":  200,
+                                                                                                    "url":  "http://127.0.0.1:10743/gzip.m3u8",
+                                                                                                    "mime":  "image/jpeg",
+                                                                                                    "range":  null,
+                                                                                                    "encoding":  null,
+                                                                                                    "length":  "42"
+                                                                                                },
+                                                                                    "bytes":  22,
+                                                                                    "sum":  1484
+                                                                                }
+                                                                   }
+                                                      }
+                                       },
+                                       {
+                                           "id":  "decoded-gzip-manifest2MiB-limit",
+                                           "result":  {
+                                                          "metrics":  {
+                                                                          "active":  0,
+                                                                          "maximumActive":  1,
+                                                                          "queuedBytes":  0,
+                                                                          "maximumQueuedBytes":  2009776,
+                                                                          "maximumUnacknowledgedPerRequest":  1,
+                                                                          "attempts":  2,
+                                                                          "receivedBytes":  2097152,
+                                                                          "quarantined":  0
+                                                                      },
+                                                          "acceptedSender":  {
+                                                                                 "tabId":  544567584,
+                                                                                 "frameId":  0,
+                                                                                 "documentId":  "1F20F7263352187B033F31A195097265",
+                                                                                 "url":  "http://127.0.0.1:10742/watch"
+                                                                             },
+                                                          "work":  {
+                                                                       "gzipLimit":  {
+                                                                                         "done":  true,
+                                                                                         "error":  "download-body-limit",
+                                                                                         "headers":  {
+                                                                                                         "status":  200,
+                                                                                                         "url":  "http://127.0.0.1:10743/oversize-gzip.m3u8",
+                                                                                                         "mime":  "image/jpeg",
+                                                                                                         "range":  null,
+                                                                                                         "encoding":  null,
+                                                                                                         "length":  "2068"
+                                                                                                     }
+                                                                                     }
+                                                                   }
+                                                      }
+                                       },
+                                       {
+                                           "id":  "cors",
+                                           "result":  {
+                                                          "metrics":  {
+                                                                          "active":  0,
+                                                                          "maximumActive":  1,
+                                                                          "queuedBytes":  0,
+                                                                          "maximumQueuedBytes":  1048576,
+                                                                          "maximumUnacknowledgedPerRequest":  0,
+                                                                          "attempts":  3,
+                                                                          "receivedBytes":  0,
+                                                                          "quarantined":  0
+                                                                      },
+                                                          "acceptedSender":  {
+                                                                                 "tabId":  544567584,
+                                                                                 "frameId":  0,
+                                                                                 "documentId":  "1F20F7263352187B033F31A195097265",
+                                                                                 "url":  "http://127.0.0.1:10742/watch"
+                                                                             },
+                                                          "work":  {
+                                                                       "cors":  {
+                                                                                    "done":  true,
+                                                                                    "error":  "Failed to fetch"
+                                                                                }
+                                                                   }
+                                                      }
+                                       },
+                                       {
+                                           "id":  "range-bad",
+                                           "result":  {
+                                                          "metrics":  {
+                                                                          "active":  0,
+                                                                          "maximumActive":  1,
+                                                                          "queuedBytes":  0,
+                                                                          "maximumQueuedBytes":  1048576,
+                                                                          "maximumUnacknowledgedPerRequest":  0,
+                                                                          "attempts":  2,
+                                                                          "receivedBytes":  0,
+                                                                          "quarantined":  0
+                                                                      },
+                                                          "acceptedSender":  {
+                                                                                 "tabId":  544567584,
+                                                                                 "frameId":  0,
+                                                                                 "documentId":  "1F20F7263352187B033F31A195097265",
+                                                                                 "url":  "http://127.0.0.1:10742/watch"
+                                                                             },
+                                                          "work":  {
+                                                                       "range-bad":  {
+                                                                                         "done":  true,
+                                                                                         "error":  "download-range-mismatch"
+                                                                                     }
+                                                                   }
+                                                      }
+                                       },
+                                       {
+                                           "id":  "headers",
+                                           "result":  {
+                                                          "metrics":  {
+                                                                          "active":  0,
+                                                                          "maximumActive":  1,
+                                                                          "queuedBytes":  0,
+                                                                          "maximumQueuedBytes":  1048576,
+                                                                          "maximumUnacknowledgedPerRequest":  0,
+                                                                          "attempts":  2,
+                                                                          "receivedBytes":  0,
+                                                                          "quarantined":  0
+                                                                      },
+                                                          "acceptedSender":  {
+                                                                                 "tabId":  544567584,
+                                                                                 "frameId":  0,
+                                                                                 "documentId":  "1F20F7263352187B033F31A195097265",
+                                                                                 "url":  "http://127.0.0.1:10742/watch"
+                                                                             },
+                                                          "work":  {
+                                                                       "headers":  {
+                                                                                       "done":  true,
+                                                                                       "error":  "download-timeout"
+                                                                                   }
+                                                                   }
+                                                      }
+                                       },
+                                       {
+                                           "id":  "body",
+                                           "result":  {
+                                                          "metrics":  {
+                                                                          "active":  0,
+                                                                          "maximumActive":  1,
+                                                                          "queuedBytes":  0,
+                                                                          "maximumQueuedBytes":  1168728,
+                                                                          "maximumUnacknowledgedPerRequest":  1,
+                                                                          "attempts":  2,
+                                                                          "receivedBytes":  32768,
+                                                                          "quarantined":  0
+                                                                      },
+                                                          "acceptedSender":  {
+                                                                                 "tabId":  544567584,
+                                                                                 "frameId":  0,
+                                                                                 "documentId":  "1F20F7263352187B033F31A195097265",
+                                                                                 "url":  "http://127.0.0.1:10742/watch"
+                                                                             },
+                                                          "work":  {
+                                                                       "body":  {
+                                                                                    "done":  true,
+                                                                                    "error":  "download-timeout",
+                                                                                    "headers":  {
+                                                                                                    "status":  200,
+                                                                                                    "url":  "http://127.0.0.1:10743/body-stall.jpg",
+                                                                                                    "mime":  "image/jpeg",
+                                                                                                    "range":  null,
+                                                                                                    "encoding":  null,
+                                                                                                    "length":  "900001"
+                                                                                                }
+                                                                                }
+                                                                   }
+                                                      }
+                                       },
+                                       {
+                                           "id":  "retry",
+                                           "result":  {
+                                                          "metrics":  {
+                                                                          "active":  0,
+                                                                          "maximumActive":  1,
+                                                                          "queuedBytes":  0,
+                                                                          "maximumQueuedBytes":  1048576,
+                                                                          "maximumUnacknowledgedPerRequest":  0,
+                                                                          "attempts":  3,
+                                                                          "receivedBytes":  0,
+                                                                          "quarantined":  0
+                                                                      },
+                                                          "acceptedSender":  {
+                                                                                 "tabId":  544567584,
+                                                                                 "frameId":  0,
+                                                                                 "documentId":  "1F20F7263352187B033F31A195097265",
+                                                                                 "url":  "http://127.0.0.1:10742/watch"
+                                                                             },
+                                                          "work":  {
+                                                                       "retry":  {
+                                                                                     "done":  true,
+                                                                                     "error":  "download-http:503"
+                                                                                 }
+                                                                   }
+                                                      }
+                                       },
+                                       {
+                                           "id":  "delayed-consumer-physical-abort"
+                                       },
+                                       {
+                                           "id":  "port-disconnect-detach-idempotent"
+                                       },
+                                       {
+                                           "id":  "real-sw-stop-wake",
+                                           "stoppedStatus":  "stopped",
+                                           "result":  {
+                                                          "metrics":  {
+                                                                          "active":  0,
+                                                                          "maximumActive":  1,
+                                                                          "queuedBytes":  0,
+                                                                          "maximumQueuedBytes":  1168728,
+                                                                          "maximumUnacknowledgedPerRequest":  1,
+                                                                          "attempts":  2,
+                                                                          "receivedBytes":  900001,
+                                                                          "quarantined":  0
+                                                                      },
+                                                          "acceptedSender":  {
+                                                                                 "tabId":  544567584,
+                                                                                 "frameId":  0,
+                                                                                 "documentId":  "1F20F7263352187B033F31A195097265",
+                                                                                 "url":  "http://127.0.0.1:10742/watch"
+                                                                             },
+                                                          "work":  {
+                                                                       "sw":  {
+                                                                                  "done":  true,
+                                                                                  "headers":  {
+                                                                                                  "status":  200,
+                                                                                                  "url":  "http://127.0.0.1:10743/slow-sw.jpg",
+                                                                                                  "mime":  "image/jpeg",
+                                                                                                  "range":  null,
+                                                                                                  "encoding":  null,
+                                                                                                  "length":  "900001"
+                                                                                              },
+                                                                                  "bytes":  900001,
+                                                                                  "sum":  112493070
+                                                                              }
+                                                                   }
+                                                      }
+                                       },
+                                       {
+                                           "id":  "navigation",
+                                           "result":  {
+                                                          "metrics":  {
+                                                                          "active":  1,
+                                                                          "maximumActive":  1,
+                                                                          "queuedBytes":  0,
+                                                                          "maximumQueuedBytes":  1048576,
+                                                                          "maximumUnacknowledgedPerRequest":  0,
+                                                                          "attempts":  2,
+                                                                          "receivedBytes":  0,
+                                                                          "quarantined":  1
+                                                                      },
+                                                          "acceptedSender":  {
+                                                                                 "tabId":  544567584,
+                                                                                 "frameId":  0,
+                                                                                 "documentId":  "1F20F7263352187B033F31A195097265",
+                                                                                 "url":  "http://127.0.0.1:10742/watch"
+                                                                             },
+                                                          "work":  {
+                                                                       "navigation":  {
+                                                                                          "done":  true,
+                                                                                          "error":  "download-port-disconnected",
+                                                                                          "headers":  {
+                                                                                                          "status":  200,
+                                                                                                          "url":  "http://127.0.0.1:10743/body-stall-navigation.jpg",
+                                                                                                          "mime":  "image/jpeg",
+                                                                                                          "range":  null,
+                                                                                                          "encoding":  null,
+                                                                                                          "length":  "900001"
+                                                                                                      }
+                                                                                      }
+                                                                   }
+                                                      }
+                                       }
+                                   ]
+                     },
+                     {
+                         "name":  "media-failures",
+                         "rawReceipt":  ".cache/download-coordinator/native-1792800322771-12728/evidence.json",
+                         "rawSha256":  "7b01e72421e618c59c82534ec91a7449383f46ebbf06050693954b120139cdd6",
+                         "ok":  true,
+                         "errors":  [
+
+                                    ],
+                         "started":  "2026-10-24T00:05:22.854Z",
+                         "browser":  "153.0.8010.12",
+                         "cases":  [
+                                       {
+                                           "id":  "actual-chrome-download-complete",
+                                           "phase":  "complete",
+                                           "probe":  {
+                                                         "duration":  "1.221979",
+                                                         "tracks":  [
+                                                                        {
+                                                                            "codec":  "h264",
+                                                                            "height":  720,
+                                                                            "frames":  "12"
+                                                                        },
+                                                                        {
+                                                                            "codec":  "aac",
+                                                                            "channels":  1,
+                                                                            "frames":  "58"
+                                                                        }
+                                                                    ]
+                                                     },
+                                           "decode":  "ffmpeg -xerror exit 0",
+                                           "browser":  {
+                                                           "state":  "complete",
+                                                           "bytes":  268213,
+                                                           "filename":  "native-complete.mp4"
+                                                       }
+                                       },
+                                       {
+                                           "id":  "native-media-expired",
+                                           "phase":  "failed",
+                                           "failure":  "download-processing-failed",
+                                           "files":  [
+
+                                                     ]
+                                       },
+                                       {
+                                           "id":  "native-media-truncated",
+                                           "phase":  "failed",
+                                           "failure":  "download-processing-failed",
+                                           "files":  [
+
+                                                     ]
+                                       },
+                                       {
+                                           "id":  "native-protected-source-admission-no-key-or-media",
+                                           "protected":  true,
+                                           "rejected":  {
+                                                            "ok":  false,
+                                                            "error":  {
+                                                                          "code":  "download-start-failed",
+                                                                          "message":  "download start failed"
+                                                                      }
+                                                        }
+                                       }
+                                   ]
+                     }
+                 ],
+    "reviewedTransportFollowup":  {
+                                      "sourceCommit":  "52cac149ac22a981422363bdc24b59bd02d10f31",
+                                      "command":  "node tests/download-transport-browser.mjs",
+                                      "rawReceipt":  ".cache/download-transport/native-1792802552614-25508/evidence.json",
+                                      "rawSha256":  "a453e8abad94c8371b73558b51c5b1292cfc5bbd44c7375fdbf9be81a95bfd88",
+                                      "ok":  true,
+                                      "errors":  [
+
+                                                 ],
+                                      "sourceHashes":  null,
+                                      "cases":  [
+                                                    "binary-range-redirect",
+                                                    "browser-decoded-gzip-manifest",
+                                                    "decoded-gzip-manifest2MiB-limit",
+                                                    "cors",
+                                                    "range-bad",
+                                                    "headers",
+                                                    "body",
+                                                    "retry",
+                                                    "delayed-consumer-physical-abort",
+                                                    "port-disconnect-detach-idempotent",
+                                                    "real-sw-stop-wake",
+                                                    "navigation"
+                                                ]
+                                  }
+}

@@ -1,6 +1,6 @@
 # Download replacement gaps: Cinejoy
 
-Date: 2026-10-23, America/Toronto. Status: investigation complete for the pictured gap; download implementation has not started. The user clarified that this request focuses on Cinejoy, not YouTube.
+Initial investigation: 2026-10-23, America/Toronto, before download implementation. The user clarified that this request focuses on Cinejoy, not YouTube. The sections below preserve that historical gap analysis and the original extension's static findings. The independent replacement subsystem is now implemented; its current acceptance status and runtime evidence are in [Download acceptance](DOWNLOAD_ACCEPTANCE.md).
 
 ## What the screenshots establish
 
@@ -8,7 +8,7 @@ Both images describe the same Cinejoy episode at `https://cinejoy.pk/watch/tv/67
 
 The current original has a download planner, processing worker, disk-backed temporary output, and a browser save stage. Our `MediaItem` is a discovery record, not an executable download plan. Relabeling its URL or adding a button without those stages would not produce a usable video file.
 
-## Verified source and current implementation
+## Verified source and implementation at initial investigation
 
 - Installed original inspected: **10.6.7.2**. [Current static trace and exact references](rea-evidence/download-gap/CURRENT_DOWNLOAD_GAP.md), [file identities](rea-evidence/download-gap/direct-static-references.json).
 - Its demonstrated download path is **popup selection → service coordinator → offscreen document → dedicated worker → LibAV/OPFS → Chrome Downloads**. Its manifest has no `nativeMessaging`; no native companion requirement was established for this current Chrome path.
@@ -18,7 +18,7 @@ The current original has a download planner, processing worker, disk-backed temp
 
 ## Capability gap and acceptance evidence
 
-| Capability | Current replacement | Required behavior and proof |
+| Capability | Replacement at initial investigation | Required behavior and proof |
 | --- | --- | --- |
 | Identify the pictured source | Confirmed HLS, matching duration and qualities | Preserve source identity and detection regressions while adding downloads. |
 | Choose video/output | Quality labels only | A real selector chooses 1080p or 720p, a filename is editable, and the output is identified as MP4 while the source remains HLS. |

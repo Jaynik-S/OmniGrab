@@ -1,0 +1,194 @@
+{
+  "scope": "Independent replacement live acceptance metadata; not original-extension proof",
+  "started": "2026-10-24T00:06:34.133Z",
+  "ended": "2026-10-24T00:18:53.194Z",
+  "jobId": "4c5236f6-1c4b-40d6-87f1-e21e0ae58711",
+  "action": {
+    "variantId": "hls:0",
+    "filename": "cinejoy-1080p.mp4",
+    "via": "actual action popup DOM Download click"
+  },
+  "actionAt": "2026-10-24T00:06:53.197Z",
+  "observerExit": {
+    "code": 0,
+    "signal": null
+  },
+  "processingWorkersAfterCleanup": [],
+  "artifactBefore": {
+    "background.js": "b27cc51c0d2e6d1b12cfa9a143c4275639e02720f12e3cba5d10010db78fa6c3",
+    "content.js": "423efb15bbb8beb9c6ef3137fa5a85f2ddad6d9de8aa70bb79b03587f828976e",
+    "download-worker.js": "a94f98ff6c18d7d0f87e435ba9441709db5cb5382e6025543cf901d96a7a19a6",
+    "licenses/mediabunny-MPL-2.0.txt": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "manifest.json": "f579364ace1b5ecb1c93aa4c3a3eb9d6428ba68e7fb0ab30fefca1019c7f7861",
+    "offscreen.html": "4e25520116719af287d57fab809319f3288f71c566a12dff7abf4c74f3226520",
+    "offscreen.js": "baed4366fe91603b44543a1b141c0eca731e27fd7ddb1af8881c70524283cf17",
+    "popup/index.html": "d17aa0054b177a3c08079d651c43ca312e9e69df004cf8dec43a29e4944a1bd7",
+    "popup/index.js": "e2d138ee1683550f954c3c85d49989bfc757d07b857c76d9e31e7f0ef41c4706",
+    "popup/style.css": "3ae581871327de5a86c4ef4e5041f4ec71117ae0d15d430f17bb0c627936a8ed",
+    "THIRD_PARTY_NOTICES.md": "f65ebb3d2528054abd60267b7e6f7251f4940be3cde043902f3b5190cf42b74d"
+  },
+  "artifactAfter": {
+    "background.js": "b27cc51c0d2e6d1b12cfa9a143c4275639e02720f12e3cba5d10010db78fa6c3",
+    "content.js": "423efb15bbb8beb9c6ef3137fa5a85f2ddad6d9de8aa70bb79b03587f828976e",
+    "download-worker.js": "a94f98ff6c18d7d0f87e435ba9441709db5cb5382e6025543cf901d96a7a19a6",
+    "licenses/mediabunny-MPL-2.0.txt": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "manifest.json": "f579364ace1b5ecb1c93aa4c3a3eb9d6428ba68e7fb0ab30fefca1019c7f7861",
+    "offscreen.html": "4e25520116719af287d57fab809319f3288f71c566a12dff7abf4c74f3226520",
+    "offscreen.js": "baed4366fe91603b44543a1b141c0eca731e27fd7ddb1af8881c70524283cf17",
+    "popup/index.html": "d17aa0054b177a3c08079d651c43ca312e9e69df004cf8dec43a29e4944a1bd7",
+    "popup/index.js": "e2d138ee1683550f954c3c85d49989bfc757d07b857c76d9e31e7f0ef41c4706",
+    "popup/style.css": "3ae581871327de5a86c4ef4e5041f4ec71117ae0d15d430f17bb0c627936a8ed",
+    "THIRD_PARTY_NOTICES.md": "f65ebb3d2528054abd60267b7e6f7251f4940be3cde043902f3b5190cf42b74d"
+  },
+  "artifactUnchanged": true,
+  "source": {
+    "pageUrl": "https://cinejoy.pk/watch/tv/67178/2/1",
+    "masterUrl": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+    "masterSha256": "9f0b366d530bbdb4bbd8dd21293d1cf99c59348258a65d9c1d3eecf81681aac0",
+    "selectedUrl": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+    "selectedSha256": "8cfa888cfe807f892606aa254fa00a07ffad844dfd431d5d9b7f702e0f990eca",
+    "expectedSegments": 797,
+    "expectedInitializationObjects": 1
+  },
+  "transfer": {
+    "scope": "Page and offscreen CDP requests; media response body lengths exclude manifests and failed requests.",
+    "observedMediaObjects": 798,
+    "observedSegments": 797,
+    "fullyCoveredSegments": 144,
+    "knownObjectTotalBytes": 1920222212,
+    "successfulMediaBodyBytes": 695200208,
+    "partialBytesOverKnownObjectSizes": 0.3620415406381103,
+    "fullSourceAmplification": null,
+    "completeCoverage": false,
+    "maximumObservedActive": 2,
+    "objectCoverageFile": "object-coverage.json alongside raw receipt",
+    "objectCoverageSha256": "d2380bb45ef6ce444653acb6321059ac00bb87b69953623b5f05a48545f0d4fb"
+  },
+  "progress": {
+    "samples": 237,
+    "firstNonzeroAt": "2026-10-24T00:06:56.268Z",
+    "lastZeroAt": "2026-10-24T00:06:53.238Z",
+    "lastZeroRequests": 0,
+    "zeroSeconds": 0.041,
+    "final": {
+      "duration": 3189.5616350000337,
+      "inputBytes": 695200208,
+      "outputBytes": 285878684,
+      "phase": "processing",
+      "seconds": 455.6586666666667
+    }
+  },
+  "resources": {
+    "scope": "Sampled worker V8 heap/backing store and whole-browser OS process metrics; working-set sums include shared pages, private bytes are process-private committed memory. Baseline is this owned browser with the paused source page before Download, if present.",
+    "workerUsed": {
+      "samples": 65,
+      "first": 2838284,
+      "min": 2613748,
+      "max": 9521984,
+      "last": 7582312
+    },
+    "workerBacking": {
+      "samples": 65,
+      "first": 23106832,
+      "min": 23106832,
+      "max": 124663809,
+      "last": 34672092
+    },
+    "processWorkingSetSum": {
+      "baselineSamples": 2,
+      "baseline": 1731403776,
+      "active": {
+        "samples": 65,
+        "first": 1896284160,
+        "min": 1879949312,
+        "max": 2264285184,
+        "last": 1986379776
+      },
+      "maximumDelta": 532881408
+    },
+    "processPrivateBytesSum": {
+      "baselineSamples": 2,
+      "baseline": 1143910400,
+      "active": {
+        "samples": 65,
+        "first": 1302089728,
+        "min": 1272930304,
+        "max": 1650851840,
+        "last": 1362415616
+      },
+      "maximumDelta": 506941440
+    }
+  },
+  "save": null,
+  "phase": "failed",
+  "cleanup": {
+    "entries": [
+      {
+        "name": "media-downloads-v1",
+        "files": []
+      }
+    ],
+    "hasAttachment": false,
+    "hasTempFile": false
+  },
+  "ownedBrowserClosed": true,
+  "errors": [
+    "AssertionError [ERR_ASSERTION]: {\"code\":\"download-processing-failed\",\"message\":\"download processing failed\"}\n+ actual - expected\n\n+ 'failed'\n- 'complete'\n\n    at file:///C:/Users/jay03/Jaynik/Projects/Chrome_Extensions/VideoDownloader/tests/download-acceptance-live.mjs:173:14"
+  ],
+  "failureAnalysis": {
+    "observed": {
+      "requestId": "offscreen:24688.2732",
+      "resource": "1080p/playlist_113.jpg",
+      "range": "bytes=0-262143",
+      "requestAt": "2026-10-24T00:18:31.460Z",
+      "abortedAt": "2026-10-24T00:18:46.485Z",
+      "elapsedSeconds": 15.024135,
+      "responseHeadersObserved": false,
+      "networkError": "net::ERR_ABORTED",
+      "jobFailedAt": "2026-10-24T00:18:46.604Z",
+      "laterRequestCount": 0,
+      "earlierSameResourcePageStatus": 206
+    },
+    "sourcePath": [
+      "src/downloads/binary-protocol.ts:68 emits download-timeout on idle expiry",
+      "src/downloads/transport.ts:156-162 preheader fallback/retry excludes download-timeout",
+      "src/downloads/offscreen.ts:45 sends sanitized download-fetch-failed to worker; :64 maps failure to download-processing-failed"
+    ],
+    "inference": "Exact internal exception was not captured. Network timing plus source path supports primary preheader idle timeout; controller independently confirmed the retry-policy gap.",
+    "controllerRuling": "Preserve terminal RED; route sole transport owner correction/review; no blind full retry."
+  },
+  "terminalCleanup": {
+    "at": "2026-10-24T00:20:31.8178455Z",
+    "session": 65591,
+    "sessionExitCode": 1,
+    "nodePid": 18332,
+    "observerPid": 21492,
+    "observerExit": {
+      "code": 0,
+      "signal": null
+    },
+    "ownedProcesses": [],
+    "ownedBrowserClosed": true,
+    "cdpPort": 6867,
+    "cdpRefusesConnection": true,
+    "finalFileExists": false,
+    "namespace": [
+      {
+        "name": "media-downloads-v1",
+        "files": []
+      }
+    ],
+    "downloadCount": 0,
+    "processingWorkers": [],
+    "hasAttachment": false,
+    "hasTempFile": false,
+    "artifactUnchanged": true
+  },
+  "rawReceiptHashes": {
+    "receipt.json": "cc2bcaaa900eed3c3a60fcc39ceb33619c8a1f9072fb3194234f15dafcfafc37",
+    "network.ndjson": "881247db0c9714f30af1b6afdec5b0ee4bfa7c6fd8a4a1b6a78a0a49522c0c33",
+    "samples.ndjson": "358f36053d7f59d23ada4b3329e53d95ddb4bb998a5949cd63380e736e09c39f",
+    "resources.ndjson": "d918c6151e4a4c6bef87262eac27f05856efa9d62a2254dad02963b4d99803e8",
+    "cleanup-proof.json": "7579c3df5dc27595a679fb6b9ae978cb4d972137b0f320f1ba9c2cbbe5c1f6de"
+  }
+}

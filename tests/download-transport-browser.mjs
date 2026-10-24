@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { gzipSync } from 'node:zlib';
+import { createHash } from 'node:crypto';
 import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -10,9 +11,11 @@ import { chromium } from 'playwright-core';
 
 const output = path.resolve('.cache/download-transport', `native-${Date.now()}-${process.pid}`);
 const fixRound1 = process.argv.includes('--fix-round1');
+const largeIO = process.argv.includes('--large-io');
 const extension = path.join(output, 'extension'); await mkdir(extension, { recursive: true });
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const report = { started: new Date().toISOString(), requests: [], cases: [], errors: [] };
+if(largeIO)report.sourceHashes=Object.fromEntries(await Promise.all(['src/downloads/transport.ts','src/content/download-fetch.ts','src/downloads/opfs.ts'].map(async file=>[file,createHash('sha256').update(await readFile(file)).digest('hex')])));
 const sockets = new Set(), timers = new Set();
 let pageOrigin, mediaOrigin, embedOrigin, context;
 const media = createServer((req, res) => {
@@ -22,6 +25,16 @@ const media = createServer((req, res) => {
   const cors = url.pathname.includes('cors-deny') ? {} : { 'access-control-allow-origin': req.headers.origin === embedOrigin ? embedOrigin : pageOrigin, 'access-control-expose-headers': 'Content-Range, Content-Length, Accept-Ranges' };
   const send = (status, bytes, extra = {}) => { entry.status = status; res.writeHead(status, { ...cors, 'cache-control': 'no-store', 'content-type': 'image/jpeg', 'content-length': String(bytes.length), ...extra }); entry.bytes += bytes.length; res.end(bytes); };
   if (!page && !url.pathname.includes('retry')) { send(404, Buffer.from('context unavailable')); return; }
+  if (url.pathname === '/large-io.bin') {
+    const size = 2 ** 31 + 65537, match = /^bytes=(\d+)-(\d+)$/.exec(req.headers.range || '');
+    if (!match) { send(416, Buffer.alloc(0)); return; }
+    const start = Number(match[1]), end = Math.min(Number(match[2]), size - 1);
+    if (start > end || end - start + 1 > 32 * 1024 * 1024) { send(416, Buffer.alloc(0)); return; }
+    entry.status = 206; res.writeHead(206, { ...cors, 'content-type': 'application/octet-stream', 'content-length': end - start + 1, 'content-range': `bytes ${start}-${end}/${size}` });
+    const chunk = Buffer.alloc(65536, 90); let remaining = end - start + 1;
+    const pump = () => { while (remaining && !res.destroyed) { const n = Math.min(remaining, chunk.length); remaining -= n; entry.bytes += n; if (!res.write(chunk.subarray(0, n))) { res.once('drain', pump); return; } } if (!remaining) res.end(); };
+    pump(); return;
+  }
   if (url.pathname.includes('retry')) { send(503, Buffer.from('retryable')); return; }
   if (url.pathname.includes('gzip.m3u8')) { send(200, gzipSync(url.pathname.includes('oversize-') ? Buffer.alloc(2097153,65) : Buffer.from('#EXTM3U\n#EXT-X-ENDLIST')), { 'content-encoding': 'gzip' }); return; }
   if (url.pathname.includes('headers-stall')) return;
@@ -49,6 +62,29 @@ const bundle = async (name, contents) => build({ stdin: { contents, resolveDir: 
 await writeFile(path.join(extension, 'manifest.json'), JSON.stringify({ manifest_version: 3, name: 'Owned bounded transport fixture', version: '1.0', minimum_chrome_version: '120', permissions: ['offscreen', 'tabs', 'webNavigation', 'storage'], host_permissions: ['http://127.0.0.1/*', 'http://localhost/*'], background: { service_worker: 'worker.js', type: 'module' }, content_scripts: [{ matches: ['http://127.0.0.1/*', 'http://localhost/*'], js: ['content.js'], run_at: 'document_start', all_frames: true }] }));
 await writeFile(path.join(extension, 'host.html'), '<!doctype html><script type="module" src="host.js"></script>');
 await writeFile(path.join(extension, 'controller.html'), '<!doctype html><title>Native transport controls</title>');
+if (largeIO) await bundle('io-worker.js', `
+import {createOpfsOutput} from './src/downloads/opfs.ts';
+let response;
+self.onmessage=async({data:m})=>{
+ if(m.type==='response'){response(m.body);return;}
+ if(m.type!=='run')return;
+ let output;
+ try {
+  const directory=await navigator.storage.getDirectory();output=await createOpfsOutput(directory,'large-io.bin');
+  let bytes=0,checked=0,chunks=0;const size=2**31+65537;
+  while(bytes<size){const end=Math.min(bytes+32*1024*1024-1,size-1);const body=await new Promise(resolve=>{response=resolve;self.postMessage({type:'fetch',url:m.url,start:bytes,end});});const reader=body.getReader();
+   for(;;){const p=await reader.read();if(p.done)break;for(const value of p.value){if(value!==90)throw Error('binary content mismatch');checked++;}await output.write(p.value,bytes);bytes+=p.value.length;chunks++;}
+   self.postMessage({type:'progress',bytes,checked,chunks});
+  }
+  if(bytes!==size)throw Error('large length mismatch');
+  await output.write(Uint8Array.of(1,2,3,4),2**31-1);await output.flush();await output.close();
+  const file=await(await directory.getFileHandle('large-io.bin')).getFile();const slices=[];
+  for(const [start,length]of [[0,4],[2**31-2,6],[size-4,4]])slices.push({start,bytes:[...new Uint8Array(await file.slice(start,start+length).arrayBuffer())]});
+  const handle=await(await directory.getFileHandle('large-io.bin')).createSyncAccessHandle();handle.close();
+  await directory.removeEntry('large-io.bin');
+  self.postMessage({type:'complete',bytes,checked,chunks,fileSize:file.size,slices,removed:true});
+ }catch(e){await output?.close();self.postMessage({type:'failed',error:String(e.stack||e)});}
+};`);
 await bundle('content.js', `import {createDownloadAttachmentHandler} from './src/content/download-fetch.ts'; let ownedPort;const handler=createDownloadAttachmentHandler(chrome.runtime.id,{connect:name=>{ownedPort=chrome.runtime.connect({name});return ownedPort;}}); chrome.runtime.onMessage.addListener(handler);chrome.runtime.onMessage.addListener((m,s,reply)=>{if(m.type==='fixture-drop'&&s.id===chrome.runtime.id&&!s.tab){ownedPort.disconnect();reply({ok:true});}});`);
 await bundle('worker.js', `
 chrome.runtime.onMessage.addListener((m,s,reply)=>{
@@ -103,6 +139,14 @@ chrome.runtime.onMessage.addListener((m,s,reply)=>{
   if(m.action==='disconnect'){for(const i of work.values())i.release();connectedPort.disconnect();return transport.metrics;}
   if(m.action==='confirm'){transport.confirmAttachmentStopped(m.capability);return transport.metrics;}
   if(m.action==='status')return globalThis.__nativeStatus();
+  if(m.action==='large-proof')return work.get('large');
+  if(m.action==='large-io'){
+   const item={done:false,release:()=>{}};work.set('large',item);const io=new Worker('io-worker.js',{type:'module'});
+   io.onmessage=({data})=>{if(data.type==='fetch'){void(async()=>{const r=await transport.fetch(data.url,{headers:{Range:'bytes='+data.start+'-'+data.end}});io.postMessage({type:'response',body:r.body},[r.body]);})().catch(e=>{item.error=String(e);item.done=true;io.terminate();});}
+    else if(data.type==='progress')Object.assign(item,data);
+    else {Object.assign(item,data,{done:true});io.terminate();}};
+   io.onerror=e=>{item.error=e.message;item.done=true;io.terminate();};io.postMessage({type:'run',url:m.url});return true;
+  }
   if(m.action==='dispose'){for(const i of work.values())i.release();await transport.dispose();return transport.metrics;}
  })().then(v=>reply({ok:true,value:v}),e=>reply({ok:false,error:String(e.stack||e)}));return true;
 });`);
@@ -119,7 +163,19 @@ try {
   const status = () => call('host', 'status');
   const init = async (id, idleMs = 2000) => { await call('coordinator', 'init', { id, pageUrl: page.url(), sourceUrl: mediaOrigin + '/manifest.m3u8', idleMs, requestMs: 8000 }); await sleep(50); };
   const fetchOne = async (id, suffix, args = {}) => { const url = mediaOrigin + suffix; await call('host', 'grant', { grants: [{ url, ...(args.grantRange ? { range: args.grantRange } : {}) }] }); await call('host', 'fetch', { id, url, ...args }); const result=await until(status, s => s.work[id]?.done, id);report.lastResult=result;return result; };
-  if (fixRound1) {
+  if (largeIO) {
+    await call('coordinator','init',{id:'large-io',pageUrl:page.url(),sourceUrl:mediaOrigin+'/manifest.m3u8',idleMs:15000,requestMs:120000});
+    const url=mediaOrigin+'/large-io.bin';await call('host','grant',{grants:[{url}]});await call('host','large-io',{url});
+    let final;const samples=[];
+    for(;;){final=await status();samples.push({at:Date.now(),metrics:final.metrics,bytes:final.work.large?.bytes});console.log(JSON.stringify(samples.at(-1)));if(final.work.large?.done)break;await sleep(10000);}
+    // Status intentionally returns only bounded fields; read final seek proof separately.
+    const proof=await call('host','large-proof');
+    assert.equal(proof.error,undefined);assert.equal(proof.bytes,2**31+65537);assert.equal(proof.checked,proof.bytes);assert.equal(proof.fileSize,proof.bytes);assert.equal(proof.removed,true);
+    assert.deepEqual(proof.slices.map(s=>s.bytes),[[90,90,90,90],[90,1,2,3,4,90],[90,90,90,90]]);
+    assert.ok(final.metrics.maximumActive<=4);assert.ok(final.metrics.maximumQueuedBytes<=8388608);assert.equal(final.metrics.maximumUnacknowledgedPerRequest,1);
+    assert.equal(final.metrics.receivedBytes,proof.bytes);assert.equal(report.requests.filter(r=>r.page&&r.status===206).reduce((n,r)=>n+r.bytes,0),proof.bytes);
+    report.cases.push({id:'actual-over2GiB-transport-contiguous-OPFS-write-seek-patch-cleanup',scope:'Actual 2147549185 binary bytes, not a sparse file or large media remux',proof,metrics:final.metrics,samples});await call('host','dispose');
+  } else if (fixRound1) {
     await page.goto(pageOrigin+'/iframe-watch');const frame=await until(async()=>page.frames().find(f=>f.url()===embedOrigin+'/embed-player'),f=>!!f,'cross-origin iframe');
     const selected=await call('coordinator','init',{id:'iframe-active',pageUrl:page.url(),frameUrl:frame.url(),sourceUrl:mediaOrigin+'/manifest.m3u8',idleMs:15000,requestMs:120000});assert.ok(selected.frameId>0);assert.equal(selected.pageUrl,pageOrigin+'/iframe-watch');
     const accepted=await until(status,s=>s.acceptedSender?.documentId===selected.documentId,'actual iframe port sender');assert.equal(accepted.acceptedSender.frameId,selected.frameId);assert.equal(accepted.acceptedSender.url,frame.url());

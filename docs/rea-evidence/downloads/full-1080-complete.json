@@ -1,0 +1,203 @@
+{
+  "scope": "Independent replacement live acceptance metadata; not original-extension proof",
+  "started": "2026-10-24T00:42:46.865Z",
+  "ended": "2026-10-24T01:28:12.276Z",
+  "jobId": "03274e13-bf9f-4768-9efc-ae6740e78b9c",
+  "rawReceiptHashes": {
+    "receipt.json": "5e9252cecfb0f6fec3b3a12d8d1c240ed86f8170eb0d380b6b3b9a9aa86d9044",
+    "network.ndjson": "ca4512e507e30969cbaeae177b1a6c2b5e3b774f71f561dfa08150ee20d2b5e5",
+    "samples.ndjson": "fc742211cd2d6b3e911d4e674990af352296a3f7b964d0e39eb6d5be9f5cd2f6",
+    "resources.ndjson": "536c779213330fb3f6521ea1cfc047b1f507938d5f85d79b982c9f4c13a79661"
+  },
+  "recoveryEvents": [
+    {
+      "urlSha256": "b78f10e3be61cce209153a901b26709b823aeccf28d99014cf6be36d5cc9b3b3",
+      "range": "bytes=0-262143",
+      "primaryAbortedAt": "2026-10-24T00:49:27.585Z",
+      "primarySeconds": 15.017297999998846,
+      "pageRequestedAt": "2026-10-24T00:49:27.595Z",
+      "pageFinishedAt": "2026-10-24T00:49:27.630Z",
+      "pageStatus": 206,
+      "pageBodyBytes": "262144",
+      "scope": "Live CDP abort and subsequent page response; not independent server socket-close proof"
+    },
+    {
+      "urlSha256": "851b2542095caa49af3cd34419f95102de46bc32d7eb79fa7a239d6bb03f2196",
+      "range": "bytes=1310720-1572863",
+      "primaryAbortedAt": "2026-10-24T00:55:32.964Z",
+      "primarySeconds": 15.009231,
+      "pageRequestedAt": "2026-10-24T00:55:32.976Z",
+      "pageFinishedAt": "2026-10-24T00:55:33.004Z",
+      "pageStatus": 206,
+      "pageBodyBytes": "262144",
+      "scope": "Live CDP abort and subsequent page response; not independent server socket-close proof"
+    },
+    {
+      "urlSha256": "70028fa8744e695ffb8c5d06903f81020c2bf4955c4b20cb36ba3d61a1d31b7d",
+      "range": "bytes=0-262143",
+      "primaryAbortedAt": "2026-10-24T00:57:45.351Z",
+      "primarySeconds": 15.005565999999817,
+      "pageRequestedAt": "2026-10-24T00:57:45.358Z",
+      "pageFinishedAt": "2026-10-24T00:57:45.414Z",
+      "pageStatus": 206,
+      "pageBodyBytes": "262144",
+      "scope": "Live CDP abort and subsequent page response; not independent server socket-close proof"
+    }
+  ],
+  "action": {
+    "variantId": "hls:0",
+    "filename": "cinejoy-1080p.mp4",
+    "via": "actual action popup DOM Download click"
+  },
+  "actionAt": "2026-10-24T00:43:05.064Z",
+  "observerExit": {
+    "code": 0,
+    "signal": null
+  },
+  "processingWorkersAfterCleanup": [],
+  "artifactBefore": {
+    "background.js": "b27cc51c0d2e6d1b12cfa9a143c4275639e02720f12e3cba5d10010db78fa6c3",
+    "content.js": "423efb15bbb8beb9c6ef3137fa5a85f2ddad6d9de8aa70bb79b03587f828976e",
+    "download-worker.js": "a94f98ff6c18d7d0f87e435ba9441709db5cb5382e6025543cf901d96a7a19a6",
+    "licenses/mediabunny-MPL-2.0.txt": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "manifest.json": "f579364ace1b5ecb1c93aa4c3a3eb9d6428ba68e7fb0ab30fefca1019c7f7861",
+    "offscreen.html": "4e25520116719af287d57fab809319f3288f71c566a12dff7abf4c74f3226520",
+    "offscreen.js": "ab4fb85d61f8c1d4cf19eecf79dea173d90ff6dc716e4052b50d4618db3aa8a7",
+    "popup/index.html": "d17aa0054b177a3c08079d651c43ca312e9e69df004cf8dec43a29e4944a1bd7",
+    "popup/index.js": "e2d138ee1683550f954c3c85d49989bfc757d07b857c76d9e31e7f0ef41c4706",
+    "popup/style.css": "3ae581871327de5a86c4ef4e5041f4ec71117ae0d15d430f17bb0c627936a8ed",
+    "THIRD_PARTY_NOTICES.md": "f65ebb3d2528054abd60267b7e6f7251f4940be3cde043902f3b5190cf42b74d"
+  },
+  "artifactAfter": {
+    "background.js": "b27cc51c0d2e6d1b12cfa9a143c4275639e02720f12e3cba5d10010db78fa6c3",
+    "content.js": "423efb15bbb8beb9c6ef3137fa5a85f2ddad6d9de8aa70bb79b03587f828976e",
+    "download-worker.js": "a94f98ff6c18d7d0f87e435ba9441709db5cb5382e6025543cf901d96a7a19a6",
+    "licenses/mediabunny-MPL-2.0.txt": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "manifest.json": "f579364ace1b5ecb1c93aa4c3a3eb9d6428ba68e7fb0ab30fefca1019c7f7861",
+    "offscreen.html": "4e25520116719af287d57fab809319f3288f71c566a12dff7abf4c74f3226520",
+    "offscreen.js": "ab4fb85d61f8c1d4cf19eecf79dea173d90ff6dc716e4052b50d4618db3aa8a7",
+    "popup/index.html": "d17aa0054b177a3c08079d651c43ca312e9e69df004cf8dec43a29e4944a1bd7",
+    "popup/index.js": "e2d138ee1683550f954c3c85d49989bfc757d07b857c76d9e31e7f0ef41c4706",
+    "popup/style.css": "3ae581871327de5a86c4ef4e5041f4ec71117ae0d15d430f17bb0c627936a8ed",
+    "THIRD_PARTY_NOTICES.md": "f65ebb3d2528054abd60267b7e6f7251f4940be3cde043902f3b5190cf42b74d"
+  },
+  "artifactUnchanged": true,
+  "source": {
+    "pageUrl": "https://cinejoy.pk/watch/tv/67178/2/1",
+    "masterUrl": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+    "masterSha256": "9f0b366d530bbdb4bbd8dd21293d1cf99c59348258a65d9c1d3eecf81681aac0",
+    "selectedUrl": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+    "selectedSha256": "8cfa888cfe807f892606aa254fa00a07ffad844dfd431d5d9b7f702e0f990eca",
+    "expectedSegments": 797,
+    "expectedInitializationObjects": 1
+  },
+  "transfer": {
+    "scope": "Page and offscreen CDP requests; media response body lengths exclude manifests and failed requests. CDP encoded bytes are not a complete wire/TLS measurement.",
+    "totalObservedRequests": 18544,
+    "mediaRequests": 18542,
+    "requestedRangeSizes": [
+      262144
+    ],
+    "observedMediaObjects": 798,
+    "observedSegments": 797,
+    "fullyCoveredSegments": 797,
+    "knownObjectTotalBytes": 1920222212,
+    "successfulMediaBodyBytes": 2329250460,
+    "successfulEncodedMediaBytes": 2332796112,
+    "partialBytesOverKnownObjectSizes": 1.2130108929288856,
+    "fullSourceAmplification": 1.2130108929288856,
+    "completeCoverage": true,
+    "maximumObservedActive": 2,
+    "objectCoverageFile": "object-coverage.json alongside raw receipt",
+    "objectCoverageSha256": "8314236158da72df448104cc190ace7820467df5b21de85b8f90a83045314ad8"
+  },
+  "progress": {
+    "samples": 893,
+    "firstNonzeroAt": "2026-10-24T00:43:08.149Z",
+    "lastZeroAt": "2026-10-24T00:43:05.105Z",
+    "lastZeroRequests": 0,
+    "zeroSeconds": 0.041,
+    "final": {
+      "duration": 3189.941333333333,
+      "inputBytes": 2329250460,
+      "outputBytes": 1920506462,
+      "phase": "finalizing"
+    }
+  },
+  "resources": {
+    "scope": "Sampled worker V8 heap/backing store and whole-browser OS process metrics; working-set sums include shared pages, private bytes are process-private committed memory. Baseline is this owned browser with the paused source page before Download, if present.",
+    "workerUsed": {
+      "samples": 246,
+      "first": 2643908,
+      "min": 2570116,
+      "max": 28055512,
+      "last": 27426784
+    },
+    "workerBacking": {
+      "samples": 246,
+      "first": 18904783,
+      "min": 18904783,
+      "max": 134350609,
+      "last": 103356832
+    },
+    "processWorkingSetSum": {
+      "baselineSamples": 2,
+      "baseline": 1734524928,
+      "active": {
+        "samples": 247,
+        "first": 1906966528,
+        "min": 1878654976,
+        "max": 2408460288,
+        "last": 2358308864
+      },
+      "maximumDelta": 673935360
+    },
+    "processPrivateBytesSum": {
+      "baselineSamples": 2,
+      "baseline": 1145094144,
+      "active": {
+        "samples": 247,
+        "first": 1311485952,
+        "min": 1266114560,
+        "max": 1790656512,
+        "last": 1726373888
+      },
+      "maximumDelta": 645562368
+    }
+  },
+  "save": {
+    "id": 1,
+    "state": "complete",
+    "basename": "cinejoy-1080p.mp4",
+    "bytes": 1920506462,
+    "totalBytes": 1920506462,
+    "fileSize": 1920506462
+  },
+  "phase": "complete",
+  "cleanup": {
+    "entries": [
+      {
+        "name": "media-downloads-v1",
+        "files": []
+      }
+    ],
+    "hasAttachment": false,
+    "hasTempFile": false
+  },
+  "ownedBrowserClosed": true,
+  "errors": [],
+  "processCleanup": {
+    "at": "2026-10-24T05:20:09.8487452Z",
+    "ownedProcesses": []
+  },
+  "executionExitStatus": {
+    "session": 57902,
+    "status": null,
+    "reason": "Usage interruption discarded exec handle; terminal persisted receipt and actual saved file prove completion, but no exit status was observed."
+  },
+  "savedFile": {
+    "path": "C:\\Users\\jay03\\Jaynik\\Projects\\Chrome_Extensions\\VideoDownloader\\.superpowers\\download-acceptance\\final-reviewed\\cinejoy-1080p.mp4",
+    "sha256": "76d86a27cb3beb5184b3e3b1708f1714771a2d30f03a80004298ec4197bb32a6",
+    "bytes": 1920506462
+  }
+}

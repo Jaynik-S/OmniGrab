@@ -1,0 +1,132 @@
+﻿{
+    "scope":  "Independent replacement live acceptance metadata; not original-extension proof",
+    "started":  "2026-10-23T23:17:23.726Z",
+    "ended":  "2026-10-23T23:34:21.802Z",
+    "jobId":  "a5772c26-89b7-453f-a383-07b9a977de6f",
+    "artifactBefore":  {
+                           "background.js":  "b27cc51c0d2e6d1b12cfa9a143c4275639e02720f12e3cba5d10010db78fa6c3",
+                           "content.js":  "423efb15bbb8beb9c6ef3137fa5a85f2ddad6d9de8aa70bb79b03587f828976e",
+                           "download-worker.js":  "2ad693a54cc3b320f866f62b9c9d26a06e9269c24bbcb481bcb7d8fd3c0d57d7",
+                           "licenses/mediabunny-MPL-2.0.txt":  "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+                           "manifest.json":  "f579364ace1b5ecb1c93aa4c3a3eb9d6428ba68e7fb0ab30fefca1019c7f7861",
+                           "offscreen.html":  "4e25520116719af287d57fab809319f3288f71c566a12dff7abf4c74f3226520",
+                           "offscreen.js":  "d9702d1b8feb5c38dfbcd3ed7eadd54153155fd462fcbffd04846c34e50e0d28",
+                           "popup/index.html":  "d17aa0054b177a3c08079d651c43ca312e9e69df004cf8dec43a29e4944a1bd7",
+                           "popup/index.js":  "e2d138ee1683550f954c3c85d49989bfc757d07b857c76d9e31e7f0ef41c4706",
+                           "popup/style.css":  "3ae581871327de5a86c4ef4e5041f4ec71117ae0d15d430f17bb0c627936a8ed",
+                           "THIRD_PARTY_NOTICES.md":  "f65ebb3d2528054abd60267b7e6f7251f4940be3cde043902f3b5190cf42b74d"
+                       },
+    "artifactAfter":  {
+                          "background.js":  "b27cc51c0d2e6d1b12cfa9a143c4275639e02720f12e3cba5d10010db78fa6c3",
+                          "content.js":  "423efb15bbb8beb9c6ef3137fa5a85f2ddad6d9de8aa70bb79b03587f828976e",
+                          "download-worker.js":  "2ad693a54cc3b320f866f62b9c9d26a06e9269c24bbcb481bcb7d8fd3c0d57d7",
+                          "licenses/mediabunny-MPL-2.0.txt":  "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+                          "manifest.json":  "f579364ace1b5ecb1c93aa4c3a3eb9d6428ba68e7fb0ab30fefca1019c7f7861",
+                          "offscreen.html":  "4e25520116719af287d57fab809319f3288f71c566a12dff7abf4c74f3226520",
+                          "offscreen.js":  "d9702d1b8feb5c38dfbcd3ed7eadd54153155fd462fcbffd04846c34e50e0d28",
+                          "popup/index.html":  "d17aa0054b177a3c08079d651c43ca312e9e69df004cf8dec43a29e4944a1bd7",
+                          "popup/index.js":  "e2d138ee1683550f954c3c85d49989bfc757d07b857c76d9e31e7f0ef41c4706",
+                          "popup/style.css":  "3ae581871327de5a86c4ef4e5041f4ec71117ae0d15d430f17bb0c627936a8ed",
+                          "THIRD_PARTY_NOTICES.md":  "f65ebb3d2528054abd60267b7e6f7251f4940be3cde043902f3b5190cf42b74d"
+                      },
+    "artifactUnchanged":  true,
+    "source":  {
+                   "pageUrl":  "https://cinejoy.pk/watch/tv/67178/2/1",
+                   "masterUrl":  "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/master.m3u8",
+                   "masterSha256":  "9f0b366d530bbdb4bbd8dd21293d1cf99c59348258a65d9c1d3eecf81681aac0",
+                   "selectedUrl":  "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+                   "selectedSha256":  "8cfa888cfe807f892606aa254fa00a07ffad844dfd431d5d9b7f702e0f990eca",
+                   "expectedSegments":  797,
+                   "expectedInitializationObjects":  1
+               },
+    "transfer":  {
+                     "scope":  "Page-context CDP requests only; offscreen-direct successes may be absent. Partial cancellation is not full-source amplification evidence.",
+                     "observedMediaObjects":  794,
+                     "observedSegments":  794,
+                     "fullyCoveredSegments":  230,
+                     "knownObjectTotalBytes":  1913498908,
+                     "successfulPageBodyBytes":  908552488,
+                     "partialBytesOverKnownObjectSizes":  0.4748121277736313,
+                     "fullSourceAmplification":  null,
+                     "maximumPageActive":  1
+                 },
+    "progress":  {
+                     "samples":  334,
+                     "firstNonzeroAt":  null,
+                     "lastZeroAt":  "2026-10-23T23:34:19.170Z",
+                     "lastZeroRequests":  3577,
+                     "zeroSeconds":  1008.655,
+                     "final":  {
+                                   "inputBytes":  0,
+                                   "outputBytes":  0,
+                                   "phase":  "processing"
+                               }
+                 },
+    "resources":  {
+                      "scope":  "Sampled worker V8 heap/backing store and whole-browser OS process metrics; working-set sums include shared pages, private bytes are process-private committed memory. Observer sampling starts after the job; not an idle baseline.",
+                      "workerUsed":  {
+                                         "samples":  53,
+                                         "first":  4448792,
+                                         "min":  4448792,
+                                         "max":  11845048,
+                                         "last":  11336820
+                                     },
+                      "workerBacking":  {
+                                            "samples":  53,
+                                            "first":  43808215,
+                                            "min":  35544550,
+                                            "max":  124181657,
+                                            "last":  70979763
+                                        },
+                      "processWorkingSetSum":  {
+                                                   "samples":  78,
+                                                   "first":  1975410688,
+                                                   "min":  1975410688,
+                                                   "max":  2327302144,
+                                                   "last":  2209595392
+                                               },
+                      "processPrivateBytesSum":  {
+                                                     "samples":  78,
+                                                     "first":  1372209152,
+                                                     "min":  1372209152,
+                                                     "max":  1703165952,
+                                                     "last":  1581469696
+                                                 }
+                  },
+    "save":  null,
+    "phase":  "canceled",
+    "cleanup":  {
+                    "entries":  [
+                                    {
+                                        "name":  "media-downloads-v1",
+                                        "files":  [
+
+                                                  ]
+                                    }
+                                ],
+                    "hasAttachment":  false,
+                    "hasTempFile":  false
+                },
+    "ownedBrowserClosed":  true,
+    "errors":  [
+                   "AssertionError [ERR_ASSERTION]: {\"code\":\"download-canceled\",\"message\":\"download canceled\"}\n+ actual - expected\n\n+ \u0027canceled\u0027\n- \u0027complete\u0027\n\n    at file:///C:/Users/jay03/Jaynik/Projects/Chrome_Extensions/VideoDownloader/tests/download-acceptance-live.mjs:132:14"
+               ],
+    "outcome":  "Controller-authorized processing Cancel after concrete preflight progress failure; incomplete live attempt, not full saved-media acceptance",
+    "receipts":  {
+                     "directory":  ".superpowers/download-acceptance/live-1792797443722-312",
+                     "summarySha256":  "331ab8570f5e4544e6e69a55aa76f9fd913dbd182d8a970a8c8e6c5200988d9c",
+                     "rawReceiptSha256":  "835a049d21c1bfcc31d0d7ad8250140d8bfc250c3be6c6bc5e0d7d47577cbb6d"
+                 },
+    "cleanupProof":  {
+                         "ownedDevTools12892Refused":  true,
+                         "ownedProcessCount":  0,
+                         "historyEvidence":  "Independent read-only Python sqlite3 query against owned closed Default/History",
+                         "noFinalMp4":  true,
+                         "ownedProcesses":  [
+
+                                            ],
+                         "at":  "2026-10-23T23:35:37.7351140Z",
+                         "downloadRows":  0,
+                         "downloadUrlRows":  0
+                     }
+}
