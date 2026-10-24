@@ -166,6 +166,64 @@ test('unknown range-ignoring responses serialize 64 MiB allocation and abort wai
   await source.settled(); assert.equal(fixture.active, 0); assert.equal(source.metrics.inFlightBytes, 0);
 });
 
+test('canceling the first whole-object allocation waiter hands capacity to the surviving read', async () => {
+  const urls = ['owner.bin', 'canceled-waiter.bin', 'surviving-waiter.bin'].map(name => base + name);
+  let owner!: ReadableStreamDefaultController<Uint8Array>, ownerPulls = 0, thirdPulls = 0, thirdFinished = false;
+  const controller = new AbortController();
+  const source = new RemuxSourceAdapter(plan(urls.map(url => ({ url }))), async (input, init) => {
+    const index = urls.indexOf(String(input));
+    if (index === 1) init!.signal!.addEventListener('abort', () => owner.close(), { once: true });
+    return new Response(new ReadableStream<Uint8Array>({
+      start(stream) { if (index === 0) owner = stream; },
+      pull(stream) {
+        if (index === 0) { if (++ownerPulls === 1) stream.enqueue(new Uint8Array(16).fill(11)); }
+        else { if (index === 2) thirdPulls++; stream.enqueue(new Uint8Array(16).fill(index + 11)); stream.close(); }
+      },
+    }, { highWaterMark: 0 }), { headers: { 'Content-Length': '16' } });
+  }, new AbortController().signal, () => {}, { prefetch: false });
+  const first = read(source, urls[0]), second = read(source, urls[1], 0, 0, controller.signal);
+  const rejected = assert.rejects(second, { name: 'AbortError' });
+  const third = read(source, urls[2]).then(result => { thirdFinished = true; return result; });
+  first.catch(() => {}); third.catch(() => {});
+  try {
+    await until(() => ownerPulls === 2 && source.metrics.active === 3);
+    assert.equal(thirdPulls, 0); assert.equal(source.metrics.inFlightBytes, 16);
+    controller.abort(); await rejected;
+    assert.deepEqual([...(await first).bytes], [11]);
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(thirdFinished, true, 'surviving response must finish without another release or disposal');
+    assert.deepEqual([...(await third).bytes], [13]); await source.settled();
+    assert.equal(thirdPulls, 1); assert.equal(source.metrics.requests, 3);
+    assert.equal(source.metrics.maximumInFlightBytes, 16); assert.equal(source.metrics.maximumActive, 3);
+    assert.equal(source.metrics.active, 0); assert.equal(source.metrics.inFlightBytes, 0);
+  } finally { source.dispose(); await Promise.allSettled([first, second, third]); await source.settled(); }
+});
+
+test('settlement retains its slot and staging until the original asynchronous stream cancellation finishes', async () => {
+  const url = base + 'delayed-cancel.bin';
+  let pulled = false, cancelStarted = false, cancelFinished = false, cancelCalls = 0, settled = false;
+  let releaseCancel!: () => void;
+  const cancelGate = new Promise<void>(resolve => { releaseCancel = resolve; });
+  const source = new RemuxSourceAdapter(plan([{ url }]), async () => new Response(new ReadableStream<Uint8Array>({
+    pull() { pulled = true; },
+    async cancel() { cancelCalls++; cancelStarted = true; await cancelGate; cancelFinished = true; },
+  }, { highWaterMark: 0 }), { status: 206, headers: { 'Content-Range': 'bytes 0-15/16', 'Content-Length': '16' } }),
+  new AbortController().signal, () => {}, { prefetch: false });
+  const pending = read(source, url), rejected = assert.rejects(pending, { name: 'AbortError' });
+  let settling: Promise<void> | undefined;
+  try {
+    await until(() => pulled); source.dispose();
+    settling = source.settled().then(() => { settled = true; });
+    await until(() => cancelStarted); await new Promise(resolve => setImmediate(resolve));
+    assert.equal(cancelFinished, false); assert.equal(settled, false, 'settlement must await the first underlying cancel promise');
+    assert.equal(source.metrics.active, 1); assert.equal(source.metrics.inFlightBytes, 16);
+    assert.equal(source.metrics.cachedBytes, 0);
+    releaseCancel(); await rejected; await settling;
+    assert.equal(cancelCalls, 1); assert.equal(cancelFinished, true);
+    assert.equal(source.metrics.active, 0); assert.equal(source.metrics.inFlightBytes, 0);
+  } finally { releaseCancel(); source.dispose(); await rejected; await settling; await source.settled(); }
+});
+
 test('failed speculative bodies are observed, terminal, and settle without an unhandled rejection', async () => {
   const urls = [base + 'good.ts', base + 'bad.ts']; const fixture = streams({ [urls[0]]: 16 });
   const source = new RemuxSourceAdapter(plan(urls.map(url => ({ url }))), async (input, init) => {

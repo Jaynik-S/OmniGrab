@@ -205,11 +205,16 @@ export class RemuxReadCache {
       finally { const index = this.allocationWaiters.indexOf(wake); if (index >= 0) this.allocationWaiters.splice(index, 1); }
     }
     signal.throwIfAborted(); this.allocatingWhole = true;
-    return () => { this.allocatingWhole = false; this.allocationWaiters.shift()?.(); };
+    return () => {
+      this.allocatingWhole = false;
+      // Wake every bounded contender so an aborted waiter cannot consume the only handoff.
+      for (const wake of this.allocationWaiters.splice(0)) wake();
+    };
   }
   private async load(read: Read): Promise<Block> {
     const signal = AbortSignal.any([this.signal, this.lifetime.signal, read.controller.signal]);
     let response: Response | undefined, reader: ReadableStreamDefaultReader<Uint8Array> | undefined;
+    let cancellation: Promise<void> | undefined;
     let allocated = 0, releaseAllocation: (() => void) | undefined;
     try {
       signal.throwIfAborted();
@@ -246,7 +251,7 @@ export class RemuxReadCache {
       const data = new Uint8Array(expected); allocated = data.buffer.byteLength;
       this.metrics.inFlightBytes += allocated; this.metrics.maximumInFlightBytes = Math.max(this.metrics.maximumInFlightBytes, this.metrics.inFlightBytes);
       reader = response.body.getReader();
-      const cancel = () => { void reader?.cancel(signal.reason).catch(() => {}); };
+      const cancel = () => { cancellation ??= reader!.cancel(signal.reason).catch(() => {}); };
       signal.addEventListener('abort', cancel, { once: true });
       let received = 0;
       try {
@@ -285,7 +290,7 @@ export class RemuxReadCache {
       if (!read.controller.signal.aborted && !this.disposed && !this.error) {
         this.error = error; this.lifetime.abort(error); this.stopQueued(error);
       }
-      if (reader) { await reader.cancel().catch(() => {}); reader.releaseLock(); }
+      if (reader) { cancellation ??= reader.cancel().catch(() => {}); await cancellation; reader.releaseLock(); }
       else if (response?.body && !response.body.locked) await response.body.cancel().catch(() => {});
       throw error;
     } finally {
