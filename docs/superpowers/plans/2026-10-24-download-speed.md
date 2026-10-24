@@ -63,7 +63,7 @@ const result = new Uint8Array(raw.length);
 for (let index = 0; index < raw.length; index++) result[index] = raw.charCodeAt(index);
 ```
 
-- [ ] Run focused tests, `npm.cmd run typecheck`, and existing transport/content tests. Benchmark the same public decoder payload used in the investigation with warmup, exact checksum and Node version; do not impose CPU time assertions in unit tests. Commit the focused change and test evidence report.
+- [ ] Run focused tests, `npm.cmd run typecheck`, and existing transport/content tests. Benchmark the same public decoder payload used in the investigation with warmup, exact checksum and Node version; do not impose CPU time assertions in unit tests. Commit the focused code/tests; write test evidence to the ignored task report, without force-adding scratch artifacts.
 
 ### Task 2: Reuse the proven page route within a job/document
 
