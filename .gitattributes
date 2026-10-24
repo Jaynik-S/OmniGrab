@@ -1,0 +1,7 @@
+# Preserve the verified bytes of assets copied directly into the extension.
+/licenses/mediabunny-MPL-2.0.txt -text
+/THIRD_PARTY_NOTICES.md text eol=lf
+/extension/manifest.json text eol=lf
+/src/downloads/offscreen.html -text whitespace=cr-at-eol
+/src/popup/index.html text eol=crlf
+/src/popup/style.css text eol=crlf
