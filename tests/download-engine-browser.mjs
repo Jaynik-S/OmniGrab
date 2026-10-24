@@ -1,6 +1,7 @@
 // Isolated native engine proof. No extension state or real Chrome download claim.
 // Run: node --experimental-strip-types tests/download-engine-browser.mjs
 // Focused held-preflight progress + cancellation: add --progress-only (generated media only).
+// Gate cleanup controls: --progress-only --pre-gate-failure or --progress-only --gate-timeout.
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
@@ -12,14 +13,18 @@ import { fixtures, fixturePlan, mixedFixturePlan, scratch } from './download-fix
 
 const cacheOnly = process.argv.includes('--cache-only');
 const progressOnly = process.argv.includes('--progress-only');
+const preGateFailure = process.argv.includes('--pre-gate-failure');
+const gateTimeout = process.argv.includes('--gate-timeout');
+assert.ok(!(preGateFailure && gateTimeout) && (!(preGateFailure || gateTimeout) || progressOnly), 'use one gate fault with --progress-only');
 mkdirSync(scratch, { recursive: true });
-if (!cacheOnly) fixtures();
+if (!cacheOnly && (!progressOnly || !existsSync(resolve(scratch, 'ts720/list.m3u8')))) fixtures();
 const bundle = await build({ stdin: { contents: `
   import { remuxToMp4 } from './src/downloads/remux.ts';
   import { createOpfsOutput } from './src/downloads/opfs.ts';
   import { RemuxSourceAdapter } from './src/downloads/remux-source.ts';
   self.onmessage = async ({ data }) => {
     try {
+      if (data.preGateFailure) throw new Error('controlled-pre-gate-failure');
       if (data.cacheCase) {
         let received = 0;
         const source = new RemuxSourceAdapter(data.plan, fetch, new AbortController().signal, bytes => { received += bytes; });
@@ -110,7 +115,7 @@ const server = createServer((request, response) => {
     'Content-Length': end - start + 1, ...(match ? { 'Content-Range': `bytes ${start}-${end}/${bytes.length}` } : {}) });
   if (progressRun && path === '/ts720/part1.ts') {
     preflightServed = served - (end - start + 1) + 64;
-    heldResponse = response; response.write(bytes.subarray(start, start + 64)); progressGate(); return;
+    heldResponse = response; response.write(bytes.subarray(start, start + 64)); if (!gateTimeout) progressGate(); return;
   }
   response.end(bytes.subarray(start, end + 1));
 });
@@ -128,7 +133,7 @@ try {
     progressRun = true;
     const gate = new Promise(resolve => { progressGate = resolve; });
     const plan = JSON.parse(JSON.stringify(fixturePlan('ts720')).replaceAll('https://fixture.test', origin));
-    await page.evaluate(plan => {
+    await page.evaluate(({ plan, preGateFailure }) => {
       const worker = new Worker('/worker.js', { type: 'module' });
       const state = { worker, progress: [] }; globalThis.progressControl = state;
       state.result = new Promise((resolve, reject) => {
@@ -139,26 +144,57 @@ try {
           else resolve(data);
         };
       });
-      worker.postMessage({ name: 'preflight-progress', plan, progressCase: true });
-    }, plan);
-    let snapshot; let cleanup;
+      state.result.catch(() => {}); // Observe a failure even before Node starts awaiting the gate race.
+      worker.postMessage({ name: 'preflight-progress', plan, progressCase: true, preGateFailure });
+    }, { plan, preGateFailure });
+    let snapshot; let cleanup; let gateError; let gateTimer;
     try {
-      await gate;
+      await Promise.race([
+        gate,
+        page.evaluate(async () => {
+          await globalThis.progressControl.result;
+          throw new Error('Worker completed before the held-request gate');
+        }),
+        new Promise((_, reject) => { gateTimer = setTimeout(() => reject(new Error('held-request-gate-timeout')), gateTimeout ? 1000 : 5000); }),
+      ]);
+      clearTimeout(gateTimer);
       await page.waitForFunction(bytes => globalThis.progressControl.progress.at(-1)?.inputBytes === bytes,
         preflightServed, { timeout: 5000 });
       snapshot = await page.evaluate(() => globalThis.progressControl.progress.at(-1));
       assert.equal(snapshot.phase, 'processing'); assert.equal(snapshot.outputBytes, 0); assert.equal(snapshot.seconds, 0);
       assert.ok(snapshot.inputBytes > 64, 'progress must include previous media plus the held later segment');
+    } catch (error) {
+      gateError = error;
     } finally {
-      cleanup = await page.evaluate(async () => {
-        const state = globalThis.progressControl; state.worker.postMessage({ abort: true });
-        try { return await state.result; } finally { state.worker.terminate(); }
-      });
-      heldResponse?.destroy();
+      clearTimeout(gateTimer);
+      try {
+        cleanup = await page.evaluate(async () => {
+          const state = globalThis.progressControl; let timer;
+          try {
+            state.worker.postMessage({ abort: true });
+            return await Promise.race([state.result, new Promise((_, reject) => {
+              timer = setTimeout(() => reject(new Error('held-worker-cleanup-timeout')), 5000);
+            })]);
+          } catch (error) { return { type: 'cleanup-error', error: String(error) }; }
+          finally { clearTimeout(timer); state.worker.terminate(); state.terminated = true; }
+        });
+      } finally { heldResponse?.destroy(); }
     }
-    assert.equal(cleanup.type, 'aborted'); assert.equal(cleanup.closedSize, 0); assert.equal(cleanup.removed, true);
-    evidence.push({ name: 'pending-preflight-input-progress', snapshot, preflightServed, cleanup,
-      requests, native: 'dedicated-worker fetch + OPFS sync handle reacquired and temporary file removed' });
+    const workerTerminated = await page.evaluate(() => globalThis.progressControl.terminated);
+    assert.equal(workerTerminated, true);
+    if (preGateFailure) {
+      assert.match(String(gateError), /controlled-pre-gate-failure/);
+      assert.equal(cleanup.type, 'cleanup-error'); assert.match(cleanup.error, /controlled-pre-gate-failure/);
+      assert.equal(heldResponse, undefined); assert.equal(requests, 0);
+    } else {
+      assert.equal(cleanup.type, 'aborted'); assert.equal(cleanup.closedSize, 0); assert.equal(cleanup.removed, true);
+      assert.equal(heldResponse?.destroyed, true);
+      if (gateTimeout) assert.match(String(gateError), /held-request-gate-timeout/);
+      else if (gateError) throw gateError;
+    }
+    evidence.push({ name: preGateFailure ? 'pre-gate-worker-failure' : gateTimeout ? 'held-request-gate-timeout' : 'pending-preflight-input-progress', snapshot, preflightServed, cleanup,
+      gateError: gateError ? String(gateError) : undefined, workerTerminated, heldResponseDestroyed: heldResponse?.destroyed ?? null,
+      requests, native: preGateFailure ? 'controlled dedicated-worker failure before OPFS file creation' : 'dedicated-worker fetch + OPFS sync handle reacquired and temporary file removed' });
     console.log(JSON.stringify(evidence.at(-1)));
   }
   for (const name of cases) {
@@ -231,7 +267,7 @@ try {
   evidence.push({ name: 'range-ignoring-eviction', ...cacheResult, requests, served });
   console.log(JSON.stringify(evidence.at(-1)));
   }
-  writeFileSync(resolve(scratch, progressOnly ? 'native-progress-evidence.json' : cacheOnly ? 'native-cache-evidence.json' : 'native-evidence.json'), JSON.stringify(evidence, null, 2));
+  writeFileSync(resolve(scratch, progressOnly ? preGateFailure ? 'native-progress-pre-gate-failure-evidence.json' : gateTimeout ? 'native-progress-gate-timeout-evidence.json' : 'native-progress-evidence.json' : cacheOnly ? 'native-cache-evidence.json' : 'native-evidence.json'), JSON.stringify(evidence, null, 2));
 } finally {
   if (browser) await browser.close();
   await new Promise(resolve => server.close(resolve));

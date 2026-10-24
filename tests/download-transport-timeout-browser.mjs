@@ -13,9 +13,10 @@ const output = path.resolve('.cache/download-transport-timeout', `native-${Date.
 const quick = process.argv.includes('--quick');
 const arrayBufferConsumer = process.argv.includes('--array-buffer');
 const extension = path.join(output, 'extension'); await mkdir(extension, { recursive: true });
-const body = Buffer.from(Uint8Array.from({ length: 262144 }, (_, i) => i % 251));
+const body = Buffer.from(Uint8Array.from({ length: 900001 }, (_, i) => i % 251));
+const range = `bytes=0-${body.length - 1}`, contentRange = `bytes 0-${body.length - 1}/${body.length}`;
 const expectedDigest = createHash('sha256').update(body).digest('hex');
-const report = { startedAt: new Date().toISOString(), fixture: 'Original deterministic262144-byte pattern; no media/save or live Cinejoy claim.', quick, arrayBufferConsumer, requests: [], cases: [], errors: [], networkFailures: [], expectedDigest };
+const report = { startedAt: new Date().toISOString(), fixture: 'Original deterministic900001-byte multichunk pattern; no media/save or live Cinejoy claim.', quick, arrayBufferConsumer, requests: [], cases: [], errors: [], networkFailures: [], expectedDigest };
 const sockets = new Set(); let active = 0, maximumActive = 0, pageOrigin, mediaOrigin, context;
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const pages = createServer((_request, response) => { response.writeHead(200, { 'content-type': 'text/html' }); response.end('<!doctype html><meta name="referrer" content="origin"><title>Owned idle-timeout transport regression</title>'); });
@@ -36,8 +37,8 @@ const media = createServer((request, response) => {
     entry.status = 200; entry.headersAt = Date.now(); response.writeHead(200, { ...headers, 'content-length': body.length }); response.flushHeaders();
     response.write(body.subarray(0, 32768)); entry.bytes = 32768; return;
   }
-  assert.equal(request.headers.range, 'bytes=0-262143');
-  send(206, body, { 'content-range': 'bytes 0-262143/262144' });
+  assert.equal(request.headers.range, range);
+  send(206, body, { 'content-range': contentRange });
 });
 for (const server of [media, pages]) server.on('connection', socket => { sockets.add(socket); socket.once('close', () => sockets.delete(socket)); });
 const listen = server => new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
@@ -68,7 +69,7 @@ chrome.runtime.onMessage.addListener((m,s,reply)=>{if(m.target!=='host')return;(
   transport=createDownloadTransport({jobId:m.jobId,selection:m.selection,...(m.idleMs?{idleMs:m.idleMs}:{}),fetcher:(input,init)=>{init.signal.addEventListener('abort',()=>primaryAborts.push({at:Date.now(),reason:String(init.signal.reason?.message||init.signal.reason)}),{once:true});return globalThis.fetch(input,init);},validateDocument:async()=>{const r=await chrome.runtime.sendMessage({target:'coordinator',action:'validate',selection:m.selection});return r?.ok&&r.value;}});
   transport.grantResources([{url:m.url}]);return transport.expectAttachment(crypto.randomUUID()+crypto.randomUUID());
  }
- if(m.action==='start'){(async()=>{try{const r=await transport.fetch(m.url,m.body?undefined:{headers:{Range:'bytes=0-262143'}});state.headers={status:r.status,url:r.url,range:r.headers.get('content-range'),mime:r.headers.get('content-type')};let bytes;
+ if(m.action==='start'){(async()=>{try{const r=await transport.fetch(m.url,m.body?undefined:{headers:{Range:${JSON.stringify(range)}}});state.headers={status:r.status,url:r.url,range:r.headers.get('content-range'),mime:r.headers.get('content-type')};let bytes;
   if(m.arrayBufferConsumer)bytes=await r.arrayBuffer();else{const reader=r.body.getReader(),chunks=[];let length=0;while(true){const part=await reader.read();if(part.done)break;chunks.push(part.value);length+=part.value.length;}const joined=new Uint8Array(length);let offset=0;for(const chunk of chunks){joined.set(chunk,offset);offset+=chunk.length;}bytes=joined.buffer;}
   state.bytes=bytes.byteLength;state.digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');}catch(e){state.error=String(e.message||e);state.stack=String(e.stack);}finally{state.done=true;}})();return true;}
  if(m.action==='status')return {attached,state,metrics:transport.metrics,events,primaryAborts,protocolErrors:globalThis.__nativeProtocolErrors};
@@ -84,7 +85,7 @@ try {
   const worker = context.serviceWorkers()[0] ?? await context.waitForEvent('serviceworker'); const extensionId = new URL(worker.url()).hostname;
   const control = await context.newPage(); await control.goto(`chrome-extension://${extensionId}/controller.html`); const page = await context.newPage(); await page.goto(pageOrigin + '/watch');
   const call = async (target, action, args = {}) => { const result = await control.evaluate(m => chrome.runtime.sendMessage(m), { target, action, ...args }); assert.ok(result?.ok, result?.error ?? 'missing fixture reply'); return result.value; };
-  report.directPageProbe=await page.evaluate(async url=>{try{const r=await fetch(url,{headers:{Range:'bytes=0-262143'}});return {status:r.status,headers:[...r.headers],bytes:(await r.arrayBuffer()).byteLength};}catch(e){return {error:String(e)};}},mediaOrigin+'/direct-probe.jpg');assert.equal(report.directPageProbe.bytes,262144);
+  report.directPageProbe=await page.evaluate(async ({url,range})=>{try{const r=await fetch(url,{headers:{Range:range}});return {status:r.status,headers:[...r.headers],bytes:(await r.arrayBuffer()).byteLength};}catch(e){return {error:String(e)};}},{url:mediaOrigin+'/direct-probe.jpg',range});assert.equal(report.directPageProbe.bytes,body.length);
   for (const fixture of [
     { id: 'fallback', page: true, attempts: 2, ...(quick?{idleMs:200}:{}) }, // Default run uses the production15s idle /120s shared deadline.
     { id: 'primary-retry', page: false, idleMs: 200, attempts: 2 },
@@ -105,8 +106,10 @@ try {
       if(fixture.body)assert.equal(result.primaryAborts[0]?.reason,'download-timeout');
     }
     else {
-      assert.equal(result.state.bytes, 262144); assert.equal(result.state.digest, expectedDigest); assert.equal(result.state.headers.status, 206); assert.equal(result.state.headers.range, 'bytes 0-262143/262144');
-      const chunks=result.events.filter(e=>e.type==='chunk'),acks=result.events.filter(e=>e.type==='ack');assert.equal(acks.length,chunks.length,'one ACK per accepted chunk');for(let i=0;i<chunks.length;i++){assert.equal(acks[i].sequence,i);assert.equal(acks[i].offset,chunks[i].offset+chunks[i].bytes);}
+      assert.equal(result.state.bytes, body.length); assert.equal(result.state.digest, expectedDigest); assert.equal(result.state.headers.status, 206); assert.equal(result.state.headers.range, contentRange);
+      const chunks=result.events.filter(e=>e.type==='chunk'),acks=result.events.filter(e=>e.type==='ack');assert.equal(acks.length,chunks.length,'one ACK per accepted chunk');
+      let offset=0;for(let i=0;i<chunks.length;i++){assert.equal(chunks[i].sequence,i);assert.equal(chunks[i].offset,offset);assert.ok(chunks[i].bytes>0&&chunks[i].bytes<=262144);offset+=chunks[i].bytes;assert.equal(acks[i].requestId,chunks[i].requestId);assert.equal(acks[i].sequence,i);assert.equal(acks[i].offset,offset);}
+      if(fixture.page){assert.ok(chunks.length>1,'native fast drain must span multiple actual chunks');assert.equal(offset,body.length);const ends=result.events.filter(e=>e.type==='end');assert.equal(ends.length,1);assert.equal(ends[0].sequence,chunks.length);assert.equal(ends[0].offset,body.length);assert.equal(result.metrics.maximumUnacknowledgedPerRequest,1);}
     }
     if (fixture.id === 'fallback') {
       assert.equal(requests[0].page, false); assert.equal(requests[0].status, undefined); assert.equal(requests[0].bytes, 0); assert.equal(requests[0].incomplete, true);

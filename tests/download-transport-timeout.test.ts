@@ -168,3 +168,32 @@ test('canceling a held chunk frees its queue weight without ACK or premature phy
     gate.resolve(); await until(() => transport.metrics.active === 0); assert.equal(transport.metrics.queuedBytes, 0); assert.equal(acks, 0);
   } finally { gate.resolve(); await transport.dispose(); }
 });
+
+test('a rejected downstream enqueue sends no ACK and retains its lease until physical cancellation settles', async () => {
+  const gate = deferred(), rejected = new Error('controlled-downstream-enqueue-rejection');
+  let canceled = 0, throws = 0, acks = 0;
+  const source = new Response(new ReadableStream<Uint8Array>({
+    start(controller) { controller.enqueue(new Uint8Array([1, 2, 3])); },
+    async cancel() { canceled++; await gate.promise; },
+  }));
+  const transport = createDownloadTransport({ jobId: 'enqueue-rejected', selection, runtimeId: 'test', idleMs: 1000, requestMs: 5000, validateDocument: async () => true, fetcher: async () => new Response(null, { status: 404 }) });
+  const pair = await attachPage(transport, async () => source);
+  pair.page.onMessage.addListener((message: { type: string }) => { if (message.type === 'ack') acks++; });
+  const enqueue = ReadableStreamDefaultController.prototype.enqueue;
+  try {
+    const result = await transport.fetch(selection.sourceUrl);
+    await until(() => transport.metrics.receivedBytes === 3);
+    const heldWeight = transport.metrics.queuedBytes;
+    // The real producer already holds its first chunk. Only the downstream acceptance boundary throws.
+    ReadableStreamDefaultController.prototype.enqueue = function () { throws++; throw rejected; };
+    await assert.rejects(result.arrayBuffer(), error => error === rejected);
+    ReadableStreamDefaultController.prototype.enqueue = enqueue;
+    await until(() => canceled === 1);
+    assert.equal(throws, 1); assert.equal(acks, 0);
+    assert.ok(transport.metrics.queuedBytes < heldWeight, 'rejected chunk weight must be discarded');
+    assert.equal(transport.metrics.active, 1, 'unsettled physical cancellation must retain the lease');
+    gate.resolve(); await until(() => transport.metrics.active === 0);
+    assert.equal(transport.metrics.queuedBytes, 0); assert.equal(acks, 0);
+    assert.equal(transport.metrics.attempts, 2); assert.equal(transport.metrics.quarantined, 0);
+  } finally { ReadableStreamDefaultController.prototype.enqueue = enqueue; gate.resolve(); await transport.dispose(); }
+});

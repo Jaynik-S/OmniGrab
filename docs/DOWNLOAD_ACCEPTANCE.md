@@ -10,11 +10,11 @@ The required full Cinejoy 1080p saved-file gates passed on 2026-10-24 with revie
 | --- | --- |
 | Saved file | 1,920,506,462 bytes; Chrome download 1 complete; requested basename preserved |
 | SHA-256 | `76d86a27cb3beb5184b3e3b1708f1714771a2d30f03a80004298ec4197bb32a6` |
-| Independent full probe | 3189.941333 seconds; 1920Ã—1080 H.264, stereo 48 kHz AAC; 76,473 video and 149,529 audio packets |
+| Independent full probe | 3189.941333 seconds; 1920x1080 H.264, stereo 48 kHz AAC; 76,473 video and 149,529 audio packets |
 | Independent full decode | Entire video and audio decoded with `ffmpeg -v error -xerror`, exit 0 |
 | Native saved-file playback | Exact seeks at 1s, midpoint, 60s before end and 4s before end; advancing frames, time and decoded audio; no media error |
 | Source coverage | All 797 segments plus initialization object fully covered; 18,544 observed requests; 256 KiB requested ranges |
-| Successful media bytes | 2,329,250,460 bytes / 1,920,222,212 unique source bytes = 1.21301Ã—, including configuration reads |
+| Successful media bytes | 2,329,250,460 bytes / 1,920,222,212 unique source bytes = 1.21301x, including configuration reads |
 | Cleanup | Empty OPFS namespace, no attachment/tempFile or processing worker; owned browser and observer closed; no remaining owned processes |
 
 [Saved-file validation](rea-evidence/downloads/saved-file-validation.json) retains exact commands and measured playback/audio results. Automation was muted; no human listening is claimed. Two-second decoded probes show non-silent signal in both stereo channels at the beginning, midpoint and 52:09.94. The two-second probe starting at 53:05.94 is nearly silent (per-channel RMS about 0.0000033). A separate [source-tail comparison](rea-evidence/downloads/source-tail-comparison.json) fetched only the init and last two fragments through ordinary page CORS: all 384 final AAC packet payload hashes/sizes and timestamps match the saved file, including the final packet. The quiet ending is faithfully preserved, not claimed audible.
