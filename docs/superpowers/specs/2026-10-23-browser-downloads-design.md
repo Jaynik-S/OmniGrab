@@ -1,6 +1,6 @@
 # Proposed browser download subsystem
 
-Date: 2026-10-23. **Status: approved by the user on 2026-10-23; implementation in progress.** The user approved the browser-only design, new permissions, licensed media engine and full saved-file acceptance requirement.
+Date: 2026-10-23. **Status: approved by the user on 2026-10-23; implementation, full Cinejoy acceptance and independent reviews completed on 2026-10-24.** The user approved the browser-only design, new permissions, licensed media engine and full saved-file acceptance requirement. Measured results and remaining scope limits are in [DOWNLOAD_ACCEPTANCE.md](../../DOWNLOAD_ACCEPTANCE.md).
 
 ## Outcome and scope
 

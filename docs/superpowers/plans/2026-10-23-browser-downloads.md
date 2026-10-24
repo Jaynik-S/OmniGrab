@@ -193,11 +193,11 @@ assert.equal(started.mediaId, item.id);
 
 **Consumes:** frozen built extension and reviewed source. **Produces:** actual final saved Cinejoy MP4 and independent evidence for the approved acceptance gates.
 
-- [ ] Add native regression/control cases before any fixes needed by this phase. Record the authoritative RED condition, repair through the responsible implementation agent and scoped review, then rerun affected controls.
-- [ ] Generate own HLS TS/fMP4, separate audio, byte-range, discontinuity and negative/protected sources. Validate saved outputs, exact selected quality/audio and resource use. Add a long-duration packet fixture and a >2 GiB transport/seekable-OPFS control; report those scopes accurately instead of calling a sparse IO file a proven large media remux.
-- [ ] Capture actual full Cinejoy 1080p Download action in a fresh ours-only Chromium profile, selected exact episode, normal authorized playback/page context, and controlled workspace download directory. Wait on the real job/download handles; do not restart because a polling window expires. Pause the page's own player after detection to avoid unnecessary playback traffic.
-- [ ] Retain build/library/fixture identities, selected manifest, expected 797 media entries, actual requested segments/ranges/bytes, actual Chrome complete state, output identity, bounded queue/memory samples and temporary-file cleanup. Never log private header/cookie/auth values.
-- [ ] Independently probe/count and decode the entire saved output:
+- [x] Add native regression/control cases before any fixes needed by this phase. Record the authoritative RED condition, repair through the responsible implementation agent and scoped review, then rerun affected controls.
+- [x] Generate own HLS TS/fMP4, separate audio, byte-range, discontinuity and negative/protected sources. Validate saved outputs, exact selected quality/audio and resource use. Add a long-duration packet fixture and a >2 GiB transport/seekable-OPFS control; report those scopes accurately instead of calling a sparse IO file a proven large media remux.
+- [x] Capture actual full Cinejoy 1080p Download action in a fresh ours-only Chromium profile, selected exact episode, normal authorized playback/page context, and controlled workspace download directory. Wait on the real job/download handles; do not restart because a polling window expires. Pause the page's own player after detection to avoid unnecessary playback traffic.
+- [x] Retain build/library/fixture identities, selected manifest, expected 797 media entries, actual requested segments/ranges/bytes, actual Chrome complete state, output identity, bounded queue/memory samples and temporary-file cleanup. Never log private header/cookie/auth values.
+- [x] Independently probe/count and decode the entire saved output:
 
 ```powershell
 ffprobe -v error -count_packets -show_streams -show_format -of json .superpowers/download-acceptance/cinejoy-1080p.mp4
@@ -206,6 +206,6 @@ ffmpeg -v error -i .superpowers/download-acceptance/cinejoy-1080p.mp4 -map 0:v:0
 
 The harness supplies the real path as an argument array, checks exit codes, verifies 1920×1080 H.264 + AAC stereo and duration within two seconds of 3189.561635, and exercises first/middle/end playback/seeks. No preview result satisfies this step.
 
-- [ ] Verify 720p selection and failure/lifecycle cases: popup close, actual SW stop/wake, content page navigation/closure, fetch/mux/save cancel, stall, range/truncation/expiry, quota/write error and Chrome interruption. Truthful recovery/cleanup matters; page-dependent loss cannot be reported as success.
-- [ ] Run final `npm.cmd run check`, audited artifact/license checks, affected native detector neighbors and a whole-download-branch review with the actual plan/spec/ledger/evidence. Apply one final fix wave if needed, scoped re-review, then rerun final frozen-artifact acceptance impacted by changes.
-- [ ] Update README/setup/reload instructions and research reports with measured behavior, exact hashes, commands and remaining limits. Mark this feature/goal complete only after all required evidence passes; broader untested original features remain explicitly unproven. Commit the reviewable final result.
+- [x] Verify 720p selection and failure/lifecycle cases: popup close, actual SW stop/wake, content page navigation/closure, fetch/mux/save cancel, stall, range/truncation/expiry, quota/write error and Chrome interruption. Truthful recovery/cleanup matters; page-dependent loss cannot be reported as success.
+- [x] Run final `npm.cmd run check`, audited artifact/license checks, affected native detector neighbors and a whole-download-branch review with the actual plan/spec/ledger/evidence. Apply one final fix wave if needed, scoped re-review, then rerun final frozen-artifact acceptance impacted by changes.
+- [x] Update README/setup/reload instructions and research reports with measured behavior, exact hashes, commands and remaining limits. Mark this feature/goal complete only after all required evidence passes; broader untested original features remain explicitly unproven. Commit the reviewable final result.
