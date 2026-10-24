@@ -1,0 +1,84 @@
+{
+  "evidence_id": "ev_a00a33c16a02d300b6c3923cc2991c5fab5eb0bad22c2cd1b36dc736e5dfc093",
+  "operation": "trace_application_feature",
+  "authority": "analyst-inference",
+  "confidence": "inferred",
+  "parameters": {
+    "application_evidence_id": "ev_e7bdca8d0694483b7178b59ebf8bcb5a7a1b495e1970a12e83553c29bc74676a",
+    "native_evidence_ids": [],
+    "seed": {
+      "kind": "module",
+      "value": "download_worker/main.js",
+      "match": "exact",
+      "case_sensitive": true
+    },
+    "direction": "outgoing"
+  },
+  "coverage": {
+    "status": "partial",
+    "source_graph_status": "partial",
+    "total_seed_matches": 2
+  },
+  "summary": {
+    "matched_seeds": 2,
+    "traced_nodes": 5,
+    "traced_edges": 4,
+    "terminal_paths": 0,
+    "native_handoffs": 0,
+    "observed_facts": 4,
+    "inferred_facts": 6,
+    "unknown_facts": 0,
+    "unavailable_facts": 0
+  },
+  "source_evidence_id": "ev_e7bdca8d0694483b7178b59ebf8bcb5a7a1b495e1970a12e83553c29bc74676a",
+  "seed": {
+    "kind": "module",
+    "value": "download_worker/main.js",
+    "match": "exact",
+    "case_sensitive": true
+  },
+  "limitations": [
+    "Artifact identity is unavailable for this observation.",
+    "A trace reports graph relationships, not proof that code executed or that a feature is reachable in every state.",
+    "Native handoffs never open a binary or invoke a provider automatically; snapshot reuse remains provider/profile/target exact.",
+    "Static, native, passive-runtime, inferred, and unknown facts retain their original authority in the returned graph.",
+    "The source application graph is incomplete; unmatched seeds and frontiers remain unknown."
+  ],
+  "evidence_links": [
+    "ev_e7bdca8d0694483b7178b59ebf8bcb5a7a1b495e1970a12e83553c29bc74676a"
+  ],
+  "nodes": [
+    {
+      "node_id": "jag_node_a989cb3face8af4219ba1268c5be63855ff4fdcd448909045da16537b312ec5c",
+      "kind": "javascript-asset",
+      "labels": [
+        "download_worker/main.js"
+      ]
+    },
+    {
+      "node_id": "jag_node_c5a9e49615ab726f8f524f08d9e9a85ad6f197aab523ea81f34bc48a3bdebdbe",
+      "kind": "worker",
+      "labels": []
+    },
+    {
+      "node_id": "jag_node_e61eb4d0934547b6114b0a399b8d379685af588bc4e9c5a86e037adfb6ead729",
+      "kind": "javascript-module",
+      "labels": [
+        "download_worker/main.js"
+      ]
+    },
+    {
+      "node_id": "jag_node_e74e93a5bcd6daa78fc715fc1acfc84a79cb7a5a6625750213a44970c2a6ad5a",
+      "kind": "javascript-module",
+      "labels": [
+        "download_worker/main.js:Download:return-shapes",
+        "download_worker/main.js:Download"
+      ]
+    },
+    {
+      "node_id": "jag_node_ef71b915fc2a57996b69e749beeebb886a8e92673c795a0f8aa97949f59d48eb",
+      "kind": "javascript-module",
+      "labels": []
+    }
+  ]
+}
