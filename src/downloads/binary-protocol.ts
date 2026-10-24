@@ -34,10 +34,20 @@ export class BinaryGrants {
 export function decodeChunk(value: unknown): Uint8Array {
   const v = value as Extract<BinaryMessage, { type: 'chunk' }>;
   if (!v || v.type !== 'chunk' || !validId(v.jobId) || !validId(v.requestId) || !Number.isSafeInteger(v.sequence) || v.sequence < 0 || !Number.isSafeInteger(v.offset) || v.offset < 0 || !Number.isSafeInteger(v.bytes) || v.bytes < 1 || v.bytes > CHUNK_BYTES || typeof v.data !== 'string' || v.data.length !== 4 * Math.ceil(v.bytes / 3) || v.data.length > 349_528 || !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(v.data)) throw new Error('download-chunk-invalid');
-  const raw = atob(v.data); if (raw.length !== v.bytes) throw new Error('download-chunk-invalid');
-  return Uint8Array.from(raw, c => c.charCodeAt(0));
+  const native = Uint8Array as typeof Uint8Array & { fromBase64?: (data: string) => Uint8Array };
+  let result: Uint8Array;
+  if (typeof native.fromBase64 === 'function') result = native.fromBase64(v.data);
+  else {
+    const raw = atob(v.data);
+    result = new Uint8Array(raw.length);
+    for (let index = 0; index < raw.length; index++) result[index] = raw.charCodeAt(index);
+  }
+  if (result.length !== v.bytes) throw new Error('download-chunk-invalid');
+  return result;
 }
 function encodeChunk(bytes: Uint8Array): string {
+  const native = bytes as Uint8Array & { toBase64?: () => string };
+  if (typeof native.toBase64 === 'function') return native.toBase64();
   let text = ''; for (let i = 0; i < bytes.length; i += 8192) text += String.fromCharCode(...bytes.subarray(i, i + 8192)); return btoa(text);
 }
 function manifestResponse(response: Response, request: BinaryRequest): boolean {
