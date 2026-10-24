@@ -143,7 +143,7 @@ test('packet reads reuse a bounded shared range cache instead of refetching ever
 });
 
 test('shared range cache holds at most 32 MiB and evicts the least recently used actual block', async () => {
-  const block = 256 * 1024; const url = 'https://fixture.test/large.bin';
+  const block = 4 * 1024 * 1024; const url = 'https://fixture.test/large.bin';
   const plan = fixturePlan(); plan.resources = [{ url }];
   let requests = 0;
   const source = new RemuxSourceAdapter(plan, async (_input, init) => {
@@ -152,7 +152,7 @@ test('shared range cache holds at most 32 MiB and evicts the least recently used
     const start = Number(match[1]); const end = Number(match[2]);
     assert.equal(end - start + 1, block);
     return new Response(new Uint8Array(block).fill(start / block), { status: 206, headers: {
-      'Content-Range': `bytes ${start}-${end}/${129 * block}`, 'Content-Length': String(block),
+      'Content-Range': `bytes ${start}-${end}/${9 * block}`, 'Content-Length': String(block),
     } });
   }, new AbortController().signal, () => {});
   const read = async (index: number) => {
@@ -160,12 +160,16 @@ test('shared range cache holds at most 32 MiB and evicts the least recently used
     assert.deepEqual([...new Uint8Array(await response.arrayBuffer())], [index]);
   };
   try {
-    for (let index = 0; index < 128; index++) await read(index);
-    await read(0); assert.equal(requests, 128);
-    await read(128); assert.equal(requests, 129);
-    await read(1); assert.equal(requests, 130);
-    await read(0); assert.equal(requests, 130);
+    for (let index = 0; index < 8; index++) await read(index);
+    await read(0); assert.equal(requests, 8);
+    await read(8); assert.equal(requests, 9);
+    await read(1); assert.equal(requests, 10);
+    await read(0); assert.equal(requests, 10);
+    assert.equal(source.metrics.cachedBytes, 32 * 1024 * 1024);
+    assert.equal(source.metrics.maximumCachedBytes, 32 * 1024 * 1024);
+    assert.equal(source.metrics.maximumInFlightBytes, block);
   } finally { source.dispose(); }
+  await source.settled(); assert.equal(source.metrics.cachedBytes, 0); assert.equal(source.metrics.active, 0);
   await assert.rejects(source.fetch(url, { headers: { Range: 'bytes=0-0' } }), /closed/);
 });
 
@@ -219,7 +223,7 @@ test('disposing source adapters aborts their pending transport operation', async
 });
 
 test('range-ignoring objects remain seekable at a nonzero block after 32 MiB cache eviction', async () => {
-  const block = 256 * 1024; const length = 130 * block;
+  const block = 4 * 1024 * 1024; const length = 9 * block;
   const url = 'https://fixture.test/full-object.bin'; const plan = fixturePlan(); plan.resources = [{ url }];
   let requests = 0; const ranges: string[] = [];
   const source = new RemuxSourceAdapter(plan, async (_input, init) => {
@@ -234,10 +238,13 @@ test('range-ignoring objects remain seekable at a nonzero block after 32 MiB cac
     assert.equal(second.headers.get('Content-Range'), `bytes ${block}-${block}/${length}`);
     assert.deepEqual([...new Uint8Array(await second.arrayBuffer())], [91]);
     assert.equal(requests, 2);
-    assert.deepEqual(ranges, ['bytes=0-262143', 'bytes=0-262143']);
+    assert.deepEqual(ranges, ['bytes=0-4194303', 'bytes=0-4194303']);
     const cached = await source.fetch(url, { headers: { Range: `bytes=${block}-${block}` } });
     assert.deepEqual([...new Uint8Array(await cached.arrayBuffer())], [91]); assert.equal(requests, 2);
+    assert.equal(source.metrics.maximumCachedBytes, 32 * 1024 * 1024);
+    assert.equal(source.metrics.maximumInFlightBytes, length);
   } finally { source.dispose(); }
+  await source.settled(); assert.equal(source.metrics.inFlightBytes, 0);
 });
 
 test('truncated media cannot produce a successful MP4', async () => {
