@@ -1,6 +1,6 @@
 # Browser download speed design
 
-Date: 2026-10-24. Status: **proposed, awaiting user approval**. Investigation and baseline only; no download behavior changed. Branch `feat/download-speed`, baseline `b8b1671`.
+Date: 2026-10-24. Status: **approach 1 approved by the user**. Investigation baseline `b8b1671`; implementation proceeds on `feat/download-speed`.
 
 ## Goal and comparison
 
@@ -63,4 +63,4 @@ No wholesale rewrites. Existing hard bounds, source-tab requirements, safe error
 
 ## Approval boundary
 
-Approve approach 1 to authorize the implementation plan and changes above. Approach 2 requires a separate explicit permission/design decision. Source inspection, REA receipts and baseline tests are already complete; implementation has not started.
+The user approved approach 1 and its implementation/verification work. Approach 2 requires a separate explicit permission/design decision. Source inspection, REA receipts and the baseline check are complete.
