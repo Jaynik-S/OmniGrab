@@ -77,8 +77,12 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
     const abort = () => { errorBody(signal.reason ?? new Error('download-aborted')); discard(); send({ type: 'abort', jobId: request.jobId, requestId: request.requestId }); };
     const consume = () => {
       if (!held || !demand || signal.aborted) return;
-      const item = held; body!.enqueue(item.bytes); offset += item.bytes.length; sequence++; demand = false;
-      discard(); send({ type: 'ack', jobId: request.jobId, requestId: request.requestId, sequence: item.message.sequence, offset });
+      const item = held; held = undefined; offset += item.bytes.length; sequence++; demand = false;
+      // Native fast consumers can pull again inside enqueue; this chunk is already claimed.
+      try { body!.enqueue(item.bytes); }
+      catch (error) { errorBody(error); send({ type: 'abort', jobId: request.jobId, requestId: request.requestId }); return; }
+      finally { changeQueued(-item.weight); }
+      send({ type: 'ack', jobId: request.jobId, requestId: request.requestId, sequence: item.message.sequence, offset });
     };
     const transaction: Transaction = {
       disconnected() {
@@ -154,8 +158,9 @@ export function createDownloadTransport(options: { jobId: string; selection: Dow
           if (attemptResult.uncertain()) { retained = true; quarantinedReleases.push(release); throw error; }
           combined.throwIfAborted();
           const text = String(error instanceof Error ? error.message : error);
-          if (!page && port && ready && (/download-http:(?:401|403|404|410|5\d\d)/.test(text) || /fetch|network|Failed/i.test(text))) { page = true; continue; }
-          if (!/download-http:(?:408|429|5\d\d)|fetch|network|Failed/i.test(text) || number === 2) throw error;
+          const idleTimeout = text === 'download-timeout';
+          if (!page && port && ready && (idleTimeout || /download-http:(?:401|403|404|410|5\d\d)/.test(text) || /fetch|network|Failed/i.test(text))) { page = true; continue; }
+          if (!idleTimeout && !/download-http:(?:408|429|5\d\d)|fetch|network|Failed/i.test(text) || number === 2) throw error;
         }
       }
       throw new Error('download-attempt-limit');
