@@ -12,6 +12,7 @@ import { chromium } from 'playwright-core';
 import { createInterface } from 'node:readline';
 import { verifySavedReceipt, digestFrameRecords } from './download-speed-fixture.ts';
 import { connectTarget } from './download-browser-cdp.mjs';
+import { createPopupObserver } from './download-popup-observer.ts';
 
 const option = (name, fallback) => process.argv.find(arg => arg.startsWith(`--${name}=`))?.slice(name.length + 3) ?? fallback;
 const output = path.resolve(option('output', `.cache/download-speed/generated-${Date.now()}-${process.pid}`));
@@ -59,6 +60,7 @@ try {
     const profile=await mkdtemp(path.join(tmpdir(),'owned-download-speed-'));current.profile=profile;
     await mkdir(path.join(profile,'Default'),{recursive:true});await writeFile(path.join(profile,'Default','Preferences'),JSON.stringify({download:{default_directory:directory,prompt_for_download:false,directory_upgrade:true}}));
     context=await chromium.launchPersistentContext(profile,{executablePath:process.env.CHROMIUM_PATH??'C:/Users/jay03/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe',headless:true,acceptDownloads:false,args:[`--disable-extensions-except=${build.directory}`,`--load-extension=${build.directory}`,'--remote-debugging-port=0']});
+    let ownedBrowserClosed=false;context.once('close',()=>{ownedBrowserClosed=true;});
     const worker=context.serviceWorkers()[0]??await context.waitForEvent('serviceworker');const id=new URL(worker.url()).hostname;
     current.port=Number((await readFile(path.join(profile,'DevToolsActivePort'),'utf8')).split('\n')[0]);assert.notEqual(current.port,9222);
     current.browser=context.browser()?.version();await save();console.log(JSON.stringify({started:true,pid:process.pid,build:build.name,profile,port:current.port,receipt:path.join(output,'evidence.json')}));
@@ -75,8 +77,14 @@ try {
     const media=Object.values(detected.tab.media).find(media=>media.url===origin+'/master.m3u8'&&media.status==='confirmed');
     current.requests=[];current.maximumActive=current.active;current.timing.action=Date.now();
     const started=await call({type:'download-start',request:{requestId:'speed-'+build.name,tabId,epoch:detected.tab.epoch,mediaId:media.id,instance:media.instance??0,filename:'generated-long.mp4'}});assert.equal(started.ok,true,JSON.stringify(started));
+    current.observation={errorCount:0,errors:[]};
+    const observer=createPopupObserver({connection:popup,isAlive:()=>!ownedBrowserClosed,diagnostics:current.observation,onError:save,delay:()=>sleep(500),recover:async()=>{
+      const boot=await connectTarget(current.port,worker.url(),cdpSockets);
+      try{await boot.evaluate(()=>chrome.action.openPopup());}finally{boot.close();}
+      return connectTarget(current.port,`chrome-extension://${id}/popup/index.html`,cdpSockets);
+    }});
     for(;;){
-      let state;try{state=await call({type:'download-snapshot'});}catch(error){(current.observationErrors??=[]).push(String(error));await save();await sleep(500);continue;}
+      const state=await observer.evaluate(message=>chrome.runtime.sendMessage(message),{type:'download-snapshot'});
       const job=state.jobs.find(job=>job.id===started.job.id);const sample={at:Date.now(),phase:job?.phase,progress:job?.progress};current.samples.push(sample);
       if(job?.progress.inputBytes&&!current.timing.firstInput)current.timing.firstInput=sample.at;
       if(job?.progress.outputBytes&&!current.timing.firstOutput)current.timing.firstOutput=sample.at;
@@ -84,11 +92,11 @@ try {
       if(job&&['complete','failed','canceled','interrupted'].includes(job.phase)){current.job=job;assert.equal(job.phase,'complete',JSON.stringify(job));break;}
       if(current.samples.length%40===0){await save();console.log(JSON.stringify({build:build.name,pid:process.pid,receipt:path.join(output,'evidence.json'),sample}));}await sleep(100);
     }
-    current.download=await popup.evaluate(async id=>(await chrome.downloads.search({id}))[0],current.job.browserDownloadId);
+    current.download=await observer.evaluate(async id=>(await chrome.downloads.search({id}))[0],current.job.browserDownloadId);
     current.timing.chromeBegin??=Date.parse(current.download.startTime);current.timing.chromeCompleted??=Date.parse(current.download.endTime);
     current.chromeState=current.download.state;current.expectedBytes=current.job.progress.outputBytes;current.actualBytes=(await stat(current.download.filename)).size;verifySavedReceipt(current);
     current.sha256=await hashFile(current.download.filename);
-    await sleep(500);current.cleanup=await popup.evaluate(async()=>{const root=await navigator.storage.getDirectory(),entries=[];for await(const [name,handle]of root.entries()){const files=[];if(handle.kind==='directory')for await(const [file]of handle.entries())files.push(file);entries.push({name,files});}return entries;});
+    await sleep(500);current.cleanup=await observer.evaluate(async()=>{const root=await navigator.storage.getDirectory(),entries=[];for await(const [name,handle]of root.entries()){const files=[];if(handle.kind==='directory')for await(const [file]of handle.entries())files.push(file);entries.push({name,files});}return entries;});
     assert.ok(current.cleanup.every(entry=>entry.files.length===0));assert.equal(current.job.attachment,undefined);assert.equal(current.job.tempFile,undefined);
     current.artifactAfter=await hashes(build.directory);assert.deepEqual(current.artifactAfter,current.artifactBefore);
     current.successfulMediaBytes=current.requests.filter(req=>req.status===206&&!req.incomplete).reduce((sum,req)=>sum+req.bytes,0);current.byteAmplification=current.successfulMediaBytes/report.usefulMediaBytes;

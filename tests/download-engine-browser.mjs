@@ -52,14 +52,18 @@ const bundle = await build({ stdin: { contents: `
         let received = 0;
         const source = new RemuxSourceAdapter(data.plan, fetch, new AbortController().signal, bytes => { received += bytes; });
         try {
-          const values = []; const ranges = [];
-          for (const offset of [0, 262144, 262144]) {
+          const values = []; const ranges = []; const reads = [];
+          // Whole-object admission retains the demanded window last, evicting the next 4 MiB window.
+          for (const offset of [0, 4194304, 4194304]) {
             const response = await source.fetch(data.url, { headers: { Range: 'bytes=' + offset + '-' + offset } });
             ranges.push(response.headers.get('Content-Range'));
             values.push(...new Uint8Array(await response.arrayBuffer()));
+            reads.push({ requests: source.metrics.requests, received });
           }
-          self.postMessage({ values, ranges, received });
-        } finally { source.dispose(); }
+          source.dispose(); await source.settled();
+          self.postMessage({ values, ranges, received, reads, cleanup: { cachedBytes: source.metrics.cachedBytes,
+            inFlightBytes: source.metrics.inFlightBytes, active: source.metrics.active, speculative: source.metrics.speculative } });
+        } finally { source.dispose(); await source.settled(); }
         return;
       }
       const directory = await navigator.storage.getDirectory();
@@ -112,7 +116,7 @@ const bundle = await build({ stdin: { contents: `
   bundle: true, platform: 'browser', format: 'esm', write: false, target: 'chrome120' });
 
 const sample = resolve('.superpowers/cinejoy-init-and-first-segment.mp4');
-let requests = 0; let served = 0;
+let requests = 0; let served = 0; const cacheRanges = [];
 let progressRun = false; let progressGate;
 let heldResponse; let preflightServed = 0;
 const server = createServer((request, response) => {
@@ -120,7 +124,8 @@ const server = createServer((request, response) => {
   if (path === '/') { response.setHeader('Content-Type', 'text/html'); response.end('<!doctype html><title>Native engine proof</title>'); return; }
   if (path === '/worker.js') { response.setHeader('Content-Type', 'text/javascript'); response.end(bundle.outputFiles[0].contents); return; }
   if (path === '/cache-object.bin') {
-    const bytes = new Uint8Array(130 * 256 * 1024); bytes[256 * 1024] = 91;
+    const bytes = new Uint8Array(130 * 256 * 1024); bytes[4 * 1024 * 1024] = 91;
+    cacheRanges.push(request.headers.range);
     requests++; served += bytes.length;
     response.writeHead(200, { 'Content-Type': 'application/octet-stream', 'Content-Length': bytes.length });
     response.end(bytes); return;
@@ -306,9 +311,13 @@ try {
     worker.postMessage({ url, plan, cacheCase: true });
   }), { url, plan: cachePlan });
   assert.deepEqual(cacheResult.values, [0, 91, 91]);
-  assert.deepEqual(cacheResult.ranges, ['bytes 0-0/34078720', 'bytes 262144-262144/34078720', 'bytes 262144-262144/34078720']);
+  assert.deepEqual(cacheResult.ranges, ['bytes 0-0/34078720', 'bytes 4194304-4194304/34078720', 'bytes 4194304-4194304/34078720']);
+  assert.deepEqual(cacheResult.reads, [{ requests: 1, received: 34078720 }, { requests: 2, received: 68157440 }, { requests: 2, received: 68157440 }]);
+  assert.deepEqual(cacheRanges, ['bytes=0-4194303', 'bytes=0-4194303']);
+  assert.deepEqual(cacheResult.cleanup, { cachedBytes: 0, inFlightBytes: 0, active: 0, speculative: 0 });
   assert.equal(requests, 2); assert.equal(cacheResult.received, 68157440);
-  evidence.push({ name: 'range-ignoring-eviction', ...cacheResult, requests, served });
+  assert.equal(served, 68157440);
+  evidence.push({ name: 'range-ignoring-eviction', ...cacheResult, requests, served, physicalRanges: cacheRanges });
   console.log(JSON.stringify(evidence.at(-1)));
   }
   writeFileSync(resolve(scratch, responseProbe ? 'native-response-probe.json' : progressOnly ? preGateFailure ? 'native-progress-pre-gate-failure-evidence.json' : gateTimeout ? 'native-progress-gate-timeout-evidence.json' : 'native-progress-evidence.json' : cacheOnly ? 'native-cache-evidence.json' : 'native-evidence.json'), JSON.stringify(evidence, null, 2));
