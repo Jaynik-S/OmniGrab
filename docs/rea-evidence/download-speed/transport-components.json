@@ -1,0 +1,648 @@
+{
+  "ok": true,
+  "scope": "Accepted actual>2GiB control remains unchanged. Component calibrations and one final bounded exact-path128MiB+65537 replay attribute cost; no tuning sweep or new product API.",
+  "sourceHashes": {
+    "src/downloads/transport.ts": "5427dfb99ff5c869ca3d38b9d23e7ed6c3d9116d483bd22a5c92d3e6dfcd169a",
+    "src/downloads/base64.ts": "f15535c1a966bac984a8bee6244dc4f8e8fffdf0611655890a71f2b3a3292b82",
+    "src/downloads/binary-protocol.ts": "b6a1219fe9568b400a7a2781c7fd274df256a4a348bbb9ec59451fe85d4e3c0a",
+    "src/content/download-fetch.ts": "7f9b2a9965934012ce4aafbdf45c97427df9dea5ca505586b646e00c4e6d431e",
+    "src/downloads/opfs.ts": "ce36739378873867e4d3ef5201c10a5fd7228aa4d696b57e9b54e335ffacffa9",
+    "src/downloads/remux-source.ts": "d84a78646a6263e186de56f80c235a58d1e2c5f6c465872cc6a0fe828de08ea9",
+    "src/downloads/remux-read-cache.ts": "5268012ce8a32aaebb18d9f98ed1a9b587d83368343a753320ccfd044d638f51"
+  },
+  "accepted": {
+    "receipt": ".cache/download-transport/native-1792891189015-32552/evidence.json",
+    "rawSha256": "0f31b961f284d4f082f9a6c375ef25c1fc5f032bd51e6747a3636fb1e285d883",
+    "proof": {
+      "done": true,
+      "type": "complete",
+      "bytes": 2147549185,
+      "checked": 2147549185,
+      "chunks": 10670,
+      "fileSize": 2147549185,
+      "slices": [
+        {
+          "start": 0,
+          "bytes": [
+            90,
+            90,
+            90,
+            90
+          ]
+        },
+        {
+          "start": 2147483646,
+          "bytes": [
+            90,
+            1,
+            2,
+            3,
+            4,
+            90
+          ]
+        },
+        {
+          "start": 2147549181,
+          "bytes": [
+            90,
+            90,
+            90,
+            90
+          ]
+        }
+      ],
+      "removed": true,
+      "elapsedMs": 77122.89999999851
+    },
+    "metrics": {
+      "active": 0,
+      "maximumActive": 1,
+      "queuedBytes": 0,
+      "maximumQueuedBytes": 2009776,
+      "maximumUnacknowledgedPerRequest": 1,
+      "attempts": 66,
+      "receivedBytes": 2147549185,
+      "quarantined": 0
+    },
+    "browser": "153.0.8010.12",
+    "pid": 32552,
+    "observerPid": 17952,
+    "cdp": 6573,
+    "profile": "C:\\Users\\jay03\\AppData\\Local\\Temp\\owned-download-transport-vjYw0Z",
+    "observerExit": {
+      "code": 0,
+      "signal": null
+    },
+    "workerMiBPerSecond": 26.55582843686783,
+    "observedCompletionSeconds": 80.177,
+    "observedCompletionPollingSeconds": 10
+  },
+  "baseline": {
+    "sourceCommit": "b8b1671",
+    "evidence": ".cache/download-speed/baseline-source/.cache/download-transport/native-1792870860937-8992/evidence.json",
+    "ok": true,
+    "bytes": 2147549185,
+    "checked": 2147549185,
+    "removed": true,
+    "started": "2026-10-24T19:41:00.959Z",
+    "firstSampleAt": 1792870865442,
+    "completedObservedAt": 1792871307177,
+    "observedTransferSeconds": 441.735,
+    "observedMiBPerSecond": 4.636405313035359,
+    "completionPollingIntervalSeconds": 10,
+    "firstPhysicalRequestAt": 1792870865517,
+    "lastPhysicalClosedAt": 1792871302967,
+    "requests": 130,
+    "pageRequests": 65,
+    "metrics": {
+      "active": 0,
+      "maximumActive": 1,
+      "queuedBytes": 0,
+      "maximumQueuedBytes": 2009776,
+      "maximumUnacknowledgedPerRequest": 1,
+      "attempts": 130,
+      "receivedBytes": 2147549185,
+      "quarantined": 0
+    },
+    "slices": [
+      {
+        "start": 0,
+        "bytes": [
+          90,
+          90,
+          90,
+          90
+        ]
+      },
+      {
+        "start": 2147483646,
+        "bytes": [
+          90,
+          1,
+          2,
+          3,
+          4,
+          90
+        ]
+      },
+      {
+        "start": 2147549181,
+        "bytes": [
+          90,
+          90,
+          90,
+          90
+        ]
+      }
+    ],
+    "context": "Native local fixture; another agent ran focused tests/Node probe during baseline. Observed transfer duration has up to ten seconds polling quantization; not real Cinejoy time.",
+    "rawReceiptSha256": "1c13fb226e6af62965348d4f1955bf7c5dc48f704047e40ddcf1da2d03f5c17d",
+    "summarySha256": "37ed259a06a68f3fd344b96f5006bdf3811b2fe725375a36e472e05bf037a105",
+    "workerElapsedAvailable": false
+  },
+  "observedSpeedup": 5.509497736258528,
+  "diagnostic": {
+    "receipt": ".cache/download-transport/native-1792907817354-14128/evidence.json",
+    "rawSha256": "67fbdf4cfbdacd02b4ee5ec799cef4922bbdc8e4b0170e5afdc4c7dfca4df378",
+    "proof": {
+      "done": true,
+      "type": "complete",
+      "bytes": 134283265,
+      "checked": 134283265,
+      "chunks": 696,
+      "fileSize": 134283265,
+      "slices": [
+        {
+          "start": 0,
+          "bytes": [
+            90,
+            90,
+            90,
+            90
+          ]
+        },
+        {
+          "start": 134217726,
+          "bytes": [
+            90,
+            1,
+            2,
+            3,
+            4,
+            90
+          ]
+        },
+        {
+          "start": 134283261,
+          "bytes": [
+            90,
+            90,
+            90,
+            90
+          ]
+        }
+      ],
+      "removed": true,
+      "componentTimes": {
+        "readerWaitMs": 1959.6000000312924,
+        "verifyMs": 2719.4999999031425,
+        "writeMs": 137.30000004917383
+      },
+      "elapsedMs": 5107.10000000149
+    },
+    "metrics": {
+      "active": 0,
+      "maximumActive": 1,
+      "queuedBytes": 0,
+      "maximumQueuedBytes": 2009776,
+      "maximumUnacknowledgedPerRequest": 1,
+      "attempts": 6,
+      "receivedBytes": 134283265,
+      "quarantined": 0
+    },
+    "timings": {
+      "readerWaitMs": 1959.6000000312924,
+      "verifyMs": 2719.4999999031425,
+      "writeMs": 137.30000004917383,
+      "otherMs": 290.7000000178814,
+      "elapsedMs": 5107.10000000149,
+      "rawMiBPerSecond": 25.075385434715777,
+      "percentages": {
+        "readerWaitMs": 38.37011219734723,
+        "verifyMs": 53.24939789513323,
+        "writeMs": 2.6884141694725727,
+        "otherMs": 5.692075738046966
+      }
+    },
+    "browser": "153.0.8010.12",
+    "pid": 14128,
+    "observerPid": 25836,
+    "cdp": 13652,
+    "profile": "C:\\Users\\jay03\\AppData\\Local\\Temp\\owned-download-transport-hyqSeo",
+    "observerExit": {
+      "code": 0,
+      "signal": null
+    },
+    "driver": ".cache/download-speed/transport-diagnostic128.mjs",
+    "driverSha256": "fb25cffc94c1905d1994b9b2ddb7045a2ddafd2baa31c245981855152b450648",
+    "derivation": "Mechanically derived from existing tests/download-transport-browser.mjs: payload/backpatch coordinates reduced to128MiB+65537; timers wrap reader.read, exact original for-of integrity loop and output.write. Original production imports, every-byte checks, native JSON/OPFS/grants/ACK/queue/length/backpatch/cleanup gates retained. Raw accepted2GiB receipt untouched."
+  },
+  "calibrations": [
+    {
+      "receipt": ".cache/download-speed/components-1792907654580-28456/evidence.json",
+      "rawSha256": "d943fcf383e04333c31d2f035ac772b838f2e02f24650735e8491025fce4c646",
+      "browser": "153.0.8010.12",
+      "profile": "C:\\Users\\jay03\\AppData\\Local\\Temp\\owned-component-calibration-rVyqSA",
+      "pid": 28456,
+      "cdp": 10357,
+      "closed": true,
+      "assetHashes": {
+        "controller.html": "139d767e1f4d4bc31b556643dbc0402a0ff5141cec7babe56e41167d37c2b64c",
+        "controller.js": "2723cfd996cdb7cef512bca212eb8697ef97b2760a6c8c34456d8778d9b43e1a",
+        "host.html": "95bfbc30e8fce5eee7c3fb5e4c9330e02e396647bcbe1b6eec0f31045cbd0606",
+        "host.js": "a93f108d67f5acaf42de67ba2728b01a12f015cdbb2e4db831342280b5dfa1d8",
+        "io.js": "f29ffdf20e3cbe141086470b76d6f6a4f96c74a99a517d9668d5f4568a297fe4",
+        "manifest.json": "b00c7fe7493c8fe4b280a492cdb42907031e8497bb6d58f2bd54fa610873a35f",
+        "ready.js": "e69b1a1801e3390fbfb8f2aa904df7b0fd2ae201fcf160c9445b7c805ddcdfc8"
+      },
+      "selfCheck": {
+        "corruptByteRejected": true,
+        "invalidBase64Rejected": true
+      },
+      "cases": [
+        {
+          "name": "verify",
+          "round": 0,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 1166.8000000044703,
+          "rawMiBPerSecond": 54.85087418559719
+        },
+        {
+          "name": "strictValidate",
+          "round": 0,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 385.6000000014901,
+          "rawMiBPerSecond": 165.97510373379842
+        },
+        {
+          "name": "nativeDecode",
+          "round": 0,
+          "checked": 67108864,
+          "observed": 23040,
+          "elapsedMs": 70.39999999850988,
+          "rawMiBPerSecond": 909.0909091101512
+        },
+        {
+          "name": "decodeChunk",
+          "round": 0,
+          "checked": 67108864,
+          "observed": 23040,
+          "elapsedMs": 443.69999999552965,
+          "rawMiBPerSecond": 144.2416046893054
+        },
+        {
+          "name": "encode",
+          "round": 0,
+          "checked": 67108864,
+          "observed": 22272,
+          "elapsedMs": 29.30000000447035,
+          "rawMiBPerSecond": 2184.3003409636663
+        },
+        {
+          "name": "jsonStringifyParse",
+          "round": 0,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 132,
+          "rawMiBPerSecond": 484.8484848484848
+        },
+        {
+          "name": "opfs",
+          "round": 0,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 155.5,
+          "rawMiBPerSecond": 411.5755627009646
+        },
+        {
+          "name": "strictValidate",
+          "round": 1,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 407.30000000447035,
+          "rawMiBPerSecond": 157.1323348865641
+        },
+        {
+          "name": "nativeDecode",
+          "round": 1,
+          "checked": 67108864,
+          "observed": 23040,
+          "elapsedMs": 55.399999998509884,
+          "rawMiBPerSecond": 1155.234657070784
+        },
+        {
+          "name": "decodeChunk",
+          "round": 1,
+          "checked": 67108864,
+          "observed": 23040,
+          "elapsedMs": 441,
+          "rawMiBPerSecond": 145.12471655328798
+        },
+        {
+          "name": "encode",
+          "round": 1,
+          "checked": 67108864,
+          "observed": 22272,
+          "elapsedMs": 19.799999997019768,
+          "rawMiBPerSecond": 3232.323232809751
+        },
+        {
+          "name": "jsonStringifyParse",
+          "round": 1,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 90.29999999701977,
+          "rawMiBPerSecond": 708.7486157487513
+        },
+        {
+          "name": "opfs",
+          "round": 1,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 130.90000000596046,
+          "rawMiBPerSecond": 488.9228418417555
+        },
+        {
+          "name": "verify",
+          "round": 1,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 753.5,
+          "rawMiBPerSecond": 84.93696084936961
+        },
+        {
+          "name": "nativeDecode",
+          "round": 2,
+          "checked": 67108864,
+          "observed": 23040,
+          "elapsedMs": 57.099999994039536,
+          "rawMiBPerSecond": 1120.8406305898552
+        },
+        {
+          "name": "decodeChunk",
+          "round": 2,
+          "checked": 67108864,
+          "observed": 23040,
+          "elapsedMs": 426,
+          "rawMiBPerSecond": 150.23474178403757
+        },
+        {
+          "name": "encode",
+          "round": 2,
+          "checked": 67108864,
+          "observed": 22272,
+          "elapsedMs": 19,
+          "rawMiBPerSecond": 3368.421052631579
+        },
+        {
+          "name": "jsonStringifyParse",
+          "round": 2,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 104.10000000149012,
+          "rawMiBPerSecond": 614.7934678106042
+        },
+        {
+          "name": "opfs",
+          "round": 2,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 144.60000000149012,
+          "rawMiBPerSecond": 442.60027662061185
+        },
+        {
+          "name": "verify",
+          "round": 2,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 216.29999999701977,
+          "rawMiBPerSecond": 295.8853444331105
+        },
+        {
+          "name": "strictValidate",
+          "round": 2,
+          "checked": 67108864,
+          "observed": 0,
+          "elapsedMs": 340.80000000447035,
+          "rawMiBPerSecond": 187.7934272275836
+        },
+        {
+          "round": 0,
+          "name": "runtimeJSONAck",
+          "checked": 67108864,
+          "elapsedMs": 506.5,
+          "rawMiBPerSecond": 126.35735439289242
+        },
+        {
+          "round": 0,
+          "name": "runtimeJSONDecodeAck",
+          "checked": 67108864,
+          "elapsedMs": 2416.5,
+          "rawMiBPerSecond": 26.48458514380302
+        },
+        {
+          "round": 1,
+          "name": "runtimeJSONDecodeAck",
+          "checked": 67108864,
+          "elapsedMs": 3577.5999999940395,
+          "rawMiBPerSecond": 17.889087656559322
+        },
+        {
+          "round": 1,
+          "name": "runtimeJSONAck",
+          "checked": 67108864,
+          "elapsedMs": 497.69999999552965,
+          "rawMiBPerSecond": 128.5915209977393
+        },
+        {
+          "round": 2,
+          "name": "runtimeJSONAck",
+          "checked": 67108864,
+          "elapsedMs": 490.29999999701977,
+          "rawMiBPerSecond": 130.53232714743834
+        },
+        {
+          "round": 2,
+          "name": "runtimeJSONDecodeAck",
+          "checked": 67108864,
+          "elapsedMs": 1248.7000000029802,
+          "rawMiBPerSecond": 51.253303435450675
+        }
+      ],
+      "MiBPerSecond": {
+        "verify": {
+          "median": 84.93696084936961,
+          "minimum": 54.85087418559719,
+          "maximum": 295.8853444331105
+        },
+        "strictValidate": {
+          "median": 165.97510373379842,
+          "minimum": 157.1323348865641,
+          "maximum": 187.7934272275836
+        },
+        "nativeDecode": {
+          "median": 1120.8406305898552,
+          "minimum": 909.0909091101512,
+          "maximum": 1155.234657070784
+        },
+        "decodeChunk": {
+          "median": 145.12471655328798,
+          "minimum": 144.2416046893054,
+          "maximum": 150.23474178403757
+        },
+        "encode": {
+          "median": 3232.323232809751,
+          "minimum": 2184.3003409636663,
+          "maximum": 3368.421052631579
+        },
+        "jsonStringifyParse": {
+          "median": 614.7934678106042,
+          "minimum": 484.8484848484848,
+          "maximum": 708.7486157487513
+        },
+        "opfs": {
+          "median": 442.60027662061185,
+          "minimum": 411.5755627009646,
+          "maximum": 488.9228418417555
+        },
+        "runtimeJSONAck": {
+          "median": 128.5915209977393,
+          "minimum": 126.35735439289242,
+          "maximum": 130.53232714743834
+        },
+        "runtimeJSONDecodeAck": {
+          "median": 26.48458514380302,
+          "minimum": 17.889087656559322,
+          "maximum": 51.253303435450675
+        }
+      },
+      "scope": "Sequential native component calibration,64MiB per case,256KiB chunks; not a replay of full2GiB control. Runtime JSON calibration is extension controller-to-host page with ACK1; no service-worker media relay, no page fetch, no host-to-worker stream transfer. Isolated costs are not additive causal profiling of full bridge."
+    },
+    {
+      "receipt": ".cache/download-speed/components-1792907719026-31864/evidence.json",
+      "rawSha256": "ff860d2836bcaba54d2f1fde2baa01192a66ebb6babe72751b5acb3925d73871",
+      "browser": "153.0.8010.12",
+      "profile": "C:\\Users\\jay03\\AppData\\Local\\Temp\\owned-component-calibration-IKouOK",
+      "pid": 31864,
+      "cdp": 13089,
+      "closed": true,
+      "assetHashes": {
+        "controller.html": "139d767e1f4d4bc31b556643dbc0402a0ff5141cec7babe56e41167d37c2b64c",
+        "controller.js": "acd6e3349ec01b2c6667278946300582f687ab7da4a277421dd49ffcb01e5fa4",
+        "host.html": "95bfbc30e8fce5eee7c3fb5e4c9330e02e396647bcbe1b6eec0f31045cbd0606",
+        "host.js": "fc09d6bdaa503f98984fd9a8cdc298286a27b12d890443c518d9c1ba49068672",
+        "io.js": "f29ffdf20e3cbe141086470b76d6f6a4f96c74a99a517d9668d5f4568a297fe4",
+        "manifest.json": "b00c7fe7493c8fe4b280a492cdb42907031e8497bb6d58f2bd54fa610873a35f",
+        "ready.js": "e69b1a1801e3390fbfb8f2aa904df7b0fd2ae201fcf160c9445b7c805ddcdfc8"
+      },
+      "cases": [
+        {
+          "round": 0,
+          "name": "runtimeJSONAck",
+          "checked": 67108864,
+          "elapsedMs": 450.3999999985099,
+          "rawMiBPerSecond": 142.09591474292128
+        },
+        {
+          "round": 0,
+          "name": "runtimeJSONStrictAck",
+          "checked": 67108864,
+          "elapsedMs": 913.2999999970198,
+          "rawMiBPerSecond": 70.07555020279081
+        },
+        {
+          "round": 0,
+          "name": "runtimeJSONNativeAck",
+          "checked": 67108864,
+          "elapsedMs": 529.3999999985099,
+          "rawMiBPerSecond": 120.8915753686818
+        },
+        {
+          "round": 0,
+          "name": "runtimeJSONDecodeAck",
+          "checked": 67108864,
+          "elapsedMs": 921.6000000014901,
+          "rawMiBPerSecond": 69.44444444433216
+        },
+        {
+          "round": 1,
+          "name": "runtimeJSONDecodeAck",
+          "checked": 67108864,
+          "elapsedMs": 875,
+          "rawMiBPerSecond": 73.14285714285714
+        },
+        {
+          "round": 1,
+          "name": "runtimeJSONNativeAck",
+          "checked": 67108864,
+          "elapsedMs": 563,
+          "rawMiBPerSecond": 113.67673179396094
+        },
+        {
+          "round": 1,
+          "name": "runtimeJSONStrictAck",
+          "checked": 67108864,
+          "elapsedMs": 843.5,
+          "rawMiBPerSecond": 75.87433313574392
+        },
+        {
+          "round": 1,
+          "name": "runtimeJSONAck",
+          "checked": 67108864,
+          "elapsedMs": 493.6000000014901,
+          "rawMiBPerSecond": 129.65964343558912
+        },
+        {
+          "round": 2,
+          "name": "runtimeJSONAck",
+          "checked": 67108864,
+          "elapsedMs": 481.70000000298023,
+          "rawMiBPerSecond": 132.86277766162348
+        },
+        {
+          "round": 2,
+          "name": "runtimeJSONStrictAck",
+          "checked": 67108864,
+          "elapsedMs": 730.6000000014901,
+          "rawMiBPerSecond": 87.59923350652815
+        },
+        {
+          "round": 2,
+          "name": "runtimeJSONNativeAck",
+          "checked": 67108864,
+          "elapsedMs": 505.3999999985099,
+          "rawMiBPerSecond": 126.63237040005677
+        },
+        {
+          "round": 2,
+          "name": "runtimeJSONDecodeAck",
+          "checked": 67108864,
+          "elapsedMs": 885.3999999985099,
+          "rawMiBPerSecond": 72.2837135759066
+        }
+      ],
+      "MiBPerSecond": {
+        "runtimeJSONAck": {
+          "median": 132.86277766162348,
+          "minimum": 129.65964343558912,
+          "maximum": 142.09591474292128
+        },
+        "runtimeJSONStrictAck": {
+          "median": 75.87433313574392,
+          "minimum": 70.07555020279081,
+          "maximum": 87.59923350652815
+        },
+        "runtimeJSONNativeAck": {
+          "median": 120.8915753686818,
+          "minimum": 113.67673179396094,
+          "maximum": 126.63237040005677
+        },
+        "runtimeJSONDecodeAck": {
+          "median": 72.2837135759066,
+          "minimum": 69.44444444433216,
+          "maximum": 73.14285714285714
+        }
+      },
+      "scope": "Sequential native component calibration,64MiB per case,256KiB chunks; not a replay of full2GiB control. Runtime JSON calibration is extension controller-to-host page with ACK1; no service-worker media relay, no page fetch, no host-to-worker stream transfer. Isolated costs are not additive causal profiling of full bridge."
+    }
+  ],
+  "conclusion": {
+    "measured": "Exact-path diagnostic: mandatory harness integrity loop2.7195s/53.25%, readerwait1.9596s/38.37%, writes0.1373s/2.69%, other0.2907s/5.69%;5.1071s total25.08MiB/s closely reproduces26.56combined rate. Integrity checking is largest measured worker component; disk write is small.",
+    "inferred": "Readerwait includes upstream fetch,JSON/base64 validation/decoding,transfer and scheduling. Receiver split measures strict scanning overhead relative to raw messaging/native decode. Upstream work can overlap consumer verification; isolated rates are not additive predictions.",
+    "limits": "Shorter diagnostic has timers and tier/context effects; exact proportions in accepted2GiB unproven. No independent bridge/hardware ceiling claim. Full-control26.56MiB/s remains combined and64MiB/s aim unmet. No fidelity gate was removed to make the benchmark faster."
+  },
+  "aimMiBPerSecond": 64,
+  "aimMet": false
+}

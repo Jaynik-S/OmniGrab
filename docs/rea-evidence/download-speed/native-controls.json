@@ -1,0 +1,786 @@
+{
+  "scope": "Owned native controls, not real Cinejoy/download-helper speed. All timing runs sequential; no overlapping heavy work.",
+  "browser": "153.0.8010.12",
+  "sourceHashes": {
+    "src/downloads/transport.ts": "5427dfb99ff5c869ca3d38b9d23e7ed6c3d9116d483bd22a5c92d3e6dfcd169a",
+    "src/downloads/base64.ts": "f15535c1a966bac984a8bee6244dc4f8e8fffdf0611655890a71f2b3a3292b82",
+    "src/downloads/binary-protocol.ts": "b6a1219fe9568b400a7a2781c7fd274df256a4a348bbb9ec59451fe85d4e3c0a",
+    "src/content/download-fetch.ts": "7f9b2a9965934012ce4aafbdf45c97427df9dea5ca505586b646e00c4e6d431e",
+    "src/downloads/opfs.ts": "ce36739378873867e4d3ef5201c10a5fd7228aa4d696b57e9b54e335ffacffa9",
+    "src/downloads/remux-source.ts": "d84a78646a6263e186de56f80c235a58d1e2c5f6c465872cc6a0fe828de08ea9",
+    "src/downloads/remux-read-cache.ts": "5268012ce8a32aaebb18d9f98ed1a9b587d83368343a753320ccfd044d638f51"
+  },
+  "bytesPerWindowRun": 101358568,
+  "controls": [
+    {
+      "receipt": ".cache/download-transport/native-1792890027690-19308/evidence.json",
+      "receiptSha256": "bd47e1f4cede9a3e25b4f5c0c25170faf440e8a65993a0db52fd6dbf039ad6c8",
+      "browser": "153.0.8010.12",
+      "pid": 19308,
+      "windowMiB": 1,
+      "delayMs": 25,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 4198.20000000298,
+      "readMetrics": {
+        "cachedBytes": 32913958,
+        "maximumCachedBytes": 33438246,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 3145728,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 120,
+        "cacheHits": 340
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5155504,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 124,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890519511-11840/evidence.json",
+      "receiptSha256": "f4c0d614ba90251082f9651bde7f7ef67e1c04efcbc1b32db466ab76f37bef25",
+      "browser": "153.0.8010.12",
+      "pid": 11840,
+      "windowMiB": 4,
+      "delayMs": 25,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 4829.79999999702,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 33369550,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 10503973,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 40,
+        "cacheHits": 387
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5548728,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 44,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890532592-28900/evidence.json",
+      "receiptSha256": "1e9672af0c1725a291e62a94c3bb2184f6ebad153c28f7f0ff67121338b031da",
+      "browser": "153.0.8010.12",
+      "pid": 28900,
+      "windowMiB": 8,
+      "delayMs": 25,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 4261.89999999851,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 32173599,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 12669821,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 32,
+        "cacheHits": 389
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5155504,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 36,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890549026-26340/evidence.json",
+      "receiptSha256": "e93572451be67edab2161a672b61d5116b103ac9087d2bfef5fc0abd05d2e2ef",
+      "browser": "153.0.8010.12",
+      "pid": 26340,
+      "windowMiB": 8,
+      "delayMs": 25,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 5068.60000000149,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 32173599,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 12669821,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 32,
+        "cacheHits": 391
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5155504,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 36,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890558815-22616/evidence.json",
+      "receiptSha256": "cbb5ba78e2a4771463281e1eb2063adfeda4decab00223449f36b410f447a7f7",
+      "browser": "153.0.8010.12",
+      "pid": 22616,
+      "windowMiB": 4,
+      "delayMs": 25,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 4826.70000000298,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 33369550,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 10503973,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 40,
+        "cacheHits": 389
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5308432,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 44,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890567803-21544/evidence.json",
+      "receiptSha256": "135960dab70abeb7c781a78a5cd5a5cd8950a4cfb8768099e1d9f6be7d04f353",
+      "browser": "153.0.8010.12",
+      "pid": 21544,
+      "windowMiB": 1,
+      "delayMs": 25,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 4558.699999999255,
+      "readMetrics": {
+        "cachedBytes": 32913958,
+        "maximumCachedBytes": 33438246,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 4194304,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 120,
+        "cacheHits": 346
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5155504,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 124,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890576392-25868/evidence.json",
+      "receiptSha256": "df080af16ed9af767cac67b079be489c497e99c6650c0296d8c000190a422ad9",
+      "browser": "153.0.8010.12",
+      "pid": 25868,
+      "windowMiB": 4,
+      "delayMs": 25,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 4931.300000000745,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 33369550,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 12145533,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 40,
+        "cacheHits": 389
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5915588,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 44,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890585686-31072/evidence.json",
+      "receiptSha256": "3f5c886641ebfd2af8ad217f02ed2c6853575f55aa5a2674b5090e6ca776080b",
+      "browser": "153.0.8010.12",
+      "pid": 31072,
+      "windowMiB": 1,
+      "delayMs": 25,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 5767.599999997765,
+      "readMetrics": {
+        "cachedBytes": 32913958,
+        "maximumCachedBytes": 33438246,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 3145728,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 120,
+        "cacheHits": 351
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 6029328,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 124,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890595456-3000/evidence.json",
+      "receiptSha256": "d9e48a5f043d0ac6257047f5216203ea33e4a13110812a99f163c1e38e68637f",
+      "browser": "153.0.8010.12",
+      "pid": 3000,
+      "windowMiB": 8,
+      "delayMs": 25,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 5085.300000000745,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 32173599,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 12669821,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 32,
+        "cacheHits": 391
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5155504,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 36,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890731456-6380/evidence.json",
+      "receiptSha256": "86588cdb90cde768a41e15431ed5c5ec8e103b10854e03912c630f4e5ec0e5ea",
+      "browser": "153.0.8010.12",
+      "pid": 6380,
+      "windowMiB": 1,
+      "delayMs": 75,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 7726,
+      "readMetrics": {
+        "cachedBytes": 32913958,
+        "maximumCachedBytes": 33438246,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 3145728,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 120,
+        "cacheHits": 337
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5155504,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 124,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890755107-27332/evidence.json",
+      "receiptSha256": "2a28b9c9989fcd4a196f937c2a53082c0136002d14d01a0d78dbb3aff3e1d8f9",
+      "browser": "153.0.8010.12",
+      "pid": 27332,
+      "windowMiB": 4,
+      "delayMs": 75,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 5011.89999999851,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 33369550,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 9979685,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 40,
+        "cacheHits": 385
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 6029328,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 44,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890764298-3896/evidence.json",
+      "receiptSha256": "8125a8ecea7619e9d52ea94649e7a66efb8660ce012b0ab59b42505aead8dcb0",
+      "browser": "153.0.8010.12",
+      "pid": 3896,
+      "windowMiB": 8,
+      "delayMs": 75,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 5650.199999999255,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 32173599,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 12145533,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 32,
+        "cacheHits": 391
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5155504,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 36,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890775647-26232/evidence.json",
+      "receiptSha256": "d0f8b70467908b7a73cd37013bde5f773c31f4c2d68c94dd8070b3a1bd156e83",
+      "browser": "153.0.8010.12",
+      "pid": 26232,
+      "windowMiB": 8,
+      "delayMs": 75,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 5560,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 32173599,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 12145533,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 32,
+        "cacheHits": 390
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5155504,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 36,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890785318-29484/evidence.json",
+      "receiptSha256": "5a9ef6225f6fd36788467866edce209c62dbcfa4548727141aff2508dc5070ab",
+      "browser": "153.0.8010.12",
+      "pid": 29484,
+      "windowMiB": 1,
+      "delayMs": 75,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 7402.20000000298,
+      "readMetrics": {
+        "cachedBytes": 32913958,
+        "maximumCachedBytes": 33438246,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 3145728,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 120,
+        "cacheHits": 325
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5155504,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 124,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890796866-18928/evidence.json",
+      "receiptSha256": "1537d877ccd0d94d5625a4846334a0645d7df48d9db6c5b480779102acda1bc5",
+      "browser": "153.0.8010.12",
+      "pid": 18928,
+      "windowMiB": 4,
+      "delayMs": 75,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 5378.800000000745,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 33369550,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 9979685,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 40,
+        "cacheHits": 384
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5789024,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 44,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890806312-20216/evidence.json",
+      "receiptSha256": "b0631a53de7835b2992cdcf15c9af0b6c1644e6a66509db310b722f36ad3c82f",
+      "browser": "153.0.8010.12",
+      "pid": 20216,
+      "windowMiB": 4,
+      "delayMs": 75,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 5119.599999997765,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 33369550,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 9979685,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 40,
+        "cacheHits": 383
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5308432,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 41,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890815998-24524/evidence.json",
+      "receiptSha256": "1f04f3f4e6f873ab883d6ed26be599dd3c74bb4bbe789eb0a192bfbee94086bf",
+      "browser": "153.0.8010.12",
+      "pid": 24524,
+      "windowMiB": 8,
+      "delayMs": 75,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 5192.89999999851,
+      "readMetrics": {
+        "cachedBytes": 31699794,
+        "maximumCachedBytes": 32224082,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 12145533,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 32,
+        "cacheHits": 391
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 5155504,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 36,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890826193-25428/evidence.json",
+      "receiptSha256": "2e32a82730e4fae3ab8d843f31e8258c203ae80de503171b51934878d1bad53d",
+      "browser": "153.0.8010.12",
+      "pid": 25428,
+      "windowMiB": 1,
+      "delayMs": 75,
+      "bytes": 101358568,
+      "checked": 101358568,
+      "removed": true,
+      "elapsedMs": 7428.400000002235,
+      "readMetrics": {
+        "cachedBytes": 32913958,
+        "maximumCachedBytes": 33438246,
+        "inFlightBytes": 0,
+        "maximumInFlightBytes": 3145728,
+        "active": 0,
+        "maximumActive": 4,
+        "speculative": 0,
+        "maximumSpeculative": 3,
+        "requests": 120,
+        "cacheHits": 331
+      },
+      "transportMetrics": {
+        "active": 0,
+        "maximumActive": 4,
+        "queuedBytes": 0,
+        "maximumQueuedBytes": 6029328,
+        "maximumUnacknowledgedPerRequest": 1,
+        "attempts": 124,
+        "receivedBytes": 101358568,
+        "quarantined": 0
+      }
+    }
+  ],
+  "series": [
+    {
+      "delayMs": 25,
+      "windowMiB": 1,
+      "runs": 3,
+      "minMs": 4198.20000000298,
+      "medianMs": 4558.699999999255,
+      "maxMs": 5767.599999997765,
+      "requests": 120
+    },
+    {
+      "delayMs": 25,
+      "windowMiB": 4,
+      "runs": 3,
+      "minMs": 4826.70000000298,
+      "medianMs": 4829.79999999702,
+      "maxMs": 4931.300000000745,
+      "requests": 40
+    },
+    {
+      "delayMs": 25,
+      "windowMiB": 8,
+      "runs": 3,
+      "minMs": 4261.89999999851,
+      "medianMs": 5068.60000000149,
+      "maxMs": 5085.300000000745,
+      "requests": 32
+    },
+    {
+      "delayMs": 75,
+      "windowMiB": 1,
+      "runs": 3,
+      "minMs": 7402.20000000298,
+      "medianMs": 7428.400000002235,
+      "maxMs": 7726,
+      "requests": 120
+    },
+    {
+      "delayMs": 75,
+      "windowMiB": 4,
+      "runs": 3,
+      "minMs": 5011.89999999851,
+      "medianMs": 5119.599999997765,
+      "maxMs": 5378.800000000745,
+      "requests": 40
+    },
+    {
+      "delayMs": 75,
+      "windowMiB": 8,
+      "runs": 3,
+      "minMs": 5192.89999999851,
+      "medianMs": 5560,
+      "maxMs": 5650.199999999255,
+      "requests": 32
+    }
+  ],
+  "responseProbe": [
+    {
+      "name": "cached-response-native-extraction",
+      "browser": "153.0.8010.12",
+      "results": [
+        {
+          "round": 0,
+          "mode": "window-typed-array",
+          "iterations": 256,
+          "packetBytes": 16384,
+          "extracted": 1040971648,
+          "elapsedMs": 1281.8999999985099
+        },
+        {
+          "round": 0,
+          "mode": "bounded-typed-array",
+          "iterations": 256,
+          "packetBytes": 16384,
+          "extracted": 67108864,
+          "elapsedMs": 78.60000000149012
+        },
+        {
+          "round": 0,
+          "mode": "bounded-copied-stream",
+          "iterations": 256,
+          "packetBytes": 16384,
+          "extracted": 67108864,
+          "elapsedMs": 82.60000000149012
+        },
+        {
+          "round": 1,
+          "mode": "bounded-typed-array",
+          "iterations": 256,
+          "packetBytes": 16384,
+          "extracted": 67108864,
+          "elapsedMs": 72.19999999925494
+        },
+        {
+          "round": 1,
+          "mode": "bounded-copied-stream",
+          "iterations": 256,
+          "packetBytes": 16384,
+          "extracted": 67108864,
+          "elapsedMs": 36.5
+        },
+        {
+          "round": 1,
+          "mode": "window-typed-array",
+          "iterations": 256,
+          "packetBytes": 16384,
+          "extracted": 1040971648,
+          "elapsedMs": 1496.4000000022352
+        },
+        {
+          "round": 2,
+          "mode": "bounded-copied-stream",
+          "iterations": 256,
+          "packetBytes": 16384,
+          "extracted": 67108864,
+          "elapsedMs": 58.400000002235174
+        },
+        {
+          "round": 2,
+          "mode": "window-typed-array",
+          "iterations": 256,
+          "packetBytes": 16384,
+          "extracted": 1040971648,
+          "elapsedMs": 2599.900000002235
+        },
+        {
+          "round": 2,
+          "mode": "bounded-typed-array",
+          "iterations": 256,
+          "packetBytes": 16384,
+          "extracted": 67108864,
+          "elapsedMs": 133.40000000223517
+        }
+      ],
+      "scope": "Deterministic dedicated-worker response extraction microbenchmark, not HTTP/media/Chrome-save throughput"
+    }
+  ],
+  "default": {
+    "readWindowMiB": 4,
+    "responseKiB": 256,
+    "reason": "75ms representative-latency median 4MiB wins and uses less staging than8MiB;25ms rankings overlap.4MiB covers792/798 observed real objects;8MiB saves only6 real network windows."
+  },
+  "failures": [
+    {
+      "receipt": ".cache/download-transport/native-1792890014449-10500/evidence.json",
+      "scope": "Harness embedded-regex escaping before timed series; corrected."
+    },
+    {
+      "receipt": ".cache/download-transport/native-1792890039308-30512/evidence.json",
+      "scope": "One terminal native4MiB network body error; cause unproven, retained;three unchanged25ms andthree75ms4MiBruns later passed without relaxing bounds."
+    }
+  ],
+  "limits": {
+    "cpuMemory": "Tiny controls omit observer to avoid sampling overhead. Final2GiB and real acceptance have read-only observer; baseline2GiB did not.",
+    "privateBuiltMetrics": "Module-private cache/staging/queue/rawworkerprogress unavailable in unchanged production builds; hard bounds asserted in native controls.",
+    "reportedDownloadHelperSeconds": 30,
+    "reportedDownloadHelperIndependentlyObserved": false
+  }
+}

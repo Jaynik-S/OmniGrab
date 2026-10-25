@@ -1,0 +1,304 @@
+{
+  "ok": true,
+  "scope": "Final full real Cinejoy1080p, same exact selected/master manifest texts as retained gold, normal CORS and exact page/document; unchanged built assets. Single final timed run, no overlapping heavy native work. Historical real/gold and profiled intermediate timings are not a contemporary matched pair.",
+  "runtimeCommit": "575da3c",
+  "harnessCommit": "7c8beca",
+  "rawReceiptSha256": "57fb57caa79e750e0cef8d8b7591050202b23807ef237305af345331fea281b5",
+  "validationReceiptSha256": "a6068a95688ed20b6906ab13d300c0a83ade7c4bbf419823a542cd26d8968f7b",
+  "encodedComparisonReceiptSha256": "b0668c153ed3d6d0040c3319023bfde2ff433330da31c2428492322f0e1b41e8",
+  "handles": {
+    "execSession": 84430,
+    "pid": 28744,
+    "observerPid": 11888,
+    "cdp": 7626,
+    "profile": "C:\\Users\\jay03\\AppData\\Local\\Temp\\owned-cinejoy-download-5w1r1b",
+    "jobId": "ec17c3c2-bbce-4272-8277-bb7ad2614e94",
+    "terminal": true,
+    "ownedBrowserClosed": true
+  },
+  "source": {
+    "target": "https://cinejoy.pk/watch/tv/67178/2/1",
+    "selectedUrl": "https://nebula.bright67.online/hls/e6489cb4-bc62-4fe1-9f7f-d14ed893a646/1080p/playlist.jpg",
+    "masterTextSha256": "9f0b366d530bbdb4bbd8dd21293d1cf99c59348258a65d9c1d3eecf81681aac0",
+    "selectedTextSha256": "8cfa888cfe807f892606aa254fa00a07ffad844dfd431d5d9b7f702e0f990eca",
+    "manifestTextsEqualGold": true,
+    "segments": 797,
+    "initializationObjects": 1,
+    "width": 1920,
+    "height": 1080
+  },
+  "artifactHashes": {
+    "background.js": "b27cc51c0d2e6d1b12cfa9a143c4275639e02720f12e3cba5d10010db78fa6c3",
+    "content.js": "cc70a46edcb2f19b718300f7a83d5f4d65f50461a92d93a5d318daf004227bf9",
+    "download-worker.js": "f0add572a9373fb3ad62e6961c5493e416899a56186b49505af9375a517bec68",
+    "licenses/mediabunny-MPL-2.0.txt": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "manifest.json": "f579364ace1b5ecb1c93aa4c3a3eb9d6428ba68e7fb0ab30fefca1019c7f7861",
+    "offscreen.html": "4e25520116719af287d57fab809319f3288f71c566a12dff7abf4c74f3226520",
+    "offscreen.js": "ac025305ade1a870d70dd945ad044534841f293bd52a47ae6813251dfb3ee61d",
+    "popup/index.html": "d17aa0054b177a3c08079d651c43ca312e9e69df004cf8dec43a29e4944a1bd7",
+    "popup/index.js": "e2d138ee1683550f954c3c85d49989bfc757d07b857c76d9e31e7f0ef41c4706",
+    "popup/style.css": "3ae581871327de5a86c4ef4e5041f4ec71117ae0d15d430f17bb0c627936a8ed",
+    "THIRD_PARTY_NOTICES.md": "f65ebb3d2528054abd60267b7e6f7251f4940be3cde043902f3b5190cf42b74d"
+  },
+  "artifactUnchanged": true,
+  "save": {
+    "state": "complete",
+    "bytes": 1920506462,
+    "sha256": "7bd0ab939387d1f89242a63153452a163b5387a27f44e8f3cb1ca8fd6f87e356",
+    "duration": "3189.941333",
+    "streams": [
+      {
+        "codec": "h264",
+        "type": "video",
+        "width": 1920,
+        "height": 1080,
+        "timebase": "1/57600",
+        "packets": "76473"
+      },
+      {
+        "codec": "aac",
+        "type": "audio",
+        "channels": 2,
+        "sampleRate": "48000",
+        "timebase": "1/48000",
+        "packets": "149529"
+      }
+    ]
+  },
+  "timing": {
+    "actionAt": "2026-10-25T05:48:23.634Z",
+    "firstObservedInputMs": 3116,
+    "firstObservedOutputMs": 3116,
+    "mp4ReadyUpperBoundMs": 199886,
+    "chromeSaveStartMs": 199894,
+    "chromeCompleteMs": 206195,
+    "chromeStart": "2026-10-25T05:51:43.528Z",
+    "chromeEnd": "2026-10-25T05:51:49.829Z",
+    "scope": "Progress endpoints are3second polls plus API latency; MP4-ready bounded above by durable saveIntent before Chrome call, not exact worker mux-completion. Chrome start/end are DownloadItem timestamps."
+  },
+  "network": {
+    "requests": 810,
+    "statusCounts": {
+      "200": 2,
+      "206": 804,
+      "404": 4
+    },
+    "successfulMediaRequests": 804,
+    "distinctSelectedObjects": 798,
+    "usefulBytes": 1920222212,
+    "successfulSelectedMediaBytes": 1920222212,
+    "amplification": 1,
+    "maximumPhysicalActive": 4,
+    "allSelectedObjectsFullyCovered": true,
+    "allSelectedMediaCacheMisses": true,
+    "objectCoverageSha256": "fd9355b042f90599a2832cca7973bbdc8a0f82dd368a50c7a791494664872f34"
+  },
+  "progress": {
+    "samples": 70,
+    "distinctSnapshots": 67,
+    "rawWorkerMessageCount": null
+  },
+  "resourceSamples": {
+    "samples": 21,
+    "firstCpuSeconds": 12.09978,
+    "lastCpuSeconds": 324.56984100000005,
+    "peakWorkingSetSum": 2257281024,
+    "peakPrivateBytesSum": 1695150080,
+    "peakWorkerHeap": 28160304,
+    "peakWorkerBackingStorage": 151986440,
+    "scope": "Read-only observer,10second interval plus API latency. Not exact endpoint CPU. Working-set sums may double-count shared pages; backing storage includes both accounted cache and transient buffers."
+  },
+  "validation": {
+    "wholeFileDecodePassed": true,
+    "probePassed": true,
+    "beginningMiddleNearEndTailPlayback": [
+      {
+        "requested": 1,
+        "width": 1920,
+        "height": 1080,
+        "framesAdvanced": 35,
+        "audioBytesAdvanced": 37840,
+        "timeAdvanced": 1.4444,
+        "error": null
+      },
+      {
+        "requested": 1594.9706665,
+        "width": 1920,
+        "height": 1080,
+        "framesAdvanced": 36,
+        "audioBytesAdvanced": 36441,
+        "timeAdvanced": 1.4601649999999609,
+        "error": null
+      },
+      {
+        "requested": 3129.941333,
+        "width": 1920,
+        "height": 1080,
+        "framesAdvanced": 36,
+        "audioBytesAdvanced": 32598,
+        "timeAdvanced": 1.4603899999997338,
+        "error": null
+      },
+      {
+        "requested": 3185.941333,
+        "width": 1920,
+        "height": 1080,
+        "framesAdvanced": 36,
+        "audioBytesAdvanced": 18549,
+        "timeAdvanced": 1.4602359999998953,
+        "error": null
+      }
+    ],
+    "stereoSamples": [
+      {
+        "time": 1,
+        "samples": 192000,
+        "rms": 0.03310674626159759,
+        "peak": 0.42876848578453064,
+        "nonzero": 174114,
+        "channels": [
+          {
+            "channel": 0,
+            "samples": 96000,
+            "rms": 0.03385162647257062,
+            "peak": 0.42876848578453064,
+            "nonzero": 87074
+          },
+          {
+            "channel": 1,
+            "samples": 96000,
+            "rms": 0.03234471643439038,
+            "peak": 0.19955261051654816,
+            "nonzero": 87040
+          }
+        ]
+      },
+      {
+        "time": 1594.9706665,
+        "samples": 192000,
+        "rms": 0.015341224193047695,
+        "peak": 0.10867100954055786,
+        "nonzero": 191651,
+        "channels": [
+          {
+            "channel": 0,
+            "samples": 96000,
+            "rms": 0.015329530790303898,
+            "peak": 0.10867100954055786,
+            "nonzero": 95811
+          },
+          {
+            "channel": 1,
+            "samples": 96000,
+            "rms": 0.015352908689620607,
+            "peak": 0.10773883014917374,
+            "nonzero": 95840
+          }
+        ]
+      },
+      {
+        "time": 3129.941333,
+        "samples": 192000,
+        "rms": 0.03421361427233457,
+        "peak": 0.5301687717437744,
+        "nonzero": 122144,
+        "channels": [
+          {
+            "channel": 0,
+            "samples": 96000,
+            "rms": 0.035113704275017865,
+            "peak": 0.5301687717437744,
+            "nonzero": 61069
+          },
+          {
+            "channel": 1,
+            "samples": 96000,
+            "rms": 0.033289196073782945,
+            "peak": 0.20750105381011963,
+            "nonzero": 61075
+          }
+        ]
+      },
+      {
+        "time": 3185.941333,
+        "samples": 192000,
+        "rms": 0.0000033244836929540698,
+        "peak": 0.00002474354550940916,
+        "nonzero": 5762,
+        "channels": [
+          {
+            "channel": 0,
+            "samples": 96000,
+            "rms": 0.0000033292159363614527,
+            "peak": 0.000024328821382368915,
+            "nonzero": 2880
+          },
+          {
+            "channel": 1,
+            "samples": 96000,
+            "rms": 0.0000033197447038155147,
+            "peak": 0.00002474354550940916,
+            "nonzero": 2882
+          }
+        ]
+      }
+    ],
+    "encodedPerStream": [
+      {
+        "name": "gold",
+        "content": {
+          "0": {
+            "timebase": "1/57600",
+            "records": 76473,
+            "sha256": "f3fcc7968189e0b58a20279ad7405b3c176cfd829517d754297acb9c37d70a7c"
+          },
+          "1": {
+            "timebase": "1/48000",
+            "records": 149529,
+            "sha256": "587697002b64afecceacc23667b6d6ccb7d2e6cbd99fb8ae4d7ae22f47e88eac"
+          }
+        },
+        "framehashSha256": "400f33de16fb9706ae5c012fe71a6db70c66a9291af5bb4a3520bfd806c5e3fa"
+      },
+      {
+        "name": "optimized",
+        "content": {
+          "0": {
+            "timebase": "1/57600",
+            "records": 76473,
+            "sha256": "f3fcc7968189e0b58a20279ad7405b3c176cfd829517d754297acb9c37d70a7c"
+          },
+          "1": {
+            "timebase": "1/48000",
+            "records": 149529,
+            "sha256": "587697002b64afecceacc23667b6d6ccb7d2e6cbd99fb8ae4d7ae22f47e88eac"
+          }
+        },
+        "framehashSha256": "400f33de16fb9706ae5c012fe71a6db70c66a9291af5bb4a3520bfd806c5e3fa"
+      }
+    ],
+    "scope": "Every encoded H264 and AAC packet: per-stream exact DTS/PTS/duration/size/payload SHA256 and timebase, preserving stream order. Container creation/modification metadata excluded. Automated audio checks do not claim human listening."
+  },
+  "cleanup": {
+    "opfsEmpty": true,
+    "processingWorkers": 0,
+    "jobOwnershipReleased": true,
+    "browserClosed": true
+  },
+  "privateMetrics": {
+    "cacheStagingQueue": null,
+    "scope": "Unmodified production module-private metrics unavailable; separate native controls assert hard bounds."
+  },
+  "limits": {
+    "reportedDownloadHelperSeconds": 30,
+    "originalExtensionIndependentlyObserved": false,
+    "matchedContemporaryRealBaseline": false,
+    "noAllSiteParityClaim": true
+  },
+  "rawReceipts": {
+    "live": ".cache/download-speed/final-real/live-1792907283268-28744/receipt.json",
+    "validation": ".cache/download-speed/final-real/live-1792907283268-28744/validation/validation.json",
+    "encoded": ".cache/download-speed/final-real/live-1792907283268-28744/encoded-comparison.json",
+    "coverage": ".cache/download-speed/final-real/live-1792907283268-28744/object-coverage.json"
+  }
+}

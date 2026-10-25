@@ -1,0 +1,196 @@
+{
+  "ok": true,
+  "scope": "Matched complete generated640x360/2fps HLS, not Cinejoy1080p or DownloadHelper. Unchanged built artifacts, normal page-only context,25ms deterministic delay, actual Chrome saves.",
+  "rawReceiptSha256": "f1738819faf477125665390bd75ed99cbe05912451f54b7059370aa262a2ee67",
+  "rawHarnessExit": 1,
+  "rawHarnessFailure": "Both downloads and validation passed; final whole decoded-framehash file digest compared cross-stream scheduling order. Corrected TDD helper compares each stream independently, preserving timebase, record count, exact timestamps/duration/size/payload hash.",
+  "firstLineDifference": {
+    "line": 4415,
+    "baseline": "1,    4320256,    4320256,     1024,     4096, 03535e27e503bf59d08eb3273e278fcd732bb950f6f84da1c5fb240a233261de",
+    "optimized": "0,        180,        180,        1,   345600, 83ce78e9bd8f26ffae1c3f72a8c9aacb85a996b2c38a5f2f9a07ebaa17b925f4"
+  },
+  "fixtureHashes": {
+    "files": 800,
+    "manifestSha256": "116e38e305d39009cd2cd6f5814798f163e21dfe1077490ae3bb83d6d4a2fbdd",
+    "allFilesDigest": "11d0bbdf3aecd2703ef94035558f23f473171eb073c06107ed36fbf51bedc59d"
+  },
+  "results": [
+    {
+      "name": "baseline",
+      "identity": "b8b1671",
+      "artifactHashes": {
+        "background.js": "b27cc51c0d2e6d1b12cfa9a143c4275639e02720f12e3cba5d10010db78fa6c3",
+        "content.js": "423efb15bbb8beb9c6ef3137fa5a85f2ddad6d9de8aa70bb79b03587f828976e",
+        "download-worker.js": "a94f98ff6c18d7d0f87e435ba9441709db5cb5382e6025543cf901d96a7a19a6",
+        "licenses/mediabunny-MPL-2.0.txt": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+        "manifest.json": "f579364ace1b5ecb1c93aa4c3a3eb9d6428ba68e7fb0ab30fefca1019c7f7861",
+        "offscreen.html": "4e25520116719af287d57fab809319f3288f71c566a12dff7abf4c74f3226520",
+        "offscreen.js": "ab4fb85d61f8c1d4cf19eecf79dea173d90ff6dc716e4052b50d4618db3aa8a7",
+        "popup/index.html": "d17aa0054b177a3c08079d651c43ca312e9e69df004cf8dec43a29e4944a1bd7",
+        "popup/index.js": "e2d138ee1683550f954c3c85d49989bfc757d07b857c76d9e31e7f0ef41c4706",
+        "popup/style.css": "3ae581871327de5a86c4ef4e5041f4ec71117ae0d15d430f17bb0c627936a8ed",
+        "THIRD_PARTY_NOTICES.md": "f65ebb3d2528054abd60267b7e6f7251f4940be3cde043902f3b5190cf42b74d"
+      },
+      "chromeState": "complete",
+      "bytes": 14474986,
+      "sha256": "4848c831ea8182dc70b40047bd91a059badf85a1f3a216afce4606dc87347cef",
+      "timing": {
+        "action": 1792892690917,
+        "firstInputMs": 474,
+        "firstOutputMs": 55709,
+        "mp4ReadyObservedMs": 79195,
+        "mp4ReadyUpperBoundMs": 79114,
+        "chromeCompleteMs": 79451
+      },
+      "network": {
+        "requests": 1599,
+        "successfulMediaRequests": 799,
+        "failedPrimaryMediaRequests": 799,
+        "successfulMediaBytes": 14673976,
+        "usefulMediaBytes": 14673976,
+        "amplification": 1,
+        "maximumPhysicalActive": 1
+      },
+      "progress": {
+        "observedSamples": 638,
+        "distinctProgressSnapshots": 632,
+        "rawWorkerMessages": null
+      },
+      "privateCacheStagingQueue": null,
+      "privateMetricsScope": "not exposed by unchanged production API; bounded assertions in native transport/window controls",
+      "content": {
+        "encoded": {
+          "0": {
+            "timebase": "1/57600",
+            "records": 6380,
+            "sha256": "668353634461dd910215a0d02080caaf8dbf0586e5be43a6f41e76b826a71b16"
+          },
+          "1": {
+            "timebase": "1/48000",
+            "records": 149533,
+            "sha256": "e835f1713cac722d7db675299df61cf5d765afba470a3dbeff18570363ee5421"
+          }
+        },
+        "decoded": {
+          "0": {
+            "timebase": "1/2",
+            "records": 6380,
+            "sha256": "aff9faca1438f1e9c1cda504484c88d3a55649476054a1ffe34e6ba431d2ff37"
+          },
+          "1": {
+            "timebase": "1/48000",
+            "records": 149533,
+            "sha256": "aa394028c533b971464d6cc290b6ddcf24346e8b2bfe15a0ed766f275378e376"
+          }
+        }
+      },
+      "probe": [
+        {
+          "codec": "h264",
+          "width": 640,
+          "height": 360,
+          "packets": "6380"
+        },
+        {
+          "codec": "aac",
+          "packets": "149533"
+        }
+      ],
+      "duration": "3190.021333",
+      "decodeExitCode": 0,
+      "cleanupEmpty": true,
+      "artifactsUnchanged": true
+    },
+    {
+      "name": "optimized",
+      "identity": "6d4a9feafc17de5e6a8d5aa6a7ae00bbbbe4b6e7",
+      "artifactHashes": {
+        "background.js": "b27cc51c0d2e6d1b12cfa9a143c4275639e02720f12e3cba5d10010db78fa6c3",
+        "content.js": "cc70a46edcb2f19b718300f7a83d5f4d65f50461a92d93a5d318daf004227bf9",
+        "download-worker.js": "f0add572a9373fb3ad62e6961c5493e416899a56186b49505af9375a517bec68",
+        "licenses/mediabunny-MPL-2.0.txt": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+        "manifest.json": "f579364ace1b5ecb1c93aa4c3a3eb9d6428ba68e7fb0ab30fefca1019c7f7861",
+        "offscreen.html": "4e25520116719af287d57fab809319f3288f71c566a12dff7abf4c74f3226520",
+        "offscreen.js": "ac025305ade1a870d70dd945ad044534841f293bd52a47ae6813251dfb3ee61d",
+        "popup/index.html": "d17aa0054b177a3c08079d651c43ca312e9e69df004cf8dec43a29e4944a1bd7",
+        "popup/index.js": "e2d138ee1683550f954c3c85d49989bfc757d07b857c76d9e31e7f0ef41c4706",
+        "popup/style.css": "3ae581871327de5a86c4ef4e5041f4ec71117ae0d15d430f17bb0c627936a8ed",
+        "THIRD_PARTY_NOTICES.md": "f65ebb3d2528054abd60267b7e6f7251f4940be3cde043902f3b5190cf42b74d"
+      },
+      "chromeState": "complete",
+      "bytes": 14474986,
+      "sha256": "b7a65509d04cdf4356cd0936a8d8a54d49e92a324461e9b611682dafd46a324c",
+      "timing": {
+        "action": 1792892786983,
+        "firstInputMs": 412,
+        "firstOutputMs": 652,
+        "mp4ReadyObservedMs": 40868,
+        "mp4ReadyUpperBoundMs": 40856,
+        "chromeCompleteMs": 41186
+      },
+      "network": {
+        "requests": 801,
+        "successfulMediaRequests": 799,
+        "failedPrimaryMediaRequests": 1,
+        "successfulMediaBytes": 14673976,
+        "usefulMediaBytes": 14673976,
+        "amplification": 1,
+        "maximumPhysicalActive": 4
+      },
+      "progress": {
+        "observedSamples": 337,
+        "distinctProgressSnapshots": 163,
+        "rawWorkerMessages": null
+      },
+      "privateCacheStagingQueue": null,
+      "privateMetricsScope": "not exposed by unchanged production API; bounded assertions in native transport/window controls",
+      "content": {
+        "encoded": {
+          "0": {
+            "timebase": "1/57600",
+            "records": 6380,
+            "sha256": "668353634461dd910215a0d02080caaf8dbf0586e5be43a6f41e76b826a71b16"
+          },
+          "1": {
+            "timebase": "1/48000",
+            "records": 149533,
+            "sha256": "e835f1713cac722d7db675299df61cf5d765afba470a3dbeff18570363ee5421"
+          }
+        },
+        "decoded": {
+          "0": {
+            "timebase": "1/2",
+            "records": 6380,
+            "sha256": "aff9faca1438f1e9c1cda504484c88d3a55649476054a1ffe34e6ba431d2ff37"
+          },
+          "1": {
+            "timebase": "1/48000",
+            "records": 149533,
+            "sha256": "aa394028c533b971464d6cc290b6ddcf24346e8b2bfe15a0ed766f275378e376"
+          }
+        }
+      },
+      "probe": [
+        {
+          "codec": "h264",
+          "width": 640,
+          "height": 360,
+          "packets": "6380"
+        },
+        {
+          "codec": "aac",
+          "packets": "149533"
+        }
+      ],
+      "duration": "3190.021333",
+      "decodeExitCode": 0,
+      "cleanupEmpty": true,
+      "artifactsUnchanged": true
+    }
+  ],
+  "improvement": {
+    "firstOutputSpeedup": 85.44325153374233,
+    "chromeCompleteSpeedup": 1.9290778419851407
+  },
+  "limitation": "First progress/state endpoints are100ms polls plus API latency; Chrome begin/end use exact DownloadItem timestamps. Private module metrics and raw worker messages are unavailable in unmodified builds; hard bounds are verified by native controls."
+}
