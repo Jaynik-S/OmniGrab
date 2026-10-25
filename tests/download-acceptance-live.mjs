@@ -6,6 +6,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { chromium } from 'playwright-core';
+import { connectTarget } from './download-browser-cdp.mjs';
 
 const target = 'https://cinejoy.pk/watch/tv/67178/2/1';
 const selection720=process.argv.includes('--selection-720'),quality=selection720?'720p':'1080p',filename=`cinejoy-${quality}.mp4`;
@@ -29,26 +30,7 @@ async function until(fn, predicate, label, timeout = 90000) {
   throw Error(`${label}: ${JSON.stringify(value)}`);
 }
 const sockets = new Set();
-async function connect(port, url) {
-  const target = await until(async () => (await (await fetch(`http://127.0.0.1:${port}/json`)).json()).find(t => t.url === url), Boolean, 'target missing');
-  const socket = new WebSocket(target.webSocketDebuggerUrl); sockets.add(socket);
-  await new Promise((resolve, reject) => { socket.addEventListener('open', resolve, { once: true }); socket.addEventListener('error', reject, { once: true }); });
-  let id = 0; const pending = new Map(), listeners = new Map();
-  socket.addEventListener('message', event => {
-    const data = JSON.parse(event.data);for(const listener of listeners.get(data.method)??[])listener(data.params);
-    const p = pending.get(data.id); if (!p) return;
-    pending.delete(data.id); clearTimeout(p.timer); data.error ? p.reject(Error(JSON.stringify(data.error))) : p.resolve(data.result);
-  });
-  socket.addEventListener('close', () => { sockets.delete(socket); for (const p of pending.values()) { clearTimeout(p.timer); p.reject(Error('target closed')); } pending.clear(); });
-  const send = (method, params = {}) => new Promise((resolve, reject) => {
-    const n = ++id, timer = setTimeout(() => { pending.delete(n); reject(Error('CDP timeout ' + method)); }, 15000);
-    pending.set(n, { resolve, reject, timer }); socket.send(JSON.stringify({ id: n, method, params }));
-  });
-  return { send, on(method,listener){listeners.set(method,[...(listeners.get(method)??[]),listener]);}, close: () => socket.close(), async evaluate(fn, arg) {
-    const response = await send('Runtime.evaluate', { expression: `(${fn.toString()})(${JSON.stringify(arg)})`, awaitPromise: true, returnByValue: true });
-    if (response.exceptionDetails) throw Error(JSON.stringify(response.exceptionDetails)); return response.result.value;
-  } };
-}
+const connect = (port, url) => connectTarget(port, url, sockets);
 let context, page, popup, observer, observerExit;
 const network = new Map(); let active = 0, maximumActive = 0, networkStarted = false;
 let journal = Promise.resolve();

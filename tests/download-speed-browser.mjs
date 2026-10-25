@@ -9,7 +9,9 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright-core';
-import { verifySavedReceipt } from './download-speed-fixture.ts';
+import { createInterface } from 'node:readline';
+import { verifySavedReceipt, digestFrameRecords } from './download-speed-fixture.ts';
+import { connectTarget } from './download-browser-cdp.mjs';
 
 const option = (name, fallback) => process.argv.find(arg => arg.startsWith(`--${name}=`))?.slice(name.length + 3) ?? fallback;
 const output = path.resolve(option('output', `.cache/download-speed/generated-${Date.now()}-${process.pid}`));
@@ -26,7 +28,7 @@ const manifest=await readFile(path.join(fixture,'list.m3u8'),'utf8');
 assert.equal([...manifest.matchAll(/^#EXTINF:/gm)].length,798);
 report.fixtureHashes=await hashes(fixture);
 report.usefulMediaBytes=(await Promise.all(Object.keys(report.fixtureHashes).filter(name=>!name.endsWith('.m3u8')).map(async name=>(await stat(path.join(fixture,name))).size))).reduce((sum,n)=>sum+n,0);
-let current,origin,context;const sockets=new Set();
+let current,origin,context;const sockets=new Set(),cdpSockets=new Set();
 const server=createServer(async(req,res)=>{
   try {
     const pathname=new URL(req.url,'http://fixture.test').pathname;
@@ -65,7 +67,8 @@ try {
     cdp.on('Browser.downloadWillBegin',()=>{current.timing.chromeBegin=Date.now();});
     cdp.on('Browser.downloadProgress',event=>{if(event.state==='completed')current.timing.chromeCompleted=Date.now();});
     await page.goto(origin+'/watch');
-    const popup=await context.newPage();await popup.goto(`chrome-extension://${id}/popup/index.html`);
+    await page.bringToFront();const boot=await connectTarget(current.port,worker.url(),cdpSockets);await boot.evaluate(()=>chrome.action.openPopup());boot.close();
+    const popup=await connectTarget(current.port,`chrome-extension://${id}/popup/index.html`,cdpSockets);
     const call=message=>popup.evaluate(message=>chrome.runtime.sendMessage(message),message);
     const tabId=await popup.evaluate(async url=>(await chrome.tabs.query({})).find(tab=>tab.url===url).id,page.url());
     const detected=await until(()=>call({type:'snapshot',tabId}),state=>Object.values(state.tab?.media??{}).some(media=>media.url===origin+'/master.m3u8'&&media.status==='confirmed'),'detector');
@@ -82,6 +85,7 @@ try {
       if(current.samples.length%40===0){await save();console.log(JSON.stringify({build:build.name,pid:process.pid,receipt:path.join(output,'evidence.json'),sample}));}await sleep(100);
     }
     current.download=await popup.evaluate(async id=>(await chrome.downloads.search({id}))[0],current.job.browserDownloadId);
+    current.timing.chromeBegin??=Date.parse(current.download.startTime);current.timing.chromeCompleted??=Date.parse(current.download.endTime);
     current.chromeState=current.download.state;current.expectedBytes=current.job.progress.outputBytes;current.actualBytes=(await stat(current.download.filename)).size;verifySavedReceipt(current);
     current.sha256=await hashFile(current.download.filename);
     await sleep(500);current.cleanup=await popup.evaluate(async()=>{const root=await navigator.storage.getDirectory(),entries=[];for await(const [name,handle]of root.entries()){const files=[];if(handle.kind==='directory')for await(const [file]of handle.entries())files.push(file);entries.push({name,files});}return entries;});
@@ -97,11 +101,11 @@ try {
     for(const mode of ['encoded','decoded']) {
       const filename=path.join(directory,mode+'-framehash.txt');
       execFileSync('ffmpeg',['-v','error','-xerror','-y','-i',current.download.filename,'-map','0:v:0','-map','0:a:0',...(mode==='encoded'?['-c','copy']:[]),'-f','framehash','-hash','sha256',filename],{stdio:'pipe'});
-      current.contentHashes[mode]=await hashFile(filename);
+      current.contentHashes[mode]=await digestFrameRecords(createInterface({input:createReadStream(filename),crlfDelay:Infinity}));
     }
     await save();
   }
   assert.equal(report.cases[0].actualBytes,report.cases[1].actualBytes);
   assert.deepEqual(report.cases[0].contentHashes,report.cases[1].contentHashes,'encoded packet payload/timing and decoded A/V content must match; MP4 creation timestamps may differ');report.ok=true;
 }catch(error){report.ok=false;report.errors.push(String(error.stack??error));process.exitCode=1;}
-finally{await context?.close();for(const socket of sockets)socket.destroy();await new Promise(resolve=>server.close(resolve));report.ended=new Date().toISOString();await save();console.log(JSON.stringify({ok:report.ok,pid:process.pid,receipt:path.join(output,'evidence.json'),errors:report.errors}));}
+finally{for(const socket of cdpSockets)socket.close();await context?.close();for(const socket of sockets)socket.destroy();await new Promise(resolve=>server.close(resolve));report.ended=new Date().toISOString();await save();console.log(JSON.stringify({ok:report.ok,pid:process.pid,receipt:path.join(output,'evidence.json'),errors:report.errors}));}
