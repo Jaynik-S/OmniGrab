@@ -1,0 +1,459 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-25T08:09:28.449Z",
+  "title": "Design System: OmniGrab",
+  "extensions": {
+    "colorMeta": {
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Cream Canvas",
+        "canonical": "#f6f6e9",
+        "tonalRamp": [
+          "oklch(15% 0.0171 106.71)",
+          "oklch(27% 0.0171 106.71)",
+          "oklch(38% 0.0171 106.71)",
+          "oklch(49% 0.0171 106.71)",
+          "oklch(60% 0.0171 106.71)",
+          "oklch(71% 0.0171 106.71)",
+          "oklch(83% 0.0171 106.71)",
+          "oklch(95% 0.0171 106.71)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Warm Sleeve",
+        "canonical": "#fffef7",
+        "tonalRamp": [
+          "oklch(15% 0.0093 99.98)",
+          "oklch(27% 0.0093 99.98)",
+          "oklch(38% 0.0093 99.98)",
+          "oklch(49% 0.0093 99.98)",
+          "oklch(60% 0.0093 99.98)",
+          "oklch(71% 0.0093 99.98)",
+          "oklch(83% 0.0093 99.98)",
+          "oklch(95% 0.0093 99.98)"
+        ]
+      },
+      "header": {
+        "role": "neutral",
+        "displayName": "Pale Sage Header",
+        "canonical": "#f0f3df",
+        "tonalRamp": [
+          "oklch(15% 0.0265 113.82)",
+          "oklch(27% 0.0265 113.82)",
+          "oklch(38% 0.0265 113.82)",
+          "oklch(49% 0.0265 113.82)",
+          "oklch(60% 0.0265 113.82)",
+          "oklch(71% 0.0265 113.82)",
+          "oklch(83% 0.0265 113.82)",
+          "oklch(95% 0.0265 113.82)"
+        ]
+      },
+      "sage": {
+        "role": "neutral",
+        "displayName": "Sage Support",
+        "canonical": "#e8edd9",
+        "tonalRamp": [
+          "oklch(15% 0.0270 118.34)",
+          "oklch(27% 0.0270 118.34)",
+          "oklch(38% 0.0270 118.34)",
+          "oklch(49% 0.0270 118.34)",
+          "oklch(60% 0.0270 118.34)",
+          "oklch(71% 0.0270 118.34)",
+          "oklch(83% 0.0270 118.34)",
+          "oklch(95% 0.0270 118.34)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Olive Ink",
+        "canonical": "#34442e",
+        "tonalRamp": [
+          "oklch(15% 0.0421 137.33)",
+          "oklch(27% 0.0421 137.33)",
+          "oklch(38% 0.0421 137.33)",
+          "oklch(49% 0.0421 137.33)",
+          "oklch(60% 0.0421 137.33)",
+          "oklch(71% 0.0421 137.33)",
+          "oklch(83% 0.0421 137.33)",
+          "oklch(95% 0.0421 137.33)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Olive",
+        "canonical": "#647258",
+        "tonalRamp": [
+          "oklch(15% 0.0429 130.82)",
+          "oklch(27% 0.0429 130.82)",
+          "oklch(38% 0.0429 130.82)",
+          "oklch(49% 0.0429 130.82)",
+          "oklch(60% 0.0429 130.82)",
+          "oklch(71% 0.0429 130.82)",
+          "oklch(83% 0.0429 130.82)",
+          "oklch(95% 0.0429 130.82)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Soft Olive Line",
+        "canonical": "#d6ddc3",
+        "tonalRamp": [
+          "oklch(15% 0.0356 119.38)",
+          "oklch(27% 0.0356 119.38)",
+          "oklch(38% 0.0356 119.38)",
+          "oklch(49% 0.0356 119.38)",
+          "oklch(60% 0.0356 119.38)",
+          "oklch(71% 0.0356 119.38)",
+          "oklch(83% 0.0356 119.38)",
+          "oklch(95% 0.0356 119.38)"
+        ]
+      },
+      "green": {
+        "role": "primary",
+        "displayName": "Olive Action",
+        "canonical": "#405f38",
+        "tonalRamp": [
+          "oklch(15% 0.0714 139.35)",
+          "oklch(27% 0.0714 139.35)",
+          "oklch(38% 0.0714 139.35)",
+          "oklch(49% 0.0714 139.35)",
+          "oklch(60% 0.0714 139.35)",
+          "oklch(71% 0.0714 139.35)",
+          "oklch(83% 0.0714 139.35)",
+          "oklch(95% 0.0714 139.35)"
+        ]
+      },
+      "green-hover": {
+        "role": "primary",
+        "displayName": "Deep Olive Response",
+        "canonical": "#334e2c",
+        "tonalRamp": [
+          "oklch(15% 0.0643 139.34)",
+          "oklch(27% 0.0643 139.34)",
+          "oklch(38% 0.0643 139.34)",
+          "oklch(49% 0.0643 139.34)",
+          "oklch(60% 0.0643 139.34)",
+          "oklch(71% 0.0643 139.34)",
+          "oklch(83% 0.0643 139.34)",
+          "oklch(95% 0.0643 139.34)"
+        ]
+      },
+      "action-text": {
+        "role": "primary",
+        "displayName": "Warm Action Lettering",
+        "canonical": "#fffef4",
+        "tonalRamp": [
+          "oklch(15% 0.0132 102.01)",
+          "oklch(27% 0.0132 102.01)",
+          "oklch(38% 0.0132 102.01)",
+          "oklch(49% 0.0132 102.01)",
+          "oklch(60% 0.0132 102.01)",
+          "oklch(71% 0.0132 102.01)",
+          "oklch(83% 0.0132 102.01)",
+          "oklch(95% 0.0132 102.01)"
+        ]
+      },
+      "field-background": {
+        "role": "neutral",
+        "displayName": "Light Field Ground",
+        "canonical": "#fbfcf3",
+        "tonalRamp": [
+          "oklch(15% 0.0119 111.75)",
+          "oklch(27% 0.0119 111.75)",
+          "oklch(38% 0.0119 111.75)",
+          "oklch(49% 0.0119 111.75)",
+          "oklch(60% 0.0119 111.75)",
+          "oklch(71% 0.0119 111.75)",
+          "oklch(83% 0.0119 111.75)",
+          "oklch(95% 0.0119 111.75)"
+        ]
+      },
+      "field-border": {
+        "role": "neutral",
+        "displayName": "Field Outline",
+        "canonical": "#829568",
+        "tonalRamp": [
+          "oklch(15% 0.0677 126.81)",
+          "oklch(27% 0.0677 126.81)",
+          "oklch(38% 0.0677 126.81)",
+          "oklch(49% 0.0677 126.81)",
+          "oklch(60% 0.0677 126.81)",
+          "oklch(71% 0.0677 126.81)",
+          "oklch(83% 0.0677 126.81)",
+          "oklch(95% 0.0677 126.81)"
+        ]
+      },
+      "error": {
+        "role": "secondary",
+        "displayName": "Clay Error",
+        "canonical": "#8c3e35",
+        "tonalRamp": [
+          "oklch(15% 0.1083 28.59)",
+          "oklch(27% 0.1083 28.59)",
+          "oklch(38% 0.1083 28.59)",
+          "oklch(49% 0.1083 28.59)",
+          "oklch(60% 0.1083 28.59)",
+          "oklch(71% 0.1083 28.59)",
+          "oklch(83% 0.1083 28.59)",
+          "oklch(95% 0.1083 28.59)"
+        ]
+      },
+      "error-background": {
+        "role": "secondary",
+        "displayName": "Pale Clay Ground",
+        "canonical": "#fbede3",
+        "tonalRamp": [
+          "oklch(15% 0.0203 58.07)",
+          "oklch(27% 0.0203 58.07)",
+          "oklch(38% 0.0203 58.07)",
+          "oklch(49% 0.0203 58.07)",
+          "oklch(60% 0.0203 58.07)",
+          "oklch(71% 0.0203 58.07)",
+          "oklch(83% 0.0203 58.07)",
+          "oklch(95% 0.0203 58.07)"
+        ]
+      },
+      "progress-value": {
+        "role": "primary",
+        "displayName": "Leaf Progress",
+        "canonical": "#76965c",
+        "tonalRamp": [
+          "oklch(15% 0.0899 132.01)",
+          "oklch(27% 0.0899 132.01)",
+          "oklch(38% 0.0899 132.01)",
+          "oklch(49% 0.0899 132.01)",
+          "oklch(60% 0.0899 132.01)",
+          "oklch(71% 0.0899 132.01)",
+          "oklch(83% 0.0899 132.01)",
+          "oklch(95% 0.0899 132.01)"
+        ]
+      },
+      "disabled-text": {
+        "role": "neutral",
+        "displayName": "Disabled Text",
+        "canonical": "#6b775f",
+        "tonalRamp": [
+          "oklch(15% 0.0389 129.28)",
+          "oklch(27% 0.0389 129.28)",
+          "oklch(38% 0.0389 129.28)",
+          "oklch(49% 0.0389 129.28)",
+          "oklch(60% 0.0389 129.28)",
+          "oklch(71% 0.0389 129.28)",
+          "oklch(83% 0.0389 129.28)",
+          "oklch(95% 0.0389 129.28)"
+        ]
+      },
+      "disabled-background": {
+        "role": "neutral",
+        "displayName": "Disabled Ground",
+        "canonical": "#e9eddf",
+        "tonalRamp": [
+          "oklch(15% 0.0191 119.76)",
+          "oklch(27% 0.0191 119.76)",
+          "oklch(38% 0.0191 119.76)",
+          "oklch(49% 0.0191 119.76)",
+          "oklch(60% 0.0191 119.76)",
+          "oklch(71% 0.0191 119.76)",
+          "oklch(83% 0.0191 119.76)",
+          "oklch(95% 0.0191 119.76)"
+        ]
+      },
+      "disabled-border": {
+        "role": "neutral",
+        "displayName": "Disabled Border",
+        "canonical": "#d8dfca",
+        "tonalRamp": [
+          "oklch(15% 0.0291 122.02)",
+          "oklch(27% 0.0291 122.02)",
+          "oklch(38% 0.0291 122.02)",
+          "oklch(49% 0.0291 122.02)",
+          "oklch(60% 0.0291 122.02)",
+          "oklch(71% 0.0291 122.02)",
+          "oklch(83% 0.0291 122.02)",
+          "oklch(95% 0.0291 122.02)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Brand",
+        "purpose": "OmniGrab wordmark; 24px at the narrow breakpoint."
+      },
+      "headline": {
+        "displayName": "Empty-state headline",
+        "purpose": "The centered playback guidance heading."
+      },
+      "title": {
+        "displayName": "Source title",
+        "purpose": "Wrapping source names; history filenames use the smaller 13px override."
+      },
+      "section": {
+        "displayName": "Section heading",
+        "purpose": "Videos found and Downloads."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "General copy, including empty-state guidance."
+      },
+      "action": {
+        "displayName": "Download action",
+        "purpose": "13px bold full-width primary action."
+      },
+      "metadata": {
+        "displayName": "Metadata",
+        "purpose": "Descriptions and source facts, with bold overrides for qualities and phase labels."
+      },
+      "label": {
+        "displayName": "Field label",
+        "purpose": "Filename and quality labels; the small scale also supports context and evidence."
+      },
+      "status": {
+        "displayName": "Functional status",
+        "purpose": "Source protocol/status badges; footer uses the same size at 1.6 line-height."
+      },
+      "field": {
+        "displayName": "Field value",
+        "purpose": "Filename and quality values inherit bold weight from their labels."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "control-color-transition",
+        "value": "background-color 160ms ease-out, border-color 160ms ease-out, color 160ms ease-out",
+        "purpose": "Buttons, inputs, selects and disclosure summaries; no position or scale movement."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }",
+        "purpose": "Removes transitions and animations when requested."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow-popup",
+        "value": "380px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Download action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The filled full-width action for one eligible source.",
+      "html": "<button class=\"ds-download\" type=\"button\">Download MP4</button>",
+      "css": ".ds-download{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line,#d6ddc3);border-radius:9px;color:var(--ink,#34442e);background:var(--surface,#fffef7);font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;font-weight:700;line-height:1.5;cursor:pointer;transition:background-color 160ms ease-out,border-color 160ms ease-out,color 160ms ease-out;width:100%;min-height:42px;padding:8px 12px;border-color:var(--green,#405f38);background:var(--green,#405f38);color:#fffef4;font-size:13px}.ds-download:hover:not(:disabled){border-color:var(--green-hover,#334e2c);background:var(--green-hover,#334e2c)}.ds-download:active:not(:disabled){background:#293f24}.ds-download:focus-visible{outline:2px solid var(--green,#405f38);outline-offset:3px}.ds-download:disabled{color:#6b775f;background:#e9eddf;border-color:#d8dfca;cursor:default}@media(prefers-reduced-motion:reduce){.ds-download{transition:none;animation:none}}"
+    },
+    {
+      "name": "Copy URL action",
+      "kind": "button",
+      "refersTo": "button-copy",
+      "description": "The compact secondary action inside Source details.",
+      "html": "<button class=\"ds-copy\" type=\"button\" aria-label=\"Copy URL for HLS source\">Copy URL</button>",
+      "css": ".ds-copy{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line,#d6ddc3);border-radius:9px;color:var(--ink,#34442e);background:var(--surface,#fffef7);font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;font-weight:700;line-height:1.5;cursor:pointer;transition:background-color 160ms ease-out,border-color 160ms ease-out,color 160ms ease-out;min-height:30px;padding:5px 9px;font-size:11px}.ds-copy:hover{border-color:#a6b893;background:var(--sage,#e8edd9)}.ds-copy:active:not(:disabled){background:#dce5c9}.ds-copy:focus-visible{outline:2px solid var(--green,#405f38);outline-offset:3px}.ds-copy:disabled{color:#6b775f;background:#e9eddf;border-color:#d8dfca;cursor:default}@media(prefers-reduced-motion:reduce){.ds-copy{transition:none;animation:none}}"
+    },
+    {
+      "name": "Recovery action",
+      "kind": "button",
+      "refersTo": "button-recovery",
+      "description": "Cancel or Retry in a download-history row.",
+      "html": "<button class=\"ds-recovery\" type=\"button\">Retry</button>",
+      "css": ".ds-recovery{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line,#d6ddc3);border-radius:9px;color:var(--ink,#34442e);background:var(--surface,#fffef7);font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;font-weight:700;line-height:1.5;cursor:pointer;transition:background-color 160ms ease-out,border-color 160ms ease-out,color 160ms ease-out;min-height:30px;margin-top:5px;padding:5px 10px;font-size:11px}.ds-recovery:hover{border-color:#a6b893;background:var(--sage,#e8edd9)}.ds-recovery:active:not(:disabled){background:#dce5c9}.ds-recovery:focus-visible{outline:2px solid var(--green,#405f38);outline-offset:3px}.ds-recovery:disabled{color:#6b775f;background:#e9eddf;border-color:#d8dfca;cursor:default}@media(prefers-reduced-motion:reduce){.ds-recovery{transition:none;animation:none}}"
+    },
+    {
+      "name": "Rescan action",
+      "kind": "button",
+      "refersTo": "button-rescan",
+      "description": "A quiet header action paired with the real inline refresh icon.",
+      "html": "<button class=\"ds-rescan\" type=\"button\" aria-label=\"Rescan current page\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 7v5h-5M4 17v-5h5\"/><path d=\"M6.1 7a7 7 0 0 1 11.6-1L20 9M4 15l2.3 3A7 7 0 0 0 17.9 17\"/></svg>Rescan</button>",
+      "css": ".ds-rescan{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line,#d6ddc3);border-radius:9px;color:var(--ink,#34442e);background:var(--surface,#fffef7);font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;font-weight:700;line-height:1.5;cursor:pointer;transition:background-color 160ms ease-out,border-color 160ms ease-out,color 160ms ease-out;flex-shrink:0;min-height:36px;padding:8px 12px;font-size:12px;background:transparent;border-color:#cbd7b5}.ds-rescan:hover:not(:disabled){background:#e0e8cc;border-color:#a9ba91}.ds-rescan:active:not(:disabled){background:#dce5c9}.ds-rescan:focus-visible{outline:2px solid var(--green,#405f38);outline-offset:3px}.ds-rescan:disabled{color:#6b775f;cursor:default}@media(max-width:380px){.ds-rescan{padding:7px 9px}}@media(prefers-reduced-motion:reduce){.ds-rescan{transition:none;animation:none}}"
+    },
+    {
+      "name": "Filename field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "A labeled editable filename with a clear olive boundary.",
+      "html": "<label class=\"ds-filename-label\">Filename<input class=\"ds-filename\" type=\"text\" maxlength=\"255\" value=\"A little adventure.mp4\" aria-label=\"MP4 filename\"></label>",
+      "css": ".ds-filename-label{display:grid;gap:5px;min-width:0;color:var(--muted,#647258);font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;font-size:11px;font-weight:700;line-height:1.5}.ds-filename{width:100%;min-width:0;min-height:38px;border:1px solid #829568;border-radius:8px;padding:8px 10px;color:var(--ink,#34442e);background:#fbfcf3;font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;font-size:12px;line-height:1.5;caret-color:var(--green,#405f38);transition:background-color 160ms ease-out,border-color 160ms ease-out,color 160ms ease-out;font-weight:700}.ds-filename:hover{border-color:#6e8356}.ds-filename:focus{background:#fffef9;border-color:var(--green,#405f38)}.ds-filename:focus-visible{outline:2px solid var(--green,#405f38);outline-offset:3px}@media(prefers-reduced-motion:reduce){.ds-filename{transition:none;animation:none}}"
+    },
+    {
+      "name": "Quality field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "A native select containing confirmed source renditions.",
+      "html": "<label class=\"ds-quality-label\">Quality<select class=\"ds-quality\" aria-label=\"Video quality\"><option>1080p</option><option>720p</option></select></label>",
+      "css": ".ds-quality-label{display:grid;gap:5px;min-width:0;color:var(--muted,#647258);font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;font-size:11px;font-weight:700;line-height:1.5}.ds-quality{width:100%;min-width:0;min-height:38px;border:1px solid #829568;border-radius:8px;padding:8px 10px;color:var(--ink,#34442e);background:#fbfcf3;font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;font-size:12px;line-height:1.5;caret-color:var(--green,#405f38);transition:background-color 160ms ease-out,border-color 160ms ease-out,color 160ms ease-out;font-weight:700;cursor:pointer}.ds-quality:disabled{cursor:default;color:var(--muted,#647258);background:#eef1e4}.ds-quality:hover{border-color:#6e8356}.ds-quality:focus{background:#fffef9;border-color:var(--green,#405f38)}.ds-quality:focus-visible{outline:2px solid var(--green,#405f38);outline-offset:3px}@media(prefers-reduced-motion:reduce){.ds-quality{transition:none;animation:none}}"
+    },
+    {
+      "name": "Source status",
+      "kind": "chip",
+      "refersTo": "source-status",
+      "description": "Protocol and readable state, paired in one quiet functional badge.",
+      "html": "<span class=\"ds-source-status\">HLS · confirmed</span>",
+      "css": ".ds-source-status{display:inline-block;flex-shrink:0;margin-top:2px;padding:3px 7px;border-radius:6px;background:var(--sage,#e8edd9);color:var(--green,#405f38);font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;font-size:10px;font-weight:800;line-height:1.5}"
+    },
+    {
+      "name": "Media sleeve",
+      "kind": "card",
+      "refersTo": "media-sleeve",
+      "description": "The bordered, shadow-free source container with a wrapping title and status.",
+      "html": "<article class=\"ds-media\"><div class=\"ds-media-row\"><h3 class=\"ds-media-title\">A little adventure, saved for later</h3><span class=\"ds-media-status\">HLS · confirmed</span></div><p class=\"ds-media-facts\">1920 × 1080 · 53:10 · VOD</p><p class=\"ds-media-qualities\">Qualities: 1080p · 720p</p></article>",
+      "css": ".ds-media{margin-bottom:14px;padding:17px;border:1px solid var(--line,#d6ddc3);border-radius:16px;background:var(--surface,#fffef7);color:var(--ink,#34442e);font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;line-height:1.5}.ds-media-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.ds-media-title{min-width:0;margin:0;font-size:16px;font-weight:800;line-height:1.4;letter-spacing:-.015em;overflow-wrap:anywhere}.ds-media-status{flex-shrink:0;margin-top:2px;padding:3px 7px;border-radius:6px;background:var(--sage,#e8edd9);color:var(--green,#405f38);font-size:10px;font-weight:800;line-height:1.5}.ds-media-facts{margin:9px 0 0;color:var(--muted,#647258);font-size:12px;font-variant-numeric:tabular-nums}.ds-media-qualities{margin:7px 0 0;font-size:12px;font-weight:700}@media(max-width:380px){.ds-media{padding:14px}.ds-media-row{flex-direction:column-reverse;gap:8px}}"
+    },
+    {
+      "name": "Source disclosure",
+      "kind": "custom",
+      "description": "Native disclosure keeps the raw source available below the source action.",
+      "html": "<details class=\"ds-source-details\"><summary class=\"ds-source-summary\">Source details</summary><p class=\"ds-source-url\">https://example.test/video/master.m3u8</p></details>",
+      "css": ".ds-source-details{margin-top:12px;padding-top:2px;border-top:1px solid #e5e9d7;color:var(--ink,#34442e);font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;line-height:1.5}.ds-source-summary{width:fit-content;max-width:100%;padding:8px 0;color:var(--muted,#647258);font-size:12px;font-weight:700;cursor:pointer;transition:background-color 160ms ease-out,border-color 160ms ease-out,color 160ms ease-out}.ds-source-summary:hover{color:var(--green,#405f38)}.ds-source-summary:focus-visible{outline:2px solid var(--green,#405f38);outline-offset:3px}.ds-source-url{margin:8px 0;max-height:100px;overflow-y:auto;font-size:11px;overflow-wrap:anywhere;white-space:pre-wrap}@media(prefers-reduced-motion:reduce){.ds-source-summary{transition:none;animation:none}}"
+    },
+    {
+      "name": "Download progress row",
+      "kind": "custom",
+      "description": "A flat named-file row with human-readable phase and determinate media-time progress.",
+      "html": "<article class=\"ds-job\"><h3 class=\"ds-job-title\">A little adventure.mp4</h3><p class=\"ds-job-meta\">Current source · MP4 · 1080p</p><p class=\"ds-job-phase\">Processing media</p><progress class=\"ds-job-progress\" max=\"100\" value=\"35\" aria-label=\"Media time processed\"></progress></article>",
+      "css": ".ds-job{padding:13px 0;border-bottom:1px solid var(--line,#d6ddc3);color:var(--ink,#34442e);font-family:\"Nunito Sans\", \"Segoe UI\", sans-serif;line-height:1.5}.ds-job-title{margin:0;font-size:13px;font-weight:800;line-height:1.4;letter-spacing:-.015em;overflow-wrap:anywhere}.ds-job-meta{margin:8px 0;color:var(--muted,#647258);font-size:11px;font-variant-numeric:tabular-nums}.ds-job-phase{margin:8px 0 5px;font-size:12px;font-weight:800}.ds-job[data-phase=\"complete\"] .ds-job-phase{color:var(--green,#405f38)}.ds-job-progress{display:block;width:100%;height:7px;margin:10px 0;border:0;border-radius:8px;overflow:hidden;accent-color:var(--green,#405f38);background:var(--sage,#e8edd9)}.ds-job-progress::-webkit-progress-bar{border-radius:8px;background:var(--sage,#e8edd9)}.ds-job-progress::-webkit-progress-value{border-radius:8px;background:#76965c}.ds-job-progress::-moz-progress-bar{border-radius:8px;background:#76965c}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Soft video sleeves",
+    "overview": "OmniGrab uses the supplied mascot's cream, sage and olive world to make a small browser popup feel friendly and practical. Rounded source sleeves hold readable video facts and straightforward controls; a strong green action gives each supported source a clear next step. Density comes from a compact type hierarchy and aligned fields, with enough air to distinguish one source from another.\n\nThe brand appears through the original mascot and locally hosted Nunito Sans. Preserve omnigrap-logo.png as the supplied source; the bundled icon sizes are mechanical derivatives. Nunito Sans is bundled at extension/fonts/nunito-sans-latin.woff2, with its OFL license at licenses/nunito-sans-OFL.txt. Flat surfaces, restrained color and quiet state feedback carry the atmosphere without ornamental shadows or entrance choreography.",
+    "keyCharacteristics": [
+      "Cream ground, near-white sleeves and sage supporting surfaces.",
+      "One rounded type family, strong source names and legible labeled states.",
+      "Bordered sleeves, aligned controls and disclosures for technical evidence."
+    ],
+    "rules": [
+      {
+        "name": "The Green Action Rule",
+        "body": "Give each eligible source one strong green Download action. Rescan, Copy URL, Cancel and Retry stay quiet outlined controls.",
+        "section": "colors"
+      },
+      {
+        "name": "The Shared Voice Rule",
+        "body": "Use the bundled Nunito Sans for brand, controls, metadata and evidence; hierarchy comes from the observed size and weight changes.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Sleeve Rule",
+        "body": "Build depth with the existing grounds, borders and spacing. Keep sleeves and controls free of decorative elevation.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve the supplied mascot and the local Nunito Sans font with its shipped license.",
+      "Do keep one strong green Download action per eligible source and use quiet outlined supporting actions.",
+      "Do pair status colors with readable labels, and preserve visible errors, progress and recovery actions.",
+      "Do use the narrow-popup rules to keep long titles and download controls within the viewport.",
+      "Do keep source evidence and raw job telemetry available in their native disclosures."
+    ],
+    "donts": [
+      "Don't replace the supplied logo with a generated mascot or a glyph substitute.",
+      "Don't add decorative shadows, gradients or entrance choreography to the flat sleeve system.",
+      "Don't promote internal IDs, raw byte counters or structured failure codes into the main download-history reading order.",
+      "Don't add a distinct display or monospace family to create hierarchy the existing type ramp already supplies."
+    ]
+  }
+}

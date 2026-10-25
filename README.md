@@ -1,8 +1,16 @@
-# Media Detection Lab
+# OmniGrab
 
-An original TypeScript Chrome Manifest V3 media detector with a browser-only downloader for supported clear HLS VOD. It discovers direct media, HLS and DASH through network metadata, media DOM, Resource Timing and manifest parsing. The popup preserves source evidence and can remux selected H.264 video with AAC audio into an MP4 saved by Chrome. Full-download acceptance and limits are recorded in [the download evidence report](docs/DOWNLOAD_ACCEPTANCE.md).
+OmniGrab is a TypeScript Chrome Manifest V3 video finder with a browser-only downloader for supported clear HLS VOD. It discovers direct media, HLS and DASH through network metadata, media DOM, Resource Timing and manifest parsing. The popup preserves source evidence and can remux selected H.264 video with AAC audio into an MP4 saved by Chrome. Full-download acceptance and limits are recorded in [the download evidence report](docs/DOWNLOAD_ACCEPTANCE.md).
 
 The installed Video DownloadHelper was investigated separately with REA. Its proprietary source, website rules and binaries are not included in this implementation or build.
+
+## OmniGrab identity
+
+The popup uses the supplied `omnigrap-logo.png` mascot, cream/sage/olive surfaces, and locally hosted Nunito Sans. Chrome-sized logo variants live in `extension/icons`; the original supplied artwork is preserved. The font's Open Font License ships with the extension.
+
+`PRODUCT.md` records the audience and capability boundaries. `DESIGN.md` and `.impeccable/design.json` record the approved visual system. The screenshots in `.impeccable/review` are explicitly synthetic interface fixtures, covering ready, empty, processing, saved, unsupported and narrow/long-text states.
+
+The rebrand preserves the download engine and permissions. Native popup verification covers quality selection, filename/focus preservation, close/reopen, cancel/retry and a real Chrome save with independent file decoding. Technical identifiers and raw byte telemetry remain available in collapsed source/download details.
 
 ## Develop and load
 
@@ -15,7 +23,7 @@ npm.cmd run check
 
 In `chrome://extensions`, enable Developer mode, choose **Load unpacked**, and select this project's `dist` directory. Reload existing webpage tabs after loading/reloading the extension so its static content scripts are injected. Open the extension action on a webpage to view that tab's evidence. **Rescan** observes current DOM/resources and retries failed manifest work; it does not force playback or clear browser data.
 
-`npm.cmd run check` runs TypeScript, the Node fixture suite and the build allowlist/license audit. The bundle contains eleven files, including the local offscreen host, media worker and license notices. In the Codex Windows sandbox, esbuild's ancestor-directory resolution and external browser networking required normal filesystem/network execution permissions; this was an environment restriction rather than a build failure in the project.
+`npm.cmd run check` runs TypeScript, the Node fixture suite and the build allowlist/license audit. The bundle contains seventeen files, including the local mascot/icon assets, self-hosted font and its license, alongside the local offscreen host, media worker and license notices. In the Codex Windows sandbox, esbuild's ancestor-directory resolution and external browser networking required normal filesystem/network execution permissions; this was an environment restriction rather than a build failure in the project.
 
 For a confirmed, supported HLS VOD source, choose its actual quality, edit the `.mp4` filename, then click **Download**. Keep the originating webpage open; the popup may be closed and reopened to see progress or cancel. **Saved by Chrome** means Chrome reported the save complete. **Retry** creates a new attempt only after the previous attempt's resources settle; **Download again** requires a new explicit click. Source protocol remains HLS even though the saved container is MP4. Reload the extension and the webpage after rebuilding.
 

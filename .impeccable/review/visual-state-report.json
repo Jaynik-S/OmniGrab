@@ -1,0 +1,198 @@
+{
+  "scope": "Synthetic visual states rendered with the real popup HTML/CSS/view; native functional evidence is separate.",
+  "cases": [
+    {
+      "name": "desktop",
+      "title": "OmniGrab",
+      "width": 440,
+      "scrollWidth": 440,
+      "fonts": [
+        {
+          "family": "Nunito Sans",
+          "status": "loaded"
+        }
+      ],
+      "images": [
+        {
+          "loaded": true
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Rescan",
+          "disabled": false
+        },
+        {
+          "text": "Download MP4",
+          "disabled": false
+        },
+        {
+          "text": "Copy URL",
+          "disabled": false
+        }
+      ],
+      "bodyHeight": 697
+    },
+    {
+      "name": "empty",
+      "title": "OmniGrab",
+      "width": 440,
+      "scrollWidth": 440,
+      "fonts": [
+        {
+          "family": "Nunito Sans",
+          "status": "loaded"
+        }
+      ],
+      "images": [
+        {
+          "loaded": true
+        },
+        {
+          "loaded": true
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Rescan",
+          "disabled": false
+        }
+      ],
+      "bodyHeight": 596
+    },
+    {
+      "name": "processing",
+      "title": "OmniGrab",
+      "width": 440,
+      "scrollWidth": 440,
+      "fonts": [
+        {
+          "family": "Nunito Sans",
+          "status": "loaded"
+        }
+      ],
+      "images": [
+        {
+          "loaded": true
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Rescan",
+          "disabled": false
+        },
+        {
+          "text": "Download MP4",
+          "disabled": true
+        },
+        {
+          "text": "Copy URL",
+          "disabled": false
+        },
+        {
+          "text": "Cancel",
+          "disabled": false
+        }
+      ],
+      "bodyHeight": 871
+    },
+    {
+      "name": "saved",
+      "title": "OmniGrab",
+      "width": 440,
+      "scrollWidth": 440,
+      "fonts": [
+        {
+          "family": "Nunito Sans",
+          "status": "loaded"
+        }
+      ],
+      "images": [
+        {
+          "loaded": true
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Rescan",
+          "disabled": false
+        },
+        {
+          "text": "Download MP4",
+          "disabled": false
+        },
+        {
+          "text": "Copy URL",
+          "disabled": false
+        }
+      ],
+      "bodyHeight": 860
+    },
+    {
+      "name": "unavailable",
+      "title": "OmniGrab",
+      "width": 440,
+      "scrollWidth": 440,
+      "fonts": [
+        {
+          "family": "Nunito Sans",
+          "status": "loaded"
+        }
+      ],
+      "images": [
+        {
+          "loaded": true
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Rescan",
+          "disabled": false
+        },
+        {
+          "text": "Copy URL",
+          "disabled": false
+        }
+      ],
+      "bodyHeight": 604
+    },
+    {
+      "name": "mobile",
+      "title": "OmniGrab",
+      "width": 360,
+      "scrollWidth": 360,
+      "fonts": [
+        {
+          "family": "Nunito Sans",
+          "status": "loaded"
+        }
+      ],
+      "images": [
+        {
+          "loaded": true
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Rescan",
+          "disabled": false
+        },
+        {
+          "text": "Download MP4",
+          "disabled": false
+        },
+        {
+          "text": "Copy URL",
+          "disabled": false
+        },
+        {
+          "text": "Retry",
+          "disabled": false
+        }
+      ],
+      "bodyHeight": 992
+    }
+  ],
+  "errors": [],
+  "ok": true
+}

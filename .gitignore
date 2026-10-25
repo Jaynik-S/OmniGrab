@@ -2,6 +2,7 @@ node_modules/
 dist/
 .cache/
 .superpowers/
+.impeccable/questions/
 test-results/
 *.log
 rea-video-capture.json

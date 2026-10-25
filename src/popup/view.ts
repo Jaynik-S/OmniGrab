@@ -45,9 +45,9 @@ function renderItem(document: Document, item: MediaItem, title: string | undefin
   const heading = node(document, 'div', undefined, 'row');
   const protocol = item.type === 'hls' || item.type === 'dash' ? item.type.toUpperCase() : item.type === 'blob' ? 'Local blob' : item.type;
   heading.append(node(document, 'h3', item.title || title || 'Media source'), node(document, 'span', `${protocol} · ${item.status}`, 'status'));
-  article.append(heading, node(document, 'p', `Source protocol: ${protocol}`, 'muted'));
+  article.append(heading);
   const details = metadata(item);
-  if (details) article.append(node(document, 'p', details));
+  if (details) article.append(node(document, 'p', details, 'media-metadata'));
   const qualities = [...new Set(item.variants.filter(variant => variant.kind !== 'audio' && variant.kind !== 'subtitles')
     .map(variant => variant.height).filter((height): height is number => height !== undefined && Number.isFinite(height) && height > 0))]
     .sort((a, b) => b - a);
@@ -57,6 +57,7 @@ function renderItem(document: Document, item: MediaItem, title: string | undefin
   if (controls) article.append(controls);
   const source = node(document, 'details', undefined, 'source-details');
   source.append(node(document, 'summary', 'Source details'), node(document, 'p', item.url, 'url'));
+  source.append(node(document, 'p', `Source protocol: ${protocol}`, 'muted'));
   if (item.mime) source.append(node(document, 'p', `Response MIME: ${item.mime}`, 'muted'));
   if (item.bytes !== undefined) source.append(node(document, 'p', `Observed response bytes: ${item.bytes.toLocaleString()}`, 'muted'));
   const copyButton = node(document, 'button', 'Copy URL') as HTMLButtonElement;
@@ -91,22 +92,33 @@ export function renderSnapshot(target: HTMLElement, response: SnapshotResponse, 
   target.replaceChildren();
   if (response.error) target.append(node(document, 'p', response.error, 'error'));
   const context = node(document, 'section', undefined, 'context');
+  context.append(node(document, 'span', 'On this page', 'context-label'));
   context.append(node(document, 'h2', tab?.title || 'Active tab'));
-  if (tab?.url) context.append(node(document, 'p', tab.url, 'url'));
-  context.append(node(document, 'p', `Revision ${response.revision}${tab ? ` · Tab ${tab.id} · Generation ${tab.epoch}` : ''}`, 'muted'));
+  if (tab?.url) {
+    let host = tab.url;
+    try { host = new URL(tab.url).hostname || tab.url; } catch { /* Keep nonstandard tab URLs readable. */ }
+    context.append(node(document, 'p', host, 'url'));
+  }
   target.append(context);
   const items = Object.values(tab?.media ?? {}).sort((a, b) => b.lastSeen - a.lastSeen);
   const primary = items.filter(confirmedRemote);
   const secondary = items.filter(item => !confirmedRemote(item));
   if (!items.length) {
-    target.append(node(document, 'p', 'No media observed. Rescan after a player appears or starts loading.', 'empty'));
+    const empty = node(document, 'section', undefined, 'empty');
+    const mascot = document.createElement('img');
+    mascot.src = '../icons/omnigrab-128.png'; mascot.alt = ''; mascot.width = 120; mascot.height = 120;
+    empty.append(mascot, node(document, 'h2', 'Ready when you press play'),
+      node(document, 'p', 'Start a video on this page, then use Rescan to look for a source to save.'));
+    target.append(empty);
   } else if (!primary.length) {
     target.append(node(document, 'p', 'No confirmed remote source yet. Inspect the evidence below or rescan after playback starts.', 'empty'));
   }
   if (primary.length) {
     const section = node(document, 'section', undefined, 'primary-media');
     section.setAttribute('aria-label', 'Confirmed remote media');
-    section.append(node(document, 'h2', 'Confirmed media'));
+    const label = node(document, 'h2', 'Videos found');
+    label.append(node(document, 'span', String(primary.length), 'source-count'));
+    section.append(label);
     for (const item of primary) section.append(renderItem(document, item, tab?.title, copy, tab && view?.source(item, tab)));
     target.append(section);
   }
@@ -121,12 +133,15 @@ export function renderSnapshot(target: HTMLElement, response: SnapshotResponse, 
   if (view) target.append(view.jobs(tab));
   const diagnostics = node(document, 'details', undefined, 'diagnostics');
   diagnostics.append(node(document, 'summary', 'Diagnostics'));
+  diagnostics.append(node(document, 'p', `Revision ${response.revision}${tab ? ` · Tab ${tab.id} · Generation ${tab.epoch}` : ''}`, 'muted'));
+  if (tab?.url) diagnostics.append(node(document, 'p', tab.url, 'url'));
   diagnostics.append(node(document, 'p', `${items.length} sources · ${tab?.dropped ?? 0} observations/items dropped by retention limits`));
   for (const error of tab?.errors ?? []) diagnostics.append(node(document, 'p', error, 'error'));
   if (!tab?.errors.length) diagnostics.append(node(document, 'p', 'No recorded errors. Browser permissions, closed shadow roots and unexposed media buffers may limit discovery.', 'muted'));
   target.append(diagnostics);
   for (const [index, detail] of [...target.querySelectorAll('details')].entries()) {
-    detail.dataset.detailsKey = `${detail.closest<HTMLElement>('.media')?.dataset.sourceKey ?? ''}:${detail.className || detail.querySelector('summary')?.textContent || index}`;
+    const owner = detail.closest<HTMLElement>('.media')?.dataset.sourceKey ?? detail.closest<HTMLElement>('.download-job')?.dataset.jobId ?? '';
+    detail.dataset.detailsKey = `${owner}:${detail.className || detail.querySelector('summary')?.textContent || index}`;
     if (opened.includes(detail.dataset.detailsKey)) detail.open = true;
   }
   if (control) {

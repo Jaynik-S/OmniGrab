@@ -1,0 +1,253 @@
+{
+  "title": "OmniGrab: logo-led redesign",
+  "question": "Keep the soft video-sleeve direction, choose the task-strip alternative, or steer it. All options preserve your logo palette and existing download capabilities.",
+  "options": [
+    {
+      "id": "logo-sleeves",
+      "label": "Soft video sleeves",
+      "thesis": "A friendly, logo-led video utility with one clear path from source to saved file.",
+      "palette": [
+        "#f7f5e9",
+        "#ebf0d8",
+        "#9bb780",
+        "#47593f"
+      ],
+      "materials": [
+        "Warm cream",
+        "Sage surfaces",
+        "Olive outlines"
+      ],
+      "viewport": "OmniGrab and the supplied mascot above the current tab; rounded video sleeves with quality and a full-width Download MP4 action; a compact download queue below.",
+      "risk": "The mascot must stay small enough to leave the task in view.",
+      "raised": [
+        {
+          "from": "State rail",
+          "raise": "Pair every state color with a readable label."
+        },
+        {
+          "from": "Grid specimen",
+          "raise": "Use one alignment rhythm for media facts and controls."
+        },
+        {
+          "from": "Catalog sleeve",
+          "raise": "Keep one memorable brand moment and clear source names."
+        },
+        {
+          "from": "Reference setting",
+          "raise": "Keep technical annotations in readable details, separate from the main action."
+        }
+      ],
+      "comp": ".impeccable/mocks/decision/logo-sleeves.png",
+      "wireframe": {
+        "cols": 12,
+        "rows": 12,
+        "regions": [
+          {
+            "label": "OmniGrab + mascot",
+            "x": 0,
+            "y": 0,
+            "w": 12,
+            "h": 2,
+            "accent": true
+          },
+          {
+            "label": "Current tab",
+            "x": 0,
+            "y": 2,
+            "w": 12,
+            "h": 1
+          },
+          {
+            "label": "Video + duration",
+            "x": 0,
+            "y": 3,
+            "w": 12,
+            "h": 2
+          },
+          {
+            "label": "Filename / quality",
+            "x": 0,
+            "y": 5,
+            "w": 12,
+            "h": 2
+          },
+          {
+            "label": "Download MP4",
+            "x": 0,
+            "y": 7,
+            "w": 12,
+            "h": 1,
+            "accent": true
+          },
+          {
+            "label": "Downloads / progress",
+            "x": 0,
+            "y": 9,
+            "w": 12,
+            "h": 2
+          },
+          {
+            "label": "Details",
+            "x": 0,
+            "y": 11,
+            "w": 12,
+            "h": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "task-strip",
+      "label": "Step-by-step task strip",
+      "verdict": "competitive",
+      "lineage": "Everyday wayfinding",
+      "thesis": "A compact task-first popup that separates finding, choosing and saving.",
+      "palette": [
+        "#f7f5e9",
+        "#ebf0d8",
+        "#9bb780",
+        "#47593f"
+      ],
+      "materials": [
+        "Cream panels",
+        "Sage action strip",
+        "Clear labels"
+      ],
+      "viewport": "The mascot sits beside a three-step task strip; video choices and the download queue follow in a tightly aligned list.",
+      "case": "Strong task clarity, with a more procedural and less playful first impression.",
+      "risk": "A fixed task strip consumes space in a small popup.",
+      "hero": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-terminal-yellow-wayfinding-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-terminal-yellow-wayfinding.webp",
+      "comp": ".impeccable/mocks/decision/task-strip.png"
+    },
+    {
+      "id": "state-rail",
+      "label": "State rail",
+      "verdict": "declined",
+      "thesis": "A rail-led interface with formal state marks.",
+      "palette": [
+        "#f7f5e9",
+        "#ebf0d8",
+        "#9bb780",
+        "#47593f"
+      ],
+      "materials": [
+        "Logo palette retained"
+      ],
+      "viewport": "Applied only where the task stays recognizable.",
+      "case": "Tiny legends and a technical topology weaken the everyday downloading task.",
+      "risk": "Tiny legends and a technical topology weaken the everyday downloading task.",
+      "kept": "Readable labels accompany every state.",
+      "hero": "https://impeccable.style/worlds/cards/operate-c-emission-line-rail-hero.webp"
+    },
+    {
+      "id": "grid-specimen",
+      "label": "Grid specimen",
+      "verdict": "declined",
+      "thesis": "A strict, visible grid organizes every element.",
+      "palette": [
+        "#f7f5e9",
+        "#ebf0d8",
+        "#9bb780",
+        "#47593f"
+      ],
+      "materials": [
+        "Logo palette retained"
+      ],
+      "viewport": "Applied only where the task stays recognizable.",
+      "case": "Constructed type and visible grids compete with the supplied organic logo.",
+      "risk": "Constructed type and visible grids compete with the supplied organic logo.",
+      "kept": "Consistent alignment across facts and controls.",
+      "hero": "https://impeccable.style/worlds/cards/crouwel-grid-specimen-hero.webp"
+    },
+    {
+      "id": "catalog-sleeve",
+      "label": "Coded catalog",
+      "verdict": "declined",
+      "thesis": "A numbered catalog with a strong single identity.",
+      "palette": [
+        "#f7f5e9",
+        "#ebf0d8",
+        "#9bb780",
+        "#47593f"
+      ],
+      "materials": [
+        "Logo palette retained"
+      ],
+      "viewport": "Applied only where the task stays recognizable.",
+      "case": "Coded names obscure the video the user is saving.",
+      "risk": "Coded names obscure the video the user is saving.",
+      "kept": "One memorable brand moment, with source names kept clear.",
+      "hero": "https://impeccable.style/worlds/cards/brand-identity-canon-saville-catalog-sleeve-hero.webp"
+    },
+    {
+      "id": "character-catalog",
+      "label": "Mascot collection",
+      "verdict": "declined",
+      "thesis": "A playful gallery of mascot-led items.",
+      "palette": [
+        "#f7f5e9",
+        "#ebf0d8",
+        "#9bb780",
+        "#47593f"
+      ],
+      "materials": [
+        "Logo palette retained"
+      ],
+      "viewport": "Applied only where the task stays recognizable.",
+      "case": "Repeated characters could be mistaken for actual video artwork and crowd a narrow popup.",
+      "risk": "Repeated characters could be mistaken for actual video artwork and crowd a narrow popup.",
+      "kept": "Reserve the supplied mascot for the brand and helpful empty states.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-character-goods-catalog-hero.webp"
+    },
+    {
+      "id": "reference-setting",
+      "label": "Annotated reference",
+      "verdict": "declined",
+      "thesis": "A precise reference layout separates facts and annotations.",
+      "palette": [
+        "#f7f5e9",
+        "#ebf0d8",
+        "#9bb780",
+        "#47593f"
+      ],
+      "materials": [
+        "Logo palette retained"
+      ],
+      "viewport": "Applied only where the task stays recognizable.",
+      "case": "Small type and dense annotation suit diagnosis better than everyday downloading.",
+      "risk": "Small type and dense annotation suit diagnosis better than everyday downloading.",
+      "kept": "Technical evidence remains available in clear details.",
+      "hero": "https://impeccable.style/worlds/cards/rw-centre-rail-reference-setting-hero.webp"
+    }
+  ],
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  },
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "Familiar browser utility",
+    "thesis": "A conventional utility layout with OmniGrab branding.",
+    "palette": [
+      "#f7f5e9",
+      "#ebf0d8",
+      "#9bb780",
+      "#47593f"
+    ],
+    "materials": [
+      "Standard browser controls",
+      "Quiet panels"
+    ],
+    "viewport": "A compact header, source list and download queue.",
+    "risk": "Less distinctive beside other video utilities.",
+    "comp": ".impeccable/mocks/decision/canon.png"
+  },
+  "steer": true
+}

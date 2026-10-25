@@ -163,6 +163,7 @@ test('popup explains absent snapshots and storage errors', () => {
   const document = fixture('<main></main>');
   const target = document.querySelector<HTMLElement>('main')!;
   renderSnapshot(target, { revision: 0, error: 'Session storage unavailable' }, () => {});
-  assert.ok(target.textContent!.includes('No media observed'));
+  assert.match(target.querySelector('.empty')?.textContent ?? '', /Start a video.*Rescan/);
+  assert.equal(target.querySelector('.download-start'), null);
   assert.ok(target.textContent!.includes('Session storage unavailable'));
 });

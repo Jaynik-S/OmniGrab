@@ -95,6 +95,7 @@ try {
   };
   await openPopup();
   const capture = async name => {
+    await popup.evaluate(() => document.fonts.ready.then(() => true));
     const result = await popup.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false });
     const file = path.join(output, name + '.png'); await writeFile(file, Buffer.from(result.data, 'base64')); return file;
   };
@@ -117,19 +118,19 @@ try {
   const beforeFocus = await popup.evaluate(() => {
     const filename = document.querySelector('.download-controls input'); filename.value = 'Keep my caret.mp4'; filename.dispatchEvent(new Event('input', { bubbles: true }));
     filename.focus(); filename.setSelectionRange(3, 8, 'backward'); filename.dataset.nativeMarker = 'before';
-    return { revision: document.querySelector('.context').textContent, control: filename.dataset.control };
+    return { revision: document.querySelector('.diagnostics').textContent, control: filename.dataset.control };
   });
   await page.evaluate(() => { const video = document.createElement('video'); video.src = '/unconfirmed.m3u8'; document.body.append(video); });
   const focus = await until(() => popup.evaluate(() => {
     const filename = document.querySelector('.download-controls input'); const quality = document.querySelector('select');
-    return { active: document.activeElement === filename, value: filename.value, start: filename.selectionStart, end: filename.selectionEnd, direction: filename.selectionDirection, marker: filename.dataset.nativeMarker, quality: quality.options[quality.selectedIndex].textContent, revision: document.querySelector('.context').textContent };
+    return { active: document.activeElement === filename, value: filename.value, start: filename.selectionStart, end: filename.selectionEnd, direction: filename.selectionDirection, marker: filename.dataset.nativeMarker, quality: quality.options[quality.selectedIndex].textContent, revision: document.querySelector('.diagnostics').textContent };
   }), state => !state.marker && state.revision !== beforeFocus.revision, 'detection/job storage rerenders');
   assert.equal(focus.active, true); assert.equal(focus.value, 'Keep my caret.mp4'); assert.equal(focus.start, 3); assert.equal(focus.end, 8); assert.equal(focus.direction, 'backward'); assert.equal(focus.quality, '720p');
   await sleep(800);
   const widthScreenshot = await capture('00-width-check');
   const dimensions = await popup.evaluate(() => ({ client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth, body: document.body.getBoundingClientRect().width, overflow: [...document.querySelectorAll('*')].filter(e => e.getBoundingClientRect().right > document.documentElement.clientWidth).map(e=>({tag:e.tagName,cls:e.className,right:e.getBoundingClientRect().right,text:e.textContent?.slice(0,100)})) }));
   report.widthEvidence = { dimensions, screenshot: widthScreenshot };
-  assert.equal(dimensions.body, 460); assert.ok(dimensions.scroll <= dimensions.client, JSON.stringify(dimensions)); assert.equal(dimensions.overflow.length, 0, JSON.stringify(dimensions));
+  assert.equal(dimensions.body, 440); assert.ok(dimensions.scroll <= dimensions.client, JSON.stringify(dimensions)); assert.equal(dimensions.overflow.length, 0, JSON.stringify(dimensions));
   report.cases.push({ id: '720p-user-action-dedup-and-storage-focus-caret', job: streaming.jobs[0], jobFocus, focus, dimensions, screenshot: await capture('01-controls-progress') });
   await popup.evaluate(() => { setTimeout(() => window.close(), 50); return true; }); await sleep(150); popup.close();
   await openPopup();

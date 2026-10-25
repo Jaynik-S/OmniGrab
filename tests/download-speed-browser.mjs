@@ -56,7 +56,7 @@ try {
   for(const build of builds){
     const directory=path.join(output,build.name);await mkdir(directory,{recursive:true});
     current={...build,artifactBefore:await hashes(build.directory),requests:[],active:0,maximumActive:0,samples:[],timing:{}};report.cases.push(current);
-    assert.equal(Object.keys(current.artifactBefore).length,11);
+    assert.equal(Object.keys(current.artifactBefore).length,build.name === 'baseline' ? 11 : 17);
     const profile=await mkdtemp(path.join(tmpdir(),'owned-download-speed-'));current.profile=profile;
     await mkdir(path.join(profile,'Default'),{recursive:true});await writeFile(path.join(profile,'Default','Preferences'),JSON.stringify({download:{default_directory:directory,prompt_for_download:false,directory_upgrade:true}}));
     context=await chromium.launchPersistentContext(profile,{executablePath:process.env.CHROMIUM_PATH??'C:/Users/jay03/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe',headless:true,acceptDownloads:false,args:[`--disable-extensions-except=${build.directory}`,`--load-extension=${build.directory}`,'--remote-debugging-port=0']});

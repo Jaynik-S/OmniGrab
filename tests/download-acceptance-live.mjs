@@ -62,7 +62,7 @@ function observeNetwork(connection,scope) {
   connection.on('Network.loadingFinished', event => finished(event));connection.on('Network.loadingFailed', event => finished(event,event.errorText));
 }
 try {
-  report.artifactBefore = await hashes(path.resolve('dist')); assert.equal(Object.keys(report.artifactBefore).length, 11);
+  report.artifactBefore = await hashes(path.resolve('dist')); assert.equal(Object.keys(report.artifactBefore).length, 17);
   report.profile = await mkdtemp(path.join(tmpdir(), 'owned-cinejoy-download-'));
   await mkdir(path.join(report.profile, 'Default'), { recursive: true });
   await writeFile(path.join(report.profile, 'Default', 'Preferences'), JSON.stringify({ download: { default_directory: output, prompt_for_download: false, directory_upgrade: true } }));

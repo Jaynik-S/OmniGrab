@@ -170,23 +170,30 @@ export function downloadView(target: HTMLElement, options: DownloadViewOptions, 
       if (!jobs.length) section.append(element(document, 'p', 'No downloads yet.', 'muted'));
       for (const job of jobs) {
         const article = element(document, 'article', undefined, 'download-job'); article.dataset.jobId = job.id;
+        article.dataset.phase = job.phase;
         const sameSource = tab?.id === job.selection.tabId && tab.epoch === job.selection.epoch &&
           (tab.media[job.selection.mediaId]?.instance ?? 0) === job.selection.instance && !!tab.media[job.selection.mediaId];
         article.append(element(document, 'h3', job.selection.filename));
-        article.append(element(document, 'p', `${sameSource ? 'Current source' : 'Earlier / other source'} · Tab ${job.selection.tabId} · HLS to MP4${job.selection.height ? ` · ${job.selection.height}p` : ''}`, 'muted'));
+        article.append(element(document, 'p', `${sameSource ? 'Current source' : 'Earlier / other source'} · MP4${job.selection.height ? ` · ${job.selection.height}p` : ''}`, 'muted'));
+        const technical = element(document, 'details', undefined, 'job-details');
+        technical.append(element(document, 'summary', 'Download details'),
+          element(document, 'p', `Tab ${job.selection.tabId} · HLS to MP4${job.selection.height ? ` · ${job.selection.height}p` : ''}`, 'muted'));
         const phase = job.phase === 'processing' && job.progress.phase === 'finalizing' ? 'Finalizing MP4' : {
           queued: 'Queued', resolving: 'Resolving HLS', processing: 'Processing media', 'ready-to-save': 'Preparing browser save',
           saving: 'Saving in Chrome', complete: 'Saved by Chrome', canceled: 'Canceled', interrupted: 'Interrupted', failed: 'Failed',
         }[job.phase];
         article.append(element(document, 'p', phase, 'job-phase'));
         const p = job.progress;
-        article.append(element(document, 'p', `Media read: ${p.inputBytes.toLocaleString()} bytes · MP4 written: ${p.outputBytes.toLocaleString()} bytes · Total size unknown`, 'muted'));
+        technical.append(element(document, 'p', `Media read: ${p.inputBytes.toLocaleString()} bytes · MP4 written: ${p.outputBytes.toLocaleString()} bytes · Total size unknown`, 'muted'));
         if (p.seconds !== undefined && p.duration !== undefined && p.duration > 0) {
           const progress = element(document, 'progress') as HTMLProgressElement;
           progress.max = p.duration; progress.value = Math.min(p.seconds, p.duration); progress.setAttribute('aria-label', 'Media time processed');
           article.append(progress);
         }
-        if (job.failure) article.append(element(document, 'p', `${job.failure.code}: ${job.failure.message}`, 'error'));
+        if (job.failure) {
+          article.append(element(document, 'p', job.failure.message, 'error'));
+          technical.append(element(document, 'p', job.failure.code, 'muted'));
+        }
         if (job.phase === 'complete') article.append(element(document, 'p', 'Chrome completed the file save.', 'muted'));
         const blocked = ['download-save-uncertain', 'download-cleanup-pending'].includes(job.failure?.code ?? '');
         const cancel = active.has(job.phase) && options.cancel;
@@ -202,6 +209,7 @@ export function downloadView(target: HTMLElement, options: DownloadViewOptions, 
           });
           article.append(button, feedback(document, state, key));
         }
+        article.append(technical);
         section.append(article);
       }
       return section;

@@ -22,3 +22,13 @@ is separate from the unmodified library source.
 The dependency also installs TypeScript declaration packages
 `@types/dom-webcodecs` and `@types/dom-mediacapture-transform`; these declarations
 are build-time types and are not executable browser bundle code.
+
+## Nunito Sans
+
+The popup uses an unmodified, locally hosted Latin WOFF2 subset of Nunito Sans, Copyright 2016 The Nunito Sans Project Authors, under the SIL Open Font License 1.1. The complete license is included at `licenses/nunito-sans-OFL.txt`.
+
+Font source: https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400..800&display=swap
+
+Upstream license: https://github.com/google/fonts/blob/main/ofl/nunitosans/OFL.txt
+
+No font requests are made at runtime.

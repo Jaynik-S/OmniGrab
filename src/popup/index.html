@@ -3,17 +3,23 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Media detection</title>
+    <title>OmniGrab</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <header>
-      <div><p class="eyebrow">Detection lab</p><h1>Media evidence</h1></div>
-      <button id="rescan" type="button" disabled>Rescan</button>
+    <header class="app-header">
+      <div class="brand">
+        <img src="../icons/omnigrab-128.png" width="52" height="52" alt="" class="brand-mascot">
+        <div><h1>OmniGrab</h1><p class="brand-description">Video downloader</p></div>
+      </div>
+      <button id="rescan" type="button" disabled aria-label="Rescan current page">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M6.1 7a7 7 0 0 1 11.6-1L20 9M4 15l2.3 3A7 7 0 0 0 17.9 17"/></svg>
+        Rescan
+      </button>
     </header>
     <p id="status" class="muted" role="status" aria-live="polite"></p>
-    <main id="results" aria-label="Active tab media detections"><p>Reading active tab…</p></main>
-    <footer>Confirmed, unprotected HLS VOD can be saved as MP4 with its original video and audio.</footer>
+    <main id="results" aria-label="Videos on this page"><div class="loading-state"><span class="skeleton-line" aria-hidden="true"></span><p>Looking for videos on this page…</p></div></main>
+    <footer>Supported HLS videos save as MP4 with original video and audio.</footer>
     <script src="index.js" type="module"></script>
   </body>
 </html>

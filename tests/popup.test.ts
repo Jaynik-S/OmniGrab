@@ -229,6 +229,39 @@ function job(phase: DownloadJob['phase'] = 'processing'): DownloadJob {
     progress: { phase: 'processing', inputBytes: 512, outputBytes: 768, seconds: 1, duration: 12 } };
 }
 
+test('keeps raw job telemetry in collapsed details while preserving visible source, quality and actions', () => {
+  const { target } = render([]);
+  const record = job();
+  renderSnapshot(target, { revision: 1 }, () => {}, { jobs: [record], start: async () => { throw Error('unused'); }, cancel: async () => ({ ok: true, job: record }) });
+  const article = target.querySelector('.download-job')!;
+  const visible = [...article.children].filter(child => child.tagName !== 'DETAILS').map(child => child.textContent).join(' ');
+  assert.doesNotMatch(visible, /Tab 7|Media read:|MP4 written:|Total size unknown/);
+  assert.match(visible, /Earlier \/ other source.*720p/);
+  assert.match(visible, /Processing media/);
+  assert.ok(article.querySelector('.download-cancel'));
+  assert.ok(article.querySelector('progress'));
+  const details = article.querySelector<HTMLDetailsElement>('.job-details')!;
+  assert.ok(details);
+  assert.equal(!!details.open, false);
+  assert.match(details.textContent!, /Tab 7/);
+  assert.match(details.textContent!, /512 bytes.*768 bytes.*Total size unknown/);
+});
+
+test('keeps technical failure details open only for their own download after a refresh', () => {
+  const { target } = render([]);
+  const first = job('failed'); first.failure = { code: 'download-storage-quota', message: 'Free some storage, then retry.' };
+  const second = { ...first, id: 'job-b', requestId: 'request-b' };
+  const options = { jobs: [first, second], start: async () => { throw Error('unused'); } };
+  const refresh = () => renderSnapshot(target, { revision: 1 }, () => {}, options);
+  refresh();
+  target.querySelector('[data-job-id="job-a"] .job-details')!.setAttribute('open', '');
+  refresh();
+  assert.equal(!!target.querySelector<HTMLDetailsElement>('[data-job-id="job-a"] .job-details')!.open, true);
+  assert.equal(!!target.querySelector<HTMLDetailsElement>('[data-job-id="job-b"] .job-details')!.open, false);
+  assert.equal(target.querySelector('.download-job .error')?.textContent, 'Free some storage, then retry.');
+  assert.match(target.querySelector('.job-details')!.textContent!, /download-storage-quota/);
+});
+
 test('keeps all jobs separate from a navigated source and renders honest phases and media bytes', () => {
   const source = item('https://cdn.test/new.m3u8', { protected: false, bytes: 216 });
   const { document, target } = render([source]);
