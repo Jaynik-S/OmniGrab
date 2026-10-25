@@ -1,12 +1,14 @@
 import assert from 'node:assert/strict';
 import test, { before } from 'node:test';
-import { writeFileSync, statSync } from 'node:fs';
+import { writeFileSync, statSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fixtureFetch, fixturePlan, fixtures, MemoryOutput, mixedFixturePlan, scratch } from './download-fixtures.ts';
+import { EncodedPacketSink } from 'mediabunny';
+import { prepareSegmentValidation } from '../src/downloads/remux-validation.ts';
 import { remuxToMp4 } from '../src/downloads/remux.ts';
 import { RemuxSourceAdapter } from '../src/downloads/remux-source.ts';
-import type { RemuxProgress } from '../src/downloads/model.ts';
+import type { RemuxProgress, ResourceFetch } from '../src/downloads/model.ts';
 
 before(fixtures);
 for (const [name, external] of [['mux720', false], ['ts720', false], ['video1080', true]] as const) {
@@ -47,6 +49,7 @@ for (const kind of ['video', 'audio', 'ts-video'] as const) {
     const output = new MemoryOutput();
     await assert.rejects(remuxToMp4(mixedFixturePlan(kind), { fetcher: fixtureFetch, output, signal: new AbortController().signal }), /configuration|dimensions|change/i);
     assert.ok(output.closed);
+    assert.equal(output.flushed, false);
   });
 }
 
@@ -56,7 +59,7 @@ test('already aborted jobs close output without fetching media', async () => {
   assert.ok(output.closed);
 });
 
-test('reports actual input bytes while later-segment preflight is pending and abort closes the unwritten output', { timeout: 10_000 }, async () => {
+test('earlier validated segments reach MP4 output while the final fragment body is blocked', { timeout: 10_000 }, async () => {
   const controller = new AbortController(); const output = new MemoryOutput();
   const progress: RemuxProgress[] = [];
   let received = 0; let beforeLaterSegment = 0; let transportAborted = false;
@@ -66,7 +69,7 @@ test('reports actual input bytes while later-segment preflight is pending and ab
     onProgress: value => progress.push(value),
     fetcher: async (input, init) => {
       const response = await fixtureFetch(input, init);
-      if (!String(input).endsWith('/part1.ts')) {
+      if (!String(input).endsWith('/part2.ts')) {
         received += Number(response.headers.get('Content-Length')); return response;
       }
       beforeLaterSegment = received;
@@ -91,12 +94,13 @@ test('reports actual input bytes while later-segment preflight is pending and ab
     assert.equal(progress.at(-1)!.inputBytes, received, 'report bytes actually consumed, including the incomplete response');
     assert.ok(progress.at(-1)!.inputBytes > beforeLaterSegment);
     assert.equal(progress.at(-1)!.phase, 'processing');
-    assert.equal(progress.at(-1)!.outputBytes, 0);
-    assert.equal(progress.at(-1)!.seconds, 0);
-    assert.equal(output.bytes.length, 0); assert.equal(output.closed, false);
+    for (let n = 0; n < 200 && !progress.some(value => value.outputBytes > 0 && (value.seconds ?? 0) > 0); n++)
+      await new Promise(resolve => setTimeout(resolve, 5));
+    assert.ok(progress.some(value => value.outputBytes > 0 && (value.seconds ?? 0) > 0), 'earlier validated segments must reach MP4 output');
+    assert.ok(output.bytes.length > 0); assert.equal(output.closed, false);
   } finally { controller.abort(); await rejected; }
   assert.equal(transportAborted, true); assert.equal(output.closed, true);
-  assert.equal(output.flushed, false); assert.equal(output.bytes.length, 0);
+  assert.equal(output.flushed, false);
 });
 
 test('abort during an awaited disk write stops processing and closes output', async () => {
@@ -282,4 +286,194 @@ test('output quota failure survives remux cancellation and closes the writer', a
   const output = new OpfsOutput({ write() { throw new DOMException('private media URL', 'QuotaExceededError'); }, flush() {}, close() { closed++; } });
   await assert.rejects(remuxToMp4(fixturePlan(), { output, fetcher: fixtureFetch, signal: new AbortController().signal }), { message: 'download-storage-quota-exceeded' });
   assert.equal(closed, 1);
+});
+
+for (const failure of ['abort', 'disk-error'] as const) {
+  test(`${failure} cleanup awaits asynchronous physical cancellation before closing the writer`, { timeout: 10_000 }, async () => {
+    const controller = new AbortController(); const output = new MemoryOutput();
+    let release!: () => void; let cancellationStarted!: () => void; let blocked!: () => void;
+    const cancellation = new Promise<void>(resolve => { release = resolve; });
+    const canceling = new Promise<void>(resolve => { cancellationStarted = resolve; });
+    const pulling = new Promise<void>(resolve => { blocked = resolve; });
+    if (failure === 'disk-error') output.write = async () => { throw new Error('Disk failed'); };
+    let finished = false;
+    const pending = remuxToMp4(fixturePlan('ts720'), { output, signal: controller.signal,
+      fetcher: async (input, init) => {
+        const response = await fixtureFetch(input, init);
+        if (!String(input).endsWith('/part2.ts')) return response;
+        return new Response(new ReadableStream<Uint8Array>({
+          pull() { blocked(); return new Promise(() => {}); },
+          cancel() { cancellationStarted(); return cancellation; },
+        }, { highWaterMark: 0 }), { status: response.status, headers: response.headers });
+      } });
+    const rejected = assert.rejects(pending, failure === 'abort' ? { name: 'AbortError' } : /Disk failed/)
+      .then(() => { finished = true; });
+    try {
+      await pulling;
+      if (failure === 'abort') controller.abort();
+      await canceling;
+      await new Promise(resolve => setTimeout(resolve, 20));
+      assert.equal(output.closed, false, 'writer must stay owned until physical cancellation settles');
+      assert.equal(finished, false, 'job resources cannot be reused before cancellation settles');
+    } finally { release(); await rejected; }
+    assert.equal(output.closed, true);
+    assert.equal(output.flushed, false);
+  });
+}
+
+async function setup(plan = fixturePlan('ts720'), fetcher: ResourceFetch = fixtureFetch, signal = new AbortController().signal) {
+  const source = new RemuxSourceAdapter(plan, fetcher, signal, () => {}, { prefetch: false });
+  const input = source.open(plan.selection.videoUrl);
+  const audioInput = plan.selection.audioUrl ? source.open(plan.selection.audioUrl) : input;
+  const video = (await input.getPrimaryVideoTrack())!, audio = (await audioInput.getPrimaryAudioTrack())!;
+  return { source, input, video, audio };
+}
+
+test('probe Inputs bypass only their own gate; concurrent ordinary Inputs remain gated and rejection propagates', async () => {
+  const { source } = await setup(fixturePlan());
+  let unblock!: () => void; let gated = 0;
+  const block = new Promise<void>(resolve => { unblock = resolve; });
+  source.setSegmentGate(async url => { assert.match(url, /part0.m4s$/); gated++; await block; throw new Error('Segment rejected'); });
+  try {
+    const main = source.open('https://fixture.test/mux720/list.m3u8');
+    const pending = main.getPrimaryVideoTrack();
+    const rejected = assert.rejects(pending, /Segment rejected/);
+    const probe = source.open('https://fixture.test/mux720/list.m3u8', fixturePlan().manifests[0].text);
+    assert.ok(await probe.getPrimaryVideoTrack(), 'probe must not recursively wait for its own gate');
+    const second = source.open('https://fixture.test/mux720/list.m3u8');
+    const secondRejected = assert.rejects(second.getPrimaryVideoTrack(), /Segment rejected/);
+    for (let n = 0; n < 100 && gated < 2; n++) await new Promise(resolve => setTimeout(resolve, 2));
+    assert.equal(gated, 2, 'ordinary Inputs must stay gated while a probe is alive');
+    unblock(); await Promise.all([rejected, secondRejected]);
+  } finally { unblock(); source.dispose(); await source.settled(); }
+});
+
+test('initial cached child is validated before preparation resolves and each later identity is probed once', async () => {
+  const { source, input, video, audio } = await setup();
+  const opened: string[] = [];
+  const open = source.open.bind(source);
+  source.open = (url, text) => { if (text) opened.push(text); return open(url, text); };
+  try {
+    await prepareSegmentValidation(fixturePlan('ts720'), source, video, audio);
+    assert.equal(opened.length, 1, 'cached initial child must be explicitly probed');
+    assert.match(opened[0], /part0.ts/);
+    for (const track of [video, audio]) {
+      const sink = new EncodedPacketSink(track);
+      let packet = await sink.getFirstPacket();
+      while (packet) packet = await sink.getNextPacket(packet);
+    }
+    assert.equal(opened.length, 3, 'shared video/audio identities must not be probed twice');
+    source.release(input);
+  } finally { source.dispose(); await source.settled(); }
+});
+
+test('separate audio and video initial children are both validated', async () => {
+  const plan = fixturePlan('video1080', true);
+  const { source, video, audio } = await setup(plan);
+  const opened: string[] = []; const open = source.open.bind(source);
+  source.open = (url, text) => { if (text) opened.push(url); return open(url, text); };
+  try {
+    await prepareSegmentValidation(plan, source, video, audio);
+    assert.deepEqual(opened, [plan.selection.videoUrl, plan.selection.audioUrl]);
+  } finally { source.dispose(); await source.settled(); }
+});
+
+test('unique changed MAPs keep lazy validation and still reject actual later configuration changes', async () => {
+  const plan = mixedFixturePlan('video'); const { source, video, audio } = await setup(plan);
+  let probes = 0; const open = source.open.bind(source);
+  source.open = (url, text) => { if (text) probes++; return open(url, text); };
+  try {
+    await prepareSegmentValidation(plan, source, video, audio);
+    assert.equal(probes, 2);
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const track = attempt ? (await source.open(plan.selection.videoUrl).getPrimaryVideoTrack())! : video;
+      const sink = new EncodedPacketSink(track);
+      await assert.rejects(async () => { let packet = await sink.getFirstPacket(); while (packet) packet = await sink.getNextPacket(packet); }, /configuration|dimensions/);
+      assert.equal(probes, 3, 'a rejected identity must reuse its rejected validation promise');
+    }
+  } finally { source.dispose(); await source.settled(); }
+});
+
+for (const kind of ['repeated-url', 'byte-range', 'map-collision'] as const) {
+  test(`${kind} ambiguity deliberately validates eagerly`, async () => {
+    const plan = fixturePlan(kind === 'map-collision' ? 'mux720' : 'ts720');
+    if (kind === 'repeated-url') plan.manifests[0].text = plan.manifests[0].text.replace(/part[12].ts/g, 'part0.ts');
+    let fetcher = fixtureFetch;
+    if (kind === 'byte-range') {
+      // Different subranges of the same object cannot be selected by a URL-only gate.
+      const part = readFileSync(resolve(scratch, 'ts720/part0.ts'));
+      const joined = new Uint8Array(part.length * 3);
+      for (let n = 0; n < 3; n++) joined.set(part, n * part.length);
+      let index = 0;
+      plan.manifests[0].text = plan.manifests[0].text.replace(/(#EXTINF:[^\n]*\n)https:[^\n]*part\d.ts/g,
+        (_, duration) => `${duration}#EXT-X-BYTERANGE:${part.length}@${index++ * part.length}\nhttps://fixture.test/ts720/part0.ts`);
+      fetcher = async (_input, options) => {
+        const range = /^bytes=(\d+)-(\d+)$/.exec(new Headers(options?.headers).get('Range')!)!;
+        const start = Number(range[1]), end = Math.min(Number(range[2]), joined.length - 1);
+        return new Response(joined.subarray(start, end + 1), { status: 206, headers: {
+          'Content-Length': String(end - start + 1), 'Content-Range': `bytes ${start}-${end}/${joined.length}`,
+        } });
+      };
+    }
+    if (kind === 'map-collision') {
+      // An initialization URL also named as media cannot safely be a media-only gate.
+      plan.manifests[0].text = plan.manifests[0].text.replace('mux720/part2.m4s', 'mux720/init.mp4');
+    }
+    const { source, video, audio } = await setup(plan, fetcher);
+    const opened: string[] = []; const open = source.open.bind(source);
+    source.open = (url, text) => { if (text) opened.push(text); return open(url, text); };
+    try {
+      await prepareSegmentValidation(plan, source, video, audio);
+      assert.equal(opened.length, 3, 'ambiguous playlist must finish the eager preflight');
+    } finally { source.dispose(); await source.settled(); }
+  });
+}
+
+test('the same MAP URL with different byte-range identities deliberately validates eagerly', async () => {
+  const plan = fixturePlan(); const manifest = plan.manifests[0];
+  const init = readFileSync(resolve(scratch, 'mux720/init.mp4'));
+  const joined = new Uint8Array(init.length * 2); joined.set(init); joined.set(init, init.length);
+  const map = `#EXT-X-MAP:URI="https://fixture.test/mux720/init.mp4",BYTERANGE="${init.length}@`;
+  manifest.text = manifest.text.replace(/#EXT-X-MAP:[^\n]*/, map + '0"')
+    .replace(/(#EXTINF:[^\n]*\nhttps:[^\n]*part1.m4s)/, map + init.length + '"\n$1');
+  const { source, video, audio } = await setup(plan, async (input, options) => {
+    if (!String(input).endsWith('/init.mp4')) return fixtureFetch(input, options);
+    const range = /^bytes=(\d+)-(\d+)$/.exec(new Headers(options?.headers).get('Range')!)!;
+    const start = Number(range[1]), end = Math.min(Number(range[2]), joined.length - 1);
+    return new Response(joined.subarray(start, end + 1), { status: 206, headers: {
+      'Content-Length': String(end - start + 1), 'Content-Range': `bytes ${start}-${end}/${joined.length}`,
+    } });
+  });
+  const opened: string[] = []; const open = source.open.bind(source);
+  source.open = (url, text) => { if (text) opened.push(text); return open(url, text); };
+  try {
+    await prepareSegmentValidation(plan, source, video, audio);
+    assert.equal(opened.length, 3, 'every configuration must be checked before ambiguous MAP consumption');
+    assert.ok(opened[0].includes(`BYTERANGE="${init.length}@0"`));
+    assert.ok(opened[1].includes(`BYTERANGE="${init.length}@${init.length}"`));
+  } finally { source.dispose(); await source.settled(); }
+});
+
+
+test('abort during a gated later probe rejects without recursive waits and settles every read', { timeout: 10_000 }, async () => {
+  const plan = fixturePlan('ts720'); const controller = new AbortController();
+  let blocked!: () => void;
+  const pulling = new Promise<void>(resolve => { blocked = resolve; });
+  const { source, video, audio } = await setup(plan, async (input, options) => {
+    if (!String(input).endsWith('/part1.ts')) return fixtureFetch(input, options);
+    return new Response(new ReadableStream<Uint8Array>({ pull() { blocked(); return new Promise(() => {}); } },
+      { highWaterMark: 0 }), { status: 206, headers: { 'Content-Length': '188', 'Content-Range': 'bytes 0-187/188' } });
+  }, controller.signal);
+  let probes = 0; const open = source.open.bind(source);
+  source.open = (url, text) => { if (text) probes++; return open(url, text); };
+  try {
+    await prepareSegmentValidation(plan, source, video, audio);
+    const sink = new EncodedPacketSink(video);
+    const pending = (async () => { let packet = await sink.getFirstPacket(); while (packet) packet = await sink.getNextPacket(packet); })();
+    const rejected = assert.rejects(pending);
+    await pulling;
+    assert.equal(probes, 2, 'later media must be inside exactly one probe');
+    controller.abort(); await rejected;
+  } finally { controller.abort(); source.dispose(); await source.settled(); }
+  assert.equal(source.metrics.active, 0); assert.equal(source.metrics.inFlightBytes, 0); assert.equal(source.metrics.cachedBytes, 0);
 });
