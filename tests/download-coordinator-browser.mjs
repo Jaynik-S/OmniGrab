@@ -11,6 +11,8 @@ import { fixtures,scratch } from './download-fixtures.ts';
 const fixRound1=process.argv.includes('--fix-round1');
 const storageAudit=process.argv.includes('--storage-audit');
 const mediaFailures=process.argv.includes('--media-failures');
+const initialRange=`bytes=0-${4*1024*1024-1}`;
+const selectedPaths=new Set(['/mux720/init.mp4','/mux720/part0.m4s','/mux720/part1.m4s','/mux720/part2.m4s']);
 const output=path.resolve('.cache/download-coordinator',`native-${Date.now()}-${process.pid}`);await mkdir(output,{recursive:true});
 if(!existsSync(path.join(scratch,'mux720','list.m3u8')))fixtures();
 const extension=path.join(output,'extension');await cp(path.resolve('dist'),extension,{recursive:true});
@@ -55,12 +57,13 @@ try{
  context=await chromium.launchPersistentContext(profile,{executablePath:process.env.CHROMIUM_PATH??'C:/Users/jay03/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe',acceptDownloads:false,headless:true,args:[`--disable-extensions-except=${extension}`,`--load-extension=${extension}`,'--remote-debugging-port=0']});
  const worker=context.serviceWorkers()[0]??await context.waitForEvent('serviceworker');const id=new URL(worker.url()).hostname;report.extensionId=id;report.browser=context.browser()?.version();
  const port=Number((await readFile(path.join(profile,'DevToolsActivePort'),'utf8')).split('\n')[0]);assert.notEqual(port,9222);report.debuggingPort=port;
+ report.pid=process.pid;await writeFile(path.join(output,'live.json'),JSON.stringify({pid:process.pid,profile,port,output}));console.log(JSON.stringify({started:true,pid:process.pid,profile,port,output}));
  const monitor=context.pages()[0]; const cdp=await context.newCDPSession(monitor);await cdp.send('Browser.setDownloadBehavior',{behavior:'default'});
  const page=await context.newPage();await page.goto(origin+'/watch');
  const bootstrap=await connectTarget(port,worker.url());await bootstrap.evaluate(()=>chrome.action.openPopup());bootstrap.close();let popup=await connectTarget(port,`chrome-extension://${id}/popup/index.html`);
  const tabId=await popup.evaluate(async url=>(await chrome.tabs.query({})).find(t=>t.url===url).id,page.url());
  const openPopup=async()=>{const wake=await context.newPage();await wake.goto('chrome-extension://'+id+'/popup/index.html');await wake.close();const boot=await connectTarget(port,worker.url());await boot.evaluate(()=>chrome.action.openPopup());boot.close();popup=await connectTarget(port,'chrome-extension://'+id+'/popup/index.html');};
- const call=async message=>{if(popup.closed)await openPopup();return popup.evaluate(m=>chrome.runtime.sendMessage(m),message);};
+ const call=async message=>{for(;;){if(popup.closed)await openPopup();try{return await popup.evaluate(m=>chrome.runtime.sendMessage(m),message);}catch(error){if(!/DevTools command timeout|DevTools target closed/.test(String(error)))throw error;(report.observationTimeouts??=[]).push({at:Date.now(),type:message.type,error:String(error)});await writeFile(path.join(output,'evidence.json'),JSON.stringify(report,null,2));popup.close();await openPopup();}}};
  const detected=await until(()=>call({type:'snapshot',tabId}),r=>Object.values(r.tab?.media??{}).some(m=>m.type==='hls'&&m.status==='confirmed'),'actual detector confirmed');
  const media=Object.values(detected.tab.media).find(m=>m.url===origin+'/master.m3u8'&&m.status==='confirmed');assert.ok(media,JSON.stringify(detected));
  const start=async(requestId)=>{const r=await call({type:'download-start',request:{requestId,tabId,epoch:detected.tab.epoch,mediaId:media.id,instance:media.instance??0,filename:requestId+'.mp4'}});assert.equal(r.ok,true,JSON.stringify(r));return r.job;};
@@ -99,17 +102,18 @@ try{
    const before=report.requests.length;const job=await start('native-storage-'+mode);const result=await done(job.id);const failed=result.jobs.find(j=>j.id===job.id);
    assert.equal(failed.phase,'failed',JSON.stringify(failed));assert.equal(failed.failure.code,'download-storage-'+(mode==='unavailable'?'estimate-unavailable':'insufficient'));
    assert.equal(failed.attachment,undefined);assert.equal(failed.tempFile,undefined);assert.equal(failed.browserDownloadId,undefined);assert.deepEqual(await files(),[]);assert.equal((await hostState()).status,undefined);
-   const mediaRequests=report.requests.slice(before).filter(r=>r.range==='bytes=0-262143').length;assert.equal(mediaRequests,0);
+   const mediaRequests=report.requests.slice(before).filter(r=>r.range).length;assert.equal(mediaRequests,0);
    report.cases.push({id:'storage-preflight-'+mode,job:failed,mediaRequests,files:await files()});
   }
   await host.evaluate(()=>{navigator.storage.estimate=__originalEstimate;});
   const unknownPage=await context.newPage();await unknownPage.goto(origin+'/unknown-watch');
+  await openPopup();
   const unknownTab=await popup.evaluate(async url=>(await chrome.tabs.query({})).find(t=>t.url===url).id,unknownPage.url());
   const unknownSource=await until(()=>call({type:'snapshot',tabId:unknownTab}),r=>Object.values(r.tab?.media??{}).some(m=>m.url===origin+'/mux720/list.m3u8'&&m.status==='confirmed'),'media-only source');
   const unknownMedia=Object.values(unknownSource.tab.media).find(m=>m.url===origin+'/mux720/list.m3u8'&&m.status==='confirmed');
   const beforeUnknown=report.requests.length;const unknown=await call({type:'download-start',request:{requestId:'native-storage-unknown-budget',tabId:unknownTab,epoch:unknownSource.tab.epoch,mediaId:unknownMedia.id,instance:unknownMedia.instance,filename:'unknown-budget.mp4'}});assert.equal(unknown.ok,true,JSON.stringify(unknown));
   const unknownResult=(await done(unknown.job.id)).jobs.find(j=>j.id===unknown.job.id);assert.equal(unknownResult.phase,'failed');assert.equal(unknownResult.failure.code,'download-storage-budget-unknown');assert.equal(unknownResult.attachment,undefined);assert.equal(unknownResult.tempFile,undefined);assert.deepEqual(await files(),[]);
-  const unknownRequests=report.requests.slice(beforeUnknown).filter(r=>r.range==='bytes=0-262143').length;assert.equal(unknownRequests,0);report.cases.push({id:'media-only-unknown-budget',job:unknownResult,mediaRequests:unknownRequests});await unknownPage.close();
+  const unknownRequests=report.requests.slice(beforeUnknown).filter(r=>r.range).length;assert.equal(unknownRequests,0);report.cases.push({id:'media-only-unknown-budget',job:unknownResult,mediaRequests:unknownRequests});await unknownPage.close();
   for(const fault of ['quota','write','directory']) {
    await host.evaluate(fault=>{globalThis.Worker=class extends __nativeWorker{constructor(_url,options){super(chrome.runtime.getURL('fault-'+fault+'.js'),options);}};},fault);
    const job=await start('native-storage-'+fault);const result=await done(job.id);const failed=result.jobs.find(j=>j.id===job.id);
@@ -134,7 +138,7 @@ try{
    const version=await until(async()=>[...versions.values()].find(v=>v.scriptURL===worker.url()&&v.runningStatus==='running'),Boolean,'prepared running SW');
    await cdp.send('ServiceWorker.stopWorker',{versionId:version.versionId});await until(async()=>versions.get(version.versionId),v=>v?.runningStatus==='stopped','prepared actual SW stopped');const stopped={...versions.get(version.versionId)};
    assert.equal((await hostState()).status.started,false);
-   const recovered=await done(job.id);const interrupted=recovered.jobs.find(j=>j.id===job.id);assert.equal(interrupted.phase,'interrupted',JSON.stringify(recovered));assert.equal(report.requests.slice(before).filter(r=>r.range==='bytes=0-262143').length,0);
+   const recovered=await done(job.id);const interrupted=recovered.jobs.find(j=>j.id===job.id);assert.equal(interrupted.phase,'interrupted',JSON.stringify(recovered));assert.equal(report.requests.slice(before).filter(r=>r.range).length,0);
    if(boundary==='after-attach') {
     assert.equal(interrupted.failure.code,'download-bootstrap-interrupted');assert.equal(interrupted.attachment,undefined);assert.equal((await hostState()).status,undefined);assert.deepEqual(await files(),[]);
     report.cases.push({id:'actual-sw-stop-after-attach-before-run',prepared,stopped,after:interrupted,mediaRequests:0});
@@ -162,12 +166,13 @@ try{
  // A new control message explicitly wakes the coordinator. Existing worker is adopted.
  await openPopup();
  const after=await done(second.id);assert.equal(after.jobs.find(j=>j.id===second.id).phase,'complete',JSON.stringify(after));
- const physical=report.requests.slice(before).filter(r=>r.range==='bytes=0-262143'&&r.status===206);assert.equal(physical.length,4);assert.equal(new Set(physical.map(r=>r.path)).size,4);
+ const physical=report.requests.slice(before).filter(r=>r.range&&r.status===206);assert.equal(physical.length,4);assert.deepEqual(new Set(physical.map(r=>r.path)),selectedPaths);
+ for(const request of physical){assert.equal(request.range,initialRange);assert.equal(request.bytes,readFileSync(path.join(scratch,request.path)).length);assert.equal(request.incomplete,false);}
  const saves=await popup.evaluate(async()=>chrome.downloads.search({}));assert.equal(saves.filter(s=>s.byExtensionId===id).length,2);
  report.cases.push({id:'popup-closure-real-sw-stop-wake-no-replay',jobId:second.id,stopped,whileStreaming,during,physicalRequests:physical.length,browserSaves:saves.length});console.log('Actual popup closure + SW stop/continued streaming + wake/no duplicate passed');
  const third=await start('native-cancel');await until(hostState,s=>s.status?.jobId===third.id&&s.status.phase==='processing'&&s.metrics.active>0,'cancel active stream');
  const cancelAt=Date.now();const canceled=await call({type:'download-cancel',jobId:third.id});assert.equal(canceled.ok,true,JSON.stringify(canceled));assert.equal(canceled.job.phase,'canceled');assert.equal(canceled.job.attachment,undefined);assert.deepEqual(await files(),[]);assert.equal((await hostState()).status,undefined);
- const interruptedSocket=report.requests.find(r=>r.start<cancelAt&&r.closed>=cancelAt&&r.incomplete&&r.range==='bytes=0-262143');assert.ok(interruptedSocket);report.cases.push({id:'native-cancel-physical-socket-opfs-cleanup',job:canceled.job,cancelAt,interruptedSocket});console.log('Actual worker cancellation + physical socket + OPFS cleanup passed');
+ const interruptedSocket=report.requests.find(r=>r.start<cancelAt&&r.closed>=cancelAt&&r.incomplete&&r.range===initialRange&&selectedPaths.has(r.path));assert.ok(interruptedSocket);report.cases.push({id:'native-cancel-physical-socket-opfs-cleanup',job:canceled.job,cancelAt,interruptedSocket});console.log('Actual worker cancellation + physical socket + OPFS cleanup passed');
 
  slow=false;pageOnly=false;broken=true;const bad=await start('native-missing-audio');const badState=await done(bad.id);assert.equal(badState.jobs.find(j=>j.id===bad.id).phase,'failed');assert.deepEqual(await files(),[]);broken=false;report.cases.push({id:'missing-audio-real-worker-error-cleanup',job:badState.jobs.find(j=>j.id===bad.id)});
  slow=true;pageOnly=true;const lost=await start('native-worker-lost');await until(hostState,s=>s.status?.jobId===lost.id&&s.status.phase==='processing'&&s.metrics.active>0,'worker before termination');const lostAt=Date.now();await host.evaluate(()=>globalThis.__fixtureTerminate());const lostState=await done(lost.id);const lostJob=lostState.jobs.find(j=>j.id===lost.id);assert.equal(lostJob.phase,'interrupted',JSON.stringify(lostJob));assert.equal(lostJob.failure.code,'download-worker-lost');assert.deepEqual(await files(),[]);report.cases.push({id:'silent-dedicated-worker-termination',lostAt,job:lostJob});console.log('Actual silently terminated worker detected + cleanup passed');

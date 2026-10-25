@@ -1,4 +1,5 @@
 import type { ByteRange, ResourceGrant } from './model.ts';
+import { isValidBase64 } from './base64.ts';
 
 export const BINARY_PORT = 'download-binary-v1:';
 export const CHUNK_BYTES = 256 * 1024;
@@ -33,7 +34,7 @@ export class BinaryGrants {
 }
 export function decodeChunk(value: unknown): Uint8Array {
   const v = value as Extract<BinaryMessage, { type: 'chunk' }>;
-  if (!v || v.type !== 'chunk' || !validId(v.jobId) || !validId(v.requestId) || !Number.isSafeInteger(v.sequence) || v.sequence < 0 || !Number.isSafeInteger(v.offset) || v.offset < 0 || !Number.isSafeInteger(v.bytes) || v.bytes < 1 || v.bytes > CHUNK_BYTES || typeof v.data !== 'string' || v.data.length !== 4 * Math.ceil(v.bytes / 3) || v.data.length > 349_528 || !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(v.data)) throw new Error('download-chunk-invalid');
+  if (!v || v.type !== 'chunk' || !validId(v.jobId) || !validId(v.requestId) || !Number.isSafeInteger(v.sequence) || v.sequence < 0 || !Number.isSafeInteger(v.offset) || v.offset < 0 || !Number.isSafeInteger(v.bytes) || v.bytes < 1 || v.bytes > CHUNK_BYTES || typeof v.data !== 'string' || !isValidBase64(v.data, v.bytes)) throw new Error('download-chunk-invalid');
   const native = Uint8Array as typeof Uint8Array & { fromBase64?: (data: string) => Uint8Array };
   let result: Uint8Array;
   if (typeof native.fromBase64 === 'function') result = native.fromBase64(v.data);

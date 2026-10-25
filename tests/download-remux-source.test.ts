@@ -73,6 +73,64 @@ test('aligned 4 MiB windows reuse exact bytes, clip known EOF, and expose truthf
   await source.settled(); assert.equal(source.metrics.cachedBytes, 0);
 });
 
+test('open-ended library reads return at most 256 KiB while reusing complete HTTP windows', async () => {
+  const url = base + 'open-ended.bin', total = 4 * MiB + 17;
+  const fixture = streams({ [url]: total });
+  const source = new RemuxSourceAdapter(plan([{ url }]), fixture.fetcher, new AbortController().signal, () => {}, { prefetch: false });
+  let offset = 0;
+  try {
+    while (offset < total) {
+      const response = await source.fetch(url, { headers: { Range: `bytes=${offset}-` } });
+      const expectedLength = Math.min(256 * 1024, total - offset);
+      assert.equal(response.headers.get('Content-Length'), String(expectedLength));
+      assert.equal(response.headers.get('Content-Range'), `bytes ${offset}-${offset + expectedLength - 1}/${total}`);
+      assert.equal(response.status, 206);
+      const bytes = new Uint8Array(await response.arrayBuffer());
+      assert.equal(bytes.length, expectedLength);
+      assert.ok(bytes.every((value, index) => value === (offset + index) % 251));
+      offset += bytes.length;
+    }
+    assert.equal(offset, total);
+    assert.deepEqual(fixture.calls.map(call => call.range), ['bytes=0-4194303', 'bytes=4194304-4194320']);
+    assert.equal(source.metrics.cachedBytes, total);
+  } finally { source.dispose(); }
+});
+
+test('cached response chunks own bounded copies and cancellation does not corrupt cached bytes', async () => {
+  const url = base + 'isolated-response.bin', fixture = streams({ [url]: 4 * MiB });
+  const source = new RemuxSourceAdapter(plan([{ url }]), fixture.fetcher, new AbortController().signal, () => {}, { prefetch: false });
+  try {
+    const response = await source.fetch(url, { headers: { Range: 'bytes=7-' } });
+    const reader = response.body!.getReader(), part = await reader.read();
+    assert.equal(part.value!.byteLength, 262144);
+    assert.equal(part.value!.buffer.byteLength, 262144, 'a small body must not pin the 4MiB cache buffer');
+    part.value!.fill(99); await reader.cancel();
+    assert.deepEqual([...(await read(source, url, 7, 10)).bytes], [7,8,9,10]);
+    const abandoned = await source.fetch(url, { headers: { Range: 'bytes=7-' } });
+    await abandoned.body!.cancel();
+    assert.deepEqual([...(await read(source, url, 7, 10)).bytes], [7,8,9,10]);
+    assert.equal(fixture.calls.length, 1);
+  } finally { source.dispose(); }
+});
+
+test('bounded open-ended responses stop at inclusive grants and truthful object EOF', async () => {
+  const url = base + 'bounded-grant.bin', fixture = streams({ [url]: 3 * MiB });
+  const source = new RemuxSourceAdapter(plan([{ url, range: { start: 17, end: 300017 } }]), fixture.fetcher,
+    new AbortController().signal, () => {}, { prefetch: false });
+  try {
+    const first = await source.fetch(url, { headers: { Range: 'bytes=17-' } });
+    assert.equal(first.headers.get('Content-Range'), 'bytes 17-262160/3145728');
+    assert.equal((await first.arrayBuffer()).byteLength, 262144);
+    const last = await source.fetch(url, { headers: { Range: 'bytes=262161-' } });
+    assert.equal(last.headers.get('Content-Range'), 'bytes 262161-300017/3145728');
+    const bytes = new Uint8Array(await last.arrayBuffer());
+    assert.equal(bytes.length, 37857);
+    assert.ok(bytes.every((value, index) => value === (262161 + index) % 251));
+    await assert.rejects(source.fetch(url, { headers: { Range: 'bytes=300018-' } }), /outside/);
+    assert.deepEqual(fixture.calls.map(call => call.range), ['bytes=17-300017']);
+  } finally { source.dispose(); }
+});
+
 test('overlapping same-window demand shares its delayed physical read and owns one buffer', async () => {
   const url = base + 'shared.bin'; const fixture = streams({ [url]: MiB }, { delayed: true });
   const source = new RemuxSourceAdapter(plan([{ url }]), fixture.fetcher, new AbortController().signal, () => {}, { prefetch: false });
@@ -256,6 +314,22 @@ test('selected companion audio prefetch follows its manifest and excludes other 
   await source.settled();
 });
 
+test('advancing video speculation does not suppress an earlier companion audio position', async () => {
+  const video = Array.from({ length: 6 }, (_, index) => base + `independent-v${index}.ts`);
+  const audio = Array.from({ length: 4 }, (_, index) => base + `independent-a${index}.ts`);
+  const p = plan([...video, ...audio].map(url => ({ url })), video);
+  p.selection.audioUrl = base + 'independent-audio.m3u8';
+  p.manifests.push({ url: p.selection.audioUrl, text: '#EXTM3U\n#EXT-X-TARGETDURATION:1\n' + audio.map(url => `#EXTINF:1,\n${url}\n`).join('') + '#EXT-X-ENDLIST' });
+  const fixture = streams(Object.fromEntries([...video, ...audio].map(url => [url, 16])));
+  const source = new RemuxSourceAdapter(p, fixture.fetcher, new AbortController().signal, () => {});
+  try {
+    await read(source, video[3]); await source.settled();
+    const beforeAudio = fixture.calls.length;
+    await read(source, audio[0]); await source.settled();
+    assert.deepEqual(fixture.calls.slice(beforeAudio).map(call => call.url), audio);
+  } finally { source.dispose(); await source.settled(); }
+});
+
 test('read-ahead owns the next aligned windows of one selected object before later resources', async () => {
   const url = base + 'windowed.bin', next = base + 'later.ts';
   const fixture = streams({ [url]: 10 * MiB, [next]: 16 }, { delayed: true });
@@ -302,6 +376,33 @@ test('repeated reads of one selected fragment keep read-ahead within the next th
     for (let n = 0; n < 6; n++) { await read(source, urls[0]); await source.settled(); }
     assert.deepEqual(fixture.calls.map(c => c.url), urls.slice(0, 4));
   } finally { source.dispose(); }
+});
+
+test('repeated shared MAP reads cannot rewind speculation after more than 32 MiB of selected media', async () => {
+  const map = base + 'shared-init.mp4', urls = Array.from({ length: 6 }, (_, index) => base + `map-part${index}.m4s`);
+  const p = plan([{ url: map }, ...urls.map(url => ({ url }))], urls);
+  p.manifests[0].text = p.manifests[0].text.replace('#EXT-X-TARGETDURATION:1', `#EXT-X-TARGETDURATION:1\n#EXT-X-MAP:URI="${map}"`);
+  const fixture = streams({ [map]: 16, ...Object.fromEntries(urls.map(url => [url, 12 * MiB])) });
+  const source = new RemuxSourceAdapter(p, fixture.fetcher, new AbortController().signal, () => {});
+  try {
+    for (const url of urls) {
+      assert.deepEqual([...(await read(source, map, 0, 3)).bytes], [0,1,2,3]);
+      for (const offset of [0, 4 * MiB, 8 * MiB]) {
+        const { bytes } = await read(source, url, offset, offset + 3);
+        assert.deepEqual([...bytes], Array.from({ length: 4 }, (_, index) => (offset + index) % 251));
+      }
+      await source.settled();
+    }
+    for (const url of urls) assert.equal(fixture.calls.filter(call => call.url === url).length, 3, `old fragment refetched: ${url}`);
+    const beforeBackward = fixture.calls.length;
+    assert.deepEqual([...(await read(source, urls[0], 0, 3)).bytes], [0,1,2,3]);
+    await source.settled();
+    assert.equal(fixture.calls.length, beforeBackward + 1, 'backward demand remains allowed without restarting old speculation');
+    assert.equal(fixture.calls.at(-1)?.url, urls[0]);
+    assert.equal(source.metrics.maximumCachedBytes <= 32 * MiB, true);
+    assert.equal(source.metrics.maximumActive <= 4, true);
+    assert.equal(source.metrics.maximumSpeculative <= 3, true);
+  } finally { source.dispose(); await source.settled(); }
 });
 
 test('queued speculation is not launched after an origin is observed ignoring ranges', async () => {

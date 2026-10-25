@@ -63,9 +63,16 @@ for (const native of [false, true]) {
         { sequence: -1 }, { sequence: 0.5 }, { sequence: Number.MAX_SAFE_INTEGER + 1 },
         { offset: -1 }, { offset: 0.5 }, { offset: Number.MAX_SAFE_INTEGER + 1 },
       ]) assert.throws(() => decodeChunk({ ...chunk, ...invalid }), /download-chunk-invalid/);
-      // The syntactically valid wrong byte length must also be rejected after decoding.
-      assert.equal(calls.decode, native ? 1 : 0);
+      // A padding count inconsistent with the declared bytes is rejected before conversion.
+      assert.equal(calls.decode, 0);
       assert.throws(() => decodeChunk({ ...chunk, bytes: 2, data: 'AA==' }), /download-chunk-invalid/);
     });
   });
 }
+
+test('decoder independently rejects a native conversion with the wrong decoded byte length', async () => {
+  await withBase64(true, async () => {
+    Object.defineProperty(Uint8Array, 'fromBase64', { configurable: true, value: () => new Uint8Array(2) });
+    assert.throws(() => decodeChunk(chunk), /download-chunk-invalid/);
+  });
+});

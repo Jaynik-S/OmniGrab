@@ -8,16 +8,25 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { build } from 'esbuild';
 import { chromium } from 'playwright-core';
+import { spawn } from 'node:child_process';
+import { windowFixture } from './download-speed-fixture.ts';
 
 const output = path.resolve('.cache/download-transport', `native-${Date.now()}-${process.pid}`);
 const fixRound1 = process.argv.includes('--fix-round1');
 const largeIO = process.argv.includes('--large-io');
+const windowArgument = process.argv.find(arg => arg.startsWith('--read-window-mib='));
+const windowMiB = windowArgument ? Number(windowArgument.split('=')[1]) : undefined;
+const delayArgument=process.argv.find(arg=>arg.startsWith('--network-delay-ms='));
+const networkDelayMs=delayArgument?Number(delayArgument.split('=')[1]):25;
+assert.ok(Number.isSafeInteger(networkDelayMs)&&networkDelayMs>=0&&networkDelayMs<=1000,'bounded fixture delay');
+assert.ok(windowMiB === undefined || [1, 4, 8].includes(windowMiB), 'read window must be 1, 4 or 8 MiB');
+assert.ok(!windowMiB || !largeIO, 'window control and >2GiB control run separately');
 const extension = path.join(output, 'extension'); await mkdir(extension, { recursive: true });
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const report = { started: new Date().toISOString(), requests: [], cases: [], errors: [] };
-if(largeIO)report.sourceHashes=Object.fromEntries(await Promise.all(['src/downloads/transport.ts','src/content/download-fetch.ts','src/downloads/opfs.ts'].map(async file=>[file,createHash('sha256').update(await readFile(file)).digest('hex')])));
+if(largeIO||windowMiB)report.sourceHashes=Object.fromEntries(await Promise.all(['src/downloads/transport.ts','src/downloads/base64.ts','src/downloads/binary-protocol.ts','src/content/download-fetch.ts','src/downloads/opfs.ts','src/downloads/remux-source.ts','src/downloads/remux-read-cache.ts'].map(async file=>[file,createHash('sha256').update(await readFile(file)).digest('hex')])));
 const sockets = new Set(), timers = new Set();
-let pageOrigin, mediaOrigin, embedOrigin, context;
+let pageOrigin, mediaOrigin, embedOrigin, context, observer, observerExit;
 const media = createServer((req, res) => {
   const url = new URL(req.url, 'http://fixture.invalid'); const page = [pageOrigin, embedOrigin].some(origin => req.headers.referer?.startsWith(origin));
   const entry = { url: url.pathname, page, range: req.headers.range, origin: req.headers.origin, referer: req.headers.referer, start: Date.now(), bytes: 0 };
@@ -25,6 +34,18 @@ const media = createServer((req, res) => {
   const cors = url.pathname.includes('cors-deny') ? {} : { 'access-control-allow-origin': req.headers.origin === embedOrigin ? embedOrigin : pageOrigin, 'access-control-expose-headers': 'Content-Range, Content-Length, Accept-Ranges' };
   const send = (status, bytes, extra = {}) => { entry.status = status; res.writeHead(status, { ...cors, 'cache-control': 'no-store', 'content-type': 'image/jpeg', 'content-length': String(bytes.length), ...extra }); entry.bytes += bytes.length; res.end(bytes); };
   if (!page && !url.pathname.includes('retry')) { send(404, Buffer.from('context unavailable')); return; }
+  if (url.pathname.startsWith('/window-')) {
+    const size = Number(url.searchParams.get('size')), match = /^bytes=(\d+)-(\d+)$/.exec(req.headers.range || '');
+    assert.ok(size >= 1 && size <= 8 * 1024 * 1024 && match);
+    const start = Number(match[1]), end = Math.min(Number(match[2]), size - 1);
+    entry.status = 206;
+    const timer = setTimeout(() => {
+      timers.delete(timer); if(res.destroyed)return;
+      res.writeHead(206, { ...cors, 'content-type':'application/octet-stream', 'content-length':end-start+1,'content-range':`bytes ${start}-${end}/${size}` });
+      const chunk=Buffer.alloc(65536,90); let remaining=end-start+1;
+      const pump=()=>{while(remaining&&!res.destroyed){const n=Math.min(remaining,chunk.length);remaining-=n;entry.bytes+=n;if(!res.write(chunk.subarray(0,n))){res.once('drain',pump);return;}}if(!remaining)res.end();};pump();
+    }, networkDelayMs);timers.add(timer);res.once('close',()=>{clearTimeout(timer);timers.delete(timer);});return;
+  }
   if (url.pathname === '/large-io.bin') {
     const size = 2 ** 31 + 65537, match = /^bytes=(\d+)-(\d+)$/.exec(req.headers.range || '');
     if (!match) { send(416, Buffer.alloc(0)); return; }
@@ -62,15 +83,23 @@ const bundle = async (name, contents) => build({ stdin: { contents, resolveDir: 
 await writeFile(path.join(extension, 'manifest.json'), JSON.stringify({ manifest_version: 3, name: 'Owned bounded transport fixture', version: '1.0', minimum_chrome_version: '120', permissions: ['offscreen', 'tabs', 'webNavigation', 'storage'], host_permissions: ['http://127.0.0.1/*', 'http://localhost/*'], background: { service_worker: 'worker.js', type: 'module' }, content_scripts: [{ matches: ['http://127.0.0.1/*', 'http://localhost/*'], js: ['content.js'], run_at: 'document_start', all_frames: true }] }));
 await writeFile(path.join(extension, 'host.html'), '<!doctype html><script type="module" src="host.js"></script>');
 await writeFile(path.join(extension, 'controller.html'), '<!doctype html><title>Native transport controls</title>');
-if (largeIO) await bundle('io-worker.js', `
+if (largeIO || windowMiB) await bundle('io-worker.js', `
 import {createOpfsOutput} from './src/downloads/opfs.ts';
-let response;
+import {RemuxSourceAdapter} from './src/downloads/remux-source.ts';
+let response,requestId=0;const pending=new Map();
 self.onmessage=async({data:m})=>{
- if(m.type==='response'){response(m.body);return;}
+ if(m.type==='response'){if(m.id){const resolve=pending.get(m.id);pending.delete(m.id);resolve(m.body);}else response(m.body);return;}
  if(m.type!=='run')return;
- let output;
+ let output,source;const started=performance.now();
  try {
   const directory=await navigator.storage.getDirectory();output=await createOpfsOutput(directory,'large-io.bin');
+  if(m.plan){
+   const fetcher=async(url,init)=>{const range=/bytes=(\\d+)-(\\d+)/.exec(new Headers(init.headers).get('Range'));const id=++requestId;const value=await new Promise(resolve=>{pending.set(id,resolve);self.postMessage({type:'fetch',id,url,start:Number(range[1]),end:Number(range[2])});});const result=new Response(value.body,{status:value.status,headers:value.headers});Object.defineProperty(result,'url',{value:url});return result;};
+   source=new RemuxSourceAdapter(m.plan,fetcher,new AbortController().signal,()=>{}, {readWindowBytes:m.windowMiB*1024*1024});
+   let bytes=0,checked=0;
+   for(const grant of m.plan.resources){let offset=0;const size=Number(new URL(grant.url).searchParams.get('size'));while(offset<size){const result=await source.fetch(grant.url,{headers:{Range:'bytes='+offset+'-'+Math.min(offset+262143,size-1)}});const part=new Uint8Array(await result.arrayBuffer());if(!part.length)throw Error('empty window');for(const byte of part){if(byte!==90)throw Error('window content mismatch');checked++;}await output.write(part,bytes);bytes+=part.length;offset+=part.length;}}
+   await source.settled();const metrics={...source.metrics};source.dispose();await output.flush();await output.close();const file=await(await directory.getFileHandle('large-io.bin')).getFile();await directory.removeEntry('large-io.bin');self.postMessage({type:'complete',bytes,checked,fileSize:file.size,removed:true,metrics,elapsedMs:performance.now()-started});return;
+  }
   let bytes=0,checked=0,chunks=0;const size=2**31+65537;
   while(bytes<size){const end=Math.min(bytes+32*1024*1024-1,size-1);const body=await new Promise(resolve=>{response=resolve;self.postMessage({type:'fetch',url:m.url,start:bytes,end});});const reader=body.getReader();
    for(;;){const p=await reader.read();if(p.done)break;for(const value of p.value){if(value!==90)throw Error('binary content mismatch');checked++;}await output.write(p.value,bytes);bytes+=p.value.length;chunks++;}
@@ -82,8 +111,8 @@ self.onmessage=async({data:m})=>{
   for(const [start,length]of [[0,4],[2**31-2,6],[size-4,4]])slices.push({start,bytes:[...new Uint8Array(await file.slice(start,start+length).arrayBuffer())]});
   const handle=await(await directory.getFileHandle('large-io.bin')).createSyncAccessHandle();handle.close();
   await directory.removeEntry('large-io.bin');
-  self.postMessage({type:'complete',bytes,checked,chunks,fileSize:file.size,slices,removed:true});
- }catch(e){await output?.close();self.postMessage({type:'failed',error:String(e.stack||e)});}
+  self.postMessage({type:'complete',bytes,checked,chunks,fileSize:file.size,slices,removed:true,elapsedMs:performance.now()-started});
+ }catch(e){source?.dispose();await output?.close();self.postMessage({type:'failed',error:String(e.stack||e)});}
 };`);
 await bundle('content.js', `import {createDownloadAttachmentHandler} from './src/content/download-fetch.ts'; let ownedPort;const handler=createDownloadAttachmentHandler(chrome.runtime.id,{connect:name=>{ownedPort=chrome.runtime.connect({name});return ownedPort;}}); chrome.runtime.onMessage.addListener(handler);chrome.runtime.onMessage.addListener((m,s,reply)=>{if(m.type==='fixture-drop'&&s.id===chrome.runtime.id&&!s.tab){ownedPort.disconnect();reply({ok:true});}});`);
 await bundle('worker.js', `
@@ -142,10 +171,10 @@ chrome.runtime.onMessage.addListener((m,s,reply)=>{
   if(m.action==='large-proof')return work.get('large');
   if(m.action==='large-io'){
    const item={done:false,release:()=>{}};work.set('large',item);const io=new Worker('io-worker.js',{type:'module'});
-   io.onmessage=({data})=>{if(data.type==='fetch'){void(async()=>{const r=await transport.fetch(data.url,{headers:{Range:'bytes='+data.start+'-'+data.end}});io.postMessage({type:'response',body:r.body},[r.body]);})().catch(e=>{item.error=String(e);item.done=true;io.terminate();});}
+   io.onmessage=({data})=>{if(data.type==='fetch'){void(async()=>{const r=await transport.fetch(data.url,{headers:{Range:'bytes='+data.start+'-'+data.end}});io.postMessage({type:'response',id:data.id,body:m.plan?{body:r.body,status:r.status,headers:[...r.headers]}:r.body},[r.body]);})().catch(e=>{item.error=String(e);item.done=true;io.terminate();});}
     else if(data.type==='progress')Object.assign(item,data);
     else {Object.assign(item,data,{done:true});io.terminate();}};
-   io.onerror=e=>{item.error=e.message;item.done=true;io.terminate();};io.postMessage({type:'run',url:m.url});return true;
+   io.onerror=e=>{item.error=e.message;item.done=true;io.terminate();};io.postMessage({type:'run',url:m.url,plan:m.plan,windowMiB:m.windowMiB});return true;
   }
   if(m.action==='dispose'){for(const i of work.values())i.release();await transport.dispose();return transport.metrics;}
  })().then(v=>reply({ok:true,value:v}),e=>reply({ok:false,error:String(e.stack||e)}));return true;
@@ -155,15 +184,36 @@ async function until(callback, predicate, label, timeout = 12000) { const deadli
 try {
   const profile = await mkdtemp(path.join(tmpdir(), 'owned-download-transport-')); report.profile = profile;
   context = await chromium.launchPersistentContext(profile, { executablePath: process.env.CHROMIUM_PATH ?? 'C:/Users/jay03/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe', headless: true, args: [`--disable-extensions-except=${extension}`, `--load-extension=${extension}`, '--remote-debugging-port=0'] });
+  report.networkFailures=[];context.on('requestfailed',request=>report.networkFailures.push({url:request.url(),failure:request.failure(),at:Date.now()}));
   report.browser = context.browser()?.version(); const port = Number((await readFile(path.join(profile, 'DevToolsActivePort'), 'utf8')).split('\n')[0]); assert.ok(port > 0 && port !== 9222); report.debuggingPort = port;
+  report.pid=process.pid;await writeFile(path.join(output,'live.json'),JSON.stringify({pid:process.pid,profile,port,output}));console.log(JSON.stringify({started:true,pid:process.pid,profile,port,output}));
   const worker = context.serviceWorkers()[0] ?? await context.waitForEvent('serviceworker'); const extensionId = new URL(worker.url()).hostname;
   const control = await context.newPage(); await control.goto(`chrome-extension://${extensionId}/controller.html`);
   const page = await context.newPage(); await page.goto(pageOrigin + '/watch');
+  if(largeIO){
+    await writeFile(path.join(output,'receipt.json'),JSON.stringify({profile,port,pid:process.pid}));
+    observer=spawn(process.execPath,['tests/download-acceptance-observe.mjs',output],{stdio:['ignore','ignore','inherit'],windowsHide:true});report.observerPid=observer.pid;
+    observerExit=new Promise(resolve=>{observer.once('exit',(code,signal)=>resolve({code,signal}));observer.once('error',error=>resolve({error:error.message}));});
+    await until(async()=>{try{return(await readFile(path.join(output,'resources.ndjson'),'utf8')).trim().split('\n').length;}catch{return 0;}},count=>count>=1,'pre-transfer read-only resource sample');
+    console.log(JSON.stringify({observerPid:observer.pid,output,pid:process.pid}));
+  }
   const call = async (target, action, args = {}) => { const r = await control.evaluate(m => chrome.runtime.sendMessage(m), { target, action, ...args }); assert.ok(r?.ok, r?.error || 'missing control reply'); return r.value; };
   const status = () => call('host', 'status');
   const init = async (id, idleMs = 2000) => { await call('coordinator', 'init', { id, pageUrl: page.url(), sourceUrl: mediaOrigin + '/manifest.m3u8', idleMs, requestMs: 8000 }); await sleep(50); };
   const fetchOne = async (id, suffix, args = {}) => { const url = mediaOrigin + suffix; await call('host', 'grant', { grants: [{ url, ...(args.grantRange ? { range: args.grantRange } : {}) }] }); await call('host', 'fetch', { id, url, ...args }); const result=await until(status, s => s.work[id]?.done, id);report.lastResult=result;return result; };
-  if (largeIO) {
+  if (windowMiB) {
+    const fixture=windowFixture(mediaOrigin),selection=await call('coordinator','init',{id:'window-'+windowMiB,pageUrl:page.url(),sourceUrl:mediaOrigin+'/manifest.m3u8',idleMs:15000,requestMs:120000});
+    await call('host','grant',{grants:fixture.resources});
+    const plan={selection,manifests:[{url:selection.videoUrl,text:fixture.text}],resources:fixture.resources};
+    await call('host','large-io',{plan,windowMiB});
+    const final=await until(status,s=>s.work.large?.done,'window control',180000),proof=await call('host','large-proof');
+    report.lastResult={final,proof};
+    assert.equal(proof.error,undefined);assert.equal(proof.bytes,fixture.expectedBytes);assert.equal(proof.checked,fixture.expectedBytes);assert.equal(proof.fileSize,fixture.expectedBytes);assert.equal(proof.removed,true);
+    assert.ok(proof.metrics.maximumActive<=4);assert.ok(proof.metrics.maximumSpeculative<=3);assert.ok(proof.metrics.maximumCachedBytes<=32*1024*1024);assert.ok(proof.metrics.maximumInFlightBytes<=32*1024*1024);
+    assert.ok(final.metrics.maximumQueuedBytes<=8*1024*1024);assert.equal(final.metrics.maximumUnacknowledgedPerRequest,1);
+    assert.equal(final.metrics.receivedBytes,fixture.expectedBytes);assert.equal(report.requests.filter(request=>request.page&&request.status===206).reduce((sum,request)=>sum+request.bytes,0),fixture.expectedBytes);
+    report.cases.push({id:'native-page-bridge-window-control',windowMiB,delayMs:networkDelayMs,fixture,proof,metrics:final.metrics});await call('host','dispose');
+  } else if (largeIO) {
     await call('coordinator','init',{id:'large-io',pageUrl:page.url(),sourceUrl:mediaOrigin+'/manifest.m3u8',idleMs:15000,requestMs:120000});
     const url=mediaOrigin+'/large-io.bin';await call('host','grant',{grants:[{url}]});await call('host','large-io',{url});
     let final;const samples=[];
@@ -238,6 +288,6 @@ try {
   report.ok = true;
 } catch (error) { report.ok = false; report.errors.push(String(error.stack || error)); process.exitCode = 1; }
 finally {
-  if (context) await context.close(); for (const timer of timers) clearInterval(timer); for (const socket of sockets) socket.destroy(); await Promise.all([media, pages].map(server => new Promise(resolve => server.close(resolve))));
+  if (context) await context.close(); if(observerExit)report.observerExit=await observerExit;for (const timer of timers) clearInterval(timer); for (const socket of sockets) socket.destroy(); await Promise.all([media, pages].map(server => new Promise(resolve => server.close(resolve))));
   await writeFile(path.join(output, 'evidence.json'), JSON.stringify(report, null, 2)); console.log(JSON.stringify({ ok: report.ok, output, cases: report.cases.map(c => c.id), errors: report.errors }));
 }

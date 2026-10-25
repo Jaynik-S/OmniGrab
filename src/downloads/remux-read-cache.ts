@@ -3,6 +3,7 @@ import type { DownloadPlan, ResourceFetch, ResourceGrant } from './model.ts';
 
 const CACHE_LIMIT = 32 * 1024 * 1024;
 const MAX_READ = 64 * 1024 * 1024;
+const RESPONSE_BYTES = 256 * 1024;
 export interface ReadOptions { readWindowBytes?: number; prefetch?: boolean; }
 export interface ReadMetrics {
   cachedBytes: number; maximumCachedBytes: number; inFlightBytes: number; maximumInFlightBytes: number;
@@ -34,6 +35,7 @@ export class RemuxReadCache {
   private readonly completeObjects = new Set<string>();
   private readonly ignoredOrigins = new Set<string>();
   private readonly lanes: ResourceGrant[][] = [];
+  private readonly lanePositions = new Map<ResourceGrant[], number>();
   private readonly lifetime = new AbortController();
   private readonly allocationWaiters: Array<() => void> = [];
   private allocatingWhole = false;
@@ -82,9 +84,13 @@ export class RemuxReadCache {
     }
   }
   private response(block: Block, start: number, end: number): Response {
-    const last = Math.min(end, block.end), headers = new Headers(block.headers);
+    const last = Math.min(end, block.end, start + RESPONSE_BYTES - 1), headers = new Headers(block.headers);
     headers.set('Content-Range', `bytes ${start}-${last}/${block.total}`); headers.set('Content-Length', String(last - start + 1));
-    const response = new Response(block.data.subarray(start - block.start, last - block.start + 1), { status: 206, headers });
+    // UrlSource asks open-ended ranges for packet reads with its cache disabled. Keep
+    // each body independently bounded, without Response's native typed-array body copy.
+    const bytes = block.data.slice(start - block.start, last - block.start + 1);
+    const body = new ReadableStream<Uint8Array>({ start(controller) { controller.enqueue(bytes); controller.close(); } });
+    const response = new Response(body, { status: 206, headers });
     Object.defineProperties(response, { url: { value: block.finalUrl }, redirected: { value: block.redirected } });
     return response;
   }
@@ -169,6 +175,10 @@ export class RemuxReadCache {
       (!entry.range || start >= entry.range.start && start <= entry.range.end)));
     if (!lane) return;
     const index = lane.findIndex(entry => entry.url === grant.url && (!entry.range || start >= entry.range.start && start <= entry.range.end));
+    // Validation revisits shared MAPs and old fragments. Demand may seek back, but
+    // speculation must stay at the furthest selected media position in each lane.
+    if (index < (this.lanePositions.get(lane) ?? 0)) return;
+    this.lanePositions.set(lane, index);
     let speculative = [...this.pending.values()].filter(read => read.speculative).length, candidates = 0;
     for (let n = index; n < lane.length && speculative < 3 && candidates < 3; n++) {
       const next = lane[n]; if (this.ignoredOrigins.has(new URL(next.url).origin)) continue;
@@ -305,7 +315,7 @@ export class RemuxReadCache {
   readonly dispose = () => {
     if (this.disposed) return;
     this.disposed = true; this.lifetime.abort(); this.signal.removeEventListener('abort', this.dispose);
-    this.stopQueued(this.lifetime.signal.reason); this.cache.clear(); this.totals.clear(); this.completeObjects.clear(); this.ignoredOrigins.clear(); this.lanes.length = 0;
+    this.stopQueued(this.lifetime.signal.reason); this.cache.clear(); this.totals.clear(); this.completeObjects.clear(); this.ignoredOrigins.clear(); this.lanes.length = 0; this.lanePositions.clear();
     this.metrics.cachedBytes = 0;
   };
   async settled(): Promise<void> { while (this.operations.size) await Promise.allSettled([...this.operations]); }

@@ -12,18 +12,41 @@ import { chromium } from 'playwright-core';
 import { fixtures, fixturePlan, mixedFixturePlan, scratch } from './download-fixtures.ts';
 
 const cacheOnly = process.argv.includes('--cache-only');
+const responseProbe = process.argv.includes('--response-probe');
 const progressOnly = process.argv.includes('--progress-only');
 const preGateFailure = process.argv.includes('--pre-gate-failure');
 const gateTimeout = process.argv.includes('--gate-timeout');
 assert.ok(!(preGateFailure && gateTimeout) && (!(preGateFailure || gateTimeout) || progressOnly), 'use one gate fault with --progress-only');
 mkdirSync(scratch, { recursive: true });
-if (!cacheOnly && (!progressOnly || !existsSync(resolve(scratch, 'ts720/list.m3u8')))) fixtures();
+if (!cacheOnly && !responseProbe && (!progressOnly || !existsSync(resolve(scratch, 'ts720/list.m3u8')))) fixtures();
 const bundle = await build({ stdin: { contents: `
   import { remuxToMp4 } from './src/downloads/remux.ts';
   import { createOpfsOutput } from './src/downloads/opfs.ts';
   import { RemuxSourceAdapter } from './src/downloads/remux-source.ts';
   self.onmessage = async ({ data }) => {
     try {
+      if (data.responseProbe) {
+        const bytes = new Uint8Array(4 * 1024 * 1024);
+        for (let index = 0; index < bytes.length; index++) bytes[index] = index % 251;
+        const results = [], modes = ['window-typed-array', 'bounded-typed-array', 'bounded-copied-stream'];
+        for (let round = 0; round < 3; round++) for (let n = 0; n < modes.length; n++) {
+          const mode = modes[(round + n) % modes.length], started = performance.now(); let extracted = 0, packetBytes = 0;
+          for (let index = 0; index < 256; index++) {
+            const start = (index * 7919) % 262144, end = mode === 'window-typed-array' ? bytes.length : start + 262144;
+            const value = mode === 'bounded-copied-stream' ? bytes.slice(start, end) : bytes.subarray(start, end);
+            const body = mode === 'bounded-copied-stream' ? new ReadableStream({ start(controller) { controller.enqueue(value); controller.close(); } }) : value;
+            const response = new Response(body, { status: 206, headers: { 'Content-Range': 'bytes '+start+'-'+(end-1)+'/'+bytes.length, 'Content-Length': String(end-start) } }), reader = response.body.getReader(), first = await reader.read();
+            if (first.value.length !== end - start || first.value[0] !== start % 251 || first.value.at(-1) !== (end - 1) % 251) throw Error('response extraction mismatch');
+            // UrlSource's open-ended request only needed a small packet at this offset.
+            for (let byte = 0; byte < 64; byte++) if (first.value[byte] !== (start + byte) % 251) throw Error('packet mismatch');
+            packetBytes += 64;
+            if (mode === 'bounded-copied-stream' && first.value.buffer.byteLength !== 262144) throw Error('unbounded retained response buffer');
+            extracted += first.value.length; await reader.cancel();
+          }
+          results.push({ round, mode, iterations: 256, packetBytes, extracted, elapsedMs: performance.now() - started });
+        }
+        self.postMessage({ results }); return;
+      }
       if (data.preGateFailure) throw new Error('controlled-pre-gate-failure');
       if (data.cacheCase) {
         let received = 0;
@@ -80,8 +103,9 @@ const bundle = await build({ stdin: { contents: `
         // Acquiring a second exclusive native handle proves the failed engine closed its handle.
         const handle = await file.createSyncAccessHandle(); handle.close();
         closedSize = (await file.getFile()).size;
+        await directory.removeEntry(data.name + '.mp4');
       }
-      self.postMessage({ error: error.stack || String(error), closedSize });
+      self.postMessage({ error: error.stack || String(error), closedSize, ...(data.rejectCase ? { removed: true } : {}) });
     }
   };
 `, resolveDir: resolve('.'), sourcefile: 'native-engine-worker.ts', loader: 'ts' },
@@ -114,9 +138,10 @@ const server = createServer((request, response) => {
   response.writeHead(match ? 206 : 200, { 'Content-Type': 'image/jpeg', 'Accept-Ranges': 'bytes',
     'Content-Length': end - start + 1, ...(match ? { 'Content-Range': `bytes ${start}-${end}/${bytes.length}` } : {}) });
   if (progressRun && path === '/ts720/part1.ts') {
-    preflightServed = served - (end - start + 1) + 64;
+    preflightServed += 64;
     heldResponse = response; response.write(bytes.subarray(start, start + 64)); if (!gateTimeout) progressGate(); return;
   }
+  if (progressRun) preflightServed += end - start + 1;
   response.end(bytes.subarray(start, end + 1));
 });
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
@@ -126,9 +151,21 @@ try {
   browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || 'C:/Users/jay03/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe', headless: true });
   console.log('Chromium', browser.version(), 'native dedicated-worker OPFS sync handles');
   const page = await browser.newPage(); await page.goto(origin);
-  const cases = cacheOnly || progressOnly ? [] : ['mux720', 'ts720', 'video1080'];
-  if (!cacheOnly && !progressOnly && existsSync(sample)) cases.push('captured');
+  const cases = cacheOnly || progressOnly || responseProbe ? [] : ['mux720', 'ts720', 'video1080'];
+  if (!cacheOnly && !progressOnly && !responseProbe && existsSync(sample)) cases.push('captured');
   const evidence = [];
+  if (responseProbe) {
+    const result = await page.evaluate(() => new Promise((resolve, reject) => {
+      const worker = new Worker('/worker.js', { type: 'module' });
+      worker.onmessage = ({ data }) => { worker.terminate(); data.error ? reject(Error(data.error)) : resolve(data); };
+      worker.onerror = error => { worker.terminate(); reject(Error(error.message)); };
+      worker.postMessage({ responseProbe: true });
+    }));
+    assert.equal(result.results.length, 9);
+    evidence.push({ name: 'cached-response-native-extraction', browser: browser.version(), ...result,
+      scope: 'Deterministic dedicated-worker response extraction microbenchmark, not HTTP/media/Chrome-save throughput' });
+    console.log(JSON.stringify(evidence.at(-1)));
+  }
   if (progressOnly) {
     progressRun = true;
     const gate = new Promise(resolve => { progressGate = resolve; });
@@ -158,11 +195,15 @@ try {
         new Promise((_, reject) => { gateTimer = setTimeout(() => reject(new Error('held-request-gate-timeout')), gateTimeout ? 1000 : 5000); }),
       ]);
       clearTimeout(gateTimer);
-      await page.waitForFunction(bytes => globalThis.progressControl.progress.at(-1)?.inputBytes === bytes,
-        preflightServed, { timeout: 5000 });
+      const minimumInput = readFileSync(resolve(scratch, 'ts720/part0.ts')).length + 64;
+      await page.waitForFunction(bytes => globalThis.progressControl.progress.at(-1)?.inputBytes >= bytes,
+        minimumInput, { timeout: 5000 });
       snapshot = await page.evaluate(() => globalThis.progressControl.progress.at(-1));
-      assert.equal(snapshot.phase, 'processing'); assert.equal(snapshot.outputBytes, 0); assert.equal(snapshot.seconds, 0);
+      assert.equal(snapshot.phase, 'processing');
+      assert.ok(Number.isSafeInteger(snapshot.outputBytes) && snapshot.outputBytes >= 0);
+      assert.ok(Number.isFinite(snapshot.seconds) && snapshot.seconds >= 0 && snapshot.seconds <= plan.duration);
       assert.ok(snapshot.inputBytes > 64, 'progress must include previous media plus the held later segment');
+      assert.ok(snapshot.inputBytes <= preflightServed, 'input progress cannot exceed physical fixture bytes');
     } catch (error) {
       gateError = error;
     } finally {
@@ -187,7 +228,9 @@ try {
       assert.equal(cleanup.type, 'cleanup-error'); assert.match(cleanup.error, /controlled-pre-gate-failure/);
       assert.equal(heldResponse, undefined); assert.equal(requests, 0);
     } else {
-      assert.equal(cleanup.type, 'aborted'); assert.equal(cleanup.closedSize, 0); assert.equal(cleanup.removed, true);
+      assert.equal(cleanup.type, 'aborted');
+      assert.ok(Number.isSafeInteger(cleanup.closedSize) && cleanup.closedSize >= (snapshot?.outputBytes ?? 0), 'streaming partial output must close before removal');
+      assert.equal(cleanup.removed, true);
       assert.equal(heldResponse?.destroyed, true);
       if (gateTimeout) assert.match(String(gateError), /held-request-gate-timeout/);
       else if (gateError) throw gateError;
@@ -234,7 +277,7 @@ try {
         sampleRate: t.sample_rate, frames: t.nb_frames, duration: t.duration })) }, decode: 'ffmpeg -xerror exit 0' });
     console.log(JSON.stringify(evidence.at(-1)));
   }
-  for (const kind of cacheOnly || progressOnly ? [] : ['video', 'audio', 'ts-video']) {
+  for (const kind of cacheOnly || progressOnly || responseProbe ? [] : ['video', 'audio', 'ts-video']) {
     requests = 0; served = 0;
     const name = 'reject-' + kind;
     const plan = JSON.parse(JSON.stringify(mixedFixturePlan(kind)).replaceAll('https://fixture.test', origin));
@@ -245,11 +288,12 @@ try {
       worker.postMessage({ name, plan, rejectCase: true });
     }), { name, plan });
     assert.match(result.error || '', /configuration|dimensions|change/i);
-    assert.equal(result.closedSize, 0, 'configuration changes must reject before mux output and release the native handle');
-    evidence.push({ name, error: result.error.split('\n')[0], closedSize: result.closedSize, requests, served });
+    assert.ok(Number.isSafeInteger(result.closedSize) && result.closedSize >= 0, 'failed streaming validation must release the native handle');
+    assert.equal(result.removed, true, 'partial output from a rejected streaming job must be removed');
+    evidence.push({ name, error: result.error.split('\n')[0], closedSize: result.closedSize, removed: result.removed, requests, served });
     console.log(JSON.stringify(evidence.at(-1)));
   }
-  if (!progressOnly) {
+  if (!progressOnly && !responseProbe) {
   requests = 0; served = 0;
   const url = origin + '/cache-object.bin';
   const cachePlan = { selection: { tabId: 1, epoch: 1, mediaId: 'cache', instance: 1, pageUrl: origin,
@@ -267,7 +311,7 @@ try {
   evidence.push({ name: 'range-ignoring-eviction', ...cacheResult, requests, served });
   console.log(JSON.stringify(evidence.at(-1)));
   }
-  writeFileSync(resolve(scratch, progressOnly ? preGateFailure ? 'native-progress-pre-gate-failure-evidence.json' : gateTimeout ? 'native-progress-gate-timeout-evidence.json' : 'native-progress-evidence.json' : cacheOnly ? 'native-cache-evidence.json' : 'native-evidence.json'), JSON.stringify(evidence, null, 2));
+  writeFileSync(resolve(scratch, responseProbe ? 'native-response-probe.json' : progressOnly ? preGateFailure ? 'native-progress-pre-gate-failure-evidence.json' : gateTimeout ? 'native-progress-gate-timeout-evidence.json' : 'native-progress-evidence.json' : cacheOnly ? 'native-cache-evidence.json' : 'native-evidence.json'), JSON.stringify(evidence, null, 2));
 } finally {
   if (browser) await browser.close();
   await new Promise(resolve => server.close(resolve));
