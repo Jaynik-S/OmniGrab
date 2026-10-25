@@ -6,3 +6,4 @@ dist/
 test-results/
 *.log
 rea-video-capture.json
+.impeccable/
